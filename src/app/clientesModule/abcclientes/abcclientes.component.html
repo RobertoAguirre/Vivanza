@@ -1,0 +1,1051 @@
+<!-- Content Header (Page header) -->
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">{{title}}</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">{{title}}</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<!-- /.content-header -->
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-12">
+                <!-- general form elements -->
+                <div class="card card-primary">
+                    <!--                     <div class="card-header">
+                        <h3 class="card-title">Quick Example</h3>
+                    </div> -->
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form role="form">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Cliente</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1"
+                                            placeholder="Cliente">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-lg-8">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Nombre</label>
+                                        <input type="text" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Nombre">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">R.F.C.</label>
+                                        <input type="text" class="form-control" id="exampleInputPassword1"
+                                            placeholder="R.F.C.">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">E-mail</label>
+                                        <input type="email" class="form-control" id="exampleInputPassword1"
+                                            placeholder="E-mail">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-4 col-md-4 col-lg-4">
+                                    <div class="form-group">
+                                        <label>Supervisor</label>
+                                        <select class="form-control">
+                                            <option>option 1</option>
+                                            <option>option 2</option>
+                                            <option>option 3</option>
+                                            <option>option 4</option>
+                                            <option>option 5</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 col-md-4 col-lg-4">
+                                    <div class="form-group">
+                                        <label>Segmento</label>
+                                        <select class="form-control">
+                                            <option>option 1</option>
+                                            <option>option 2</option>
+                                            <option>option 3</option>
+                                            <option>option 4</option>
+                                            <option>option 5</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4 col-md-4 col-lg-4">
+                                    <div class="form-group">
+                                        <label>Clasificación</label>
+                                        <select class="form-control">
+                                            <option>option 1</option>
+                                            <option>option 2</option>
+                                            <option>option 3</option>
+                                            <option>option 4</option>
+                                            <option>option 5</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12 col-md-8 col-lg-8">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Descripción</label>
+                                        <input type="text" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Descripción">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-8 col-lg-4">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">E-mail</label>
+                                        <input type="text" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Descripción">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12 col-md-8 col-lg-12">
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Referencia</label>
+                                        <input type="text" class="form-control" id="exampleInputPassword1"
+                                            placeholder="Referencia">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <button data-target="#modal-xl-Domicilios" data-toggle="modal" type="button"
+                                            class="btn btn-block btn-primary">Agregar domicilios</button>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <button data-target="#modal-xl-Contactos" data-toggle="modal" type="button"
+                                            class="btn btn-block btn-primary">Agregar contactos</button>
+                                    </div>
+                                </div>
+
+
+                                <!--modals-->
+                                <div class="modal fade" id="modal-xl-Domicilios">
+                                    <div class="modal-dialog modal-xl">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-primary">
+                                                <h4 class="modal-title">Agregar domicilio</h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-10 col-lg-10">
+                                                        <div class="form-group">
+                                                            <label>Tipo</label>
+                                                            <select class="form-control">
+                                                                <option>option 1</option>
+                                                                <option>option 2</option>
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-2 col-lg-2">
+                                                        <label> <span> &nbsp;</span></label>
+                                                        <div class="form-group">
+                                                            <button class="btn btn-primary btn-block">Nuevo</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Nombre</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputPassword1" placeholder="Nombre">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Número
+                                                                exterior</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputPassword1"
+                                                                placeholder="Número exterior">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Número
+                                                                interior</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputPassword1"
+                                                                placeholder="Num. departamento, local, oficina">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Colonia</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputPassword1"
+                                                                placeholder="Num. departamento, local, oficina">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Código
+                                                                postal</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputPassword1"
+                                                                placeholder="Número exterior">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label>Ciudad</label>
+                                                            <select class="form-control">
+                                                                <option>option 1</option>
+                                                                <option>option 2</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label>Localidad</label>
+                                                            <select class="form-control">
+                                                                <option>option 1</option>
+                                                                <option>option 2</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Código postal</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputPassword1"
+                                                                placeholder="Número exterior">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label>Ciudad</label>
+                                                            <select class="form-control">
+                                                                <option>option 1</option>
+                                                                <option>option 2</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label>Localidad</label>
+                                                            <select class="form-control">
+                                                                <option>option 1</option>
+                                                                <option>option 2</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <button (click)="toggleNuevoDomicilio()" type="button"
+                                                                class="btn btn-primary">Agregar
+                                                                télefono
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div *ngIf="showNuevoDomicilio" class="row">
+
+
+                                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label>Tipo</label>
+                                                            <select class="form-control">
+                                                                <option>option 1</option>
+                                                                <option>option 2</option>
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Teléfono</label>
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control"
+                                                                    id="exampleInputPassword1"
+                                                                    placeholder="Num. departamento, local, oficina">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label><span>&nbsp;</span></label>
+                                                            <button type="button"
+                                                                class="btn btn-block btn-primary">Guardar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-12 col-lg-12">
+
+                                                        <table datatable class="row-border hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Tipo</th>
+                                                                    <th>Número</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>Ventas</td>
+                                                                    <td>6141236547</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Almacén</td>
+                                                                    <td>6141236458</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+                                                </div>
+
+
+
+
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-primary">Guardar cambios</button>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                                <!-- /.modal -->
+
+                                <div class="modal fade" id="modal-xl-Contactos">
+                                    <div class="modal-dialog modal-xl">
+                                        <div class="modal-content">
+                                            <div class="modal-header bg-primary">
+                                                <h4 class="modal-title">Contactos</h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-9 col-lg-9">
+                                                        <div class="form-group">
+                                                            <label>Tipo</label>
+                                                            <select class="form-control">
+                                                                <option>option 1</option>
+                                                                <option>option 2</option>
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-9 col-lg-3">
+                                                        <label> <span> &nbsp;</span></label>
+                                                        <div class="form-group">
+                                                            <button class="btn btn-block btn-primary">Nuevo</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-12 col-lg-12">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Nombre</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputPassword1" placeholder="Nombre">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Número
+                                                                exterior</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputPassword1"
+                                                                placeholder="Número exterior">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Número
+                                                                interior</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputPassword1"
+                                                                placeholder="Num. departamento, local, oficina">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Colonia</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputPassword1"
+                                                                placeholder="Num. departamento, local, oficina">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Código postal</label>
+                                                            <input type="text" class="form-control"
+                                                                id="exampleInputPassword1"
+                                                                placeholder="Número exterior">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label>Ciudad</label>
+                                                            <select class="form-control">
+                                                                <option>option 1</option>
+                                                                <option>option 2</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label>Localidad</label>
+                                                            <select class="form-control">
+                                                                <option>option 1</option>
+                                                                <option>option 2</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <button (click)="toggleNuevoTelefono()" type="button"
+                                                                class="btn btn-primary">Agregar
+                                                                télefono
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div *ngIf="showNuevoTelefono" class="row">
+
+
+                                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label>Tipo</label>
+                                                            <select class="form-control">
+                                                                <option>option 1</option>
+                                                                <option>option 2</option>
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label for="exampleInputPassword1">Teléfono</label>
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control"
+                                                                    id="exampleInputPassword1"
+                                                                    placeholder="Num. departamento, local, oficina">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                                        <div class="form-group">
+                                                            <label><span>&nbsp;</span></label>
+                                                            <button type="button"
+                                                                class="btn btn-block btn-primary">Guardar
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-12 col-lg-12">
+
+                                                        <table datatable class="row-border hover">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Tipo</th>
+                                                                    <th>Número</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>Personal</td>
+                                                                    <td>6141236547</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Oficina</td>
+                                                                    <td>6141236458</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer justify-content-between">
+                                                <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-primary">Guardar cambios</button>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
+                                <!-- /.modal -->
+
+                            </div>
+
+
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Datos adicionales</h3>
+
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                                class="fas fa-minus"></i>
+                                        </button>
+                                        <!--                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                                class="fas fa-times"></i></button> -->
+                                    </div>
+                                </div>
+                                <div class="card-body" style="display: block;">
+
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Nombre comercial</label>
+                                                <input type="text" class="form-control" id="exampleInputPassword1"
+                                                    placeholder="Nombre comercial S.A.">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-3 col-lg-3">
+                                            <div class="form-group">
+                                                <label>Tipo de cliente</label>
+                                                <select class="form-control">
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-3 col-lg-3">
+                                            <div class="form-group">
+                                                <label>Tamaño de cliente</label>
+                                                <select class="form-control">
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-3 col-lg-3">
+                                            <div class="form-group">
+                                                <label>ECU</label>
+                                                <select class="form-control">
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-3 col-lg-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Fecha de alta</label>
+                                                <input type="date" class="form-control" id="exampleInputPassword1"
+                                                    placeholder="Nombre comercial S.A.">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Precio por omisión</label>
+                                                <input type="number" class="form-control" id="exampleInputPassword1"
+                                                    placeholder="Nombre comercial S.A.">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Id Contpaq</label>
+                                                <input type="text" class="form-control" id="exampleInputPassword1"
+                                                    placeholder="Nombre comercial S.A.">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-4 col-lg-4">
+                                            <div class="custom-control custom-checkbox">
+                                                <label for="exampleInputPassword1"> <span>&nbsp;</span></label>
+                                                <input class="custom-control-input" type="checkbox"
+                                                    id="customCheckbox3">
+                                                <label for="customCheckbox3" class="custom-control-label">Solicitar
+                                                    autorización con facturas vencidas
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <!-- checkbox -->
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="customCheckbox1" value="option1">
+                                                    <label for="customCheckbox1" class="custom-control-label">Facturar
+                                                        en
+                                                        dólares
+                                                    </label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="customCheckbox2">
+                                                    <!--checked-->
+                                                    <label for="customCheckbox2" class="custom-control-label">Retiene
+                                                        impuesto
+                                                    </label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="chkExtranjero">
+                                                    <!--disabled-->
+                                                    <label for="chkExtranjero" class="custom-control-label">Es
+                                                        extranjero
+                                                    </label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="customCheckbox1" value="option1">
+                                                    <label for="customCheckbox1" class="custom-control-label">Solo
+                                                        remisiona</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <!-- checkbox -->
+                                            <div class="form-group">
+
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="customCheckbox2" checked>
+                                                    <label for="customCheckbox2" class="custom-control-label">Puede
+                                                        remisionar conceptos
+                                                    </label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="customCheckbox3">
+                                                    <label for="customCheckbox3" class="custom-control-label">Es
+                                                        industrial
+                                                    </label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="customCheckbox1" value="option1">
+                                                    <label for="customCheckbox1" class="custom-control-label">Usa
+                                                        factores de conversión</label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="customCheckbox2" checked>
+                                                    <label for="customCheckbox2" class="custom-control-label">Factura
+                                                        múltiples ordenes de taller
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <!-- checkbox -->
+                                            <div class="form-group">
+
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="customCheckbox3">
+                                                    <label for="customCheckbox3" class="custom-control-label">Usa
+                                                        remisiones
+
+                                                    </label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="customCheckbox3">
+                                                    <label for="customCheckbox3" class="custom-control-label">Es
+                                                        comisionista
+
+                                                    </label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="customCheckbox3">
+                                                    <label for="customCheckbox3" class="custom-control-label">Remisiona
+                                                        con importe
+
+                                                    </label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="customCheckbox3">
+                                                    <label for="customCheckbox3" class="custom-control-label">Cargar
+                                                        pedimentos
+
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+
+
+
+
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">Condiciones y método de pago</h3>
+
+
+                                    <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                                class="fas fa-minus"></i>
+                                        </button>
+                                        <!--                    <button type="button" class="btn btn-tool" data-card-widget="remove"><i
+                                                class="fas fa-times"></i></button> -->
+                                    </div>
+                                </div>
+                                <div class="card-body" style="display: block;">
+
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-3 col-lg-3">
+                                            <!-- checkbox -->
+                                            <div class="form-group">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="customCheckbox1" value="option1">
+                                                    <label for="customCheckbox1" class="custom-control-label">Cliente de
+                                                        contado
+
+                                                    </label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="customCheckbox2">
+                                                    <!--checked-->
+                                                    <label for="customCheckbox2" class="custom-control-label">Bloqueado
+                                                    </label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="customCheckbox3">
+                                                    <!--disabled-->
+                                                    <label for="customCheckbox3" class="custom-control-label">Inactivo
+
+                                                    </label>
+                                                </div>
+                                                <div class="custom-control custom-checkbox">
+                                                    <input class="custom-control-input" type="checkbox"
+                                                        id="customCheckbox1" value="option1">
+                                                    <label for="customCheckbox1" class="custom-control-label">--etiqueta
+                                                        que no pude leer--
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+
+                                                <button type="button"
+                                                    class="btn btn-block btn-primary">Referencias</button>
+
+                                            </div>
+
+
+                                        </div>
+                                        <div class="col-sm-12 col-md-3 col-lg-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Limite de crédito</label>
+                                                <input type="number" class="form-control" id="exampleInputPassword1"
+                                                    placeholder="Nombre comercial S.A.">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Limite de crédito ME</label>
+                                                <input type="number" class="form-control" id="exampleInputPassword1"
+                                                    placeholder="Nombre comercial S.A.">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Moneda límite de crédito</label>
+                                                <select class="form-control">
+                                                    <option>option 1</option>
+                                                    <option>option 2</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-3 col-lg-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Días de plazo</label>
+                                                <input type="number" class="form-control" id="exampleInputPassword1"
+                                                    placeholder="Nombre comercial S.A.">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Días pronto pago</label>
+                                                <input type="number" class="form-control" id="exampleInputPassword1"
+                                                    placeholder="Nombre comercial S.A.">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Descuento</label>
+                                                <input type="number" class="form-control" id="exampleInputPassword1"
+                                                    placeholder="Nombre comercial S.A.">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-3 col-lg-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Descuento pronto pago</label>
+                                                <input type="number" class="form-control" id="exampleInputPassword1"
+                                                    placeholder="Nombre comercial S.A.">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Crédito mas alto</label>
+                                                <input disabled type="number" class="form-control"
+                                                    id="exampleInputPassword1" placeholder="Nombre comercial S.A.">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Crédito Original</label>
+                                                <input disabled type="number" class="form-control"
+                                                    id="exampleInputPassword1" placeholder="Nombre comercial S.A.">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="col-sm-12 col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Uso de CFDI</label>
+                                                <input type="number" class="form-control" id="exampleInputPassword1"
+                                                    placeholder="Nombre comercial S.A.">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Convenio CIE</label>
+                                                <input type="number" class="form-control" id="exampleInputPassword1"
+                                                    placeholder="Nombre comercial S.A.">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Número de referencia</label>
+                                                <input type="number" class="form-control" id="exampleInputPassword1"
+                                                    placeholder="Nombre comercial S.A.">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-12 col-md-4 col-lg-4">
+                                            <div class="custom-control custom-checkbox">
+                                                <input class="custom-control-input" type="checkbox" id="chkComplemento">
+                                                <label for="chkComplemento" class="custom-control-label">Complemento de
+                                                    pago con datos bancarios
+                                                </label>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div style="margin-top: 2em;" class="col-sm-12 col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <button (click)="toggleNuevoMetodoPago()" type="button"
+                                                    class="btn btn-primary">Agregar
+                                                    método de pago
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="card" *ngIf="showNuevoMetodoPago">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-md-2 col-lg-2">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1">Método de pago</label>
+                                                        <input type="text" class="form-control"
+                                                            id="exampleInputPassword1"
+                                                            placeholder="Nombre comercial S.A.">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-2 col-lg-2">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1">Cuenta</label>
+                                                        <input type="text" class="form-control"
+                                                            id="exampleInputPassword1"
+                                                            placeholder="Nombre comercial S.A.">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-2 col-lg-2">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1">Banco</label>
+                                                        <input type="text" class="form-control"
+                                                            id="exampleInputPassword1"
+                                                            placeholder="Nombre comercial S.A.">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-2 col-lg-2">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1">CLABE</label>
+                                                        <input type="text" class="form-control"
+                                                            id="exampleInputPassword1"
+                                                            placeholder="Nombre comercial S.A.">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-2 col-lg-2">
+                                                    <div class="form-group">
+                                                        <label for="exampleInputPassword1">Default</label>
+                                                        <input type="text" class="form-control"
+                                                            id="exampleInputPassword1"
+                                                            placeholder="Nombre comercial S.A.">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-12 col-md-2 col-lg-2">
+                                                    <div class="form-group">
+                                                        <label><span>&nbsp;</span></label>
+                                                        <button type="button" class="btn btn-block btn-primary">Guardar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-lg-12">
+
+                                            <table datatable class="row-border hover">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Método de pago</th>
+                                                        <th>Cuenta</th>
+                                                        <th>Banco</th>
+                                                        <th>CLABE</th>
+                                                        <th>Default</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Eféctivo</td>
+                                                        <td>987654123321</td>
+                                                        <td>Banamex</td>
+                                                        <td>9898745311265213</td>
+                                                        <td>---</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Crédito</td>
+                                                        <td>465481132214</td>
+                                                        <td>Bancomer</td>
+                                                        <td>4358465878963218</td>
+                                                        <td>---</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+
+
+
+
+
+                        </div>
+                        <!-- /.card-body -->
+
+
+
+
+                        <!--    <div class="card-footer">
+                            <button type="submit" class="float-right btn btn-primary">Guardar</button>
+                        </div> -->
+                    </form>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- /.content -->

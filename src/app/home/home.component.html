@@ -1,0 +1,21 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+<div class="content-wrapper">
+    <p>home works!</p>
+
+    <button class="btn btn-primary" (click)="probandoGet()">Prueba GET</button>
+    <BR>
+    <BR>
+    <button class="btn btn-primary" (click)="probandoGetProtegido()">Prueba GET Protegido</button>
+    <BR>
+    <BR>
+    <button class="btn btn-primary" (click)="probandoPost()">Prueba POST</button>
+    <BR>
+    <BR>
+    <input type="text" name="usuario" [(ngModel)]="loginForm.usuario" />
+    <input type="password" name="pass" [(ngModel)]="loginForm.pass" />
+    <button class="btn btn-secondary" (click)="autentificar()">Autentificar</button>
+    {{token}}
+    <BR>
+    <BR>
+</div>
