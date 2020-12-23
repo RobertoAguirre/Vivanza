@@ -5,9 +5,26 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
+  private Token;
   constructor() { }
   
   isLoggedIn(): boolean {
-    return false;
+    
+    if(this.Token !== undefined){
+      return true;
+    }else{
+      return false;
+    }
+
+    
   }
+
+  setToken(tkn){
+    this.Token =  tkn;
+  }
+
+  getToken(){
+    return this.Token;
+  }
+
 }
