@@ -26,7 +26,7 @@ import { FooterComponent } from './footerModule/footer/footer.component';
     FooterComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'vivanzaApp' }),
     DataTablesModule,
     AppRoutingModule,
     HttpClientModule,
