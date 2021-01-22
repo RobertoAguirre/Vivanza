@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 export class ApiService {
 
 
-  //serviceUrl = 'http://74.208.145.99:40000/api/';
-  serviceUrl = 'http://localhost:40000/api/';
+  serviceUrl = 'http://74.208.145.99:40000/api/';
+  //serviceUrl = 'http://localhost:40000/api/';
   constructor(
     private http: HttpClient
   ) {
