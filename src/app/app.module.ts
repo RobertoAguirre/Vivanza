@@ -12,6 +12,8 @@ import { LoginComponent } from './loginModule/login/login.component';
 import { NavbarComponent } from './navbarModule/navbar/navbar.component';
 import { SidebarComponent } from './sidebarModule/sidebar/sidebar.component';
 import { FooterComponent } from './footerModule/footer/footer.component';
+import { TablesComponent } from './examples/tables/tables.component';
+import { KeysPipe } from './keys.pipe';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { FooterComponent } from './footerModule/footer/footer.component';
     LoginComponent,
     NavbarComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    TablesComponent,
+    KeysPipe
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'vivanzaApp' }),

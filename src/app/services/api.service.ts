@@ -7,8 +7,8 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 export class ApiService {
 
 
-  serviceUrl = 'http://74.208.145.99:40000/api/';
-  //serviceUrl = 'http://localhost:40000/api/';
+  //serviceUrl = 'http://74.208.145.99:40000/api/';
+  serviceUrl = 'http://localhost:40000/api/';
   constructor(
     private http: HttpClient
   ) {
@@ -50,11 +50,7 @@ export class ApiService {
 
 
   public ejecuta(data) {
-
-
     return this.http.post(this.serviceUrl + 'EjecutaConsulta/', data);
-
-
   }
 
   //trae token
