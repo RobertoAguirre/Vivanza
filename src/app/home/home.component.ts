@@ -33,6 +33,7 @@ export class HomeComponent implements OnInit {
  }
 
   ngOnInit(): void {
+    //this.TraePersona();
     this.TraeCiudades();
   }
 
@@ -66,6 +67,26 @@ export class HomeComponent implements OnInit {
       _response = response;
 
       this.dataset = _response.success.recordset;
+    })
+
+  }
+
+  TraePersona() {
+
+    //BuscaUsuario 'admin2','p4ss'
+   // let p = localStorage.getItem('id');
+    let data = {
+      "appname":"VIVANZA",
+      "sp": 'Trae_Usuario',
+      "params": [localStorage.getItem('id')]
+
+    }
+
+    this.apiService.ejecuta(data).subscribe((response) => {
+      let _response;
+      _response = response;
+      localStorage.setItem('persona',_response.success.recordset[0].nombres);
+      
     })
 
   }

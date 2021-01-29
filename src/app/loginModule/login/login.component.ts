@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     this.apiService.autentifica(data).subscribe((response) => {
       let _response;
       _response = response;
-
+      localStorage.setItem('id', _response.id);
 
       if (_response.acceso !== true) {
         alert(_response.message);

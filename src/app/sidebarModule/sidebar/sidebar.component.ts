@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'c:/Vivanza/Vivanza/src/app/services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+public gruposLogin;
+public menus;
+
+  constructor(
+    public apiService: ApiService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    //let personal; 
+    
+    //this.personal = localStorage.getItem('persona')
   }
+
+  click(comando){
+    this.router.navigate(['crm-usuarios']);
+  }
+  
+
+  
 
 }
