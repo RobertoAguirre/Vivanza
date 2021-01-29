@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { ClientesComponent } from './clientesModule/clientes/clientes.component';
 import { AbcclientesComponent } from './clientesModule/abcclientes/abcclientes.component';
 import { HomeComponent } from './home/home.component';
-import { CrmUsuariosComponent } from './crm-usuarios/crm-usuarios.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './loginModule/login/login.component';
 import { NavbarComponent } from './navbarModule/navbar/navbar.component';
@@ -16,6 +15,7 @@ import { FooterComponent } from './footerModule/footer/footer.component';
 import { TablesComponent } from './examples/tables/tables.component';
 import { KeysPipe } from './keys.pipe';
 import { MenuComponent } from './menu/menu.component';
+import { CrmhomeComponent } from './crmModule/crmhome/crmhome.component';
 
 
 @NgModule({
@@ -30,7 +30,8 @@ import { MenuComponent } from './menu/menu.component';
     FooterComponent,
     TablesComponent,
     KeysPipe,
-    MenuComponent
+    MenuComponent,
+    CrmhomeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'vivanzaApp' }),

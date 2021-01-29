@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ClientesComponent } from '../app/clientesModule/clientes/clientes.component';
 import { AbcclientesComponent } from '../app/clientesModule/abcclientes/abcclientes.component';
 import { HomeComponent } from './home/home.component';
-import { CrmUsuariosComponent } from './crm-usuarios/crm-usuarios.component';
 import { LoginComponent} from '../app/loginModule/login/login.component';
+import { CrmhomeComponent} from '../app/crmModule/crmhome/crmhome.component';
 import {AuthService} from '../app/services/auth.service';
 
 import { LoginGuardGuard } from '../app/guards/login-guard.guard';
@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, pathMatch: "full"},
   { path: 'clientes', component: ClientesComponent, pathMatch: "full" },
   { path: 'abcclientes', component: AbcclientesComponent, pathMatch: "full" },
-  { path: 'crm-usuarios', component: CrmUsuariosComponent, pathMatch: "full" }
+  { path: 'crmhome', component: CrmhomeComponent, pathMatch: "full" }
 ]
 
 

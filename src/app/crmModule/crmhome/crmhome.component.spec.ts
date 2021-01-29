@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CrmUsuariosComponent } from './crm-usuarios.component';
+import { CrmhomeComponent } from './crmhome.component';
 
-describe('CrmUsuariosComponent', () => {
-  let component: CrmUsuariosComponent;
-  let fixture: ComponentFixture<CrmUsuariosComponent>;
+describe('CrmhomeComponent', () => {
+  let component: CrmhomeComponent;
+  let fixture: ComponentFixture<CrmhomeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CrmUsuariosComponent ]
+      declarations: [ CrmhomeComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CrmUsuariosComponent);
+    fixture = TestBed.createComponent(CrmhomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
