@@ -7,7 +7,8 @@ import { AppComponent } from './app.component';
 import { ClientesComponent } from './clientesModule/clientes/clientes.component';
 import { AbcclientesComponent } from './clientesModule/abcclientes/abcclientes.component';
 import { HomeComponent } from './home/home.component';
-import { FormsModule } from '@angular/forms';
+import { CrmUsuariosComponent } from './crm-usuarios/crm-usuarios.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './loginModule/login/login.component';
 import { NavbarComponent } from './navbarModule/navbar/navbar.component';
 import { SidebarComponent } from './sidebarModule/sidebar/sidebar.component';
@@ -36,7 +37,8 @@ import { MenuComponent } from './menu/menu.component';
     DataTablesModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
