@@ -1,0 +1,24 @@
+<ul class="sidebar-menu">
+    <li class="treeview" *ngFor="let grupo of MODULOSPORGRUPO">
+        <a href="" style="text-decoration:none; color:#dedada">
+            <i class="{{grupo.icono}}"></i> <span style="font-family: 'Montserrat', sans-serif;">{{grupo.nombre_grupo}}</span>
+            <span class="pull-right-container">
+                <!--<i class="fa fa-angle-left pull-right"></i>-->
+                <i class="fa fa-angle-right pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+            <!-- <li ng-repeat="subitem in grupo.modulos" >- {{subitem}}</li> -->
+            <li *ngFor="let subitem of grupo.modulos"><a href="" style="font-family: 'Montserrat', sans-serif; font-size:0.9em" ng-click="Nombre_Vista(subitem.nombre, subitem.modulo)">{{subitem.nombre_modulo}} </a></li>
+            <!-- 
+            <li *ngFor="let subitem of grupo.modulos | orderBy:['orden']"><a href="" style="font-family: 'Montserrat', sans-serif; font-size:0.9em" ng-click="Nombre_Vista(subitem.nombre, subitem.modulo)">{{subitem.nombre}} </a></li> -->
+            
+            <!--<li><p class="" ng-repeat="subitem in grupo.modulos"><span>{{subitem}}</span></p></li>-->
+
+        </ul>
+    </li>
+    <!--<li>
+      <a href="#Instituciones"><i class="fa fa-calendar"></i> <span>Organizador</span></a>
+    </li>-->
+
+</ul>

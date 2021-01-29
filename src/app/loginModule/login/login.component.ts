@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { getLocaleMonthNames } from '@angular/common';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
   public valor = 0;
   public resultados;
   public token;
+  public id;
 
   public loginForm;
 
@@ -56,9 +58,12 @@ export class LoginComponent implements OnInit {
         alert(_response.message);
       } else {
         this.token = _response.token;
+        this.id = _response.id;
         this.authService.setToken(this.token);
         let tkn = this.authService.getToken();
         //alert(tkn);
+        localStorage.setItem('tkn',this.token);
+        localStorage.setItem('id', this.id);
         this.router.navigate(['home']); // tells them they've been logged out (somehow)
 
       }
