@@ -16,6 +16,7 @@ import { TablesComponent } from './examples/tables/tables.component';
 import { KeysPipe } from './keys.pipe';
 import { MenuComponent } from './menu/menu.component';
 import { CrmhomeComponent } from './crmModule/crmhome/crmhome.component';
+import { AsignacionModulosComponent } from './asignacion-modulos/asignacion-modulos.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { CrmhomeComponent } from './crmModule/crmhome/crmhome.component';
     TablesComponent,
     KeysPipe,
     MenuComponent,
-    CrmhomeComponent
+    CrmhomeComponent,
+    AsignacionModulosComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'vivanzaApp' }),

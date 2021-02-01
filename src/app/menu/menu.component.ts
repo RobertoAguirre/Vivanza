@@ -36,8 +36,8 @@ export class MenuComponent implements OnInit {
       return $rootScope.menus.filter(function (item) { return (item.grupo == grupo); });
     } */
 
-  Filtrar(grupo) {
-    return this.menus.filter(function (item) { return (item.grupo == grupo); });
+  Filtrar(nombre_grupo) {
+    return this.modulos.filter(function (item) { return (item.nombre_grupo == nombre_grupo); });
   }
 
 
@@ -55,15 +55,14 @@ export class MenuComponent implements OnInit {
       let _response;
       _response = response;
 
-      this.gruposLogin = _response.success.recordsets[0];
+      
       this.menus = _response.success.recordsets[1];
+      this.modulos = _response.success.recordsets[0];
 
-      this.gruposLogin.forEach(value => {
+      this.menus.forEach(value => {
         this.grupoModulos = {
-          'nombre_grupo': value.nombre_grupo,
-          'nombre_modulo':value.nombre_modulo,
-          'nivel_seguridad':value.nivel_seguridad,
           'idgrupo': value.id_grupo,
+          'nombre_grupo': value.nombre_grupo,
           'modulos': []
         }
 

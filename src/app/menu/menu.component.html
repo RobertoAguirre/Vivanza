@@ -1,24 +1,22 @@
-<ul class="sidebar-menu">
-    <li class="treeview" *ngFor="let grupo of MODULOSPORGRUPO">
-        <a href="" style="text-decoration:none; color:#dedada">
-            <i class="{{grupo.icono}}"></i> <span style="font-family: 'Montserrat', sans-serif;">{{grupo.nombre_grupo}}</span>
-            <span class="pull-right-container">
-                <!--<i class="fa fa-angle-left pull-right"></i>-->
-                <i class="fa fa-angle-right pull-right"></i>
-            </span>
-        </a>
-        <ul class="treeview-menu">
-            <!-- <li ng-repeat="subitem in grupo.modulos" >- {{subitem}}</li> -->
-            <li *ngFor="let subitem of grupo.modulos"><a href="" style="font-family: 'Montserrat', sans-serif; font-size:0.9em" ng-click="Nombre_Vista(subitem.nombre, subitem.modulo)">{{subitem.nombre_modulo}} </a></li>
-            <!-- 
-            <li *ngFor="let subitem of grupo.modulos | orderBy:['orden']"><a href="" style="font-family: 'Montserrat', sans-serif; font-size:0.9em" ng-click="Nombre_Vista(subitem.nombre, subitem.modulo)">{{subitem.nombre}} </a></li> -->
-            
-            <!--<li><p class="" ng-repeat="subitem in grupo.modulos"><span>{{subitem}}</span></p></li>-->
+<nav  class="mt-2">
+    <ul *ngIf="MODULOSPORGRUPO" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+           with font-awesome or any other icon font library -->
 
-        </ul>
-    </li>
-    <!--<li>
-      <a href="#Instituciones"><i class="fa fa-calendar"></i> <span>Organizador</span></a>
-    </li>-->
+        <li class="nav-item has-treeview menu-close" *ngFor="let grupo of MODULOSPORGRUPO">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                    {{grupo.nombre_grupo}}
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item" *ngFor="let subitem of grupo.modulos">
+                    <a style="font-size: small;"  routerLink="/{{subitem.componente}}" class="nav-link">{{subitem.nombre_modulo}}  </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
 
-</ul>
