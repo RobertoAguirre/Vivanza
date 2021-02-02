@@ -16,7 +16,11 @@ import { TablesComponent } from './examples/tables/tables.component';
 import { KeysPipe } from './keys.pipe';
 import { MenuComponent } from './menu/menu.component';
 import { CrmhomeComponent } from './crmModule/crmhome/crmhome.component';
+<<<<<<< HEAD
 import { CrmusuariosComponent } from './crmModule/crmusuarios/crmusuarios.component';
+=======
+import { AsignacionModulosComponent } from './asignacion-modulos/asignacion-modulos.component';
+>>>>>>> d7178bb29163603ed82561e2837df1f074897eb2
 
 
 @NgModule({
@@ -33,7 +37,11 @@ import { CrmusuariosComponent } from './crmModule/crmusuarios/crmusuarios.compon
     KeysPipe,
     MenuComponent,
     CrmhomeComponent,
+<<<<<<< HEAD
     CrmusuariosComponent
+=======
+    AsignacionModulosComponent
+>>>>>>> d7178bb29163603ed82561e2837df1f074897eb2
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'vivanzaApp' }),

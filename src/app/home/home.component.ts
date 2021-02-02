@@ -92,6 +92,14 @@ export class HomeComponent implements OnInit {
 
   }
 
+  EditarDesdeHome(item){
+      alert("logica para editar " + item);
+  }
+
+  EliminarDesdeHome(item){
+    alert("logica para borrar item  " + item);
+  }
+  
 
 
 }
