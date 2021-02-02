@@ -23,9 +23,7 @@ public menus;
     //this.personal = localStorage.getItem('persona')
   }
 
-  click(comando){
-    this.router.navigate(['crm-usuarios']);
-  }
+
   
 
   
