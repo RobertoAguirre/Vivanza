@@ -8,11 +8,7 @@ import { CrmhomeComponent} from '../app/crmModule/crmhome/crmhome.component';
 import {AuthService} from '../app/services/auth.service';
 
 import { LoginGuardGuard } from '../app/guards/login-guard.guard';
-<<<<<<< HEAD
 import { CrmusuariosComponent } from './crmModule/crmusuarios/crmusuarios.component';
-=======
-import { AsignacionModulosComponent } from './asignacion-modulos/asignacion-modulos.component';
->>>>>>> d7178bb29163603ed82561e2837df1f074897eb2
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: "full"},
@@ -21,11 +17,7 @@ const routes: Routes = [
   { path: 'clientes', component: ClientesComponent, pathMatch: "full" },
   { path: 'abcclientes', component: AbcclientesComponent, pathMatch: "full" },
   { path: 'crmhome', component: CrmhomeComponent, pathMatch: "full" },
-<<<<<<< HEAD
   { path: 'crmusuarios', component: CrmusuariosComponent, pathMatch: "full" }
-=======
-  { path: 'asignacion-modulos', component: AsignacionModulosComponent, pathMatch:"full" }
->>>>>>> d7178bb29163603ed82561e2837df1f074897eb2
 ]
 
 
