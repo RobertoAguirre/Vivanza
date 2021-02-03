@@ -24,12 +24,8 @@ export class MenuComponent implements OnInit {
   } */
 
   ngOnInit(): void {
-<<<<<<< HEAD
-/*     this.GeneraMenu(); */
-=======
     this.MODULOSPORGRUPO = JSON.parse(localStorage.getItem('MODULOSPORGRUPO'));
     //this.GeneraMenu();
->>>>>>> 83d8591a3a3e6a41062467d84bcc6ecd8f05713d
   }
 
 /*   Filtrar(nombre_grupo) {
@@ -55,16 +51,6 @@ export class MenuComponent implements OnInit {
         _response = response;
 
 
-<<<<<<< HEAD
-      this.menus.forEach(value => {
-        this.grupoModulos = {
-          'idgrupo': value.id_grupo,
-          'nombre_grupo': value.nombre_grupo,
-          'modulos': []
-        }
-        this.modulos = _response.success.recordsets[0];
-         this.modulos = this.Filtrar(value.nombre_grupo);
-=======
         this.menus = _response.success.recordsets[1];
         this.modulos = _response.success.recordsets[0];
 
@@ -74,21 +60,15 @@ export class MenuComponent implements OnInit {
             'nombre_grupo': value.nombre_grupo,
             'modulos': []
           }
->>>>>>> 83d8591a3a3e6a41062467d84bcc6ecd8f05713d
 
           this.modulos = _response.success.recordsets[0];
           this.modulos = this.Filtrar(value.nombre_grupo);
 
-<<<<<<< HEAD
-        this.MODULOSPORGRUPO.push(this.grupoModulos);
-        
-=======
           this.modulos.forEach(value => {
             this.grupoModulos['modulos'].push(value);
           })
 
           this.MODULOSPORGRUPO.push(this.grupoModulos);
->>>>>>> 83d8591a3a3e6a41062467d84bcc6ecd8f05713d
 
 
         })

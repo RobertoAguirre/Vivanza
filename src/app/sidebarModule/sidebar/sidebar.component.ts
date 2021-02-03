@@ -16,7 +16,7 @@ public MODULOSPORGRUPO = [];
     public apiService: ApiService,
     private router: Router
   ) { 
-    this.id = localStorage.getItem('id');
+    /* this.id = localStorage.getItem('id'); */
   }
 
   ngOnInit(): void {
