@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
+<<<<<<< HEAD
   public gruposLogin;
   public menus;
   public id;
@@ -16,6 +17,11 @@ export class SidebarComponent implements OnInit {
   public modulos;
   public MODULOSPORGRUPO = [];
 
+=======
+public gruposLogin;
+public menus;
+public MODULOSPORGRUPO = [];
+>>>>>>> 83d8591a3a3e6a41062467d84bcc6ecd8f05713d
   constructor(
     public apiService: ApiService,
     private router: Router
@@ -24,6 +30,7 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+<<<<<<< HEAD
     this.GeneraMenu();
   }
 
@@ -83,7 +90,15 @@ export class SidebarComponent implements OnInit {
   }
 
   
+=======
+    //let personal; 
+    this.MODULOSPORGRUPO = JSON.parse(localStorage.getItem('MODULOSPORGRUPO'));
 
-  
+    //this.personal = localStorage.getItem('persona')
+  }
+
+
+>>>>>>> 83d8591a3a3e6a41062467d84bcc6ecd8f05713d
+
 
 }

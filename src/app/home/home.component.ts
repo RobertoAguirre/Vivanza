@@ -20,6 +20,35 @@ export class HomeComponent implements OnInit {
   public loginForm;
   public dataset;
 
+  //para grafica de barras sencilla y pie
+  public tipoGraficaBarras = "line";  //line, bar 
+  public tipoGraficaPie = "polarArea"; //pie, doughnut,radar,polarArea
+  
+  public tituloGrafica = "Ventas"; 
+  public etiquetasGrafica = ['Enero','Febrero','Marzo','Abril','Mayo'];
+  public datasetGrafica =[10,35,22,12,3];
+  public coloresGrafica = ['rgba(255, 99, 132, 0.5)','rgba(54, 162, 235, 0.5)','rgba(255, 206, 86, 0.5)','rgba(75, 192, 192, 0.5)','rgba(153, 102, 255, 0.5)']; //se aceptan numeros en hexadecimal, en rgb, y por nombre
+
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  //para grafica de datasets multiples
+
+  public etiquetasEjeX = ['Enero','Febrero','Marzo','Abril','Mayo'];
+
+  public tituloDataset1 = "Recurso 1";
+  public multipledataset1 =[10,35,22,12,3];
+  public coloresGrafica1 = ['rgba(222, 47, 24, 0.5)','rgba(222, 47, 24, 0.5)','rgba(222, 47, 24, 0.5)','rgba(222, 47, 24, 0.5)','rgba(222, 47, 24, 0.5)']; //se aceptan numeros en hexadecimal, en rgb, y por nombre
+
+
+  public tituloDataset2 = "Recurso 2";
+  public multipledataset2 =[15,40,27,17,8];
+  public coloresGrafica2 = ['rgba(85,172,230,0.5)','rgba(85,172,230,0.5)','rgba(85,172,230,0.5)','rgba(85,172,230,0.5)','rgba(85,172,230,0.5)']; //se aceptan numeros en hexadecimal, en rgb, y por nombre
+
+
+  public tituloDataset3 = "Recurso 3";
+  public multipledataset3 =[20,50,32,21,11];
+  public coloresGrafica3 = ['rgba(89, 150, 65, 0.5)','rgba(89,150,65,0.5)','rgba(89,150,65,0.5)','rgba(89,150,65,0.5)','rgba(89,150,65,0.5)','rgba(89,150,65,0.5)']; //se aceptan numeros en hexadecimal, en rgb, y por nombre
+
 
   constructor(
     public apiService: ApiService
@@ -99,6 +128,7 @@ export class HomeComponent implements OnInit {
   EliminarDesdeHome(item){
     alert("logica para borrar item  " + item);
   }
+  
   
 
 

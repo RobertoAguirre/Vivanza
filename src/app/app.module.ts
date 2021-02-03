@@ -16,9 +16,19 @@ import { TablesComponent } from './examples/tables/tables.component';
 import { KeysPipe } from './keys.pipe';
 import { MenuComponent } from './menu/menu.component';
 import { CrmhomeComponent } from './crmModule/crmhome/crmhome.component';
+<<<<<<< HEAD
 import { CrmusuariosComponent } from './crmModule/crmusuarios/crmusuarios.component';
 import { AsignacionModulosComponent } from './asignacion-modulos/asignacion-modulos.component';
 import { CrmeditarusuariosComponent } from './crmModule/crmeditarusuarios/crmeditarusuarios.component';
+=======
+
+import { CrmusuariosComponent } from './crmModule/crmusuarios/crmusuarios.component';
+
+import { AsignacionModulosComponent } from './asignacion-modulos/asignacion-modulos.component';
+import { AreaComponent } from './examples/charts/area/area.component';
+import { PieComponent } from './examples/charts/pie/pie.component';
+import { BarsmultipleComponent } from './examples/charts/barsmultiple/barsmultiple.component';
+>>>>>>> 83d8591a3a3e6a41062467d84bcc6ecd8f05713d
 
 
 @NgModule({
@@ -35,9 +45,18 @@ import { CrmeditarusuariosComponent } from './crmModule/crmeditarusuarios/crmedi
     KeysPipe,
     MenuComponent,
     CrmhomeComponent,
+<<<<<<< HEAD
     CrmusuariosComponent,
     AsignacionModulosComponent,
     CrmeditarusuariosComponent
+=======
+    AsignacionModulosComponent,
+    AreaComponent,
+    PieComponent,
+    BarsmultipleComponent,
+    CrmusuariosComponent
+
+>>>>>>> 83d8591a3a3e6a41062467d84bcc6ecd8f05713d
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'vivanzaApp' }),

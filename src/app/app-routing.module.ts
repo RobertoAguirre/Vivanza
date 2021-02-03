@@ -20,6 +20,7 @@ const routes: Routes = [
   { path: 'crmhome', component: CrmhomeComponent, pathMatch: "full" },
   { path: 'crmusuarios', component: CrmusuariosComponent, pathMatch: "full" },
   { path: 'asignacion-modulos', component: AsignacionModulosComponent, pathMatch:"full" }
+
 ]
 
 

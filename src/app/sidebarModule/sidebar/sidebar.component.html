@@ -11,8 +11,13 @@
     <!-- Sidebar -->
     <div class="sidebar">
       
-      <app-menu></app-menu>
+   <!--    <app-menu></app-menu> -->
+   <nav  class="mt-2">
+    <ul *ngIf="MODULOSPORGRUPO" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <!-- Add icons to the links using the .nav-icon class
+           with font-awesome or any other icon font library -->
 
+<<<<<<< HEAD
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul *ngIf="MODULOSPORGRUPO" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -34,6 +39,28 @@
       </ul>
       </nav>
      
+=======
+        <li class="nav-item has-treeview menu-close" *ngFor="let grupo of MODULOSPORGRUPO">
+            <a href="#" class="nav-link active">
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                    {{grupo.nombre_grupo}}
+                    <i class="right fas fa-angle-left"></i>
+                </p>
+            </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item" *ngFor="let subitem of grupo.modulos">
+                    <a style="font-size: small;"  routerLink="/{{subitem.componente}}" class="nav-link">{{subitem.nombre_modulo}}  </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+
+
+      <!-- /.sidebar-menu -->
+>>>>>>> 83d8591a3a3e6a41062467d84bcc6ecd8f05713d
     </div>
     <!-- /.sidebar -->
   </aside>
