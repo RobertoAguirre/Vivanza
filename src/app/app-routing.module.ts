@@ -9,6 +9,7 @@ import {AuthService} from '../app/services/auth.service';
 
 import { LoginGuardGuard } from '../app/guards/login-guard.guard';
 import { CrmusuariosComponent } from './crmModule/crmusuarios/crmusuarios.component';
+import { AsignacionModulosComponent } from './asignacion-modulos/asignacion-modulos.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: "full"},
@@ -17,7 +18,9 @@ const routes: Routes = [
   { path: 'clientes', component: ClientesComponent, pathMatch: "full" },
   { path: 'abcclientes', component: AbcclientesComponent, pathMatch: "full" },
   { path: 'crmhome', component: CrmhomeComponent, pathMatch: "full" },
-  { path: 'crmusuarios', component: CrmusuariosComponent, pathMatch: "full" }
+  { path: 'crmusuarios', component: CrmusuariosComponent, pathMatch: "full" },
+  { path: 'asignacion-modulos', component: AsignacionModulosComponent, pathMatch:"full" }
+
 ]
 
 
