@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
+public id;
 public gruposLogin;
 public menus;
 public MODULOSPORGRUPO = [];
@@ -16,7 +16,7 @@ public MODULOSPORGRUPO = [];
     public apiService: ApiService,
     private router: Router
   ) { 
-    /* this.id = localStorage.getItem('id'); */
+    this.id = localStorage.getItem('id');
   }
 
   ngOnInit(): void {
