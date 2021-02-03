@@ -16,6 +16,9 @@ import { TablesComponent } from './examples/tables/tables.component';
 import { KeysPipe } from './keys.pipe';
 import { MenuComponent } from './menu/menu.component';
 import { CrmhomeComponent } from './crmModule/crmhome/crmhome.component';
+
+import { CrmusuariosComponent } from './crmModule/crmusuarios/crmusuarios.component';
+
 import { AsignacionModulosComponent } from './asignacion-modulos/asignacion-modulos.component';
 import { AreaComponent } from './examples/charts/area/area.component';
 import { PieComponent } from './examples/charts/pie/pie.component';
@@ -39,7 +42,9 @@ import { BarsmultipleComponent } from './examples/charts/barsmultiple/barsmultip
     AsignacionModulosComponent,
     AreaComponent,
     PieComponent,
-    BarsmultipleComponent
+    BarsmultipleComponent,
+    CrmusuariosComponent
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'vivanzaApp' }),
