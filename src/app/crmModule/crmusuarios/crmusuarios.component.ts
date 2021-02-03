@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { FormBuilder, ReactiveFormsModule, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crmusuarios',
@@ -12,6 +13,17 @@ export class CrmusuariosComponent implements OnInit {
   public _combo_desarrollo;
   public _combo_tipo;
   public usuario;
+
+  
+/*   public tituloTabla = "Tabla desde home";
+  public descripcionTabla = "descripcion desde home"; */
+
+  public valor = 0;
+  public resultados;
+  public token;
+ 
+  public loginForm;
+  public dataset;
 
 
   capturaForm = this.formBuilder.group({
@@ -27,7 +39,8 @@ export class CrmusuariosComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    public formBuilder: FormBuilder
+    public formBuilder: FormBuilder,
+    private router: Router
   ) { 
 
 
@@ -35,6 +48,7 @@ export class CrmusuariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.TraeUsuarios();
     this.ComboDesarrollo();
     this._combo_tipo = [
       {nombre: 'Administrador'},
@@ -61,6 +75,35 @@ export class CrmusuariosComponent implements OnInit {
 
   Guarda(){
     alert(this.capturaForm.value.nombres);
+  }
+
+  TraeUsuarios() {
+
+    //BuscaUsuario 'admin2','p4ss'
+
+    let data = {
+      "appname":"VIVANZA",
+      "sp": 'dvp.Trae_Usuarios_CRM',
+      "params": []
+
+    }
+
+    this.apiService.ejecuta(data).subscribe((response) => {
+      let _response;
+      _response = response;
+
+      this.dataset = _response.success.recordset;
+    })
+
+  }
+
+  Editar(item){
+    this.router.navigate(['home']);
+    alert("logica para editar " + item);
+  }
+
+  Eliminar(item){
+    alert("logica para borrar item  " + item);
   }
 
 

@@ -23,7 +23,7 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.GeneraMenu();
+/*     this.GeneraMenu(); */
   }
 
 
@@ -65,7 +65,7 @@ export class MenuComponent implements OnInit {
           'nombre_grupo': value.nombre_grupo,
           'modulos': []
         }
-
+        this.modulos = _response.success.recordsets[0];
          this.modulos = this.Filtrar(value.nombre_grupo);
 
         this.modulos.forEach(value => {
@@ -73,7 +73,7 @@ export class MenuComponent implements OnInit {
         }) 
 
         this.MODULOSPORGRUPO.push(this.grupoModulos);
-
+        
 
       })
 
