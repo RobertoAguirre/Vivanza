@@ -11,7 +11,7 @@ export class SidebarComponent implements OnInit {
 
 public gruposLogin;
 public menus;
-
+public MODULOSPORGRUPO = [];
   constructor(
     public apiService: ApiService,
     private router: Router
@@ -19,15 +19,12 @@ public menus;
 
   ngOnInit(): void {
     //let personal; 
-    
+    this.MODULOSPORGRUPO = JSON.parse(localStorage.getItem('MODULOSPORGRUPO'));
+
     //this.personal = localStorage.getItem('persona')
   }
 
-  click(comando){
-    this.router.navigate(['crm-usuarios']);
-  }
-  
 
-  
+
 
 }
