@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,9 @@ export class TablesComponent {
   @Input() dataset;
   @Input() metodoEditar;
   @Input() metodoEliminar;
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
 
     $(document).ready(function () {
       $.fn.dataTable.ext.errMode = 'none';  //ESTO ES PARA BORRAR EL WARNING DE CUANDO LAS TABLAS TIENEN DIFERENTES NUMEROS DE CABECEROS

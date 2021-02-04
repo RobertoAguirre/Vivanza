@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApiService } from '../services/api.service';
-
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -49,8 +49,11 @@ export class HomeComponent implements OnInit {
   public multipledataset3 =[20,50,32,21,11];
   public coloresGrafica3 = ['rgba(89, 150, 65, 0.5)','rgba(89,150,65,0.5)','rgba(89,150,65,0.5)','rgba(89,150,65,0.5)','rgba(89,150,65,0.5)','rgba(89,150,65,0.5)']; //se aceptan numeros en hexadecimal, en rgb, y por nombre
 
-
+ 
+  
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     public apiService: ApiService
   ) {
 
@@ -64,6 +67,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     //this.TraePersona();
+
     this.TraeCiudades();
   }
 
@@ -122,7 +126,8 @@ export class HomeComponent implements OnInit {
   }
 
   EditarDesdeHome(item){
-      alert("logica para editar " + item);
+      item = JSON.stringify(item);
+      this.router.navigate(['/asignacion-modulos'],{queryParams:{'item':item}});
   }
 
   EliminarDesdeHome(item){
