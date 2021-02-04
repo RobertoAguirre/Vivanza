@@ -25,13 +25,21 @@
                         </div> -->
                         <!-- /.card-header -->
                         <!-- form start -->
-<<<<<<< HEAD
                         <div class="col-md-12">
                             <app-tables *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset" [metodoEditar]="Editar" [metodoEliminar]="Eliminar">
                             </app-tables>
                         </div>
                        
-=======
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
                         <form [formGroup]="capturaForm">
                             <div class="card-body">
                                 <div class="form-group">
@@ -68,7 +76,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Desarrollo</label>
-                                    <select name="capturaForm.desarrollo" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    <select  name="capturaForm.desarrollo" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option disabled selected style="display:none;" ></option>
                                         <option  [value]="item" *ngFor="let item of _combo_desarrollo" [value]="item.id_desarrollo">{{item.nombre_desarrollo}}</option>
                                         
@@ -76,18 +84,21 @@
                                 </div>
                             </div>
                             <!-- /.card-body -->
-
+    
                             <div class="card-footer">
                                 <button type="submit" class="btn btn-primary" (click)="Guarda()">Guardar</button>
                             </div>
                         </form>
->>>>>>> 83d8591a3a3e6a41062467d84bcc6ecd8f05713d
+                        
+                       
                     </div>
                 </div>
 
             </div>
-        </div>
 
+
+        </div>
+    </div>
 </div>
 
 <!-- <script>  $('[data-mask]').inputmask() </script> -->

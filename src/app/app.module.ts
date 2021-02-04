@@ -23,6 +23,7 @@ import { AsignacionModulosComponent } from './asignacion-modulos/asignacion-modu
 import { AreaComponent } from './examples/charts/area/area.component';
 import { PieComponent } from './examples/charts/pie/pie.component';
 import { BarsmultipleComponent } from './examples/charts/barsmultiple/barsmultiple.component';
+import { CrmeditarusuariosComponent } from './crmModule/crmeditarusuarios/crmeditarusuarios.component';
 
 
 @NgModule({
@@ -39,11 +40,12 @@ import { BarsmultipleComponent } from './examples/charts/barsmultiple/barsmultip
     KeysPipe,
     MenuComponent,
     CrmhomeComponent,
+    CrmusuariosComponent,
     AsignacionModulosComponent,
+    CrmeditarusuariosComponent,
     AreaComponent,
     PieComponent,
-    BarsmultipleComponent,
-    CrmusuariosComponent
+    BarsmultipleComponent
 
   ],
   imports: [

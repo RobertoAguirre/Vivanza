@@ -3,6 +3,7 @@ import { ApiService } from '../../services/api.service';
 import { FormBuilder, ReactiveFormsModule, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-crmusuarios',
   templateUrl: './crmusuarios.component.html',
@@ -98,7 +99,7 @@ export class CrmusuariosComponent implements OnInit {
   }
 
   Editar(item){
-    this.router.navigate(['home']);
+    /* this.router.navigate(['home']); */
     alert("logica para editar " + item);
   }
 
