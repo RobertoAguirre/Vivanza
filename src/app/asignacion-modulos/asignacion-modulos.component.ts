@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ApiService } from '../services/api.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 @Component({
   selector: 'app-asignacion-modulos',
@@ -13,6 +15,7 @@ export class AsignacionModulosComponent implements OnInit {
   public _combo_tipo;
   public usuario;
 
+  public item;
 
   capturaForm = this.formBuilder.group({
     nombres:['',Validators.required],
@@ -25,6 +28,7 @@ export class AsignacionModulosComponent implements OnInit {
 
 
   constructor(
+    private route: ActivatedRoute,
     private apiService: ApiService,
     public formBuilder: FormBuilder
   ) { 
@@ -34,6 +38,9 @@ export class AsignacionModulosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.item = JSON.parse(params['item']);
+    });
   }
 
   Guarda(){
