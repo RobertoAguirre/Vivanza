@@ -32,6 +32,7 @@ export class NavbarComponent implements OnInit {
       _response = response;
       
       localStorage.setItem('persona', _response.success.recordset[0].nombres + " " + _response.success.recordset[0].apellidos);
+      localStorage.setItem('sucursal', _response.success.recordset[0].id_sucursal);
       /*let _persona = localStorage.getItem('persona') */
       this.personal = localStorage.getItem('persona');
     })

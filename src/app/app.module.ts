@@ -23,11 +23,9 @@ import { AsignacionModulosComponent } from './asignacion-modulos/asignacion-modu
 import { AreaComponent } from './examples/charts/area/area.component';
 import { PieComponent } from './examples/charts/pie/pie.component';
 import { BarsmultipleComponent } from './examples/charts/barsmultiple/barsmultiple.component';
-<<<<<<< HEAD
-import { ModalsComponent } from './examples/modals/modals.component';
-=======
 import { CrmeditarusuariosComponent } from './crmModule/crmeditarusuarios/crmeditarusuarios.component';
->>>>>>> c2d51b5dd02fcee0e25a2d639bd1ed39fbfafc7f
+import { ModalsComponent } from './examples/modals/modals.component';
+
 
 
 @NgModule({

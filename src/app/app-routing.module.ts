@@ -10,6 +10,8 @@ import {AuthService} from '../app/services/auth.service';
 import { LoginGuardGuard } from '../app/guards/login-guard.guard';
 import { CrmusuariosComponent } from './crmModule/crmusuarios/crmusuarios.component';
 import { AsignacionModulosComponent } from './asignacion-modulos/asignacion-modulos.component';
+import { CrmeditarusuariosComponent } from './crmModule/crmeditarusuarios/crmeditarusuarios.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: "full"},
@@ -19,7 +21,8 @@ const routes: Routes = [
   { path: 'abcclientes', component: AbcclientesComponent, pathMatch: "full" },
   { path: 'crmhome', component: CrmhomeComponent, pathMatch: "full" },
   { path: 'crmusuarios', component: CrmusuariosComponent, pathMatch: "full" },
-  { path: 'asignacion-modulos', component: AsignacionModulosComponent, pathMatch:"full" }
+  { path: 'asignacion-modulos', component: AsignacionModulosComponent, pathMatch:"full" },
+  { path: 'crmeditarusuarios', component: CrmeditarusuariosComponent, pathMatch:"full" }
 
 ]
 
@@ -27,6 +30,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     initialNavigation: 'enabled'
+
 })],
   exports: [RouterModule],
   providers: [AuthService]

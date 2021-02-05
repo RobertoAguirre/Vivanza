@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { FormBuilder, ReactiveFormsModule, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+
 
 @Component({
   selector: 'app-crmusuarios',
@@ -21,7 +22,6 @@ export class CrmusuariosComponent implements OnInit {
   public valor = 0;
   public resultados;
   public token;
- 
   public loginForm;
   public dataset;
 
@@ -38,9 +38,10 @@ export class CrmusuariosComponent implements OnInit {
 
 
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     private apiService: ApiService,
-    public formBuilder: FormBuilder,
-    private router: Router
+    public formBuilder: FormBuilder
   ) { 
 
 
@@ -48,6 +49,7 @@ export class CrmusuariosComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    $('html,body').scrollTop(0);
     this.TraeUsuarios();
     this.ComboDesarrollo();
     this._combo_tipo = [
@@ -84,26 +86,75 @@ export class CrmusuariosComponent implements OnInit {
     let data = {
       "appname":"VIVANZA",
       "sp": 'dvp.Trae_Usuarios_CRM',
-      "params": []
+      "params": [0]
 
     }
 
     this.apiService.ejecuta(data).subscribe((response) => {
       let _response;
       _response = response;
-
       this.dataset = _response.success.recordset;
     })
 
   }
 
   Editar(item){
-    this.router.navigate(['home']);
-    alert("logica para editar " + item);
+    let id;
+    id = item.ID;
+    item = JSON.stringify(item);
+    this.router.navigate(['/crmeditarusuarios'],{queryParams:{'item':id}});
+    /* alert("logica para editar " + item); */
   }
 
   Eliminar(item){
-    alert("logica para borrar item  " + item);
+    let id = item.ID;
+    //this.Elimina(item.ID);
+    let pregunta = confirm('¿Está seguro de querer eliminar el usuario '+item.Nombre+'?');
+    if (pregunta == true){
+      let data = {
+        "appname":"VIVANZA",
+        "sp": 'dvp.Elimina_Usuario_CRM',
+        "params": [id]
+  
+      }
+  
+      this.apiService.ejecuta(data).subscribe((response) => {
+        let _response;
+        _response = response;
+        if(_response.success.error == 1){
+          alert(_response.success.mensaje);
+        }
+        else{
+          alert(_response.success.mensaje);
+        }
+      })
+    } 
+    
+  }
+
+  NuevoUsuario(item){
+    item = JSON.stringify(item);
+    this.router.navigate(['/crmeditarusuarios'],{queryParams:{'item':item}});
+  }
+
+  Elimina(id){
+    let data = {
+      "appname":"VIVANZA",
+      "sp": 'dvp.Elimina_Usuario_CRM',
+      "params": [id]
+
+    }
+
+    this.apiService.ejecuta(data).subscribe((response) => {
+      let _response;
+      _response = response;
+      if(_response.success.error == 1){
+        alert(_response.success.mensaje);
+      }
+      else{
+        alert(_response.success.mensaje);
+      }
+    })
   }
 
 

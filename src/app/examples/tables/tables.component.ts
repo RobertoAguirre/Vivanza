@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ApiService } from 'src/app/services/api.service';
+
 
 
 @Component({
@@ -14,7 +16,8 @@ export class TablesComponent {
   @Input() metodoEditar;
   @Input() metodoEliminar;
   constructor(
-    private router: Router
+    private router: Router,
+    private apiService:ApiService
   ) {
 
     $(document).ready(function () {

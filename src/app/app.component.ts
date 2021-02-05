@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
 
   GeneraMenu() {
 
-    this.MODULOSPORGRUPO = JSON.parse(localStorage.getItem('MODULOSPORGRUPO'));
+    /* this.MODULOSPORGRUPO = JSON.parse(localStorage.getItem('MODULOSPORGRUPO')); */
     if (this.MODULOSPORGRUPO.length <= 0) {
 
       let data = {
