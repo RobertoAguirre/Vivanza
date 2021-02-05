@@ -108,7 +108,6 @@ export class CrmusuariosComponent implements OnInit {
 
   Eliminar(item){
     let id = item.ID;
-    //this.Elimina(item.ID);
     let pregunta = confirm('¿Está seguro de querer eliminar el usuario '+item.Nombre+'?');
     if (pregunta == true){
       let data = {
@@ -121,14 +120,17 @@ export class CrmusuariosComponent implements OnInit {
       this.apiService.ejecuta(data).subscribe((response) => {
         let _response;
         _response = response;
-        if(_response.success.error == 1){
-          alert(_response.success.mensaje);
+        
+        let d = _response.success.recordsets[0];
+        if(d[0].error == 1){
+          alert(d[0].mensaje);
         }
         else{
-          alert(_response.success.mensaje);
+          alert(d[0].mensaje);
+          this.router.navigate(['/crmusuarios']);
         }
       })
-    } 
+    }
     
   }
 
@@ -137,25 +139,7 @@ export class CrmusuariosComponent implements OnInit {
     this.router.navigate(['/crmeditarusuarios'],{queryParams:{'item':item}});
   }
 
-  Elimina(id){
-    let data = {
-      "appname":"VIVANZA",
-      "sp": 'dvp.Elimina_Usuario_CRM',
-      "params": [id]
-
-    }
-
-    this.apiService.ejecuta(data).subscribe((response) => {
-      let _response;
-      _response = response;
-      if(_response.success.error == 1){
-        alert(_response.success.mensaje);
-      }
-      else{
-        alert(_response.success.mensaje);
-      }
-    })
-  }
+ 
 
 
 }

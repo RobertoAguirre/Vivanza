@@ -26,7 +26,7 @@ export class CrmeditarusuariosComponent implements OnInit {
     email:['',Validators.required],
     tipo:['',Validators.required],
     desarrollo:['',Validators.required],
-    id:['',Validators.required]
+    id:['']
   })
 
   constructor(

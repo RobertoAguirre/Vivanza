@@ -24,7 +24,12 @@ import { AreaComponent } from './examples/charts/area/area.component';
 import { PieComponent } from './examples/charts/pie/pie.component';
 import { BarsmultipleComponent } from './examples/charts/barsmultiple/barsmultiple.component';
 import { CrmeditarusuariosComponent } from './crmModule/crmeditarusuarios/crmeditarusuarios.component';
-import { ModalComponent } from './examples/modal/modal.component';
+import { CrmcanalesComponent } from './crmModule/crmcanales/crmcanales.component';
+import { CrmeditarcanalComponent } from './crmModule/crmeditarcanal/crmeditarcanal.component';
+import { CrmmediosComponent } from './crmModule/crmmedios/crmmedios.component';
+import { CrmeditarmediosComponent } from './crmModule/crmeditarmedios/crmeditarmedios.component';
+
+
 
 
 @NgModule({
@@ -47,6 +52,10 @@ import { ModalComponent } from './examples/modal/modal.component';
     AreaComponent,
     PieComponent,
     BarsmultipleComponent,
+    CrmcanalesComponent,
+    CrmeditarcanalComponent,
+    CrmmediosComponent,
+    CrmeditarmediosComponent,
     CrmusuariosComponent,
     ModalComponent
 

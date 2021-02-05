@@ -11,6 +11,9 @@ import { LoginGuardGuard } from '../app/guards/login-guard.guard';
 import { CrmusuariosComponent } from './crmModule/crmusuarios/crmusuarios.component';
 import { AsignacionModulosComponent } from './asignacion-modulos/asignacion-modulos.component';
 import { CrmeditarusuariosComponent } from './crmModule/crmeditarusuarios/crmeditarusuarios.component';
+import { CrmcanalesComponent } from './crmModule/crmcanales/crmcanales.component';
+import { CrmeditarcanalComponent } from './crmModule/crmeditarcanal/crmeditarcanal.component';
+import { CrmmediosComponent } from './crmModule/crmmedios/crmmedios.component';
 
 
 const routes: Routes = [
@@ -22,7 +25,11 @@ const routes: Routes = [
   { path: 'crmhome', component: CrmhomeComponent, pathMatch: "full" },
   { path: 'crmusuarios', component: CrmusuariosComponent, pathMatch: "full" },
   { path: 'asignacion-modulos', component: AsignacionModulosComponent, pathMatch:"full" },
-  { path: 'crmeditarusuarios', component: CrmeditarusuariosComponent, pathMatch:"full" }
+  { path: 'crmeditarusuarios', component: CrmeditarusuariosComponent, pathMatch:"full" },
+  { path: 'crmcanales', component: CrmcanalesComponent, pathMatch:"full" },
+  { path: 'crmeditarcanal', component: CrmeditarcanalComponent, pathMatch:"full" },
+  { path: 'crmmedios', component: CrmmediosComponent, pathMatch:"full" },
+  { path: 'crmeditarmedios', component: CrmcanalesComponent, pathMatch:"full" }
 
 ]
 
