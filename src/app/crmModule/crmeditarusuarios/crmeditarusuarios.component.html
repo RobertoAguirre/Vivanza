@@ -70,7 +70,7 @@
                             <!-- /.card-body -->
     
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary" (click)="Guarda()">Guardar</button>
+                                <button type="submit" class="btn btn-primary" (click)="Guarda()" [disabled]="!capturaForm.valid">Guardar</button>
                             </div>
                         </form>
                         

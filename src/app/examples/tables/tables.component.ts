@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-tables',
@@ -14,6 +14,7 @@ export class TablesComponent {
   @Input() metodoEditar;
   @Input() metodoEliminar;
   constructor(
+    private apiService: ApiService,
     private router: Router
   ) {
 
