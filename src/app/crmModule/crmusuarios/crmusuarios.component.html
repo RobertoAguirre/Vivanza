@@ -26,7 +26,7 @@
                             <div class="col-md-12" style="text-align: right; margin-top:1em;">
                                 <button type="submit" class="btn btn-primary" (click)="NuevoUsuario(0)">Nuevo Usuario</button>
                             </div>
-                            <app-tables *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset" [metodoEditar]="Editar" [metodoEliminar]="Eliminar">
+                            <app-tables class="table-responsive" *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset" [metodoEditar]="Editar" [metodoEliminar]="Eliminar">
                             </app-tables>
                         </div>
                        

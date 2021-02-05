@@ -101,15 +101,6 @@ export class CrmeditarusuariosComponent implements OnInit {
   }
 
 
-  changed(e){
-    alert(e);
-  }
-
-  changedTipo(e){
-    alert(e);
-
-  }
-
   Guarda(){
     let data = {
       "appname":"VIVANZA",
