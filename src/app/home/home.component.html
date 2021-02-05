@@ -3,6 +3,11 @@
 <div class="content-wrapper">
     <!--     <img style="height: 92%; width: 92%;" class="mr-3" src="assets/img/logovivanzawhite.png"/>
  -->
+<!-- 
+    <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
+    <button (click)="openModal('custom-modal-2')">Open Modal 2</button> -->
+
+
     <app-tables *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset" [metodoEditar]="EditarDesdeHome" [metodoEliminar]="EliminarDesdeHome">
     </app-tables>
  

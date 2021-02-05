@@ -23,6 +23,7 @@ import { AsignacionModulosComponent } from './asignacion-modulos/asignacion-modu
 import { AreaComponent } from './examples/charts/area/area.component';
 import { PieComponent } from './examples/charts/pie/pie.component';
 import { BarsmultipleComponent } from './examples/charts/barsmultiple/barsmultiple.component';
+import { ModalsComponent } from './examples/modals/modals.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { BarsmultipleComponent } from './examples/charts/barsmultiple/barsmultip
     AreaComponent,
     PieComponent,
     BarsmultipleComponent,
-    CrmusuariosComponent
+    CrmusuariosComponent,
+    ModalsComponent
 
   ],
   imports: [

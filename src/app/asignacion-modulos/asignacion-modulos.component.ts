@@ -18,12 +18,12 @@ export class AsignacionModulosComponent implements OnInit {
   public item;
 
   capturaForm = this.formBuilder.group({
-    nombres:['',Validators.required],
-    apellido_paterno:['',Validators.required],
-    apellido_materno:['',Validators.required],
-    contrasena:['',Validators.required],
-    email:['',Validators.required],
-    usuario:['',Validators.required]
+    nombres: ['', Validators.required],
+    apellido_paterno: ['', Validators.required],
+    apellido_materno: ['', Validators.required],
+    contrasena: ['', Validators.required],
+    email: ['', Validators.required],
+    usuario: ['', Validators.required]
   })
 
 
@@ -31,20 +31,37 @@ export class AsignacionModulosComponent implements OnInit {
     private route: ActivatedRoute,
     private apiService: ApiService,
     public formBuilder: FormBuilder
-  ) { 
+  ) {
 
 
 
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      this.item = JSON.parse(params['item']);
-    });
+    /*     this.route.queryParams.subscribe(params => {
+          this.item = JSON.parse(params['item']);
+        }); */
+    this.LlenaCamposFormulario();
   }
 
-  Guarda(){
+  Guarda() {
     alert(this.capturaForm.value.nombres);
+  }
+
+  LlenaCamposFormulario() {
+
+    this.capturaForm.setValue(
+      {
+
+        nombres: "roberto",
+        apellido_paterno: "aguirre",
+        apellido_materno: "rodriguez",
+        contrasena: "asdf",
+        email: "some",
+        usuario: "asdf"
+      })
+
+
   }
 
 }
