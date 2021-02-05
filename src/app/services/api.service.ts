@@ -60,6 +60,13 @@ export class ApiService {
 
   }
 
+    //Alta Usuario
+    public registra(data) {
+
+      return this.http.post(this.serviceUrl + 'registrar/', data);
+  
+    }
+
 
 
 }
