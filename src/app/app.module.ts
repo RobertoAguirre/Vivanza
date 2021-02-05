@@ -56,8 +56,7 @@ import { CrmeditarmediosComponent } from './crmModule/crmeditarmedios/crmeditarm
     CrmeditarcanalComponent,
     CrmmediosComponent,
     CrmeditarmediosComponent,
-    CrmusuariosComponent,
-    ModalComponent
+    CrmusuariosComponent
 
   ],
   imports: [

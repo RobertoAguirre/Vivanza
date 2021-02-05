@@ -76,7 +76,10 @@ export class CrmcanalesComponent implements OnInit {
         }
         else{
           alert(d[0].mensaje);
-          /* this.TraeDatos(); */
+          //Para navegar de nuevo al componente actual (refresh a componentes)
+          this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+          this.router.onSameUrlNavigation = 'reload';
+          this.router.navigate(['./crmcanales'], { relativeTo: this.route });
         }
       })
     }
