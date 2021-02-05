@@ -55,4 +55,33 @@ export class CrmcanalesComponent implements OnInit {
     /* alert("logica para editar " + item); */
   }
 
+  Eliminar(item){
+    let id = item.ID;
+    let pregunta = confirm('¿Está seguro de querer eliminar el canal '+item.Canal+'?');
+    if (pregunta == true){
+      let data = {
+        "appname":"VIVANZA",
+        "sp": 'dvp.Elimina_Canal_CRM',
+        "params": [id]
+  
+      }
+  
+      this.apiService.ejecuta(data).subscribe((response) => {
+        let _response;
+        _response = response;
+        
+        let d = _response.success.recordsets[0];
+        if(d[0].error == 1){
+          alert(d[0].mensaje);
+        }
+        else{
+          alert(d[0].mensaje);
+          /* this.TraeDatos(); */
+        }
+      })
+    }
+    
+  }
+
+
 }

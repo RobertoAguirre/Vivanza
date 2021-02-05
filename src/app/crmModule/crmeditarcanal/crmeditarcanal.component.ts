@@ -18,7 +18,7 @@ export class CrmeditarcanalComponent implements OnInit {
   capturaForm = this.formBuilder.group({
     canal:['',Validators.required],
     estado:['',Validators.required],
-    id:['',Validators.required]
+    id:['']
   })
 
   constructor(
@@ -27,7 +27,7 @@ export class CrmeditarcanalComponent implements OnInit {
     private apiService: ApiService,
     public formBuilder: FormBuilder
   ) { 
-    this.new = false;
+    
   }
 
   ngOnInit(): void {
@@ -35,15 +35,22 @@ export class CrmeditarcanalComponent implements OnInit {
       this.item = JSON.parse(params['item']);
       if(this.item == 0){
         this.nombre_vista = 'Nuevo Canal';
-        
+        this.new = false;
+        this.capturaForm.setValue(
+          {
+            canal: '',
+            estado: 'Activo',
+            id: ''
+          });
       }
       else{
         this.nombre_vista = 'Editar Canal';
+        this.new = true;
       }
       this.TraeCanal();
       this._combo_estado = [
-        {nombre_estado: 'Activo'},
-        {nombre_estado: 'Inactivo'}
+        {estado: 'Activo'},
+        {estado: 'Inactivo'}
       ]
     });
   }
@@ -72,11 +79,14 @@ export class CrmeditarcanalComponent implements OnInit {
   }
 
   Guarda(){
+    if(this.new == false){
+      this.capturaForm.value.estado = 'Activo';
+    }
     let data = {
       "appname":"VIVANZA",
       "sp": 'dvp.Guarda_Canales_CRM',
-      "params": [this.item + ',' ,  this.capturaForm.value.canal + ',' ,  this.capturaForm.value.estado]
-      /* "params":['admin2,','p4ss'] */
+      "params": ["'" + this.item + "','" ,  this.capturaForm.value.canal + "','" ,  this.capturaForm.value.estado +"'"  ]
+      /* dvp.Guarda_Canales_CRM 7,NaNNuevos Otro',NaNActivo'*/
     }
 
     this.apiService.ejecuta(data).subscribe((response) => {
@@ -95,6 +105,6 @@ export class CrmeditarcanalComponent implements OnInit {
     })
   }
 
- 
+  
 
 }

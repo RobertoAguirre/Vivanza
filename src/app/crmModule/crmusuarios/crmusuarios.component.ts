@@ -127,7 +127,7 @@ export class CrmusuariosComponent implements OnInit {
         }
         else{
           alert(d[0].mensaje);
-          this.TraeUsuarios();
+          this.router.navigate(['/crmusuarios']);
         }
       })
     }

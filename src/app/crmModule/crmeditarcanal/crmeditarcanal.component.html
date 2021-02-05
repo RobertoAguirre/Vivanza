@@ -27,11 +27,11 @@
                                     <input formControlName="canal" type="text" class="form-control" placeholder="" autocomplete="off">
                                 </div>
                                 
-                                <div *ngIf="new" class="form-group">
+                                <div  class="form-group">
                                     <label>Estado</label>
-                                    <select formControlName="estado" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    <select [disabled]="false" formControlName="estado" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option disabled selected style="display:none;" ></option>
-                                        <option *ngFor="let item of _combo_estado" [value]="item.nombre_estado">{{item.nombre_estado}}</option>
+                                        <option *ngFor="let item of _combo_estado" [value]="item.estado">{{item.estado}}</option>
                                         
                                     </select>
                                   </div>
@@ -39,7 +39,7 @@
                             <!-- /.card-body -->
     
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary" (click)="Guarda()">Guardar</button>
+                                <button type="submit" class="btn btn-primary" (click)="Guarda()" [disabled]="!capturaForm.valid">Guardar</button>
                             </div>
                         </form>
                         
