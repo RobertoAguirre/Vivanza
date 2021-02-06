@@ -28,7 +28,7 @@ import { CrmcanalesComponent } from './crmModule/crmcanales/crmcanales.component
 import { CrmeditarcanalComponent } from './crmModule/crmeditarcanal/crmeditarcanal.component';
 import { CrmmediosComponent } from './crmModule/crmmedios/crmmedios.component';
 import { CrmeditarmediosComponent } from './crmModule/crmeditarmedios/crmeditarmedios.component';
-import { ModalsComponent } from './examples/modals/modals.component';
+
 
 
 
@@ -56,8 +56,7 @@ import { ModalsComponent } from './examples/modals/modals.component';
     CrmeditarcanalComponent,
     CrmmediosComponent,
     CrmeditarmediosComponent,
-    CrmusuariosComponent,
-    ModalsComponent
+    CrmusuariosComponent
 
   ],
   imports: [
