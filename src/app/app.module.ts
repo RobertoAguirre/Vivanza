@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-import { DataTablesModule } from 'angular-datatables';  
+import { HttpClientModule } from '@angular/common/http';
+import { DataTablesModule } from 'angular-datatables';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClientesComponent } from './clientesModule/clientes/clientes.component';
@@ -37,6 +37,8 @@ import { CrmcreditoComponent } from './crmModule/crmcredito/crmcredito.component
 import { CrminstitucionfinancieraComponent } from './crmModule/crminstitucionfinanciera/crminstitucionfinanciera.component';
 import { CrmeditarinstitucionfinancieraComponent } from './crmModule/crmeditarinstitucionfinanciera/crmeditarinstitucionfinanciera.component';
 
+import { ModalComponent } from './examples/modal/modal.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -72,7 +74,8 @@ import { CrmeditarinstitucionfinancieraComponent } from './crmModule/crmeditarin
     CrmeditarcreditoComponent,
     CrmcreditoComponent,
     CrminstitucionfinancieraComponent,
-    CrmeditarinstitucionfinancieraComponent
+    CrmeditarinstitucionfinancieraComponent,
+    ModalComponent
 
   ],
   imports: [
@@ -81,7 +84,11 @@ import { CrmeditarinstitucionfinancieraComponent } from './crmModule/crmeditarin
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
+  ],
+  entryComponents: [
+    ModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
