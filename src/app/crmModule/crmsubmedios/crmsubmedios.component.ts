@@ -17,6 +17,7 @@ export class CrmsubmediosComponent implements OnInit {
   public dataset;
   public new = true;
   public canal;
+  public medio;
 
   capturaForm = this.formBuilder.group({
     medio:['',Validators.required],
