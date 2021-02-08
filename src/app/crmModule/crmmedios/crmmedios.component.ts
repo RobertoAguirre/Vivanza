@@ -23,10 +23,6 @@ export class CrmmediosComponent implements OnInit {
     id:['']
   })
 
-/*   capturaForm1= this.formBuilder.group({
-    canal:['',Validators.required],
-    id:['']
-  }) */
 
   constructor(
     private router: Router,
@@ -69,15 +65,10 @@ export class CrmmediosComponent implements OnInit {
       _response = response;
       this.new = false;
       this.dataset = _response.success.recordset;
-  /*     this.capturaForm.setValue(
-        {
-          canal: _response.success.recordset[0].Canal,
-          estado: _response.success.recordset[0].estado,
-          id: _response.success.recordset[0].ID
-        }) */
+
     })
   }
-
+/* 
   TraeDatos() {
 
     let data = {
@@ -91,15 +82,10 @@ export class CrmmediosComponent implements OnInit {
       let _response;
       _response = response;
       this.dataset = _response.success.recordset;
-  /*     this.capturaForm.setValue(
-        {
-          canal: _response.success.recordset[0].Canal,
-          estado: _response.success.recordset[0].estado,
-          id: _response.success.recordset[0].ID
-        }) */
+
     })
 
-  }
+  } */
 
   Editar(item){
     let id;
