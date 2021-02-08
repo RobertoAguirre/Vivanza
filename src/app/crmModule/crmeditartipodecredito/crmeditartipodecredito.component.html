@@ -1,1 +1,58 @@
-<p>crmeditartipodecredito works!</p>
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+<div class="content-wrapper" style="min-height: 1365.62px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>{{nombre_vista}}</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+           <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <form [formGroup]="capturaForm">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Tipo de Crédito</label>
+                                    <input formControlName="tipo_credito" type="text" class="form-control" placeholder="" autocomplete="off">
+                                </div>
+                                
+                                <div  class="form-group">
+                                    <label>Estado</label>
+                                    <select [disabled]="false" formControlName="estado" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <option disabled selected style="display:none;" ></option>
+                                        <option *ngFor="let item of _combo_estado" [value]="item.estado">{{item.estado}}</option>
+                                        
+                                    </select>
+                                  </div>
+                                </div>
+                            <!-- /.card-body -->
+    
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary" (click)="Guarda()" [disabled]="!capturaForm.valid">Guardar</button>
+                            </div>
+                        </form>
+                        
+                       
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<!-- <script>  $('[data-mask]').inputmask() </script> -->
+
