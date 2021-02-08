@@ -50,7 +50,7 @@ export class CrmsubmediosComponent implements OnInit {
     })
   }
 
-  ComboMedios(){
+  /* ComboMedios(){
     let data = {
       "appname":"VIVANZA",
       "sp": 'dvp.Combo_Medios',
@@ -63,7 +63,7 @@ export class CrmsubmediosComponent implements OnInit {
       _response = response;
       this._combo_medios = _response.success.recordsets[0];
     })
-  }
+  } */
 
   CanalSeleccionado(item){
     this.canal = item;
@@ -77,15 +77,25 @@ export class CrmsubmediosComponent implements OnInit {
     this.apiService.ejecuta(data).subscribe((response) => {
       let _response;
       _response = response;
+      this._combo_medios = _response.success.recordsets[0];
+    })
+  }
+
+  MedioSeleccionado(item){
+    this.canal = item;
+    let data = {
+      "appname":"VIVANZA",
+      "sp": 'dvp.Trae_Submedios_Medios_Canal_CRM',
+      "params": [item]
+
+    }
+
+    this.apiService.ejecuta(data).subscribe((response) => {
+      let _response;
+      _response = response;
       this.new = false;
-      this.ComboMedios();
       this.dataset = _response.success.recordset;
-  /*     this.capturaForm.setValue(
-        {
-          canal: _response.success.recordset[0].Canal,
-          estado: _response.success.recordset[0].estado,
-          id: _response.success.recordset[0].ID
-        }) */
+
     })
   }
 
@@ -116,7 +126,7 @@ export class CrmsubmediosComponent implements OnInit {
     let id;
     id = item.ID;
     item = JSON.stringify(item);
-    this.router.navigate(['/crmeditarmedios'],{queryParams:{'item':id, 'canal':0}});
+    this.router.navigate(['/crmeditarsubmedios'],{queryParams:{'item':id, 'canal':0}});
     /* alert("logica para editar " + item); */
   }
 
@@ -124,12 +134,12 @@ export class CrmsubmediosComponent implements OnInit {
     let id;
     id = this.canal;
     /* item = JSON.stringify(item); */
-    this.router.navigate(['/crmeditarmedios'],{queryParams:{'item':i, 'canal':id}});
+    this.router.navigate(['/crmeditarsubmedios'],{queryParams:{'item':i, 'canal':id}});
   }
 
   Eliminar(item){
     let id = item.ID;
-    let pregunta = confirm('¿Está seguro de querer eliminar el medio '+item.Medio+'?');
+    let pregunta = confirm('¿Está seguro de querer eliminar el submedio '+item.Medio+'?');
     if (pregunta == true){
       let data = {
         "appname":"VIVANZA",
@@ -148,7 +158,9 @@ export class CrmsubmediosComponent implements OnInit {
         }
         else{
           alert(d[0].mensaje);
-          /* this.TraeDatos(); */
+          this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+          this.router.onSameUrlNavigation = 'reload';
+          this.router.navigate(['./crmsubmedios'], { relativeTo: this.route });
         }
       })
     }

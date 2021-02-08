@@ -137,7 +137,9 @@ export class CrmmediosComponent implements OnInit {
         }
         else{
           alert(d[0].mensaje);
-          /* this.TraeDatos(); */
+          this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+          this.router.onSameUrlNavigation = 'reload';
+          this.router.navigate(['./crmmedios'], { relativeTo: this.route });
         }
       })
     }
