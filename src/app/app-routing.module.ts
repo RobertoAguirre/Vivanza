@@ -14,6 +14,9 @@ import { CrmeditarusuariosComponent } from './crmModule/crmeditarusuarios/crmedi
 import { CrmcanalesComponent } from './crmModule/crmcanales/crmcanales.component';
 import { CrmeditarcanalComponent } from './crmModule/crmeditarcanal/crmeditarcanal.component';
 import { CrmmediosComponent } from './crmModule/crmmedios/crmmedios.component';
+import { CrmeditarmediosComponent } from './crmModule/crmeditarmedios/crmeditarmedios.component';
+import { CrmeditarsubmediosComponent } from './crmModule/crmeditarsubmedios/crmeditarsubmedios.component';
+import { CrmsubmediosComponent } from './crmModule/crmsubmedios/crmsubmedios.component';
 
 
 const routes: Routes = [
@@ -29,7 +32,9 @@ const routes: Routes = [
   { path: 'crmcanales', component: CrmcanalesComponent, pathMatch:"full" },
   { path: 'crmeditarcanal', component: CrmeditarcanalComponent, pathMatch:"full" },
   { path: 'crmmedios', component: CrmmediosComponent, pathMatch:"full" },
-  { path: 'crmeditarmedios', component: CrmcanalesComponent, pathMatch:"full" }
+  { path: 'crmeditarmedios', component: CrmeditarmediosComponent, pathMatch:"full" },
+  { path: 'crmsubmedios', component: CrmsubmediosComponent, pathMatch:"full" },
+  { path: 'crmeditarsubmedios', component: CrmeditarsubmediosComponent, pathMatch:"full" }
 
 ]
 

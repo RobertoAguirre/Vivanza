@@ -45,6 +45,7 @@ export class CrmeditarusuariosComponent implements OnInit {
       else{
         this.nombre_vista = 'Editar Usuario';
       }
+      this.GP();
       this.TraeUsuario();
       this.ComboDesarrollo();
       this._combo_tipo = [
@@ -54,6 +55,17 @@ export class CrmeditarusuariosComponent implements OnInit {
         {nombre: 'Promotor'}
       ]
     });
+  }
+
+  GP(){
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    for (let i = 0; i < 8; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+
+    return result;
   }
 
   ComboDesarrollo(){

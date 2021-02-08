@@ -4,13 +4,14 @@ import { ApiService } from '../../services/api.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
-  selector: 'app-crmmedios',
-  templateUrl: './crmmedios.component.html',
-  styleUrls: ['./crmmedios.component.css']
+  selector: 'app-crmsubmedios',
+  templateUrl: './crmsubmedios.component.html',
+  styleUrls: ['./crmsubmedios.component.css']
 })
-export class CrmmediosComponent implements OnInit {
+export class CrmsubmediosComponent implements OnInit {
 
   public _combo_canales;
+  public _combo_medios;
   public item;
   public nombre_vista;
   public dataset;
@@ -23,11 +24,6 @@ export class CrmmediosComponent implements OnInit {
     id:['']
   })
 
-/*   capturaForm1= this.formBuilder.group({
-    canal:['',Validators.required],
-    id:['']
-  }) */
-
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -36,7 +32,6 @@ export class CrmmediosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
     this.ComboCanales();
   }
 
@@ -55,6 +50,21 @@ export class CrmmediosComponent implements OnInit {
     })
   }
 
+  ComboMedios(){
+    let data = {
+      "appname":"VIVANZA",
+      "sp": 'dvp.Combo_Medios',
+      "params": [this.canal]
+
+    }
+
+    this.apiService.ejecuta(data).subscribe((response) => {
+      let _response;
+      _response = response;
+      this._combo_medios = _response.success.recordsets[0];
+    })
+  }
+
   CanalSeleccionado(item){
     this.canal = item;
     let data = {
@@ -68,6 +78,7 @@ export class CrmmediosComponent implements OnInit {
       let _response;
       _response = response;
       this.new = false;
+      this.ComboMedios();
       this.dataset = _response.success.recordset;
   /*     this.capturaForm.setValue(
         {
@@ -143,6 +154,5 @@ export class CrmmediosComponent implements OnInit {
     }
     
   }
-
 
 }

@@ -28,8 +28,12 @@ import { CrmcanalesComponent } from './crmModule/crmcanales/crmcanales.component
 import { CrmeditarcanalComponent } from './crmModule/crmeditarcanal/crmeditarcanal.component';
 import { CrmmediosComponent } from './crmModule/crmmedios/crmmedios.component';
 import { CrmeditarmediosComponent } from './crmModule/crmeditarmedios/crmeditarmedios.component';
+import { CrmsubmediosComponent } from './crmModule/crmsubmedios/crmsubmedios.component';
+import { CrmeditarsubmediosComponent } from './crmModule/crmeditarsubmedios/crmeditarsubmedios.component';
+import { ModalComponent } from './examples/modal/modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalComponent} from './examples/modal/modal.component';
+
+
 
 @NgModule({
   declarations: [
@@ -56,7 +60,10 @@ import { ModalComponent} from './examples/modal/modal.component';
     CrmmediosComponent,
     CrmeditarmediosComponent,
     CrmusuariosComponent,
+    CrmsubmediosComponent,
+    CrmeditarsubmediosComponent,
     ModalComponent
+
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'vivanzaApp' }),
