@@ -24,7 +24,7 @@ export class TablesComponent {
       $.fn.dataTable.ext.errMode = 'none';  //ESTO ES PARA BORRAR EL WARNING DE CUANDO LAS TABLAS TIENEN DIFERENTES NUMEROS DE CABECEROS
                                             //Y COLUMNAS O CUANDO HAY PROBLEMAS PARA CARGAR LOS DATOS
                                             //ESTO LO USO SOLO AQUÍ PARA PODER CAMBIAR EL IDIOMA EN TABLAS DINÁMICAS    
-
+ 
       $('#mytable').DataTable({
         //paging:false,
         order:[],
