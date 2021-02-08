@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {HttpClientModule} from '@angular/common/http';
-import { DataTablesModule } from 'angular-datatables';  
+import { HttpClientModule } from '@angular/common/http';
+import { DataTablesModule } from 'angular-datatables';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ClientesComponent } from './clientesModule/clientes/clientes.component';
@@ -28,9 +28,8 @@ import { CrmcanalesComponent } from './crmModule/crmcanales/crmcanales.component
 import { CrmeditarcanalComponent } from './crmModule/crmeditarcanal/crmeditarcanal.component';
 import { CrmmediosComponent } from './crmModule/crmmedios/crmmedios.component';
 import { CrmeditarmediosComponent } from './crmModule/crmeditarmedios/crmeditarmedios.component';
-
-
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ModalComponent} from './examples/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -56,8 +55,8 @@ import { CrmeditarmediosComponent } from './crmModule/crmeditarmedios/crmeditarm
     CrmeditarcanalComponent,
     CrmmediosComponent,
     CrmeditarmediosComponent,
-    CrmusuariosComponent
-
+    CrmusuariosComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'vivanzaApp' }),
@@ -65,7 +64,11 @@ import { CrmeditarmediosComponent } from './crmModule/crmeditarmedios/crmeditarm
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
+  ],
+  entryComponents: [
+    ModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

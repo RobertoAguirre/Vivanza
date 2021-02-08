@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, Input, OnInit, TemplateRef, ViewChild } from '@angular/core'
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
+  styleUrls: ['./modal.component.scss']
 })
+@Injectable()
 export class ModalComponent implements OnInit {
+  @Input() my_modal_title;
+  @Input() my_modal_content;
+  constructor(public activeModal: NgbActiveModal) { }
 
-  constructor() { }
+  ngOnInit(): void { }
 
-  ngOnInit(): void {
-  }
 
 }
