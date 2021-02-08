@@ -28,6 +28,8 @@ import { CrmcanalesComponent } from './crmModule/crmcanales/crmcanales.component
 import { CrmeditarcanalComponent } from './crmModule/crmeditarcanal/crmeditarcanal.component';
 import { CrmmediosComponent } from './crmModule/crmmedios/crmmedios.component';
 import { CrmeditarmediosComponent } from './crmModule/crmeditarmedios/crmeditarmedios.component';
+import { CrmsubmediosComponent } from './crmModule/crmsubmedios/crmsubmedios.component';
+import { CrmeditarsubmediosComponent } from './crmModule/crmeditarsubmedios/crmeditarsubmedios.component';
 
 
 
@@ -56,7 +58,9 @@ import { CrmeditarmediosComponent } from './crmModule/crmeditarmedios/crmeditarm
     CrmeditarcanalComponent,
     CrmmediosComponent,
     CrmeditarmediosComponent,
-    CrmusuariosComponent
+    CrmusuariosComponent,
+    CrmsubmediosComponent,
+    CrmeditarsubmediosComponent
 
   ],
   imports: [
