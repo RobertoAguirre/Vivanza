@@ -30,7 +30,7 @@
                             </div>
                             <div  class="form-group col-md-4">
                                 <label>Canal</label>
-                                <select (change)="CanalSeleccionado($event.target.value)" formControlName="canal" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                <select (change)="CanalSeleccionado($event.target.value)" [ngModel]="canal" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                     <option disabled selected style="display:none;" ></option>
                                     <option *ngFor="let item of _combo_canales" [value]="item.ID">{{item.Canal}}</option>
                                     

@@ -68,7 +68,7 @@ export class CrmmediosComponent implements OnInit {
 
     })
   }
-/* 
+
   TraeDatos() {
 
     let data = {
@@ -82,10 +82,10 @@ export class CrmmediosComponent implements OnInit {
       let _response;
       _response = response;
       this.dataset = _response.success.recordset;
-
+ 
     })
 
-  } */
+  }
 
   Editar(item){
     let id;
