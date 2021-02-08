@@ -14,7 +14,6 @@ import { SidebarComponent } from './sidebarModule/sidebar/sidebar.component';
 import { FooterComponent } from './footerModule/footer/footer.component';
 import { TablesComponent } from './examples/tables/tables.component';
 import { KeysPipe } from './keys.pipe';
-import { MenuComponent } from './menu/menu.component';
 import { CrmhomeComponent } from './crmModule/crmhome/crmhome.component';
 
 import { CrmusuariosComponent } from './crmModule/crmusuarios/crmusuarios.component';
@@ -54,7 +53,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FooterComponent,
     TablesComponent,
     KeysPipe,
-    MenuComponent,
     CrmhomeComponent,
     CrmusuariosComponent,
     AsignacionModulosComponent,
