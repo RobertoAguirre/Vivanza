@@ -32,35 +32,31 @@
 
                             
                         </div>
-                        <div class="col-md-12" >
-                            <div class="col-md-4" style="background-color: green;">
-                                <div  class="form-group">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div  class="form-group col-md-12">
                                     <label>Canal</label>
-                                    <select (change)="CanalSeleccionado($event.target.value)" formControlName="canal" class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
+                                    <select (change)="CanalSeleccionado($event.target.value)" formControlName="canal" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option disabled selected style="display:none;" ></option>
                                         <option *ngFor="let item of _combo_canales" [value]="item.ID">{{item.Canal}}</option>
                                         
                                     </select>
                                 </div>
                             </div>
-                            
+                            <!-- /.col -->
                             <div class="col-md-4">
-                                <div  class="form-group">
+                                <div  class="form-group col-md-12">
                                     <label>Medio</label>
-                                    <select (change)="CanalSeleccionado($event.target.value)" formControlName="medio" class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
+                                    <select (change)="MedioSeleccionado($event.target.value)" formControlName="medio" class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
                                         <option disabled selected style="display:none;" ></option>
                                         <option *ngFor="let item of _combo_medios" [value]="item.ID">{{item.Medio}}</option>
                                         
                                     </select>
                                 </div>
                             </div>
-                           
-                        </div>
-                       
-                       
-                       
-                   
-                    
+                            <!-- /.col -->
+                          </div>
+             
                         <div class="col-md-12">
                             <app-tables class="table-responsive;"  *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset" [metodoEditar]="Editar" [metodoEliminar]="Eliminar">
                             </app-tables>

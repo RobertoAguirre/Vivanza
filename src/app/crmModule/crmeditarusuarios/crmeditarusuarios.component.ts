@@ -45,7 +45,7 @@ export class CrmeditarusuariosComponent implements OnInit {
       else{
         this.nombre_vista = 'Editar Usuario';
       }
-      this.GP();
+    
       this.TraeUsuario();
       this.ComboDesarrollo();
       this._combo_tipo = [
@@ -114,6 +114,12 @@ export class CrmeditarusuariosComponent implements OnInit {
 
 
   Guarda(){
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    for (let i = 0; i < 8; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
     let data = {
       "appname":"VIVANZA",
       /* "sp": 'dbo.Guarda_Persona', */
@@ -126,7 +132,7 @@ export class CrmeditarusuariosComponent implements OnInit {
         "iniciales":'',
         "sexo":'',
         "fecha_nacimiento":'',
-        "contrasena":'12345678',
+        "contrasena":result,
         "correo_electronico":this.capturaForm.value.email,
         "es_usuario_sistema":0,
         "autorizacion_remota":'',

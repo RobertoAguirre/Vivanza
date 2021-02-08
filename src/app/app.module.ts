@@ -30,6 +30,12 @@ import { CrmmediosComponent } from './crmModule/crmmedios/crmmedios.component';
 import { CrmeditarmediosComponent } from './crmModule/crmeditarmedios/crmeditarmedios.component';
 import { CrmsubmediosComponent } from './crmModule/crmsubmedios/crmsubmedios.component';
 import { CrmeditarsubmediosComponent } from './crmModule/crmeditarsubmedios/crmeditarsubmedios.component';
+import { CrmtipodecreditoComponent } from './crmModule/crmtipodecredito/crmtipodecredito.component';
+import { CrmeditartipodecreditoComponent } from './crmModule/crmeditartipodecredito/crmeditartipodecredito.component';
+import { CrmeditarcreditoComponent } from './crmModule/crmeditarcredito/crmeditarcredito.component';
+import { CrmcreditoComponent } from './crmModule/crmcredito/crmcredito.component';
+import { CrminstitucionfinancieraComponent } from './crmModule/crminstitucionfinanciera/crminstitucionfinanciera.component';
+import { CrmeditarinstitucionfinancieraComponent } from './crmModule/crmeditarinstitucionfinanciera/crmeditarinstitucionfinanciera.component';
 
 
 
@@ -60,7 +66,13 @@ import { CrmeditarsubmediosComponent } from './crmModule/crmeditarsubmedios/crme
     CrmeditarmediosComponent,
     CrmusuariosComponent,
     CrmsubmediosComponent,
-    CrmeditarsubmediosComponent
+    CrmeditarsubmediosComponent,
+    CrmtipodecreditoComponent,
+    CrmeditartipodecreditoComponent,
+    CrmeditarcreditoComponent,
+    CrmcreditoComponent,
+    CrminstitucionfinancieraComponent,
+    CrmeditarinstitucionfinancieraComponent
 
   ],
   imports: [

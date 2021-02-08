@@ -17,6 +17,12 @@ import { CrmmediosComponent } from './crmModule/crmmedios/crmmedios.component';
 import { CrmeditarmediosComponent } from './crmModule/crmeditarmedios/crmeditarmedios.component';
 import { CrmeditarsubmediosComponent } from './crmModule/crmeditarsubmedios/crmeditarsubmedios.component';
 import { CrmsubmediosComponent } from './crmModule/crmsubmedios/crmsubmedios.component';
+import { CrmtipodecreditoComponent } from './crmModule/crmtipodecredito/crmtipodecredito.component';
+import { CrmeditartipodecreditoComponent } from './crmModule/crmeditartipodecredito/crmeditartipodecredito.component';
+import { CrmcreditoComponent } from './crmModule/crmcredito/crmcredito.component';
+import { CrmeditarcreditoComponent } from './crmModule/crmeditarcredito/crmeditarcredito.component';
+import { CrminstitucionfinancieraComponent } from './crmModule/crminstitucionfinanciera/crminstitucionfinanciera.component';
+import { CrmeditarinstitucionfinancieraComponent } from './crmModule/crmeditarinstitucionfinanciera/crmeditarinstitucionfinanciera.component';
 
 
 const routes: Routes = [
@@ -34,7 +40,13 @@ const routes: Routes = [
   { path: 'crmmedios', component: CrmmediosComponent, pathMatch:"full" },
   { path: 'crmeditarmedios', component: CrmeditarmediosComponent, pathMatch:"full" },
   { path: 'crmsubmedios', component: CrmsubmediosComponent, pathMatch:"full" },
-  { path: 'crmeditarsubmedios', component: CrmeditarsubmediosComponent, pathMatch:"full" }
+  { path: 'crmeditarsubmedios', component: CrmeditarsubmediosComponent, pathMatch:"full" },
+  { path: 'crmtipodecredito', component: CrmtipodecreditoComponent, pathMatch:"full" },
+  { path: 'crmeditartipodecredito', component: CrmeditartipodecreditoComponent, pathMatch:"full" },
+  { path: 'crmcredito', component: CrmcreditoComponent, pathMatch:"full" },
+  { path: 'crmeditarcredito', component: CrmeditarcreditoComponent, pathMatch:"full" },
+  { path: 'crminstitucionfinanciera', component: CrminstitucionfinancieraComponent, pathMatch:"full" },
+  { path: 'crmeditarinstitucionfinanciera', component: CrmeditarinstitucionfinancieraComponent, pathMatch:"full" }
 
 ]
 
