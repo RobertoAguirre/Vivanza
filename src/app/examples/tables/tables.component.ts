@@ -26,6 +26,8 @@ export class TablesComponent {
                                             //ESTO LO USO SOLO AQUÍ PARA PODER CAMBIAR EL IDIOMA EN TABLAS DINÁMICAS    
 
       $('#mytable').DataTable({
+        //paging:false,
+        order:[],
         "language": {
           "processing": "Cargando ...",
           "search": "Buscar:",

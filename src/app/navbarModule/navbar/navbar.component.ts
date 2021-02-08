@@ -41,7 +41,7 @@ export class NavbarComponent implements OnInit {
   }
 
   CerrarSesion() {
-
+ 
     var txt;
     var r = confirm("Esta cerrando sesión, ¿está seguro?");
     if (r == true) {
