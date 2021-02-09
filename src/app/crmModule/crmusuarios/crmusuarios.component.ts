@@ -113,8 +113,8 @@ export class CrmusuariosComponent implements OnInit {
       let data = {
         "appname":"VIVANZA",
         "sp": 'dvp.Elimina_Usuario_CRM',
-        "params": [id]
-  
+        "params": ["'" + id + "','" ,  localStorage.getItem('id') + "'"]
+        
       }
   
       this.apiService.ejecuta(data).subscribe((response) => {

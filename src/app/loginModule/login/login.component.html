@@ -17,14 +17,14 @@
          <img style="height: 90%; width: 90%;" class="mr-3" src="assets/img/logovivanzawhite.png"/>
         </div>
         <div class="card-body">
-          <p class="login-box-msg">Bienvenido</p>
+          <p class="login-box-msg"></p>
     
           <form action="../../index3.html" method="post">
             <div class="input-group mb-3">
-              <input name="email" [(ngModel)]="loginForm.email" type="email" class="form-control" placeholder="Email">
+              <input name="email" [(ngModel)]="loginForm.email" type="email" class="form-control" placeholder="Usuario">
               <div class="input-group-append">
                 <div class="input-group-text">
-                  <span class="fas fa-envelope"></span>
+                  <span class="fas fa-user"></span>
                 </div>
               </div>
             </div>
@@ -36,21 +36,21 @@
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-8">
+           <div class="row">
+              <!-- <div class="col-8">
                 <div class="icheck-primary">
                   <input type="checkbox" id="remember">
                   <label for="remember">
                     Recordarme
                   </label>
                 </div>
-              </div>
-              <!-- /.col -->
-              <div class="col-4">
+              </div> -->
+              
+              <div class="col-12">
                 <button (click)="autentificar()" type="submit" class="btn btn-primary btn-block">Acceder</button>
               </div>
-              <!-- /.col -->
-            </div>
+              
+            </div> 
           </form>
     
 <!--           <div class="social-auth-links text-center mt-2 mb-3">
@@ -64,12 +64,12 @@
 
           <!-- /.social-auth-links -->
     
-          <p class="mb-1">
+        <!--   <p class="mb-1">
             <a href="forgot-password.html">Olvidé mi password</a>
           </p>
           <p class="mb-0">
             <a href="register.html" class="text-center">Registro nuevo</a>
-          </p>
+          </p> -->
         </div>
         <!-- /.card-body -->
       </div>
