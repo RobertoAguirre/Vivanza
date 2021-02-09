@@ -1,5 +1,5 @@
 {
-  "name": "vivanza",
+  "name": "Vivanza",
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
@@ -8,10 +8,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "dev:ssr": "ng run Space:serve-ssr",
-    "serve:ssr": "node dist/Space/server/main.js",
-    "build:ssr": "ng build --prod && ng run Space:server:production",
-    "prerender": "ng run Space:prerender"
+    "dev:ssr": "ng run Vivanza:serve-ssr",
+    "serve:ssr": "node dist/Vivanza/server/main.js",
+    "build:ssr": "ng build --prod && ng run Vivanza:server:production",
+    "prerender": "ng run Vivanza:prerender"
   },
   "private": true,
   "dependencies": {
@@ -32,8 +32,10 @@
     "bootstrap": "^4.5.0",
     "datatables.net": "^1.10.22",
     "datatables.net-dt": "^1.10.22",
+    "domino": "^2.1.6",
     "express": "^4.17.1",
     "jquery": "^3.5.1",
+    "localstorage-polyfill": "^1.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
@@ -70,7 +72,7 @@
   },
   "keywords": [
     "Vivanza",
-    "vivanza",
+    "Vivanza",
     "web",
     "azur"
   ],

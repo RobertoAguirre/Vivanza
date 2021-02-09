@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,PLATFORM_ID,Inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import {ModalComponent} from '../examples/modal/modal.component';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +12,8 @@ import {ModalComponent} from '../examples/modal/modal.component';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  public id;
 
   public tituloTabla = "Tabla desde home";
   public descripcionTabla = "descripcion desde home";
@@ -57,7 +60,8 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public apiService: ApiService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
 
 
@@ -117,6 +121,18 @@ export class HomeComponent implements OnInit {
 
   }
 
+  
+  TraeIdPersona(){
+
+    if (isPlatformBrowser(this.platformId)) {
+      return  localStorage.getItem('id');
+    }
+
+
+   
+  }
+
+ 
   TraePersona() {
 
     //BuscaUsuario 'admin2','p4ss'
@@ -124,7 +140,7 @@ export class HomeComponent implements OnInit {
     let data = {
       "appname": "VIVANZA",
       "sp": 'Trae_Usuario',
-      "params": [localStorage.getItem('id')]
+      "params": [this.TraeIdPersona()]
 
     }
 

@@ -73,7 +73,7 @@
         "always"
       ]
     },
-    "space-before-function-paren": {
+    "Vivanza-before-function-paren": {
       "options": {
         "anonymous": "never",
         "asyncArrow": "always",

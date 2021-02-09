@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,PLATFORM_ID,Inject } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { isPlatformBrowser } from '@angular/common';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -18,16 +20,29 @@ public grupoModulos;
 public modulos;
   constructor(
     public apiService: ApiService,
-    private router: Router
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) { 
-    this.id = localStorage.getItem('id');
+
+    this.id =localStorage.getItem('id');
+    //this.TraeIdPersona();
   }
 
-  ngOnInit() {
-    this.MODULOSPORGRUPO = JSON.parse(localStorage.getItem('MODULOSPORGRUPO'));
-    if(this.MODULOSPORGRUPO.length<=0){
-      this.GeneraMenu();
+
+    
+  TraeIdPersona(){
+
+    if (isPlatformBrowser(this.platformId)) {
+      return localStorage.getItem('id');
     }
+   
+  }
+
+  
+
+
+  ngOnInit() {
+    this.GeneraMenu();
   
   }
 
@@ -76,7 +91,7 @@ public modulos;
 
         })
 
-        localStorage.setItem('MODULOSPORGRUPO', JSON.stringify(this.MODULOSPORGRUPO));
+        //localStorage.setItem('MODULOSPORGRUPO', JSON.stringify(this.MODULOSPORGRUPO));
 
       })
 
