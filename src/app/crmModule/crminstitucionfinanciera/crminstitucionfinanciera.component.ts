@@ -18,6 +18,8 @@ export class CrminstitucionfinancieraComponent implements OnInit {
   public new = true;
   public tp;
   public medio;
+  public credito;
+  public tipo_credito;
 
   capturaForm = this.formBuilder.group({
     credito:['',Validators.required],
