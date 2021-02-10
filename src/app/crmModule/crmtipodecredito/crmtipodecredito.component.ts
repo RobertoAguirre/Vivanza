@@ -56,11 +56,11 @@ export class CrmtipodecreditoComponent implements OnInit {
 
   Eliminar(item){
     let id = item.ID;
-    let pregunta = confirm('¿Está seguro de querer eliminar el tipo de crédito '+item.Canal+'?');
+    let pregunta = confirm('¿Está seguro de querer eliminar el tipo de crédito '+item['Tipo de Crédito']+'?');
     if (pregunta == true){
       let data = {
         "appname":"VIVANZA",
-        "sp": 'dvp.Elimina_Canal_CRM',
+        "sp": 'dvp.Elimina_Tipo_de_Credito_CRM',
         "params": [id]
   
       }
@@ -78,7 +78,7 @@ export class CrmtipodecreditoComponent implements OnInit {
           //Para navegar de nuevo al componente actual (refresh a componentes)
           this.router.routeReuseStrategy.shouldReuseRoute = () => false;
           this.router.onSameUrlNavigation = 'reload';
-          this.router.navigate(['./crmcanales'], { relativeTo: this.route });
+          this.router.navigate(['./crmtipodecredito'], { relativeTo: this.route });
         }
       })
     }

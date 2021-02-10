@@ -134,7 +134,7 @@ export class CrmeditarusuariosComponent implements OnInit {
         "fecha_nacimiento":'',
         "contrasena":result,
         "correo_electronico":this.capturaForm.value.email,
-        "es_usuario_sistema":0,
+        "es_usuario_sistema":1,
         "autorizacion_remota":'',
         "lugar_nacimiento":'',
         "lugar_radica":'',

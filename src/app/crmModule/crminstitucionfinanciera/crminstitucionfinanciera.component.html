@@ -1,1 +1,78 @@
-<p>crminstitucionfinanciera works!</p>
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+<div class="content-wrapper" style="min-height: 1365.62px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>CRM Institución Financiera</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <div class="content" >
+        <div class="container-fluid">
+      <!--       <div class="row">
+
+            </div> -->
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary" style="min-height: 10em">
+                        
+                        <div class="col-md-12 table-responsive" >
+                            <div class="col-md-12" style="text-align: right; margin-top:1em;">
+                                <button type="submit" [disabled]="new" class="btn btn-primary" (click)="Nuevo(0)">Nuevo</button>
+                            </div>
+                            
+
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div  class="form-group col-md-12">
+                                    <label>Tipo de Crédito</label>
+                                    <select (change)="TipoCreditoSeleccionado($event.target.value)" [ngModel]="tipo_credito" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <option disabled selected style="display:none;" ></option>
+                                        <option *ngFor="let item of _combo_tipo_credito" [value]="item.ID">{{item.Tipo}}</option>
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                            <div class="col-md-4">
+                                <div  class="form-group col-md-12">
+                                    <label>Crédito</label>
+                                    <select (change)="CreditoSeleccionado($event.target.value)" [ngModel]="credito" class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
+                                        <option disabled selected style="display:none;" ></option>
+                                        <option *ngFor="let item of _combo_creditos" [value]="item.ID">{{item['Crédito']}}</option>
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                          </div>
+             
+                        <div class="col-md-12" *ngIf="tablas == false">
+                            <app-tables class="table-responsive;"  *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset" [metodoEditar]="Editar" [metodoEliminar]="Eliminar">
+                            </app-tables>
+                        </div>
+                       
+                    </div>
+                </div>
+
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+
+<!-- <script>  $('[data-mask]').inputmask() </script> -->
+
+
+
