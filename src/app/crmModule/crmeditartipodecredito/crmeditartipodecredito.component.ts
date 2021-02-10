@@ -82,8 +82,8 @@ export class CrmeditartipodecreditoComponent implements OnInit {
     }
     let data = {
       "appname":"VIVANZA",
-      "sp": 'dvp.Guarda_Canales_CRM',
-      "params": ["'" + this.item + "','" ,  this.capturaForm.value.canal + "','" ,  this.capturaForm.value.estado +"'"  ]
+      "sp": 'dvp.Guarda_Tipos_de_Credito_CRM',
+      "params": ["'" + this.item + "','" ,  this.capturaForm.value.tipo_credito + "','" ,  this.capturaForm.value.estado +"'"  ]
       /* dvp.Guarda_Canales_CRM 7,NaNNuevos Otro',NaNActivo'*/
     }
 
@@ -96,7 +96,7 @@ export class CrmeditartipodecreditoComponent implements OnInit {
       }
       else{
         alert(d[0].mensaje);
-        this.router.navigate(['/crmcanales']);
+        this.router.navigate(['/crmtipodecredito']);
       }
       
      

@@ -1,13 +1,55 @@
-<div class="card-header text-center">
-    <!--  <a href="../../index2.html" class="h1"><b>Admin</b>LTE</a> -->
-<!--          <img src="assets/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
--->
-    <img style="height: 30%; width: 30%;" class="mr-3" src="assets/img/logovivanzawhite.png"/>
-   </div>
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+<div class="content-wrapper" style="min-height: 1365.62px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>CRM Crédito</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
 
-   <p>Para iniciar sesión deberá ingresar al sitio de Vivanza. 
-        <BR>  Usuario: <b style="color:blue">correo </b>
-        <BR>   Contraseña:<b style="color:blue">  ::CONTRASENA:: </b>
-    </p>
-    <p>O bien dar click <a href="https://azursis.com">aquí</a> para ir directo al sitio.</p>
-    <hr style="color:gray"><p style="color:gray; font-size:0.8em">Si usted no solicito o recibe por error esta información, favor de notificarlo al remitente de inmediato y desecharlo de su sistema.</p>
+    <!-- Main content -->
+    <div class="content" >
+        <div class="container-fluid">
+      <!--       <div class="row">
+
+            </div> -->
+            <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary" style="min-height: 10em">
+                        
+                        <div class="col-md-12 table-responsive" >
+                            <div class="col-md-12" style="text-align: right; margin-top:1em;">
+                                <button type="submit" [disabled]="new" class="btn btn-primary" (click)="Nuevo(0)">Nuevo</button>
+                            </div>
+                            <div  class="form-group col-md-4">
+                                <label>Tipo de Crédito</label>
+                                <select (change)="CreditoSeleccionado($event.target.value)" [ngModel]="credito" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                    <option disabled selected style="display:none;" ></option>
+                                    <option *ngFor="let item of _combo_creditos" [value]="item.ID">{{item.Tipo}}</option>
+                                    
+                                </select>
+                            </div>
+                            <app-tables class="table-responsive;"  *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset" [metodoEditar]="Editar" [metodoEliminar]="Eliminar">
+                            </app-tables>
+                        </div>
+                       
+                    </div>
+                </div>
+
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+
+<!-- <script>  $('[data-mask]').inputmask() </script> -->
+
+
