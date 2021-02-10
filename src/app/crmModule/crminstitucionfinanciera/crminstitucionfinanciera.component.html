@@ -57,7 +57,7 @@
                             <!-- /.col -->
                           </div>
              
-                        <div class="col-md-12">
+                        <div class="col-md-12" *ngIf="tablas == false">
                             <app-tables class="table-responsive;"  *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset" [metodoEditar]="Editar" [metodoEliminar]="Eliminar">
                             </app-tables>
                         </div>

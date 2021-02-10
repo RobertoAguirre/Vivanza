@@ -20,6 +20,7 @@ export class CrminstitucionfinancieraComponent implements OnInit {
   public medio;
   public credito;
   public tipo_credito;
+  public tablas;
 
   capturaForm = this.formBuilder.group({
     credito:['',Validators.required],
@@ -39,6 +40,7 @@ export class CrminstitucionfinancieraComponent implements OnInit {
   }
 
   ComboTipoCredito(){
+    
     let data = {
       "appname":"VIVANZA",
       "sp": 'dvp.Combo_Tipos_de_Credito',
@@ -54,6 +56,7 @@ export class CrminstitucionfinancieraComponent implements OnInit {
   }
 
   TipoCreditoSeleccionado(item){
+    this.tablas = true;
     this.tp = item;
     let data = {
       "appname":"VIVANZA",
@@ -63,6 +66,7 @@ export class CrminstitucionfinancieraComponent implements OnInit {
     }
 
     this.apiService.ejecuta(data).subscribe((response) => {
+      
       let _response;
       _response = response;
       this._combo_creditos = _response.success.recordsets[0];
@@ -81,6 +85,7 @@ export class CrminstitucionfinancieraComponent implements OnInit {
     this.apiService.ejecuta(data).subscribe((response) => {
       let _response;
       _response = response;
+      this.tablas = false;
       this.new = false;
       this.dataset = _response.success.recordset;
 

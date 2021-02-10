@@ -18,10 +18,18 @@ export class CrmsubmediosComponent implements OnInit {
   public new = true;
   public canal;
   public medio;
+  public tabla_vacia = [];
+  public tabla = false;
  
 
   capturaForm = this.formBuilder.group({
     medio:['',Validators.required],
+    estado:['',Validators.required],
+    id:['']
+  })
+
+  capturaForm1 = this.formBuilder.group({
+    submedio:['',Validators.required],
     estado:['',Validators.required],
     id:['']
   })
@@ -38,6 +46,7 @@ export class CrmsubmediosComponent implements OnInit {
   }
 
   ComboCanales(){
+    this.tabla = false;
     let data = {
       "appname":"VIVANZA",
       "sp": 'dvp.Combo_Canales',
@@ -69,6 +78,7 @@ export class CrmsubmediosComponent implements OnInit {
 
   CanalSeleccionado(item){
     this.canal = item;
+    this.tabla_vacia = [];
     let data = {
       "appname":"VIVANZA",
       "sp": 'dvp.Trae_Medios_Canal_CRM',
@@ -77,6 +87,7 @@ export class CrmsubmediosComponent implements OnInit {
     }
 
     this.apiService.ejecuta(data).subscribe((response) => {
+      this.tabla = true;
       let _response;
       _response = response;
       this._combo_medios = _response.success.recordsets[0];
@@ -95,6 +106,7 @@ export class CrmsubmediosComponent implements OnInit {
     this.apiService.ejecuta(data).subscribe((response) => {
       let _response;
       _response = response;
+      this.tabla = false;
       this.new = false;
       this.dataset = _response.success.recordset;
 
