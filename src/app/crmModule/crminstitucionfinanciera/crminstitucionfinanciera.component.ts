@@ -97,16 +97,16 @@ export class CrminstitucionfinancieraComponent implements OnInit {
     let id;
     id = this.tp;
     /* item = JSON.stringify(item); */
-    this.router.navigate(['/crmeditarinstitucion'],{queryParams:{'item':i, 'canal':id}});
+    this.router.navigate(['/crmeditarinstitucionfinanciera'],{queryParams:{'item':i, 'canal':id}});
   }
 
   Eliminar(item){
     let id = item.ID;
-    let pregunta = confirm('¿Está seguro de querer eliminar la institución financiera '+item.Medio+'?');
+    let pregunta = confirm('¿Está seguro de querer eliminar la institución financiera '+item['Institución Financiera']+'?');
     if (pregunta == true){
       let data = {
         "appname":"VIVANZA",
-        "sp": 'dvp.Elimina_Medio_CRM',
+        "sp": 'dvp.Elimina_Institucion_Financiera_CRM',
         "params": [id]
   
       }
@@ -123,7 +123,7 @@ export class CrminstitucionfinancieraComponent implements OnInit {
           alert(d[0].mensaje);
           this.router.routeReuseStrategy.shouldReuseRoute = () => false;
           this.router.onSameUrlNavigation = 'reload';
-          this.router.navigate(['./crmintitucionfinanciera'], { relativeTo: this.route });
+          this.router.navigate(['./crminstitucionfinanciera'], { relativeTo: this.route });
         }
       })
     }

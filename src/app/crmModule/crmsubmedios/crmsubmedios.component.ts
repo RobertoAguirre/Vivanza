@@ -83,7 +83,7 @@ export class CrmsubmediosComponent implements OnInit {
   }
 
   MedioSeleccionado(item){
-    this.canal = item;
+    /* this.canal = item; */
     let data = {
       "appname":"VIVANZA",
       "sp": 'dvp.Trae_Submedios_Medios_Canal_CRM',
