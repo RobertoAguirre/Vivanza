@@ -24,12 +24,13 @@ import { CrmeditarcreditoComponent } from './crmModule/crmeditarcredito/crmedita
 import { CrminstitucionfinancieraComponent } from './crmModule/crminstitucionfinanciera/crminstitucionfinanciera.component';
 import { CrmeditarinstitucionfinancieraComponent } from './crmModule/crmeditarinstitucionfinanciera/crmeditarinstitucionfinanciera.component';
 import { CrmclientesComponent } from './crmModule/crmclientes/crmclientes.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: "full"},
+  { path: '', component: DashboardComponent, pathMatch: "full"},
   { path: 'login', component: LoginComponent, pathMatch: "full" },
-  { path: 'home', component: HomeComponent, pathMatch: "full"},
+  { path: 'home', component: DashboardComponent, pathMatch: "full"},
   { path: 'clientes', component: ClientesComponent, pathMatch: "full" },
   { path: 'abcclientes', component: AbcclientesComponent, pathMatch: "full" },
   { path: 'crmhome', component: CrmhomeComponent, pathMatch: "full" },
@@ -48,7 +49,8 @@ const routes: Routes = [
   { path: 'crmeditarcredito', component: CrmeditarcreditoComponent, pathMatch:"full" },
   { path: 'crminstitucionfinanciera', component: CrminstitucionfinancieraComponent, pathMatch:"full" },
   { path: 'crmeditarinstitucionfinanciera', component: CrmeditarinstitucionfinancieraComponent, pathMatch:"full" },
-  { path: 'crmclientes', component: CrmclientesComponent, pathMatch:"full" }
+  { path: 'crmclientes', component: CrmclientesComponent, pathMatch:"full" },
+  { path: 'dashboard', component: DashboardComponent, pathMatch:"full" }
 
 ]
 
