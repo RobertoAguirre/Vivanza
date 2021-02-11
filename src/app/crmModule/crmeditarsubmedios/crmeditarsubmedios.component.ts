@@ -15,6 +15,8 @@ export class CrmeditarsubmediosComponent implements OnInit {
   public nombre_vista;
   public new;
   public medio;
+  public nombre_canal;
+  public nombre_medio;
 
   capturaForm = this.formBuilder.group({
     submedio:['',Validators.required],
@@ -31,10 +33,12 @@ export class CrmeditarsubmediosComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.item = JSON.parse(params['item']);
-      this.medio = JSON.parse(params['canal']);
+      this.item = params.item;
+      this.medio = params.canal;
+      this.nombre_canal = params.nombre_canal;
+      this.nombre_medio = params.nombre_medio;
       if(this.item == 0){
-        this.nombre_vista = 'Nuevo Medio';
+        this.nombre_vista = 'Nuevo Submedio de Canal: '+this.nombre_canal+' y Medio: '+this.nombre_medio+'';
         this.new = false;
         this.capturaForm.setValue(
           {
@@ -45,7 +49,7 @@ export class CrmeditarsubmediosComponent implements OnInit {
       }
       else{
         this.TraeMedio();
-        this.nombre_vista = 'Editar Medio';
+        this.nombre_vista = 'Editar Submedio de Canal: '+this.nombre_canal+' y Medio: '+this.nombre_medio+'';
         this.new = true;
       }
       

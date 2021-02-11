@@ -15,6 +15,7 @@ export class CrmeditarcreditoComponent implements OnInit {
   public nombre_vista;
   public new;
   public canal;
+  public nombre_tipo_credito;
 
   capturaForm = this.formBuilder.group({
     credito:['',Validators.required],
@@ -31,10 +32,11 @@ export class CrmeditarcreditoComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.item = JSON.parse(params['item']);
-      this.canal = JSON.parse(params['canal']);
+      this.item = params.item;
+      this.canal = params.canal;
+      this.nombre_tipo_credito = params.tipo_credito;
       if(this.item == 0){
-        this.nombre_vista = 'Nuevo Crédito';
+        this.nombre_vista = 'Nuevo Crédito de Tipo de Crédito: '+this.nombre_tipo_credito+'';
         this.new = false;
         this.capturaForm.setValue(
           {
@@ -45,7 +47,7 @@ export class CrmeditarcreditoComponent implements OnInit {
       }
       else{
         this.TraeCredito();
-        this.nombre_vista = 'Editar Crédito';
+        this.nombre_vista = 'Editar Crédito de Tipo de Crédito: '+this.nombre_tipo_credito+'';
         this.new = true;
       }
       
