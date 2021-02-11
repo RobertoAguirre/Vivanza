@@ -81,10 +81,32 @@ export class HomeComponent implements OnInit {
   }
 
 
-  open() {
+  openNormal() {
     const modalRef = this.modalService.open(ModalComponent);
-    modalRef.componentInstance.my_modal_title = 'I your title';
-    modalRef.componentInstance.my_modal_content = 'I am your content';
+    modalRef.componentInstance.my_modal_title = 'Titulo de modal';
+    modalRef.componentInstance.my_modal_content = 'Contenido normal';
+    modalRef.componentInstance.my_modal_color = 'normal-title';
+  }
+
+  openWarning() {
+    const modalRef = this.modalService.open(ModalComponent);
+    modalRef.componentInstance.my_modal_title = 'Titulo de modal';
+    modalRef.componentInstance.my_modal_content = 'Contenido normal';
+    modalRef.componentInstance.my_modal_color = 'caution-title';
+  }
+
+  openDanger() {
+    const modalRef = this.modalService.open(ModalComponent);
+    modalRef.componentInstance.my_modal_title = 'Titulo de modal';
+    modalRef.componentInstance.my_modal_content = 'Contenido normal';
+    modalRef.componentInstance.my_modal_color = 'danger-title';
+  }
+
+  openSuccess() {
+    const modalRef = this.modalService.open(ModalComponent);
+    modalRef.componentInstance.my_modal_title = 'Titulo de modal';
+    modalRef.componentInstance.my_modal_content = 'Contenido normal';
+    modalRef.componentInstance.my_modal_color = 'success-title';
   }
 
 

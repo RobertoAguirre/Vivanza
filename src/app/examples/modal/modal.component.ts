@@ -10,6 +10,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class ModalComponent implements OnInit {
   @Input() my_modal_title;
   @Input() my_modal_content;
+  @Input() my_modal_color;
   constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit(): void { }

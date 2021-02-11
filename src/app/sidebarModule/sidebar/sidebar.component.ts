@@ -32,9 +32,9 @@ public modulos;
     
   TraeIdPersona(){
 
-    if (isPlatformBrowser(this.platformId)) {
+   
       return localStorage.getItem('id');
-    }
+    
    
   }
 

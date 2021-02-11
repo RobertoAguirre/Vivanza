@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
+import {AppComponent} from '../../app.component';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -10,7 +11,8 @@ export class NavbarComponent implements OnInit {
   public personal;
   constructor(
     public apiService: ApiService,
-    public router:Router
+    public router:Router,
+    private appComponent:AppComponent
   ) { }
 
   ngOnInit(): void {
@@ -46,6 +48,7 @@ export class NavbarComponent implements OnInit {
     var r = confirm("Esta cerrando sesión, ¿está seguro?");
     if (r == true) {
       localStorage.clear();
+      
       this.router.navigate(['login']); // tells them they've been logged out (somehow)
 
     } else {

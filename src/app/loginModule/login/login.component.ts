@@ -1,10 +1,11 @@
-import { Component, OnInit,Inject,PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { getLocaleMonthNames } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
+import { AppComponent } from '../../app.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
     private apiService: ApiService,
     private authService: AuthService,
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object
+    private appComponent: AppComponent
+
   ) {
 
     this.loginForm = new FormGroup({
@@ -35,6 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.appComponent.DestruyeMenu();
   }
 
   autentificar() {
@@ -65,13 +68,11 @@ export class LoginComponent implements OnInit {
         let tkn = this.authService.getToken();
         //alert(tkn);
 
-       
-          localStorage.setItem('tkn', this.token);
-          localStorage.setItem('id', this.id);
-          this.router.navigate(['home']); // tells them they've been logged out (somehow)
-        
 
-
+        localStorage.setItem('tkn', this.token);
+        localStorage.setItem('id', this.id);
+        this.appComponent.GeneraMenu();
+        this.router.navigate(['home']); // tells them they've been logged out (somehow)
 
       }
 

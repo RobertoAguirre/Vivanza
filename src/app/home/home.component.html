@@ -1,13 +1,14 @@
 <app-navbar></app-navbar>
-<app-sidebar></app-sidebar>
-<div *ngIf="false" class="content-wrapper">
+<div class="content-wrapper">
     <!--     <img style="height: 92%; width: 92%;" class="mr-3" src="assets/img/logovivanzawhite.png"/>
  -->
     <!-- 
     <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
     <button (click)="openModal('custom-modal-2')">Open Modal 2</button> -->
-    <button class="btn btn-lg btn-outline-primary" (click)="open()">Launch demo modal</button>
-
+    <button class="btn btn-lg btn-outline-primary" (click)="openNormal()">Modal para mensajes normales</button>
+    <button class="btn btn-lg btn-outline-secondary" (click)="openWarning()">Modal para mensajes de advertencia</button>
+    <button class="btn btn-lg btn-outline-danger" (click)="openDanger()">Modal para mensajes de error</button>
+    <button class="btn btn-lg btn-outline-success" (click)="openSuccess()">Modal para mensajes de éxito</button>
 
 
 
