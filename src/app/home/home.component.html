@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
 <div class="content-wrapper">
     <!--     <img style="height: 92%; width: 92%;" class="mr-3" src="assets/img/logovivanzawhite.png"/>
  -->
@@ -32,5 +33,27 @@
         [multipledataset2]="multipledataset2" [coloresFondoDataset2]="coloresGrafica2" [tituloDataset3]="tituloDataset3"
         [multipledataset3]="multipledataset3" [coloresFondoDataset3]="coloresGrafica3">
     </app-barsmultiple>
+
+    <form [formGroup]="myForm" (ngSubmit)="submit()">
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input formControlName="name" id="name" type="text" class="form-control">
+<!--             <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+                <div *ngIf="f.name.errors.required">Name is required.</div>
+                <div *ngIf="f.name.errors.minlength">Name should be 3 character.</div>
+            </div> -->
+        </div>
+
+        <div class="form-group">
+            <label for="file">File</label>
+            <input formControlName="file" id="file" type="file" class="form-control" (change)="onFileChange($event)">
+<!--             <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                <div *ngIf="f.file.errors.required">File is required.</div>
+            </div> -->
+        </div>
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
 
 </div>

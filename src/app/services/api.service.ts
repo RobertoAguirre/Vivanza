@@ -35,19 +35,16 @@ export class ApiService {
 
   public pruebaGetProtegido(tkn) {
 
-  
-   this.httpOptions.headers = this.httpOptions.headers.set('access-token','Bearer ' + tkn);
+
+    this.httpOptions.headers = this.httpOptions.headers.set('access-token', 'Bearer ' + tkn);
 
     try {
-      return this.http.get(this.serviceUrl + 'pruebagetProtegida',this.httpOptions);
+      return this.http.get(this.serviceUrl + 'pruebagetProtegida', this.httpOptions);
     } catch (ex) {
       console.log(ex);
     }
 
   }
-
-
-
 
   public ejecuta(data) {
     return this.http.post(this.serviceUrl + 'EjecutaConsulta/', data);
@@ -60,12 +57,18 @@ export class ApiService {
 
   }
 
-    //Alta Usuario
-    public registra(data) {
+  //Alta Usuario
+  public registra(data) {
 
-      return this.http.post(this.serviceUrl + 'registrar/', data);
-  
-    }
+    return this.http.post(this.serviceUrl + 'registrar/', data);
+
+  }
+
+  //subir archivos
+  public uploadPhoto(formData) {
+
+    return this.http.post(this.serviceUrl + 'UploadFiles/', formData);
+  }
 
 
 

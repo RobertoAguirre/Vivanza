@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild,PLATFORM_ID,Inject } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { Component, OnInit, ViewChild, PLATFORM_ID, Inject } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import {ModalComponent} from '../examples/modal/modal.component';
+import { ModalComponent } from '../examples/modal/modal.component';
 import { isPlatformBrowser } from '@angular/common';
+
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,12 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  myForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    file: new FormControl('', [Validators.required]),
+    fileSource: new FormControl('', [Validators.required])
+  });
 
   public id;
 
@@ -143,18 +150,18 @@ export class HomeComponent implements OnInit {
 
   }
 
-  
-  TraeIdPersona(){
+
+  TraeIdPersona() {
 
     if (isPlatformBrowser(this.platformId)) {
-      return  localStorage.getItem('id');
+      return localStorage.getItem('id');
     }
 
 
-   
+
   }
 
- 
+
   TraePersona() {
 
     //BuscaUsuario 'admin2','p4ss'
@@ -187,6 +194,73 @@ export class HomeComponent implements OnInit {
   ModalAceptar() {
     alert("pico");
   }
+
+  /////////////////FILE UPLOAD ///////////////////////////////////////////
+
+  get f() {
+    return this.myForm.controls;
+  }
+
+  onFileChange(event) {
+
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.myForm.patchValue({
+        fileSource: file
+      });
+    }
+  }
+
+  submit() {
+    const formData = new FormData();
+    formData.append('file', this.myForm.get('fileSource').value);
+
+    this.apiService.uploadPhoto(formData).subscribe((response) => {
+      let _response;
+      _response = response;
+      console.log(_response);
+      alert('Uploaded Successfully.');
+    })
+
+  }
+
+
+
+  /* this.apiService.ejecuta(data).subscribe((response) => {
+    let _response;
+    _response = response;
+
+    this.dataset = _response.success.recordset;
+  })
+ */
+
+  /*  public respFile: any;
+   public fotoGuardada: string; */
+  /*   uploadFile(formData, capt) {
+  
+  
+      return this.http.post('http://mobinsa2.dyndns.org:49203/api/UploadFiles/', formData).
+        subscribe(data => {
+          this.respFile = data;
+          console.log(data['_body']);
+          if (capt !== undefined) {
+            // var _capt = this.guardaCaptura(capt);
+          }
+          return this.respFile;
+        }, error => {
+          console.log(error);
+          return this.respFile;
+        });
+  
+      return this.respFile;
+    } */
+
+  //this is new
+  /*   uploadPhoto(formData) {
+  
+      this.apiService.uploadPhoto(formData)
+  
+    } */
 
 
 }
