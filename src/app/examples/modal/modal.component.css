@@ -1,0 +1,23 @@
+.normal-title{
+    background-color: #0269D9;
+    color:white;
+
+}
+
+.caution-title{
+    background-color: #DFA92D;
+    color:black;
+
+}
+
+.danger-title{
+    background-color: #C93934;
+    color:white;
+
+}
+
+.success-title{
+    background-color: #3F8839;
+    color:white;
+
+}
