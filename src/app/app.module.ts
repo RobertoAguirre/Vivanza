@@ -38,6 +38,8 @@ import { CrmeditarinstitucionfinancieraComponent } from './crmModule/crmeditarin
 
 import { ModalComponent } from './examples/modal/modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CrmclientesComponent } from './crmModule/crmclientes/crmclientes.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -73,7 +75,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CrmcreditoComponent,
     CrminstitucionfinancieraComponent,
     CrmeditarinstitucionfinancieraComponent,
-    ModalComponent
+    ModalComponent,
+    CrmclientesComponent,
+    DashboardComponent
 
   ],
   imports: [

@@ -15,6 +15,8 @@ export class CrmeditarinstitucionfinancieraComponent implements OnInit {
   public nombre_vista;
   public new;
   public credito;
+  public nombre_tipo_credito;
+  public nombre_credito;
 
   capturaForm = this.formBuilder.group({
     institucion:['',Validators.required],
@@ -31,10 +33,12 @@ export class CrmeditarinstitucionfinancieraComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.item = JSON.parse(params['item']);
-      this.credito = JSON.parse(params['canal']);
+      this.item = params.item;
+      this.credito = params.canal;
+      this.nombre_tipo_credito = params.nombre_tipo_credito;
+      this.nombre_credito = params.nombre_credito;
       if(this.item == 0){
-        this.nombre_vista = 'Nueva Institución Financiera';
+        this.nombre_vista = 'Nueva Institución Financiera de Tipo de Crédito: '+this.nombre_tipo_credito+' y Crédito: '+this.nombre_credito+'';
         this.new = false;
         this.capturaForm.setValue(
           {
@@ -45,7 +49,7 @@ export class CrmeditarinstitucionfinancieraComponent implements OnInit {
       }
       else{
         this.TraeCredito();
-        this.nombre_vista = 'Editar Institución Financiera';
+        this.nombre_vista = 'Editar Institución Financiera de Tipo de Crédito: '+this.nombre_tipo_credito+' y Crédito: '+this.nombre_credito+'';
         this.new = true;
       }
       

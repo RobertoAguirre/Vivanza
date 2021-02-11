@@ -77,6 +77,11 @@ export class CrmsubmediosComponent implements OnInit {
   } */
 
   CanalSeleccionado(item){
+    this._combo_canales.forEach(value => {
+      if(value.ID.toString() == item){
+        localStorage.setItem('nombre_canal',value.Canal);
+      }
+    })
     this.canal = item;
     this.tabla_vacia = [];
     let data = {
@@ -95,7 +100,13 @@ export class CrmsubmediosComponent implements OnInit {
   }
 
   MedioSeleccionado(item){
+    this._combo_medios.forEach(value => {
+      if(value.ID.toString() == item){
+        localStorage.setItem('nombre_medio',value.Medio);
+      }
+    })
     /* this.canal = item; */
+    this.medio = item;
     let data = {
       "appname":"VIVANZA",
       "sp": 'dvp.Trae_Submedios_Medios_Canal_CRM',
@@ -140,24 +151,24 @@ export class CrmsubmediosComponent implements OnInit {
     let id;
     id = item.ID;
     item = JSON.stringify(item);
-    this.router.navigate(['/crmeditarsubmedios'],{queryParams:{'item':id, 'canal':0}});
+    this.router.navigate(['/crmeditarsubmedios'],{queryParams:{'item':id, 'canal':0, 'nombre_canal':localStorage.getItem('nombre_canal'), 'nombre_medio': localStorage.getItem('nombre_medio')}});
     /* alert("logica para editar " + item); */
   }
 
   Nuevo(i){
     let id;
-    id = this.canal;
+    id = this.medio;
     /* item = JSON.stringify(item); */
-    this.router.navigate(['/crmeditarsubmedios'],{queryParams:{'item':i, 'canal':id}});
+    this.router.navigate(['/crmeditarsubmedios'],{queryParams:{'item':i, 'canal':id, 'nombre_canal':localStorage.getItem('nombre_canal'), 'nombre_medio': localStorage.getItem('nombre_medio')}});
   }
 
   Eliminar(item){
     let id = item.ID;
-    let pregunta = confirm('¿Está seguro de querer eliminar el submedio '+item.Medio+'?');
+    let pregunta = confirm('¿Está seguro de querer eliminar el submedio '+item.Submedio+'?');
     if (pregunta == true){
       let data = {
         "appname":"VIVANZA",
-        "sp": 'dvp.Elimina_Medio_CRM',
+        "sp": 'dvp.Elimina_Subedio_CRM',
         "params": [id]
   
       }

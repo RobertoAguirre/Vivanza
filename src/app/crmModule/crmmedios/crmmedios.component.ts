@@ -16,6 +16,7 @@ export class CrmmediosComponent implements OnInit {
   public dataset;
   public new = true;
   public canal;
+  public nombre_canal;
 
   capturaForm = this.formBuilder.group({
     medio:['',Validators.required],
@@ -52,6 +53,12 @@ export class CrmmediosComponent implements OnInit {
   }
 
   CanalSeleccionado(item){
+    this._combo_canales.forEach(value => {
+      if(value.ID.toString() == item){
+        localStorage.setItem('nombre_canal',value.Canal);
+      }
+    })
+    
     this.canal = item;
     let data = {
       "appname":"VIVANZA",
@@ -88,18 +95,20 @@ export class CrmmediosComponent implements OnInit {
   }
 
   Editar(item){
+
     let id;
     id = item.ID;
     item = JSON.stringify(item);
-    this.router.navigate(['/crmeditarmedios'],{queryParams:{'item':id, 'canal':0}});
+    this.router.navigate(['/crmeditarmedios'],{queryParams:{'item':id, 'canal':0, 'nombre_canal':localStorage.getItem('nombre_canal')}});
     /* alert("logica para editar " + item); */
   }
 
   Nuevo(i){
+
     let id;
     id = this.canal;
     /* item = JSON.stringify(item); */
-    this.router.navigate(['/crmeditarmedios'],{queryParams:{'item':i, 'canal':id}});
+    this.router.navigate(['/crmeditarmedios'],{queryParams:{'item':i, 'canal':id, 'nombre_canal':localStorage.getItem('nombre_canal')}});
   }
 
   Eliminar(item){

@@ -56,6 +56,11 @@ export class CrminstitucionfinancieraComponent implements OnInit {
   }
 
   TipoCreditoSeleccionado(item){
+    this._combo_tipo_credito.forEach(value => {
+      if(value.ID.toString() == item){
+        localStorage.setItem('nombre_tipo_credito',value['Tipo']);
+      }
+    })
     this.tablas = true;
     this.tp = item;
     let data = {
@@ -74,6 +79,11 @@ export class CrminstitucionfinancieraComponent implements OnInit {
   }
 
   CreditoSeleccionado(item){
+    this._combo_creditos.forEach(value => {
+      if(value.ID.toString() == item){
+        localStorage.setItem('nombre_credito',value['Crédito']);
+      }
+    })
     this.tp = item;
     let data = {
       "appname":"VIVANZA",
@@ -96,7 +106,7 @@ export class CrminstitucionfinancieraComponent implements OnInit {
     let id;
     id = item.ID;
     item = JSON.stringify(item);
-    this.router.navigate(['/crmeditarinstitucionfinanciera'],{queryParams:{'item':id, 'canal':0}});
+    this.router.navigate(['/crmeditarinstitucionfinanciera'],{queryParams:{'item':id, 'canal':0, 'nombre_tipo_credito': localStorage.getItem('nombre_tipo_credito'), 'nombre_credito': localStorage.getItem('nombre_credito')}});
     /* alert("logica para editar " + item); */
   }
 
@@ -104,7 +114,7 @@ export class CrminstitucionfinancieraComponent implements OnInit {
     let id;
     id = this.tp;
     /* item = JSON.stringify(item); */
-    this.router.navigate(['/crmeditarinstitucionfinanciera'],{queryParams:{'item':i, 'canal':id}});
+    this.router.navigate(['/crmeditarinstitucionfinanciera'],{queryParams:{'item':i, 'canal':id, 'nombre_tipo_credito': localStorage.getItem('nombre_tipo_credito'), 'nombre_credito': localStorage.getItem('nombre_credito')}});
   }
 
   Eliminar(item){

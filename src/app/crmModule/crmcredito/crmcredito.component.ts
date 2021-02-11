@@ -50,6 +50,11 @@ export class CrmcreditoComponent implements OnInit {
   }
 
   CreditoSeleccionado(item){
+    this._combo_creditos.forEach(value => {
+      if(value.ID.toString() == item){
+        localStorage.setItem('nombre_tipo_credito',value['Tipo']);
+      }
+    })
     this.credito = item;
     let data = {
       "appname":"VIVANZA",
@@ -71,14 +76,14 @@ export class CrmcreditoComponent implements OnInit {
     let id;
     id = this.credito;
     /* item = JSON.stringify(item); */
-    this.router.navigate(['/crmeditarcredito'],{queryParams:{'item':i, 'canal':id}});
+    this.router.navigate(['/crmeditarcredito'],{queryParams:{'item':i, 'canal':id, 'tipo_credito': localStorage.getItem('nombre_tipo_credito')}});
   }
 
   Editar(item){
     let id;
     id = item.ID;
     item = JSON.stringify(item);
-    this.router.navigate(['/crmeditarcredito'],{queryParams:{'item':id, 'canal':0}});
+    this.router.navigate(['/crmeditarcredito'],{queryParams:{'item':id, 'canal':0, 'tipo_credito': localStorage.getItem('nombre_tipo_credito')}});
     /* alert("logica para editar " + item); */
   }
 
