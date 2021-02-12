@@ -68,8 +68,8 @@ export class AppComponent implements OnInit {
   title = 'Vivanza';
 
   ngOnInit() {
-    /* this.id = localStorage.getItem('id');
-    this.GeneraMenu(); */
+    this.id = localStorage.getItem('id');
+    this.GeneraMenu(); 
  
 
   }
