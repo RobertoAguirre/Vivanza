@@ -37,12 +37,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.appComponent.DestruyeMenu();
+
   }
 
   autentificar() {
 
-    //BuscaUsuario 'admin2','p4ss'
 
     let data = {
       "appname": "VIVANZA",
@@ -71,6 +70,9 @@ export class LoginComponent implements OnInit {
 
         localStorage.setItem('tkn', this.token);
         localStorage.setItem('id', this.id);
+
+        this.id = localStorage.getItem('id');
+        this.appComponent.GeneraMenu();
         //this.appComponent.GeneraMenu();
         this.router.navigate(['home']); // tells them they've been logged out (somehow)
 

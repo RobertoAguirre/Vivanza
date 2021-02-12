@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
     private authService: AuthService,
     private router: Router
   ) {
-
+    this.id = localStorage.getItem('id');
 
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
@@ -44,11 +44,11 @@ export class AppComponent implements OnInit {
       alert("navigating" + this.activatedRoute.root); */
     });
 
-    this.id = localStorage.getItem('id');
-    this.activatedRoute.url.subscribe(url => {
+    
+/*     this.activatedRoute.url.subscribe(url => {
       console.log(url);
 
-    });
+    }); */
 
 
   }
@@ -68,14 +68,9 @@ export class AppComponent implements OnInit {
   title = 'Vivanza';
 
   ngOnInit() {
-
-    this.GeneraMenu();
-    /*  var islogged = this.authService.isLoggedIn();
+    /* this.id = localStorage.getItem('id');
+    this.GeneraMenu(); */
  
-     if (islogged === true){
-       
- 
-     } */
 
   }
 
@@ -87,6 +82,7 @@ export class AppComponent implements OnInit {
 
   GeneraMenu() {
 
+    this.id = localStorage.getItem('id');
     /* this.MODULOSPORGRUPO = JSON.parse(localStorage.getItem('MODULOSPORGRUPO')); */
     if (this.MODULOSPORGRUPO.length <= 0) {
 
