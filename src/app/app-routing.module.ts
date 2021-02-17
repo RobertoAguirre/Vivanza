@@ -25,6 +25,7 @@ import { CrminstitucionfinancieraComponent } from './crmModule/crminstitucionfin
 import { CrmeditarinstitucionfinancieraComponent } from './crmModule/crmeditarinstitucionfinanciera/crmeditarinstitucionfinanciera.component';
 import { CrmclientesComponent } from './crmModule/crmclientes/crmclientes.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CrmarchivosComponent } from './crmModule/crmarchivos/crmarchivos.component';
 
 
 const routes: Routes = [
@@ -50,6 +51,7 @@ const routes: Routes = [
   { path: 'crminstitucionfinanciera', component: CrminstitucionfinancieraComponent, pathMatch:"full" },
   { path: 'crmeditarinstitucionfinanciera', component: CrmeditarinstitucionfinancieraComponent, pathMatch:"full" },
   { path: 'crmclientes', component: CrmclientesComponent, pathMatch:"full" },
+  { path: 'crmarchivos', component: CrmarchivosComponent, pathMatch:"full" },
   { path: 'dashboard', component: DashboardComponent, pathMatch:"full" }
 
 ]

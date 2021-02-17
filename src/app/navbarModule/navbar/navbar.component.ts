@@ -48,7 +48,7 @@ export class NavbarComponent implements OnInit {
     var r = confirm("Esta cerrando sesión, ¿está seguro?");
     if (r == true) {
       localStorage.clear();
-      
+      this.appComponent.MODULOSPORGRUPO = [];
       this.router.navigate(['login']); // tells them they've been logged out (somehow)
 
     } else {
