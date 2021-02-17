@@ -91,7 +91,7 @@ export class CrmclientesComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    $('#myModal').modal('show');
+    /* $('#myModal').modal('show'); */
     this.BloquearCampos(0);
     this._combo_tipo_de_cliente = [
       {nombre: 'Prospecto'},
