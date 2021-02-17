@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<app-sidebar></app-sidebar>
+<!-- <app-sidebar></app-sidebar> -->
 <div class="content-wrapper" style="min-height: 1365.62px;">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -20,12 +20,31 @@
                 <div class="col-md-12">
                     <!-- general form elements -->
                     <div class="card card-primary">
+                        <div class=" form-group col-md-12" style="margin-top: 1em;">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-outline-primary btn-block" (click)="Nuevo()">Nuevo</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-outline-success btn-block" (click)="BuscarCliente()">Editar</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-outline-danger btn-block"  (click)="Cancelar()">Cancelar</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-outline-secondary btn-block">Guardar</button>
+                                </div>
+                              
+                            </div>
+                           
+                        </div>
+                        
                         <form [formGroup]="capturaForm">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="form-group col-md-2">
-                                        <label>Tipo de Cliente</label>
-                                        <select formControlName="tipo_cliente" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <label>Tipo de Cliente<span style="color:red">*</span></label>
+                                        <select  formControlName="tipo_cliente" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_tipo_de_cliente" [value]="item.nombre">{{item.nombre}}</option>
                                             
@@ -35,25 +54,25 @@
                                         <label>Fecha de Registro</label>
                                         <input disabled formControlName="fecha"   type="text" class="form-control" placeholder="" autocomplete="off">
                                     </div>
+                                  
                                     <div class="form-group col-md-2">
                                         <label>ID</label>
-                                        <input disabled formControlName="id"   type="text" class="form-control" placeholder="" autocomplete="off">
+                                        <input disabled formControlName="folio"   type="text" class="form-control" placeholder="" autocomplete="off">
                                     </div>
-                                   
                                     
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-md-3">
-                                        <label>Asesor</label>
+                                        <label>Asesor<span style="color:red">*</span></label>
                                         <select formControlName="asesor" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
-                                            <option  *ngFor="let item of _combo_asesor" [value]="item.id_persona">{{item.nombre}}</option>
+                                            <option *ngFor="let item of _combo_asesor" [value]="item.id_persona">{{item.Nombre}}</option>
                                             
                                         </select>
                                     </div>
                                       <div class="form-group col-md-3">
-                                        <label>Registró</label>
-                                        <input disabled formControlName="Registro"   type="text" class="form-control" placeholder="" autocomplete="off">
+                                        <label>Registró<span style="color:red">*</span></label>
+                                        <input disabled formControlName="registro"   type="text" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -63,42 +82,44 @@
                                     </div>
                                     
                                     <div class="form-group col-md-3">
-                                        <label>Nombre(s)</label>
-                                        <input formControlName="nombre"   type="text" class="form-control" placeholder="" autocomplete="off">
+                                        <label>Nombre(s)<span style="color:red">*</span></label>
+                                        <input formControlName="nombres" type="text" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label>Apellido Paterno</label>
-                                        <input formControlName="nombre"   type="text" class="form-control" placeholder="" autocomplete="off">
+                                        <label>Apellido Paterno<span style="color:red">*</span></label>
+                                        <input formControlName="apellido_paterno"   type="text" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label>Apellido Materno</label>
-                                        <input formControlName="nombre"   type="text" class="form-control" placeholder="" autocomplete="off">
+                                        <label>Apellido Materno<span style="color:red">*</span></label>
+                                        <input formControlName="apellido_materno"   type="text" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label>Teléfono</label>
+                                        <label>Teléfono<span style="color:red">*</span></label>
                                         <input formControlName="telefono" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                        <span style="font-size:small;color:gray;"><i>El teléfono es a 10 dígitos</i></span>
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label>Email</label>
+                                        <label>Email<span style="color:red">*</span></label>
                                         <input formControlName="email" type="email" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label>Género</label>
-                                        <select formControlName="tipo_cliente" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <label>Género<span style="color:red">*</span></label>
+                                        <select formControlName="genero" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_genero" [value]="item.nombre">{{item.nombre}}</option>
                                             
                                         </select>
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label>Nivel de Interés</label>
-                                        <select formControlName="tipo_cliente" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <label>Nivel de Interés<span style="color:red">*</span></label>
+                                        <select formControlName="nivel_interes" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_nivel_de_interes" [value]="item.nombre">{{item.nombre}}</option>
                                             
                                         </select>
                                     </div>
                                 </div>
+                                
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h5>OBTENCIÓN</h5>
@@ -107,84 +128,215 @@
                                     
                                    
                                     <div class="form-group col-md-3">
-                                        <label>Canal</label>
-                                        <select formControlName="tipo_cliente" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <label>Canal<span style="color:red">*</span></label>
+                                        <select (change)="CanalSeleccionado($event.target.value)" formControlName="combo_canal" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
-                                            <option *ngFor="let item of _combo_genero" [value]="item.nombre">{{item.nombre}}</option>
+                                            <option *ngFor="let item of _combo_canales" [value]="item.ID">{{item.Canal}}</option>
                                             
                                         </select>
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label>Medio</label>
-                                        <select formControlName="tipo_cliente" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <label>Medio<span *ngIf="medio_requerido" style="color:red">*</span></label>
+                                        <select (change)="MedioSeleccionado($event.target.value)" formControlName="combo_medio" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
-                                            <option *ngFor="let item of _combo_nivel_de_interes" [value]="item.nombre">{{item.nombre}}</option>
+                                            <option *ngFor="let item of _combo_medios" [value]="item.ID">{{item.Medio}}</option>
                                             
                                         </select>
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label>Submedio</label>
-                                        <select formControlName="tipo_cliente" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <label>Submedio<span *ngIf="submedio_requerido" style="color:red">*</span></label>
+                                        <select formControlName="combo_submedio" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
-                                            <option *ngFor="let item of _combo_nivel_de_interes" [value]="item.nombre">{{item.nombre}}</option>
+                                            <option *ngFor="let item of _combo_submedios" [value]="item.ID">{{item.Submedio}}</option>
                                             
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label>Referidor</label>
-                                        <select formControlName="tipo_cliente" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <select formControlName="referidor" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_nivel_de_interes" [value]="item.nombre">{{item.nombre}}</option>
                                             
                                         </select>
                                     </div>
                                 </div>
-                              
-                                <!-- <div class="form-group">
-                                    <label>Nombre(s)</label>
-                                    <input formControlName="nombres" type="text" class="form-control" placeholder="" autocomplete="off">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5>INFORMACIÓN FINANCIERA</h5>
+                                        <br>
+                                    </div>
+                                    
+                                   
+                                    <div class="form-group col-md-3">
+                                        <label>Desarrollos</label>
+                                        <select (change)="DesarrolloSeleccionado($event.target.value)" formControlName="combo_desarrollo" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_desarrollos" [value]="item.id_desarrollo">{{item.nombre_desarrollo}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Prototipo</label>
+                                        <select (change)="PrototipoSeleccionado($event.target.value)" formControlName="combo_prototipo" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_prototipos" [value]="item.ID">{{item.nombre_vivienda}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Manzana y Lote</label>
+                                        <select  formControlName="combo_manzana" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_manzanas" [value]="item.manzana">{{item.nombre_vivienda}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div  class="form-group col-md-3">
+                                        <label>Tipo de Crédito</label>
+                                        <select (change)="TipoCreditoSeleccionado($event.target.value)" formControlName="tipo_credito" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_tipos_creditos" [value]="item.ID">{{item.Tipo}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div  class="form-group col-md-3">
+                                        <label>Crédito</label>
+                                        <select (change)="CreditoSeleccionado($event.target.value)" formControlName="credito" class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_creditos" [value]="item.ID">{{item['Crédito']}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div  class="form-group col-md-3">
+                                        <label>Institucion Financiera</label>
+                                        <select formControlName="institucion_financiera" class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_institucion_financiera" [value]="item.ID">{{item['Institución Financiera']}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div  class="form-group col-md-3">
+                                        <label>Ingresos</label>
+                                        <select formControlName="ingresos" class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_ingresos" [value]="item.nombre">{{item.nombre}}</option>
+                                            
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Apellido Paterno</label>
-                                    <input formControlName="apellido_paterno" type="text" class="form-control" placeholder="" autocomplete="off">
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5>PROCESO DE VENTA</h5>
+                                        <br>
+                                    </div>
+                                    
+                                   
+                                    <div class="form-group col-md-3">
+                                        <label>Próximo Contacto</label>
+                                        <input formControlName="proximo_contacto"   type="datetime-local" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Fecha de Apartado</label>
+                                        <input formControlName="fecha_apartado"   type="date" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Fecha de Venta</label>
+                                        <input formControlName="fecha_venta"   type="date" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Fecha de Cancelación</label>
+                                        <input formControlName="fecha_cancelacion"   type="date" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Apellido Materno</label>
-                                    <input formControlName="apellido_materno" type="text" class="form-control" placeholder="" autocomplete="off">
+                                
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-6 col-12">
+                                      <div class="info-box">
+                                        <div class="info-box-content">
+                                          <span class="info-box-text" style="text-align: center;"><h3>Visita 1</h3></span>
+                                          <input type="date" formControlName="visita" >
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                      </div>
+                                      <!-- /.info-box -->
+                                    </div>
+                                    <div class="col-md-3 col-sm-6 col-12">
+                                        <div class="info-box">
+                                          <div class="info-box-content">
+                                            <span class="info-box-text" style="text-align: center;"><h3>Visita 2</h3></span>
+                                            <input type="date" formControlName="visita">
+                                          </div>
+                                          <!-- /.info-box-content -->
+                                        </div>
+                                        <!-- /.info-box -->
+                                      </div>
+                                      <div class="col-md-3 col-sm-6 col-12">
+                                        <div class="info-box">
+                                          <div class="info-box-content">
+                                            <span class="info-box-text" style="text-align: center;"><h3>Visita 3</h3></span>
+                                            <input type="date" formControlName="visita">
+                                          </div>
+                                          <!-- /.info-box-content -->
+                                        </div>
+                                        <!-- /.info-box -->
+                                      </div>
+                                      <div class="col-md-3 col-sm-6 col-12">
+                                        <div class="info-box">
+                                          <div class="info-box-content">
+                                            <span class="info-box-text" style="text-align: center;"><h3>Visita 4</h3></span>
+                                            <input type="date" formControlName="visita">
+                                          </div>
+                                          <!-- /.info-box-content -->
+                                        </div>
+                                        <!-- /.info-box -->
+                                      </div>
                                 </div>
-                                <div class="form-group">
-                                    <label>Usuario</label>
-                                    <input  formControlName="usuario" type="text" class="form-control" placeholder="nombre.apellido" autocomplete="off">
-                                </div>
-                                <div class="form-group">
-                                    <label>Teléfono</label>
-                                    <input formControlName="telefono" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
-                                </div>
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input formControlName="email" type="email" class="form-control" placeholder="" autocomplete="off">
-                                </div>
-                                <div class="form-group">
-                                    <label>Tipo</label>
-                                    <select formControlName="tipo" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                        <option disabled selected style="display:none;" ></option>
-                                        <option *ngFor="let item of _combo_tipo" [value]="item.nombre">{{item.nombre}}</option>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5>PROCESO DE VENTA</h5>
+                                        <br>
+                                    </div>
+                                    <div class="form-group col-md-10">
+                                        <label>Comentarios</label>
+                                        <input formControlName="email" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-2">
                                         
-                                    </select>
-                                  </div>
-                                  <div class="form-group">
-                                    <label>Desarrollo</label>
-                                    <select formControlName="desarrollo" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
-                                        <option disabled selected style="display:none;" ></option>
-                                        <option  *ngFor="let item of _combo_desarrollo" [value]="item.id_desarrollo">{{item.nombre_desarrollo}}</option>
-                                        
-                                    </select>
-                                  </div> -->
+                                        <button class="btn btn-primary" style="margin-top:2em;">Guardar</button>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="table-responsive" style="max-height:55em; margin-top:1em; padding-bottom:1em;">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                        
+                                                        <th>Fecha</th>
+                                                        <th>Usuario</th>
+                                                        <th>Comentario</th>
+                                                    </tr>
+                                                </thead>
+                                               <!--  <tbody ng-repeat="correo in correosTabla">
+                                                    <tr>
+                                                        <td>{{correo.correo}}</td>
+                                                        <td>{{correo.puesto}}</td>
+                                                        <td>{{correo.tipo}}</td>
+                                                       
+                                                    </tr>
+                                                </tbody> -->
+                                            </table>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                   
                             </div>
                             <!-- /.card-body -->
     
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-primary" (click)="Guarda()" [disabled]="!capturaForm.valid">Guardar</button>
+                               <!--  <button type="submit" class="btn btn-primary" (click)="Guarda()" [disabled]="!capturaForm.valid">Guardar</button> -->
+                               <button type="submit"  class="btn btn-primary" (click)="Guarda()" [disabled]="!capturaForm.valid" >Guardar</button>
                             </div>
                         </form>
                         
@@ -197,6 +349,29 @@
 
         </div>
     </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: blue">
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+                    <h4 class="modal-title" id="myModalLabel" style="color:white;">
+                        Buscar Clientes
+
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        hola
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- <script>  $('[data-mask]').inputmask() </script> -->

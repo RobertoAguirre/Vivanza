@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { DataTablesModule } from 'angular-datatables';
 import { AppRoutingModule } from './app-routing.module';
+import * as bootstrap from "bootstrap"; 
+import * as $ from 'jquery';
 import { AppComponent } from './app.component';
 import { ClientesComponent } from './clientesModule/clientes/clientes.component';
 import { AbcclientesComponent } from './clientesModule/abcclientes/abcclientes.component';
@@ -40,6 +42,7 @@ import { ModalComponent } from './examples/modal/modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CrmclientesComponent } from './crmModule/crmclientes/crmclientes.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 
 
