@@ -79,7 +79,7 @@ export class CrmclientesComponent implements OnInit {
     registro:['',Validators.required],
     nombres:['',Validators.required],
     apellido_paterno:['',Validators.required],
-    apellido_materno:['',Validators.required],
+    apellido_materno:[''],
     telefono:['',Validators.required],
     email:['',Validators.required],
     genero:['',Validators.required],
@@ -630,6 +630,13 @@ export class CrmclientesComponent implements OnInit {
       this.CreditoSeleccionado(_response.success.recordset[0].id_credito);
       this.DesarrolloSeleccionado(_response.success.recordset[0].id_desarrollo);
       this.PrototipoSeleccionado(_response.success.recordset[0].id_tipo_vivienda);
+      if(_response.success.recordset[0].fecha_alta != null){
+        let u;
+          u = _response.success.recordset[0].fecha_alta.replace("T", " ");
+          u = u.slice(0,-8);
+          _response.success.recordset[0].fecha_alta = u;
+        this._pc = _response.success.recordset[0].proximo_contacto.slice(0,-8);
+      }
       if(_response.success.recordset[0].proximo_contacto != null){
         
         this._pc = _response.success.recordset[0].proximo_contacto.slice(0,-8);
@@ -662,7 +669,8 @@ export class CrmclientesComponent implements OnInit {
       this.capturaForm.setValue(
         {
           tipo_cliente: _response.success.recordset[0].tipo_cliente,
-          fecha: this.datepipe.transform(_response.success.recordset[0].fecha_alta,'dd/MM/yyyy'),
+         /*  fecha: this.datepipe.transform(_response.success.recordset[0].fecha_alta,'dd/MM/yyyy'), */
+          fecha: _response.success.recordset[0].fecha_alta,
           folio:_response.success.recordset[0].id_cliente,
           asesor:_response.success.recordset[0].id_asesor,
           registro:_response.success.recordset[0].nombre_registra,
@@ -1143,6 +1151,7 @@ export class CrmclientesComponent implements OnInit {
       else{
         alert(d[0].mensaje);
         this.btns = false;
+        this.btn_com = false;
         this.visitas = [];
         this.LimpiaFormulario();
         window.scroll(0, 0);

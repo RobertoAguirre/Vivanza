@@ -26,6 +26,7 @@ export class CrmclientesapartadoComponent implements OnInit {
     public estado_seleccionado_empresa;
     public nombre_cliente;
     public id_cliente;
+    public es_casado = false;
 
   capturaForm = this.formBuilder.group({
     rfc:['',Validators.required],
@@ -47,7 +48,7 @@ export class CrmclientesapartadoComponent implements OnInit {
     fecha_nacimiento:['',Validators.required],
     edad:['',Validators.required],
     lugar_nacimiento:['',Validators.required],
-    regimen_matrimonial:['',Validators.required],
+    regimen_matrimonial:[''],
     fecha_matrimonio:[''],
     escolaridad:['',Validators.required],
 
@@ -70,12 +71,12 @@ export class CrmclientesapartadoComponent implements OnInit {
     ciudad_empresa:['',Validators.required],
     numero_seguro:['',Validators.required],
 
-    nombre_conyuge:['',Validators.required],
-    apellido_paterno_conyuge:['',Validators.required],
-    apellido_materno_conyuge:['',Validators.required],
+    nombre_conyuge:[''],
+    apellido_paterno_conyuge:[''],
+    apellido_materno_conyuge:[''],
     rfc_conyuge:[''],
-    lugar_nacimiento_conyuge:['',Validators.required],
-    trabaja_conyuge:['',Validators.required],
+    lugar_nacimiento_conyuge:[''],
+    trabaja_conyuge:[''],
 
     nombre_empresa_conyuge:[''],
     antiguedad_conyuge:[''],
@@ -91,10 +92,10 @@ export class CrmclientesapartadoComponent implements OnInit {
     codigo_postal_empresa_conyuge:[''],
     telefono_empresa_conyuge:[''],
     extension_empresa_conyuge:[''],
-    participa_credito:['',Validators.required],
-    escolaridad_conyuge:['',Validators.required],
-    peso_conyuge:['',Validators.required],
-    estatura_conyuge:['',Validators.required],
+    participa_credito:[''],
+    escolaridad_conyuge:[''],
+    peso_conyuge:[''],
+    estatura_conyuge:[''],
     numero_seguro_conyuge:[''],
 
     nombre_referencia1:['',Validators.required],
@@ -156,6 +157,16 @@ export class CrmclientesapartadoComponent implements OnInit {
       {nombre: 'No'}
     ]
     this.ComboEstados();
+  }
+
+  EstadoCivilSeleccionado(item){
+    if(item == 'Sí'){
+      this.es_casado = true;
+    }
+    else{
+      this.es_casado = false;
+      this.capturaForm.value.ingresos_mensuales_conyuge = 0;
+    }
   }
 
   ComboEstados(){
@@ -228,6 +239,7 @@ export class CrmclientesapartadoComponent implements OnInit {
       "sp": 'dvp.Guarda_Clientes_Apartado',
       "params": ["'" + 0 + "','" 
           ,  this.id_cliente + "','" 
+          ,  this.capturaForm.value.rfc + "','" 
           ,  this.capturaForm.value.calle + "','" 
           ,  this.capturaForm.value.numero_interior + "','" 
           ,  this.capturaForm.value.numero_exterior +"','"  

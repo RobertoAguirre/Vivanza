@@ -42,7 +42,7 @@
                         <form [formGroup]="capturaForm">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" style="padding-top: 1em; margin-bottom: -1.5em;">
                                         <h5>I. SOLICITANTE</h5>
                                         <br>
                                     </div>
@@ -115,7 +115,7 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Estado Civil<span style="color:red">*</span></label>
-                                        <select formControlName="estado_civil" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <select (change)="EstadoCivilSeleccionado($event.target.value)" formControlName="estado_civil" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_estado_civil" [value]="item.nombre">{{item.nombre}}</option>
                                             
@@ -141,7 +141,7 @@
                                         <label>Lugar de Nacimiento<span style="color:red">*</span></label>
                                         <input formControlName="lugar_nacimiento" type="text" class="form-control" placeholder="" autocomplete="off">
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    <div *ngIf="es_casado == true" class="form-group col-md-3">
                                         <label>Régimen Matrimonial<span style="color:red">*</span></label>
                                         <select formControlName="regimen_matrimonial" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
@@ -160,7 +160,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" style="padding-top: 1em; margin-bottom: -1.5em;">
                                         <h5>II. EMPLEO DEL SOLICITANTE</h5>
                                         <br>
                                     </div>
@@ -252,7 +252,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" style="padding-top: 1em; margin-bottom: -1.5em;">
                                         <h5>III. DATOS DEL CONYUGE (NECESARIOS EN CUALQUIER CASO PARTICIPE O NO EN EL CRÉDITO HIPOTECARIO) </h5>
                                         <br>
                                     </div>
@@ -373,7 +373,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" style="padding-top: 1em; margin-bottom: -1.5em;">
                                         <h5>IV. REFERENCIAS PERSONALES SOLICITANTE </h5>
                                         <br>
                                     </div>
@@ -423,13 +423,13 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-12" style="padding-top: 1em; margin-bottom: -1.5em;">
                                         <h5>CRÉDITO SOLICITADO </h5>
                                         <br>
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Monto de Crédito<span style="color:red">*</span></label>
-                                        <input formControlName="monto_credito" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                        <input formControlName="monto_credito" type="text" class="form-control" placeholder=""  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Plazo<span style="color:red">*</span></label>
@@ -437,7 +437,7 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Enganche<span style="color:red">*</span></label>
-                                        <input formControlName="enganche" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                        <input formControlName="enganche" type="text" class="form-control" placeholder="" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="row">
