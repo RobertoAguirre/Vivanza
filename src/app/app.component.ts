@@ -38,20 +38,31 @@ export class AppComponent implements OnInit {
 
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
-    ).subscribe((event:NavigationEnd) => {
+    ).subscribe((event: NavigationEnd) => {
       this.currentUrl = event.url;
       /* console.log(this.activatedRoute.root);
       alert("navigating" + this.activatedRoute.root); */
     });
 
-    
-/*     this.activatedRoute.url.subscribe(url => {
-      console.log(url);
 
-    }); */
+    /*     this.activatedRoute.url.subscribe(url => {
+          console.log(url);
+    
+        }); */
 
 
   }
+
+
+  showSpinner() {
+    document.getElementById("spinner-back").classList.add("show");
+    document.getElementById("spinner-front").classList.add("show");
+  }
+  hideSpinner() {
+    document.getElementById("spinner-back").classList.remove("show");
+    document.getElementById("spinner-front").classList.remove("show");
+  }
+
 
   isCheckoutRoute() {
     if (!this.currentUrl) {
@@ -68,9 +79,10 @@ export class AppComponent implements OnInit {
   title = 'Vivanza';
 
   ngOnInit() {
+    //this.showSpinner();
     this.id = localStorage.getItem('id');
-    this.GeneraMenu(); 
- 
+    this.GeneraMenu();
+
 
   }
 

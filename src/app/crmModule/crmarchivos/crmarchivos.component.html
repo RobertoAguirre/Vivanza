@@ -17,10 +17,8 @@
         <div class="container-fluid">
             <div class="card">
 
-                <!--          <div class="card-header">
-                    <h3 class="card-title">Bordered Table</h3>
-                </div> -->
-                <!-- /.card-header -->
+
+
                 <div class="card-body">
 
 
@@ -68,7 +66,8 @@
                                     </div>
                                 </td>
 
-                                <td><span class="badge bg-warning"></span></td>
+                                <td style="text-align: center;"><a *ngIf="ofertaCompra" href={{ofertaCompra}}
+                                        target="_blank"> <i class="fa fa-file fa-2x" aria-hidden="true"></i></a></td>
                             </tr>
                             <tr>
                                 <td>Aviso de privacidad</td>
@@ -80,7 +79,8 @@
                                     </div>
                                 </td>
 
-                                <td><span class="badge bg-warning"></span></td>
+                                <td style="text-align: center;"><a *ngIf="avisoPrivacidad" href={{avisoPrivacidad}}
+                                        target="_blank"> <i class="fa fa-file fa-2x" aria-hidden="true"></i></a></td>
                             </tr>
                             <tr>
                                 <td>Preliquidación (con cuenta bancaria que corresponde al desarrollo)</td>
@@ -92,7 +92,8 @@
                                     </div>
                                 </td>
 
-                                <td><span class="badge bg-warning"></span></td>
+                                <td style="text-align: center;"><a *ngIf="preliquidacion" href={{preliquidacion}}
+                                        target="_blank"> <i class="fa fa-file fa-2x" aria-hidden="true"></i></a></td>
                             </tr>
                             <tr>
                                 <td>Plano geometrico del desarrollo</td>
@@ -103,8 +104,8 @@
 
                                     </div>
                                 </td>
-
-                                <td><span class="badge bg-warning"></span></td>
+                                <td style="text-align: center;"><a *ngIf="planoGeometrico" href={{planoGeometrico}}
+                                        target="_blank"> <i class="fa fa-file fa-2x" aria-hidden="true"></i></a></td>
                             </tr>
                             <tr>
                                 <td>Plano de la cerrada señalando ubicación</td>
@@ -115,8 +116,8 @@
 
                                     </div>
                                 </td>
-
-                                <td><span class="badge bg-warning"></span></td>
+                                <td style="text-align: center;"><a *ngIf="planoCerrada" href={{planoCerrada}}
+                                        target="_blank"> <i class="fa fa-file fa-2x" aria-hidden="true"></i></a></td>
                             </tr>
                             <tr>
                                 <td>Reglamentos</td>
@@ -127,7 +128,8 @@
                                     </div>
                                 </td>
 
-                                <td><span class="badge bg-warning"></span></td>
+                                <td style="text-align: center;"><a *ngIf="reglamentos" href={{reglamentos}}
+                                        target="_blank"> <i class="fa fa-file fa-2x" aria-hidden="true"></i></a></td>
                             </tr>
                             <tr>
                                 <td>Precalificación o simulador</td>
@@ -151,7 +153,9 @@
                                     </div>
                                 </td>
 
-                                <td><span class="badge bg-warning"></span></td>
+                                <td style="text-align: center;"><a *ngIf="solicitudInfonavit"
+                                        href={{solicitudInfonavit}} target="_blank"> <i class="fa fa-file fa-2x"
+                                            aria-hidden="true"></i></a></td>
                             </tr>
                             <tr>
                                 <td>FOVISSSTE</td>
@@ -162,7 +166,8 @@
                                     </div>
                                 </td>
 
-                                <td><span class="badge bg-warning"></span></td>
+                                <td style="text-align: center;"><a *ngIf="FOVISSSTE" href={{FOVISSSTE}} target="_blank">
+                                        <i class="fa fa-file fa-2x" aria-hidden="true"></i></a></td>
                             </tr>
                             <tr>
                                 <td>Especificaciones de acabados</td>
@@ -174,7 +179,9 @@
                                     </div>
                                 </td>
 
-                                <td><span class="badge bg-warning"></span></td>
+                                <td style="text-align: center;"><a *ngIf="especificaciones" href={{especificaciones}}
+                                        target="_blank">
+                                        <i class="fa fa-file fa-2x" aria-hidden="true"></i></a></td>
                             </tr>
                             <tr>
                                 <td>Solicitudes de banco</td>
@@ -186,7 +193,9 @@
                                     </div>
                                 </td>
 
-                                <td><span class="badge bg-warning"></span></td>
+                                <td style="text-align: center;"><a *ngIf="solicitudesBanco" href={{solicitudesBanco}}
+                                        target="_blank">
+                                        <i class="fa fa-file fa-2x" aria-hidden="true"></i></a></td>
                             </tr>
                             <tr>
                                 <td>Guia del cliente</td>
@@ -197,7 +206,9 @@
                                     </div>
                                 </td>
 
-                                <td><span class="badge bg-warning"></span></td>
+                                <td style="text-align: center;"><a *ngIf="guiaCliente" href={{guiaCliente}}
+                                        target="_blank">
+                                        <i class="fa fa-file fa-2x" aria-hidden="true"></i></a></td>
                             </tr>
                             <tr>
                                 <td>Recibo de nomina</td>
@@ -209,7 +220,9 @@
                                     </div>
                                 </td>
 
-                                <td><span class="badge bg-warning"></span></td>
+                                <td style="text-align: center;"><a *ngIf="reciboNomina" href={{reciboNomina}}
+                                        target="_blank">
+                                        <i class="fa fa-file fa-2x" aria-hidden="true"></i></a></td>
                             </tr>
                             <tr>
                                 <td>Hoja de comentarios (con cálculo de endeudamiento)</td>
@@ -221,7 +234,9 @@
                                     </div>
                                 </td>
 
-                                <td><span class="badge bg-warning"></span></td>
+                                <td style="text-align: center;"><a *ngIf="hojaComentarios" href={{hojaComentarios}}
+                                        target="_blank">
+                                        <i class="fa fa-file fa-2x" aria-hidden="true"></i></a></td>
                             </tr>
                         </tbody>
                     </table>

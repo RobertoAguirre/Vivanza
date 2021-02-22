@@ -1,11 +1,19 @@
 <div class="wrapper">
 
+  <div id="spinner-back"></div>
+  <div id="spinner-front">
+    <div class="spinner-border text-warning" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
 
   <!-- Content Wrapper. Contains page content -->
   <!--   <div class="content-wrapper"> -->
   <!-- <app-sidebar *ngIf="blankUrl || !isCheckoutRoute()"></app-sidebar> -->
 
   <aside *ngIf="blankUrl || !isCheckoutRoute()" class="main-sidebar sidebar-dark-orange elevation-4">
+
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="assets/img/logovivanza.png" alt="Vivanza" class="brand-image img-circle elevation-3"
