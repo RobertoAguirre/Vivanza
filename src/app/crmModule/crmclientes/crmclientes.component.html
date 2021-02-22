@@ -23,20 +23,66 @@
                         <div class=" form-group col-md-12" style="margin-top: 1em;">
                             <div class="row">
                                 <div class="col-md-2">
-                                    <button type="button" class="btn btn-outline-primary btn-block" (click)="Nuevo()">Nuevo</button>
+                                    <button type="button" [disabled]="btns" class="btn btn-outline-primary btn-block" (click)="Nuevo()">Nuevo</button>
                                 </div>
                                 <div class="col-md-2">
-                                    <button type="button" class="btn btn-outline-success btn-block" (click)="BuscarCliente()">Editar</button>
+                                    <button type="button" [disabled]="btns" class="btn btn-outline-success btn-block" (click)="BuscarCliente()">Editar</button>
                                 </div>
                                 <div class="col-md-2">
                                     <button type="button" class="btn btn-outline-danger btn-block"  (click)="Cancelar()">Cancelar</button>
                                 </div>
                                 <div class="col-md-2">
-                                    <button type="button" class="btn btn-outline-secondary btn-block">Guardar</button>
+                                    <button type="button" class="btn btn-outline-secondary btn-block" (click)="Guarda()" [disabled]="!capturaForm.valid">Guardar</button>
                                 </div>
-                              
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-outline-primary btn-block" (click)="Apartado()">Apartado</button>
+                                </div>
                             </div>
                            
+                        </div>
+                        <div *ngIf="editar" class="col-md-12">
+                            <form [formGroup]="capturaFormBuscar">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Buscar</label>
+                                        <input formControlName="consulta"   type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="col-md-2" style="margin-top: 2em;">
+                                        <button type="button" class="btn btn-primary btn-block" (click)="BuscaCliente(consulta)">Buscar</button>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Buscar por:</label>
+                                        <select  formControlName="buscar"  class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_buscar" [value]="item.nombre">{{item.nombre}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="row-border hover table-responsive" style="max-height:55em; margin-top:1em; padding-bottom:1em;">
+                                            <table  class="table table-bordered table-hover dataTable" role="grid" >
+                                                <thead>
+                                                    <tr>
+                        
+                                                        <th>Cliente</th>
+                                                        <th>Teléfono</th>
+                                                        <th>Acción</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody *ngFor="let buscar of lista_clientes">
+                                                    <tr>
+                                                        <td>{{buscar.nombre}}</td>
+                                                        <td>{{buscar.numero}}</td>
+                                                        <td class="center"><i class="fa fa-edit" style="color:green; font-size:1em" aria-hidden="true" (click)="EditarCliente(buscar)"></i></td>
+                                                       
+                                                    </tr>
+                                                </tbody> 
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                            </form>
+                                
                         </div>
                         
                         <form [formGroup]="capturaForm">
@@ -155,7 +201,7 @@
                                         <label>Referidor</label>
                                         <select formControlName="referidor" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
-                                            <option *ngFor="let item of _combo_nivel_de_interes" [value]="item.nombre">{{item.nombre}}</option>
+                                            <option *ngFor="let item of _combo_clientes" [value]="item.ID">{{item.Nombre}}</option>
                                             
                                         </select>
                                     </div>
@@ -235,19 +281,19 @@
                                    
                                     <div class="form-group col-md-3">
                                         <label>Próximo Contacto</label>
-                                        <input formControlName="proximo_contacto"   type="datetime-local" class="form-control" placeholder="" autocomplete="off">
+                                        <input formControlName="proximo_contacto" (change)='CambioProximoContacto($event.target.value)'   type="datetime-local" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Fecha de Apartado</label>
-                                        <input formControlName="fecha_apartado"   type="date" class="form-control" placeholder="" autocomplete="off">
+                                        <input formControlName="fecha_apartado" (change)='FechaApartadoContacto("Apartado")'  type="date" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Fecha de Venta</label>
-                                        <input formControlName="fecha_venta"   type="date" class="form-control" placeholder="" autocomplete="off">
+                                        <input formControlName="fecha_venta" (change)='FechaApartadoContacto("Vendido")'  type="date" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Fecha de Cancelación</label>
-                                        <input formControlName="fecha_cancelacion"   type="date" class="form-control" placeholder="" autocomplete="off">
+                                        <input formControlName="fecha_cancelacion"  (change)='FechaApartadoContacto("Cancelado")' type="date" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                 </div>
                                 
@@ -256,7 +302,8 @@
                                       <div class="info-box">
                                         <div class="info-box-content">
                                           <span class="info-box-text" style="text-align: center;"><h3>Visita 1</h3></span>
-                                          <input type="date" formControlName="visita" >
+                                          <input *ngIf="_visita1 == false" type="date" (change)='VisitaSeleccionado("Vendido")' formControlName="visita" >
+                                          <input *ngIf="_visita1 == true" style="text-align:center;" disabled formControlName="visita" >
                                         </div>
                                         <!-- /.info-box-content -->
                                       </div>
@@ -266,7 +313,8 @@
                                         <div class="info-box">
                                           <div class="info-box-content">
                                             <span class="info-box-text" style="text-align: center;"><h3>Visita 2</h3></span>
-                                            <input type="date" formControlName="visita">
+                                            <input *ngIf="_visita2 == false" type="date" (change)='VisitaSeleccionado("Vendido")' formControlName="visita2">
+                                            <input *ngIf="_visita2 == true" style="text-align:center;" disabled formControlName="visita2" >
                                           </div>
                                           <!-- /.info-box-content -->
                                         </div>
@@ -276,7 +324,8 @@
                                         <div class="info-box">
                                           <div class="info-box-content">
                                             <span class="info-box-text" style="text-align: center;"><h3>Visita 3</h3></span>
-                                            <input type="date" formControlName="visita">
+                                            <input *ngIf="_visita3 == false" type="date" (change)='VisitaSeleccionado("Vendido")' formControlName="visita3">
+                                            <input *ngIf="_visita3 == true" style="text-align:center;" disabled formControlName="visita3" >
                                           </div>
                                           <!-- /.info-box-content -->
                                         </div>
@@ -286,7 +335,9 @@
                                         <div class="info-box">
                                           <div class="info-box-content">
                                             <span class="info-box-text" style="text-align: center;"><h3>Visita 4</h3></span>
-                                            <input type="date" formControlName="visita">
+                                            <input *ngIf="_visita4 == false" type="date" (change)='VisitaSeleccionado("Vendido")' formControlName="visita4">
+                                            <input *ngIf="_visita4 == true" style="text-align:center;" disabled formControlName="visita4" >
+
                                           </div>
                                           <!-- /.info-box-content -->
                                         </div>
@@ -294,17 +345,17 @@
                                       </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+<!--                                     <div class="col-md-12">
                                         <h5>PROCESO DE VENTA</h5>
                                         <br>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group col-md-10">
                                         <label>Comentarios</label>
-                                        <input formControlName="email" type="text" class="form-control" placeholder="" autocomplete="off">
+                                        <input formControlName="comentario" #reference type="text" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-2">
                                         
-                                        <button class="btn btn-primary" style="margin-top:2em;">Guardar</button>
+                                        <button [disabled]="btn_com" class="btn btn-primary" style="margin-top:2em;" (click)="reference.value=''" (click)="GuardaComentarios()">Guardar</button>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <div class="table-responsive" style="max-height:55em; margin-top:1em; padding-bottom:1em;">
@@ -317,14 +368,14 @@
                                                         <th>Comentario</th>
                                                     </tr>
                                                 </thead>
-                                               <!--  <tbody ng-repeat="correo in correosTabla">
+                                                <tbody *ngFor="let buscar of lista_comentarios">
                                                     <tr>
-                                                        <td>{{correo.correo}}</td>
-                                                        <td>{{correo.puesto}}</td>
-                                                        <td>{{correo.tipo}}</td>
+                                                        <td>{{buscar.fecha }}</td>
+                                                        <td>{{buscar.nombre}}</td>
+                                                        <td>{{buscar.comentario}}</td>
                                                        
                                                     </tr>
-                                                </tbody> -->
+                                                </tbody>
                                             </table>
                                         </div>
                                     </div>
@@ -334,9 +385,27 @@
                             </div>
                             <!-- /.card-body -->
     
-                            <div class="card-footer">
-                               <!--  <button type="submit" class="btn btn-primary" (click)="Guarda()" [disabled]="!capturaForm.valid">Guardar</button> -->
+<!--                             <div class="card-footer">
+                               
                                <button type="submit"  class="btn btn-primary" (click)="Guarda()" [disabled]="!capturaForm.valid" >Guardar</button>
+                            </div> -->
+                            <div class=" form-group col-md-12" style="margin-top: 1em;">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <button type="button" [disabled]="btns" class="btn btn-outline-primary btn-block" (click)="Nuevo()">Nuevo</button>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" [disabled]="btns" class="btn btn-outline-success btn-block" (click)="BuscarCliente()">Editar</button>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-outline-danger btn-block"  (click)="Cancelar()">Cancelar</button>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-outline-secondary btn-block" (click)="Guarda()" [disabled]="!capturaForm.valid">Guardar</button>
+                                    </div>
+                                  
+                                </div>
+                               
                             </div>
                         </form>
                         

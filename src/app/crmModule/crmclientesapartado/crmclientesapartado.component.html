@@ -1,0 +1,475 @@
+<app-navbar></app-navbar>
+<!-- <app-sidebar></app-sidebar> -->
+<div class="content-wrapper" style="min-height: 1365.62px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-12">
+                    <h1>CRM Clientes Apartado - {{nombre_cliente}}</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+           <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <div class=" form-group col-md-12" style="margin-top: 1em;">
+                            <div class="row">
+                               <!--  <div class="col-md-2">
+                                    <button type="button" [disabled]="btns" class="btn btn-outline-primary btn-block" (click)="Nuevo()">Nuevo</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" [disabled]="btns" class="btn btn-outline-success btn-block" (click)="BuscarCliente()">Editar</button>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-outline-danger btn-block"  (click)="Cancelar()">Cancelar</button>
+                                </div> -->
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-outline-secondary btn-block" (click)="Guarda()" [disabled]="!capturaForm.valid">Guardar</button>
+                                </div>
+                              
+                            </div>
+                           
+                        </div>
+                                               
+                        <form [formGroup]="capturaForm">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5>I. SOLICITANTE</h5>
+                                        <br>
+                                    </div>
+
+                                    <div class="form-group col-md-3">
+                                        <label>RFC<span style="color:red">*</span></label>
+                                        <input formControlName="rfc" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-5">
+                                        <label>Calle<span style="color:red">*</span></label>
+                                        <input formControlName="calle" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>No. Interior<span style="color:red">*</span></label>
+                                        <input formControlName="numero_interior" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>No. Exterior</label>
+                                        <input formControlName="numero_exterior" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>Colonia<span style="color:red">*</span></label>
+                                        <input formControlName="colonia" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>C.P<span style="color:red">*</span></label>
+                                        <input formControlName="codigo_postal" type="text" class="form-control" placeholder="" minlength="5" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Teléfono Casa</label>
+                                        <input formControlName="telefono_casa" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                        <span style="font-size:small;color:gray;"><i>El teléfono es a 10 dígitos</i></span>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Teléfono Oficina</label>
+                                        <input formControlName="telefono_oficina" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                        <span style="font-size:small;color:gray;"><i>El teléfono es a 10 dígitos</i></span>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Vive en:<span style="color:red">*</span></label>
+                                        <select formControlName="vive_en" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_vive_en" [value]="item.nombre">{{item.nombre}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Tiempo de Residencia<span style="color:red">*</span></label>
+                                        <input formControlName="tiempo_residencia" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label># de Dependientes Económicos<span style="color:red">*</span></label>
+                                        <input formControlName="numero_dependientes" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Estado<span style="color:red">*</span></label>
+                                        <select (change)="EstadoSeleccionado($event.target.value)" formControlName="estado" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_estados" [value]="item.id_estado">{{item.nombre_estado}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Ciudades<span style="color:red">*</span></label>
+                                        <select formControlName="ciudad" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_ciudades" [value]="item.id_ciudad">{{item.nombre_ciudad}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Estado Civil<span style="color:red">*</span></label>
+                                        <select formControlName="estado_civil" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_estado_civil" [value]="item.nombre">{{item.nombre}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Peso<span style="color:red">*</span></label>
+                                        <input formControlName="peso" type="text" class="form-control" placeholder="Kilogramos" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Estatura<span style="color:red">*</span></label>
+                                        <input formControlName="estatura" type="text" class="form-control" placeholder="Centímetros" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Fecha Nacimiento</label>
+                                        <input formControlName="fecha_nacimiento"   type="date" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Edad<span style="color:red">*</span></label>
+                                        <input formControlName="edad" type="text" class="form-control" placeholder="" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Lugar de Nacimiento<span style="color:red">*</span></label>
+                                        <input formControlName="lugar_nacimiento" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Régimen Matrimonial<span style="color:red">*</span></label>
+                                        <select formControlName="regimen_matrimonial" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_regimen_matrimonial" [value]="item.nombre">{{item.nombre}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Fecha Matrimonio</label>
+                                        <input formControlName="fecha_matrimonio" type="date" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>Escolaridad</label>
+                                        <input formControlName="escolaridad" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5>II. EMPLEO DEL SOLICITANTE</h5>
+                                        <br>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <label>Nombre de la Empresa (Razón Social)<span style="color:red">*</span></label>
+                                        <input formControlName="nombre_empresa" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Antiguedad<span style="color:red">*</span></label>
+                                        <input formControlName="antiguedad" type="text" class="form-control" placeholder="" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>Puesto<span style="color:red">*</span></label>
+                                        <input formControlName="puesto" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Giro de la Empresa<span style="color:red">*</span></label>
+                                        <input formControlName="giro_empresa" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Tipo de Contrato<span style="color:red">*</span></label>
+                                        <select formControlName="tipo_contrato" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_tipo_contrato" [value]="item.nombre">{{item.nombre}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>Nombre Jefe Inmediato<span style="color:red">*</span></label>
+                                        <input formControlName="nombre_jefe" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>Departamento<span style="color:red">*</span></label>
+                                        <input formControlName="departamento" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>Ingresos Mensuales Brutos<span style="color:red">*</span></label>
+                                        <input formControlName="ingresos_mensuales" type="text" class="form-control" placeholder="" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </div>
+                                    <div class="form-group col-md-5">
+                                        <label>Calle<span style="color:red">*</span></label>
+                                        <input formControlName="calle_empresa" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>No. Interior<span style="color:red">*</span></label>
+                                        <input formControlName="numero_interior_empresa" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>No. Exterior</label>
+                                        <input formControlName="numero_exterior_empresa" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Colonia<span style="color:red">*</span></label>
+                                        <input formControlName="colonia_empresa" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>C.P<span style="color:red">*</span></label>
+                                        <input formControlName="codigo_postal_empresa" type="text" class="form-control" placeholder="" minlength="5" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Teléfono<span style="color:red">*</span></label>
+                                        <input formControlName="telefono_empresa" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                        <span style="font-size:small;color:gray;"><i>El teléfono es a 10 dígitos</i></span>
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <label>Extensión</label>
+                                        <input formControlName="extension_empresa" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                      
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Estado<span style="color:red">*</span></label>
+                                        <select (change)="EstadoEmpresaSeleccionado($event.target.value)" formControlName="estado_empresa" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_estados" [value]="item.id_estado">{{item.nombre_estado}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Ciudades<span style="color:red">*</span></label>
+                                        <select formControlName="ciudad_empresa" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_ciudades_empresa" [value]="item.id_ciudad">{{item.nombre_ciudad}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Número de Seguridad Social<span style="color:red">*</span></label>
+                                        <input formControlName="numero_seguro" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5>III. DATOS DEL CONYUGE (NECESARIOS EN CUALQUIER CASO PARTICIPE O NO EN EL CRÉDITO HIPOTECARIO) </h5>
+                                        <br>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Nombre(s)<span style="color:red">*</span></label>
+                                        <input formControlName="nombre_conyuge" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Apellido Paterno<span style="color:red">*</span></label>
+                                        <input formControlName="apellido_paterno_conyuge" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Apellido Materno<span style="color:red">*</span></label>
+                                        <input formControlName="apellido_materno_conyuge" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>RFC<span style="color:red">*</span></label>
+                                        <input formControlName="rfc_conyuge" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Lugar de Nacimiento<span style="color:red">*</span></label>
+                                        <input formControlName="lugar_nacimiento_conyuge" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Trabaja<span style="color:red">*</span></label>
+                                        <select (change)="TrabajaConyugeSeleccionado($event.target.value)" formControlName="trabaja_conyuge" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_trabaja_conyuge" [value]="item.nombre">{{item.nombre}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    
+                                    <div *ngIf="trabaja_conyuge == true" class="form-group col-md-12">
+                                        <label>Nombre de la Empresa</label>
+                                        <input formControlName="nombre_empresa_conyuge" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div *ngIf="trabaja_conyuge == true" class="form-group col-md-2">
+                                        <label>Antiguedad</label>
+                                        <input formControlName="antiguedad_conyuge" type="text" class="form-control" placeholder="" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </div>
+                                    <div *ngIf="trabaja_conyuge == true" class="form-group col-md-4">
+                                        <label>Puesto</label>
+                                        <input formControlName="puesto_conyuge" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div *ngIf="trabaja_conyuge == true" class="form-group col-md-3">
+                                        <label>Giro de la Empresa</label>
+                                        <input formControlName="giro_empresa_conyuge" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div *ngIf="trabaja_conyuge == true" class="form-group col-md-4">
+                                        <label>Nombre Jefe Inmediato</label>
+                                        <input formControlName="nombre_jefe_conyuge" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div *ngIf="trabaja_conyuge == true" class="form-group col-md-4">
+                                        <label>Departamento</label>
+                                        <input formControlName="departamento_conyuge" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div *ngIf="trabaja_conyuge == true" class="form-group col-md-4">
+                                        <label>Ingresos Mensuales Brutos</label>
+                                        <input formControlName="ingresos_mensuales_conyuge" type="text" class="form-control" placeholder="" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </div>
+                                    <div *ngIf="trabaja_conyuge == true" class="form-group col-md-5">
+                                        <label>Calle</label>
+                                        <input formControlName="calle_empresa_conyuge" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div *ngIf="trabaja_conyuge == true" class="form-group col-md-2">
+                                        <label>No. Interior</label>
+                                        <input formControlName="numero_interior_empresa_conyuge" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div *ngIf="trabaja_conyuge == true" class="form-group col-md-2">
+                                        <label>No. Exterior</label>
+                                        <input formControlName="numero_exterior_empresa_conyuge" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div *ngIf="trabaja_conyuge == true" class="form-group col-md-3">
+                                        <label>Colonia</label>
+                                        <input formControlName="colonia_empresa_conyuge" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div *ngIf="trabaja_conyuge == true" class="form-group col-md-2">
+                                        <label>C.P</label>
+                                        <input formControlName="codigo_postal_empresa_conyuge" type="text" class="form-control" placeholder="" minlength="5" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </div>
+                                    <div *ngIf="trabaja_conyuge == true" class="form-group col-md-3">
+                                        <label>Teléfono</label>
+                                        <input formControlName="telefono_empresa_conyuge" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                        <span style="font-size:small;color:gray;"><i>El teléfono es a 10 dígitos</i></span>
+                                    </div>
+                                    <div *ngIf="trabaja_conyuge == true" class="form-group col-md-1">
+                                        <label>Extensión</label>
+                                        <input formControlName="extension_empresa_conyuge" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                        
+                                    </div>
+                                   
+                                    
+
+                                    <div class="form-group col-md-3">
+                                        <label>Participa en el Crédito<span style="color:red">*</span></label>
+                                        <select formControlName="participa_credito" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                            <option *ngFor="let item of _combo_participa_credito" [value]="item.nombre">{{item.nombre}}</option>
+                                            
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label>Escolaridad</label>
+                                        <input formControlName="escolaridad_conyuge" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Peso<span style="color:red">*</span></label>
+                                        <input formControlName="peso_conyuge" type="text" class="form-control" placeholder="Kilogramos" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Estatura<span style="color:red">*</span></label>
+                                        <input formControlName="estatura_conyuge" type="text" class="form-control" placeholder="Centímetros" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Número de Seguridad Social</label>
+                                        <input formControlName="numero_seguro_conyuge" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5>IV. REFERENCIAS PERSONALES SOLICITANTE </h5>
+                                        <br>
+                                    </div>
+                               
+                                    <div class="form-group col-md-4">
+                                        <label>Nombre<span style="color:red">*</span></label>
+                                        <input formControlName="nombre_referencia1" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Dirección<span style="color:red">*</span></label>
+                                        <input formControlName="direccion_referencia1" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Teléfono<span style="color:red">*</span></label>
+                                        <input formControlName="telefono_referencia1" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                        <span style="font-size:small;color:gray;"><i>El teléfono es a 10 dígitos</i></span>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>Nombre<span style="color:red">*</span></label>
+                                        <input formControlName="nombre_referencia2" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Dirección<span style="color:red">*</span></label>
+                                        <input formControlName="direccion_referencia2" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Teléfono<span style="color:red">*</span></label>
+                                        <input formControlName="telefono_referencia2" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                        <span style="font-size:small;color:gray;"><i>El teléfono es a 10 dígitos</i></span>
+                                    </div>
+
+                                    <div class="form-group col-md-4">
+                                        <label>Nombre<span style="color:red">*</span></label>
+                                        <input formControlName="nombre_referencia3" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Dirección<span style="color:red">*</span></label>
+                                        <input formControlName="direccion_referencia3" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Teléfono<span style="color:red">*</span></label>
+                                        <input formControlName="telefono_referencia3" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                        <span style="font-size:small;color:gray;"><i>El teléfono es a 10 dígitos</i></span>
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h5>CRÉDITO SOLICITADO </h5>
+                                        <br>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Monto de Crédito<span style="color:red">*</span></label>
+                                        <input formControlName="monto_credito" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Plazo<span style="color:red">*</span></label>
+                                        <input formControlName="plazo" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Enganche<span style="color:red">*</span></label>
+                                        <input formControlName="enganche" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <!--  <div class="col-md-2">
+                                         <button type="button" [disabled]="btns" class="btn btn-outline-primary btn-block" (click)="Nuevo()">Nuevo</button>
+                                     </div>
+                                     <div class="col-md-2">
+                                         <button type="button" [disabled]="btns" class="btn btn-outline-success btn-block" (click)="BuscarCliente()">Editar</button>
+                                     </div>
+                                     <div class="col-md-2">
+                                         <button type="button" class="btn btn-outline-danger btn-block"  (click)="Cancelar()">Cancelar</button>
+                                     </div> -->
+                                     <div class="col-md-2">
+                                         <button type="button" class="btn btn-outline-secondary btn-block" (click)="Guarda()" [disabled]="!capturaForm.valid">Guardar</button>
+                                     </div>
+                                   
+                                 </div>
+                            </div>
+                        </form>
+                        
+                       
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+</div>
+
+
