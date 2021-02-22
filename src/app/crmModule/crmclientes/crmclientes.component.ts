@@ -128,6 +128,7 @@ export class CrmclientesComponent implements OnInit {
     /* $('#myModal').modal('show'); */
     /* $('html,body').scrollTop(0); */
     
+   /*   $('#myModal').modal('show');  */
     this.BloquearCampos(0);
 /*     this.visitas = [
       {visita1: ''},

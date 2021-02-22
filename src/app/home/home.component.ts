@@ -224,7 +224,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-
+//////////////////////////////////////////////////////////////////
 
   /* this.apiService.ejecuta(data).subscribe((response) => {
     let _response;
