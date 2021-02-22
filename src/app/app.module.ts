@@ -42,6 +42,7 @@ import { ModalComponent } from './examples/modal/modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CrmclientesComponent } from './crmModule/crmclientes/crmclientes.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CrmclientesapartadoComponent } from './crmModule/crmclientesapartado/crmclientesapartado.component';
 import { CrmarchivosComponent } from './crmModule/crmarchivos/crmarchivos.component';
 
 
@@ -83,6 +84,7 @@ import { CrmarchivosComponent } from './crmModule/crmarchivos/crmarchivos.compon
     ModalComponent,
     CrmclientesComponent,
     DashboardComponent,
+    CrmclientesapartadoComponent,
     CrmarchivosComponent
 
   ],
