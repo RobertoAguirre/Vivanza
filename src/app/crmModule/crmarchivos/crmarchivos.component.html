@@ -16,17 +16,19 @@
     <div class="content">
         <div class="container-fluid">
             <div class="card">
+
                 <!--          <div class="card-header">
                     <h3 class="card-title">Bordered Table</h3>
                 </div> -->
                 <!-- /.card-header -->
                 <div class="card-body">
+
+
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>Nombre del documento</th>
                                 <th>Archivo</th>
-                                <th>Subir</th>
                                 <th>Subido</th>
                             </tr>
                         </thead>
@@ -35,192 +37,190 @@
                                 <td>Apartado</td>
                                 <td>
                                     <div class="form-group">
-                                        <input formControlName="file" id="file" type="file"
-                                            (change)="onFileChange($event)">
+                                        <input name="Apartado" id="file" type="file" (change)="onFileChange($event)">
 
                                     </div>
                                 </td>
-                                <td> <button class="btn btn-primary col-lg-12" type="button">Subir</button></td>
-                                <td><span class="badge bg-warning"></span></td>
+
+                                <td style="text-align: center;"><a *ngIf="archivoApartado" href={{archivoApartado}}
+                                        target="_blank"> <i class="fa fa-file fa-2x" aria-hidden="true"></i></a></td>
                             </tr>
                             <tr>
                                 <td>Solicitud de compra</td>
                                 <td>
                                     <div class="form-group">
-                                        <input formControlName="file" id="file" type="file"
+                                        <input name="SolicitudCompra" id="file" type="file"
                                             (change)="onFileChange($event)">
 
                                     </div>
                                 </td>
-                                <td> <button class="btn btn-primary col-lg-12" type="button">Subir</button></td>
-                                <td><span class="badge bg-warning"></span></td>
+
+                                <td style="text-align: center;"><a *ngIf="solicitudCompra" href={{solicitudCompra}}
+                                        target="_blank"> <i class="fa fa-file fa-2x" aria-hidden="true"></i></a></td>
                             </tr>
                             <tr>
                                 <td>Oferta de compra</td>
                                 <td>
                                     <div class="form-group">
-                                        <input formControlName="file" id="file" type="file"
+                                        <input name="OfertaCompra" id="file" type="file"
                                             (change)="onFileChange($event)">
 
                                     </div>
                                 </td>
-                                <td> <button class="btn btn-primary col-lg-12" type="button">Subir</button></td>
+
                                 <td><span class="badge bg-warning"></span></td>
                             </tr>
                             <tr>
                                 <td>Aviso de privacidad</td>
                                 <td>
                                     <div class="form-group">
-                                        <input formControlName="file" id="file" type="file"
+                                        <input name="AvisoPrivacidad" id="file" type="file"
                                             (change)="onFileChange($event)">
 
                                     </div>
                                 </td>
-                                <td> <button class="btn btn-primary col-lg-12" type="button">Subir</button></td>
+
                                 <td><span class="badge bg-warning"></span></td>
                             </tr>
                             <tr>
                                 <td>Preliquidación (con cuenta bancaria que corresponde al desarrollo)</td>
                                 <td>
                                     <div class="form-group">
-                                        <input formControlName="file" id="file" type="file"
+                                        <input name="Preliquidacion" id="file" type="file"
                                             (change)="onFileChange($event)">
 
                                     </div>
                                 </td>
-                                <td> <button class="btn btn-primary col-lg-12" type="button">Subir</button></td>
+
                                 <td><span class="badge bg-warning"></span></td>
                             </tr>
                             <tr>
                                 <td>Plano geometrico del desarrollo</td>
                                 <td>
                                     <div class="form-group">
-                                        <input formControlName="file" id="file" type="file"
+                                        <input name="PlanoGeometrico" id="file" type="file"
                                             (change)="onFileChange($event)">
 
                                     </div>
                                 </td>
-                                <td> <button class="btn btn-primary col-lg-12" type="button">Subir</button></td>
+
                                 <td><span class="badge bg-warning"></span></td>
                             </tr>
                             <tr>
                                 <td>Plano de la cerrada señalando ubicación</td>
                                 <td>
                                     <div class="form-group">
-                                        <input formControlName="file" id="file" type="file"
+                                        <input name="PlanoCerrada" id="file" type="file"
                                             (change)="onFileChange($event)">
 
                                     </div>
                                 </td>
-                                <td> <button class="btn btn-primary col-lg-12" type="button">Subir</button></td>
+
                                 <td><span class="badge bg-warning"></span></td>
                             </tr>
                             <tr>
                                 <td>Reglamentos</td>
                                 <td>
                                     <div class="form-group">
-                                        <input formControlName="file" id="file" type="file"
-                                            (change)="onFileChange($event)">
+                                        <input name="Reglamentos" id="file" type="file" (change)="onFileChange($event)">
 
                                     </div>
                                 </td>
-                                <td> <button class="btn btn-primary col-lg-12" type="button">Subir</button></td>
+
                                 <td><span class="badge bg-warning"></span></td>
                             </tr>
                             <tr>
                                 <td>Precalificación o simulador</td>
                                 <td>
                                     <div class="form-group">
-                                        <input formControlName="file" id="file" type="file"
+                                        <input name="Precalificacion" id="file" type="file"
                                             (change)="onFileChange($event)">
 
                                     </div>
                                 </td>
-                                <td> <button class="btn btn-primary col-lg-12" type="button">Subir</button></td>
+
                                 <td><span class="badge bg-warning"></span></td>
                             </tr>
                             <tr>
                                 <td>Solicitud de INFONAVIT</td>
                                 <td>
                                     <div class="form-group">
-                                        <input formControlName="file" id="file" type="file"
+                                        <input name="SolicitudInfonavit" id="file" type="file"
                                             (change)="onFileChange($event)">
 
                                     </div>
                                 </td>
-                                <td> <button class="btn btn-primary col-lg-12" type="button">Subir</button></td>
+
                                 <td><span class="badge bg-warning"></span></td>
                             </tr>
                             <tr>
                                 <td>FOVISSSTE</td>
                                 <td>
                                     <div class="form-group">
-                                        <input formControlName="file" id="file" type="file"
-                                            (change)="onFileChange($event)">
+                                        <input name="FOVISSSTE" id="file" type="file" (change)="onFileChange($event)">
 
                                     </div>
                                 </td>
-                                <td> <button class="btn btn-primary col-lg-12" type="button">Subir</button></td>
+
                                 <td><span class="badge bg-warning"></span></td>
                             </tr>
                             <tr>
                                 <td>Especificaciones de acabados</td>
                                 <td>
                                     <div class="form-group">
-                                        <input formControlName="file" id="file" type="file"
+                                        <input name="Especificaciones" id="file" type="file"
                                             (change)="onFileChange($event)">
 
                                     </div>
                                 </td>
-                                <td> <button class="btn btn-primary col-lg-12" type="button">Subir</button></td>
+
                                 <td><span class="badge bg-warning"></span></td>
                             </tr>
                             <tr>
                                 <td>Solicitudes de banco</td>
                                 <td>
                                     <div class="form-group">
-                                        <input formControlName="file" id="file" type="file"
+                                        <input name="SolicitudesBanco" id="file" type="file"
                                             (change)="onFileChange($event)">
 
                                     </div>
                                 </td>
-                                <td> <button class="btn btn-primary col-lg-12" type="button">Subir</button></td>
+
                                 <td><span class="badge bg-warning"></span></td>
                             </tr>
                             <tr>
                                 <td>Guia del cliente</td>
                                 <td>
                                     <div class="form-group">
-                                        <input formControlName="file" id="file" type="file"
-                                            (change)="onFileChange($event)">
+                                        <input name="GuiaCliente" id="file" type="file" (change)="onFileChange($event)">
 
                                     </div>
                                 </td>
-                                <td> <button class="btn btn-primary col-lg-12" type="button">Subir</button></td>
+
                                 <td><span class="badge bg-warning"></span></td>
                             </tr>
                             <tr>
                                 <td>Recibo de nomina</td>
                                 <td>
                                     <div class="form-group">
-                                        <input formControlName="file" id="file" type="file"
+                                        <input name="ReciboNomina" id="file" type="file"
                                             (change)="onFileChange($event)">
 
                                     </div>
                                 </td>
-                                <td> <button class="btn btn-primary col-lg-12" type="button">Subir</button></td>
+
                                 <td><span class="badge bg-warning"></span></td>
                             </tr>
                             <tr>
                                 <td>Hoja de comentarios (con cálculo de endeudamiento)</td>
                                 <td>
                                     <div class="form-group">
-                                        <input formControlName="file" id="file" type="file"
+                                        <input name="HojaComentarios" id="file" type="file"
                                             (change)="onFileChange($event)">
 
                                     </div>
                                 </td>
-                                <td> <button class="btn btn-primary col-lg-12" type="button">Subir</button></td>
+
                                 <td><span class="badge bg-warning"></span></td>
                             </tr>
                         </tbody>
@@ -235,5 +235,9 @@
         </div>
     </div>
 </div>
+
+
+
+
 
 <!-- <script>  $('[data-mask]').inputmask() </script> -->
