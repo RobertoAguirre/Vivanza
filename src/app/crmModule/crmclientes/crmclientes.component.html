@@ -32,8 +32,8 @@
                                 <div class="col-md-2">
                                     <button type="button" class="btn btn-outline-secondary btn-block" (click)="Guarda()" [disabled]="!capturaForm.valid">Guardar</button>
                                 </div>
-                                <div class="col-md-2">
-                                    <button type="button" class="btn btn-outline-primary btn-block" (click)="Apartado()">Apartado</button>
+                                <div *ngIf="btn_apartado == true" class="col-md-2">
+                                    <button  type="button" class="btn btn-outline-primary btn-block" (click)="Apartado()">Apartado</button>
                                 </div>
                                 <div class="col-md-2">
                                     <button type="button" [disabled]="btns" class="btn btn-outline-success btn-block" (click)="BuscarCliente()">Busqueda</button>
@@ -89,13 +89,17 @@
                         <form [formGroup]="capturaForm">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="form-group col-md-2">
+                                    <div *ngIf="btn_btn" class="form-group col-md-2">
                                         <label>Tipo de Cliente<span style="color:red">*</span></label>
-                                        <select   formControlName="tipo_cliente" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <select name="selectTipo"  formControlName="tipo_cliente" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option disabled *ngFor="let item of _combo_tipo_de_cliente" [value]="item.nombre">{{item.nombre}}</option>
                                             
                                         </select>
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Tipo de Cliente</label>
+                                        <input disabled value={{capturaForm.value.tipo_cliente}}  type="text" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-2">
                                         <label>Fecha de Registro</label>
@@ -146,7 +150,7 @@
                                         <span style="font-size:small;color:gray;"><i>El teléfono es a 10 dígitos</i></span>
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label>Email<span style="color:red">*</span></label>
+                                        <label>Email</label>
                                         <input formControlName="email" type="email" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-3">
@@ -400,6 +404,9 @@
                                     </div>
                                     <div class="col-md-2">
                                         <button type="button" class="btn btn-outline-secondary btn-block" (click)="Guarda()" [disabled]="!capturaForm.valid">Guardar</button>
+                                    </div>
+                                    <div *ngIf="btn_apartado == true" class="col-md-2">
+                                        <button type="button" class="btn btn-outline-primary btn-block" (click)="Apartado()">Apartado</button>
                                     </div>
                                     <div class="col-md-2">
                                         <button type="button" [disabled]="btns" class="btn btn-outline-success btn-block" (click)="BuscarCliente()">Busqueda</button>

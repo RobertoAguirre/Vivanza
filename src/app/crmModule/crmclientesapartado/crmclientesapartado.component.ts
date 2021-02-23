@@ -27,6 +27,7 @@ export class CrmclientesapartadoComponent implements OnInit {
     public nombre_cliente;
     public id_cliente;
     public es_casado = false;
+    public id_apartado;
 
   capturaForm = this.formBuilder.group({
     rfc:['',Validators.required],
@@ -128,11 +129,11 @@ export class CrmclientesapartadoComponent implements OnInit {
     });
 
     this._combo_vive_en = [
-      {nombre: 'Casa Propia'},
-      {nombre: 'Con Hipoteca'},
-      {nombre: 'De Familiares'},
-      {nombre: 'Rentada'},
-      {nombre: 'Otro'}
+      {vive_en: 'Casa Propia'},
+      {vive_en: 'Con Hipoteca'},
+      {vive_en: 'De Familiares'},
+      {vive_en: 'Rentada'},
+      {vive_en: 'Otro'}
     ]
     this._combo_estado_civil = [
       {nombre: 'Casado'},
@@ -157,6 +158,155 @@ export class CrmclientesapartadoComponent implements OnInit {
       {nombre: 'No'}
     ]
     this.ComboEstados();
+    this.TraeCliente();
+  }
+
+  TraeCliente(){
+    let data = {
+      "appname":"VIVANZA",
+      "sp": 'dvp.Trae_Cliente_Apartado',
+      "params": [this.id_cliente]
+
+    }
+
+    this.apiService.ejecuta(data).subscribe((response) => {
+      let _response;
+      _response = response;
+      if(_response.success.recordsets.length == 0 ){
+
+      }
+      else{
+        let _referencias;
+        _referencias = _response.success.recordsets[1];
+        this.EstadoSeleccionado(_response.success.recordset[0].id_estado);
+        this.EstadoEmpresaSeleccionado(_response.success.recordset[0].id_estado_cliente);
+        if(_response.success.recordset[0].id_apartado_cliente != null){
+          this.id_apartado = _response.success.recordset[0].id_apartado_cliente;
+        }
+        else{
+          this.id_apartado = 0
+        }
+        if(_response.success.recordset[0].fecha_nacimiento != null){
+          let u;
+            u = _response.success.recordset[0].fecha_nacimiento.replace("T", " ");
+            u = u.slice(0,-14);
+            _response.success.recordset[0].fecha_nacimiento = u;
+        }
+        if(_response.success.recordset[0].peso_conyuge == 0){
+          _response.success.recordset[0].peso_conyuge  = '';
+        }
+        if(_response.success.recordset[0].estatura_conyuge == 0){
+          _response.success.recordset[0].estatura_conyuge  = '';
+        }
+        if(_response.success.recordset[0].antiguedad_conyuge == 0){
+          _response.success.recordset[0].antiguedad_conyuge  = '';
+        }
+        if(_response.success.recordset[0].ingresos_mensuales_conyuge == 0){
+          _response.success.recordset[0].antiguedad_conyuge  = '';
+        }
+        if(_response.success.recordset[0].puesto_conyuge == null){
+          _response.success.recordset[0].antiguedad_conyuge  = '';
+        }
+        if(_response.success.recordset[0].fecha_matrimonio != null){
+          let u;
+            u = _response.success.recordset[0].fecha_matrimonio.replace("T", " ");
+            u = u.slice(0,-14);
+            if(u == '1900-01-01'){
+              _response.success.recordset[0].fecha_matrimonio = '';
+            }
+            else{
+              _response.success.recordset[0].fecha_matrimonio = u;
+            }
+            
+        }
+        this.capturaForm.setValue(
+          {
+            rfc:_response.success.recordset[0].rfc,
+            calle:_response.success.recordset[0].direccion,
+            numero_interior:_response.success.recordset[0].numero_interior,
+            numero_exterior:_response.success.recordset[0].numero_exterior,
+            colonia:_response.success.recordset[0].colonia,
+            codigo_postal:_response.success.recordset[0].codigo_postal,
+            telefono_casa:_response.success.recordset[0].telefono_casa,
+            telefono_oficina:_response.success.recordset[0].telefono_oficina,
+            vive_en:_response.success.recordset[0].vive_en,
+            tiempo_residencia:_response.success.recordset[0].tiempo_residencia,
+            numero_dependientes:_response.success.recordset[0].numero_dependientes,
+            estado:_response.success.recordset[0].id_estado,
+            ciudad:_response.success.recordset[0].id_ciudad,
+            estado_civil:_response.success.recordset[0].estado_civil,
+            peso:_response.success.recordset[0].peso,
+            estatura:_response.success.recordset[0].estatura,
+            fecha_nacimiento:_response.success.recordset[0].fecha_nacimiento,
+            edad:_response.success.recordset[0].edad,
+            lugar_nacimiento:_response.success.recordset[0].lugar_nacimiento,
+            regimen_matrimonial:_response.success.recordset[0].regimen_matrimonial,
+            fecha_matrimonio:_response.success.recordset[0].fecha_matrimonio,
+            escolaridad:_response.success.recordset[0].escolaridad,
+        
+            nombre_empresa:_response.success.recordset[0].nombre_empresa_cliente,
+            antiguedad:_response.success.recordset[0].antiguedad_empresa,
+            puesto:_response.success.recordset[0].puesto_empresa,
+            giro_empresa:_response.success.recordset[0].giro_empresa_cliente,
+            tipo_contrato:_response.success.recordset[0].tipo_contrato,
+            nombre_jefe:_response.success.recordset[0].nombre_jefe_cliente,
+            departamento:_response.success.recordset[0].departamento_cliente,
+            ingresos_mensuales:_response.success.recordset[0].ingresos_mensuales_cliente,
+            calle_empresa:_response.success.recordset[0].calle_empresa,
+            numero_interior_empresa:_response.success.recordset[0].numero_interior_cliente,
+            numero_exterior_empresa:_response.success.recordset[0].numero_exterior_cliente,
+            colonia_empresa:_response.success.recordset[0].colonia_cliente,
+            codigo_postal_empresa:_response.success.recordset[0].codigo_postal_cliente,
+            telefono_empresa:_response.success.recordset[0].telefono_cliente,
+            extension_empresa:_response.success.recordset[0].extension_cliente,
+            estado_empresa:_response.success.recordset[0].id_estado_cliente,
+            ciudad_empresa:_response.success.recordset[0].id_ciudad_cliente,
+            numero_seguro:_response.success.recordset[0].nss,
+        
+            nombre_conyuge:_response.success.recordset[0].nombre_conyuge,
+            apellido_paterno_conyuge:_response.success.recordset[0].apellido_paterno_conyuge,
+            apellido_materno_conyuge:_response.success.recordset[0].apellido_materno_conyuge,
+            rfc_conyuge:_response.success.recordset[0].rfc_conyuge,
+            lugar_nacimiento_conyuge:_response.success.recordset[0].lugar_nacimiento_conyuge,
+            trabaja_conyuge:_response.success.recordset[0].trabaja,
+        
+            nombre_empresa_conyuge:_response.success.recordset[0].nombre_empresa_conyuge,
+            antiguedad_conyuge:_response.success.recordset[0].antiguedad_conyuge,
+            puesto_conyuge:_response.success.recordset[0].puesto_conyuge,
+            giro_empresa_conyuge:_response.success.recordset[0].giro_empresa_conyuge,
+            nombre_jefe_conyuge:_response.success.recordset[0].nombre_jefe_empresa_conyuge,
+            departamento_conyuge:_response.success.recordset[0].departamento_empresa_conyuge,
+            ingresos_mensuales_conyuge:_response.success.recordset[0].ingresos_mensuales_conyuge,
+            calle_empresa_conyuge:_response.success.recordset[0].calle_empresa_conyuge,
+            numero_interior_empresa_conyuge:_response.success.recordset[0].numero_interior_empresa_conyuge,
+            numero_exterior_empresa_conyuge:_response.success.recordset[0].numero_exterior_empresa_conyuge,
+            colonia_empresa_conyuge:_response.success.recordset[0].colonia_empresa_conyuge,
+            codigo_postal_empresa_conyuge:_response.success.recordset[0].codigo_postal_empresa_conyuge,
+            telefono_empresa_conyuge:_response.success.recordset[0].telefono_empresa_conyuge,
+            extension_empresa_conyuge:_response.success.recordset[0].extension_empresa_conyuge,
+            participa_credito:_response.success.recordset[0].participa_credito,
+            escolaridad_conyuge:_response.success.recordset[0].escolaridad_conyuge,
+            peso_conyuge:_response.success.recordset[0].peso_conyuge,
+            estatura_conyuge:_response.success.recordset[0].estatura_conyuge,
+            numero_seguro_conyuge:_response.success.recordset[0].nss_conyuge,
+        
+            nombre_referencia1:_referencias[0].nombre,
+            direccion_referencia1:_referencias[0].direccion,
+            telefono_referencia1:_referencias[0].telefono,
+            nombre_referencia2:_referencias[1].nombre,
+            direccion_referencia2:_referencias[1].direccion,
+            telefono_referencia2:_referencias[1].telefono,
+            nombre_referencia3:_referencias[2].nombre,
+            direccion_referencia3:_referencias[2].direccion,
+            telefono_referencia3:_referencias[2].telefono,
+        
+            monto_credito:_response.success.recordset[0].monto_credito,
+            plazo:_response.success.recordset[0].plazo,
+            enganche:_response.success.recordset[0].enganche,
+          }) 
+      }
+     
+    })
   }
 
   EstadoCivilSeleccionado(item){
@@ -234,10 +384,13 @@ export class CrmclientesapartadoComponent implements OnInit {
   }
 
   Guarda(){
+    if(this.capturaForm.value.ingresos_mensuales_conyuge == ''){
+      this.capturaForm.value.ingresos_mensuales_conyuge = 0;
+    }
     let data = {
       "appname":"VIVANZA",
       "sp": 'dvp.Guarda_Clientes_Apartado',
-      "params": ["'" + 0 + "','" 
+      "params": ["'" + this.id_apartado + "','" 
           ,  this.id_cliente + "','" 
           ,  this.capturaForm.value.rfc + "','" 
           ,  this.capturaForm.value.calle + "','" 
@@ -335,9 +488,7 @@ export class CrmclientesapartadoComponent implements OnInit {
       else{
         alert(d[0].mensaje);
         window.scroll(0, 0);
-   /*      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.router.onSameUrlNavigation = 'reload';
-        this.router.navigate(['./crmclientes'], { relativeTo: this.route }); */
+        this.router.navigate(['/crmclientes']);
       }
       
      

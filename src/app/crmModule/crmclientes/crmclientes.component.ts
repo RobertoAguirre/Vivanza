@@ -15,6 +15,8 @@ import * as $ from 'jquery'; */
 export class CrmclientesComponent implements OnInit {
 
   public nombre_registra;
+  public btn_btn = false;
+  public btn_apartado = true;
   public id_persona_graba;
   public btn_com = false;
   public btns = false;
@@ -81,7 +83,7 @@ export class CrmclientesComponent implements OnInit {
     apellido_paterno:['',Validators.required],
     apellido_materno:[''],
     telefono:['',Validators.required],
-    email:['',Validators.required],
+    email:[''],
     genero:['',Validators.required],
     nivel_interes:['',Validators.required],
     combo_canal:['',Validators.required],
@@ -129,6 +131,7 @@ export class CrmclientesComponent implements OnInit {
     /* $('html,body').scrollTop(0); */
     
    /*   $('#myModal').modal('show');  */
+   $('#selectTipo').prop('disabled', true);
     this.BloquearCampos(0);
 /*     this.visitas = [
       {visita1: ''},
@@ -244,6 +247,7 @@ export class CrmclientesComponent implements OnInit {
           this.capturaForm.controls['visita3'].disable();
           this.capturaForm.controls['visita4'].disable();
           window.scroll(0, 0);
+          this.btn_apartado = false;
     
       }
       
@@ -279,7 +283,7 @@ export class CrmclientesComponent implements OnInit {
       this.capturaForm.controls['visita2'].disable();
       this.capturaForm.controls['visita3'].disable();
       this.capturaForm.controls['visita4'].disable();
-
+      this.btn_apartado = false;
     }
     
   }
@@ -549,6 +553,11 @@ export class CrmclientesComponent implements OnInit {
     this.apiService.ejecuta(data).subscribe((response) => {
       let _response;
       _response = response;
+      let apartado;
+      apartado = _response.success.recordset[0].tipo_cliente;
+      if(apartado == 'Apartado'){
+        this.btn_apartado = true;
+      }
       this.visit = _response.success.recordsets[1];
       this.visit.forEach(value => {
         let u;
@@ -635,7 +644,7 @@ export class CrmclientesComponent implements OnInit {
           u = _response.success.recordset[0].fecha_alta.replace("T", " ");
           u = u.slice(0,-8);
           _response.success.recordset[0].fecha_alta = u;
-        this._pc = _response.success.recordset[0].proximo_contacto.slice(0,-8);
+       /*  this._pc = _response.success.recordset[0].proximo_contacto.slice(0,-8); */
       }
       if(_response.success.recordset[0].proximo_contacto != null){
         
@@ -949,6 +958,7 @@ export class CrmclientesComponent implements OnInit {
   }
 
   BuscarCliente(){
+    window.scroll(0, 0);
     this.capturaFormBuscar.setValue(
       {
         consulta: '',
@@ -1150,6 +1160,7 @@ export class CrmclientesComponent implements OnInit {
       }
       else{
         alert(d[0].mensaje);
+        this.btn_apartado = false;
         this.btns = false;
         this.btn_com = false;
         this.visitas = [];
