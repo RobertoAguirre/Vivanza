@@ -131,7 +131,7 @@ export class CrmclientesComponent implements OnInit {
     /* $('html,body').scrollTop(0); */
     
    /*   $('#myModal').modal('show');  */
-   $('#selectTipo').prop('disabled', true);
+  /*  $('#selectTipo').prop('disabled', true); */
     this.BloquearCampos(0);
 /*     this.visitas = [
       {visita1: ''},
@@ -1096,6 +1096,15 @@ export class CrmclientesComponent implements OnInit {
     if(this.capturaForm.value.visita == '' || this.capturaForm.value.visita == undefined){
       this.capturaForm.value.visita = '';
     }
+    if(this.capturaForm.value.visita2 == '' || this.capturaForm.value.visita2 == undefined){
+      this.capturaForm.value.visita2 = '';
+    }
+    if(this.capturaForm.value.visita3 == '' || this.capturaForm.value.visita3 == undefined){
+      this.capturaForm.value.visita3 = '';
+    }
+    if(this.capturaForm.value.visita4 == '' || this.capturaForm.value.visita4 == undefined){
+      this.capturaForm.value.visita4 = '';
+    }
     if(this.id_persona_graba > 0){
       this._asesor = this.capturaForm.value.folio;
     }
@@ -1166,9 +1175,7 @@ export class CrmclientesComponent implements OnInit {
         this.visitas = [];
         this.LimpiaFormulario();
         window.scroll(0, 0);
-   /*      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.router.onSameUrlNavigation = 'reload';
-        this.router.navigate(['./crmclientes'], { relativeTo: this.route }); */
+
       }
       
      
