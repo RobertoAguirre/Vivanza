@@ -357,6 +357,7 @@ export class CrmclientesapartadoComponent implements OnInit {
   }
 
   EstadoEmpresaSeleccionado(item){
+    this.estado_seleccionado_empresa = item;
     this._combo_ciudades_empresa = [];
     this.capturaForm.value.id_ciudad_cliente = '';
     this.estado_seleccionado_empresa = item;
@@ -367,7 +368,7 @@ export class CrmclientesapartadoComponent implements OnInit {
     let data = {
       "appname":"VIVANZA",
       "sp": 'dbo.Trae_Ciudades',
-      "params": [this.estado_seleccionado]
+      "params": [this.estado_seleccionado_empresa]
 
     }
 

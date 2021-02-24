@@ -199,7 +199,7 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label>Ingresos Mensuales Brutos<span style="color:red">*</span></label>
-                                        <input formControlName="ingresos_mensuales" type="text" class="form-control" placeholder="" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                                        <input [value]="capturaForm.get('ingresos_mensuales').value | currency" formControlName="ingresos_mensuales" type="text" class="form-control" placeholder="" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
                                     </div>
                                     <div class="form-group col-md-5">
                                         <label>Calle<span style="color:red">*</span></label>
@@ -312,7 +312,7 @@
                                     </div>
                                     <div *ngIf="trabaja_conyuge == true" class="form-group col-md-4">
                                         <label>Ingresos Mensuales Brutos</label>
-                                        <input formControlName="ingresos_mensuales_conyuge" type="text" class="form-control" placeholder="" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                                        <input  [value]="capturaForm.get('ingresos_mensuales_conyuge').value | currency" formControlName="ingresos_mensuales_conyuge" type="text" class="form-control" placeholder="" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
                                     </div>
                                     <div *ngIf="trabaja_conyuge == true" class="form-group col-md-5">
                                         <label>Calle</label>
@@ -430,7 +430,7 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Monto de Crédito<span style="color:red">*</span></label>
-                                        <input formControlName="monto_credito" type="text" class="form-control" placeholder=""  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                        <input [value]="capturaForm.get('monto_credito').value | currency" formControlName="monto_credito" type="text" class="form-control" placeholder=""  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Plazo (meses)<span style="color:red">*</span></label>
@@ -438,7 +438,7 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Enganche<span style="color:red">*</span></label>
-                                        <input formControlName="enganche" type="text" class="form-control" placeholder="" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                        <input [value]="capturaForm.get('enganche').value | currency" formControlName="enganche" type="text" class="form-control" placeholder="" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="row">
