@@ -63,6 +63,9 @@ export class HomeComponent implements OnInit {
 
   public tituloModal = "Hola";
 
+  public money = 10000
+  public testPrice;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
@@ -224,7 +227,7 @@ export class HomeComponent implements OnInit {
 
   }
 
-//////////////////////////////////////////////////////////////////
+  //////////////////////////////////////////////////////////////////
 
   /* this.apiService.ejecuta(data).subscribe((response) => {
     let _response;

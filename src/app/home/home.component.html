@@ -12,6 +12,9 @@
     <button class="btn btn-lg btn-outline-success" (click)="openSuccess()">Modal para mensajes de éxito</button>
 
 
+    {{money|currency}}
+    <input matInput type="text" placeholder="Test Price" [ngModel]="testPrice | currency:'USD':'symbol':'2.2'"
+        [ngModelOptions]="{updateOn:'blur'}" (ngModelChange)="testPrice=$event" />
 
 
     <app-tables *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset"
@@ -39,7 +42,7 @@
         <div class="form-group">
             <label for="name">Name</label>
             <input formControlName="name" id="name" type="text" class="form-control">
-<!--             <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+            <!--             <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
                 <div *ngIf="f.name.errors.required">Name is required.</div>
                 <div *ngIf="f.name.errors.minlength">Name should be 3 character.</div>
             </div> -->
@@ -48,7 +51,7 @@
         <div class="form-group">
             <label for="file">File</label>
             <input formControlName="file" id="file" type="file" class="form-control" (change)="onFileChange($event)">
-<!--             <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+            <!--             <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
                 <div *ngIf="f.file.errors.required">File is required.</div>
             </div> -->
         </div>
