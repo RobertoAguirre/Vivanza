@@ -235,9 +235,8 @@
 
                                     <div class="form-group col-md-3">
                                         <label>Teléfono<span style="color:red">*</span></label>
-                                        <input
-                                            [value]="capturaForm.get('telefono').value | currency:'USD':'symbol':'2.2'"
-                                            formControlName="telefono" placeholder="Amount">
+                                        <input formControlName="telefono" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                        <span style="font-size:small;color:gray;"><i>El teléfono es a 10 dígitos</i></span>
                                     </div>
 
 
