@@ -22,54 +22,54 @@
                     <div class="card card-primary">
                         <div class=" form-group col-md-12" style="margin-top: 1em;">
                             <div class="row">
-                                <div class="col-lg-2 col-6">
+                                <div class="col-lg col-6">
                                   <!-- small card -->
                                   <div class="small-box bg-gray">
                                     <div class="inner">
-                                      <h3>150</h3>
+                                      <h3>{{prospectos}}</h3>
                       
                                       <p>Prospectos</p>
                                     </div>
                                   </div>
                                 </div>
                                 <!-- ./col -->
-                                <div class="col-lg-2 col-6">
+                                <div class="col-lg col-6">
                                   <!-- small card -->
                                   <div class="small-box bg-orange">
                                     <div class="inner">
-                                      <h3>150</h3>
+                                      <h3>{{clientes_potenciales}}</h3>
                       
                                       <p>Clientes Potenciales</p>
                                     </div>
                                   </div>
                                 </div>
                                 <!-- ./col -->
-                                <div class="col-lg-2 col-6">
+                                <div class="col-lg col-6">
                                   <!-- small card -->
                                   <div class="small-box bg-warning">
                                     <div class="inner">
-                                      <h3>44</h3>
+                                      <h3>{{apartados}}</h3>
                       
                                       <p>Apartados</p>
                                     </div>
                                   </div>
                                 </div>
                                 <!-- ./col -->
-                                <div class="col-lg-2 col-6">
+                                <div class="col-lg col-6">
                                   <!-- small card -->
                                   <div class="small-box bg-success">
                                     <div class="inner">
-                                      <h3>65</h3>
+                                      <h3>{{ventas}}</h3>
                       
                                       <p>Ventas</p>
                                     </div>
                                   </div>
                                 </div>
-                                <div class="col-lg-2 col-6">
+                                <div class="col-lg col-6">
                                     <!-- small card -->
                                     <div class="small-box bg-danger">
                                       <div class="inner">
-                                        <h3>65</h3>
+                                        <h3>{{cancelados}}</h3>
                         
                                         <p>Cancelaciones</p>
                                       </div>
@@ -168,17 +168,22 @@
                                     
                                 </div>
                                 <div class="row">
-                                    <div class="form-group col-md-3">
+                                    <div *ngIf="_asesor_v == true"  class="form-group col-md-3">
                                         <label>Asesor<span style="color:red">*</span></label>
-                                        <select formControlName="asesor" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <select  formControlName="asesor" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_asesor" [value]="item.id_persona">{{item.Nombre}}</option>
                                             
                                         </select>
                                     </div>
+                                    
+                                    <div *ngIf="_asesor_v == false" class="form-group col-md-3">
+                                        <label>Asesor<span style="color:red">*</span></label>
+                                        <input readonly formControlName="asesor" type="text" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
                                       <div class="form-group col-md-3">
                                         <label>Registró<span style="color:red">*</span></label>
-                                        <input disabled formControlName="registro"   type="text" class="form-control" placeholder="" autocomplete="off">
+                                        <input readonly formControlName="registro"   type="text" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -267,7 +272,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <div *ngIf="_info_financiera == true" class="row">
                                     <div class="col-md-12" style="padding-top: 1em; margin-bottom: -1.5em;">
                                         <h5>INFORMACIÓN FINANCIERA</h5>
                                         <br>
@@ -275,7 +280,7 @@
                                     
                                    
                                     <div class="form-group col-md-3">
-                                        <label>Desarrollos</label>
+                                        <label>Desarrollos<span style="color:red">*</span></label>
                                         <select (change)="DesarrolloSeleccionado($event.target.value)" formControlName="combo_desarrollo" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_desarrollos" [value]="item.id_desarrollo">{{item.nombre_desarrollo}}</option>
@@ -283,7 +288,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label>Prototipo</label>
+                                        <label>Prototipo<span style="color:red">*</span></label>
                                         <select (change)="PrototipoSeleccionado($event.target.value)" formControlName="combo_prototipo" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_prototipos" [value]="item.ID">{{item.nombre_vivienda}}</option>
@@ -291,7 +296,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Manzana y Lote</label>
+                                        <label>Manzana y Lote<span style="color:red">*</span></label>
                                         <select  formControlName="combo_manzana" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_manzanas" [value]="item.manzana">{{item.nombre_vivienda}}</option>
@@ -299,7 +304,7 @@
                                         </select>
                                     </div>
                                     <div  class="form-group col-md-3">
-                                        <label>Tipo de Crédito</label>
+                                        <label>Tipo de Crédito<span style="color:red">*</span></label>
                                         <select (change)="TipoCreditoSeleccionado($event.target.value)" formControlName="tipo_credito" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_tipos_creditos" [value]="item.ID">{{item.Tipo}}</option>
@@ -307,7 +312,7 @@
                                         </select>
                                     </div>
                                     <div  class="form-group col-md-3">
-                                        <label>Crédito</label>
+                                        <label>Crédito<span *ngIf="no_medio == 1" style="color:red">*</span></label>
                                         <select (change)="CreditoSeleccionado($event.target.value)" formControlName="credito" class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_creditos" [value]="item.ID">{{item['Crédito']}}</option>
@@ -315,7 +320,7 @@
                                         </select>
                                     </div>
                                     <div  class="form-group col-md-3">
-                                        <label>Institucion Financiera</label>
+                                        <label>Institucion Financiera<span *ngIf="no_submedio == 1" style="color:red">*</span></label>
                                         <select formControlName="institucion_financiera" class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_institucion_financiera" [value]="item.ID">{{item['Institución Financiera']}}</option>
@@ -323,7 +328,7 @@
                                         </select>
                                     </div>
                                     <div  class="form-group col-md-3">
-                                        <label>Ingresos</label>
+                                        <label>Ingresos<span style="color:red">*</span></label>
                                         <select formControlName="ingresos" class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_ingresos" [value]="item.nombre">{{item.nombre}}</option>
@@ -358,6 +363,10 @@
                                 </div>
                                 
                                 <div class="row">
+                                    <div class="col-md-12" style="padding-top: 1em; margin-bottom: -1.5em;">
+                                        <h5>VISITAS</h5>
+                                        <br>
+                                    </div>
                                     <div class="col-md-3 col-sm-6 col-12">
                                       <div class="info-box">
                                         <div class="info-box-content">
@@ -405,17 +414,17 @@
                                       </div>
                                 </div>
                                 <div class="row">
-<!--                                     <div class="col-md-12">
-                                        <h5>PROCESO DE VENTA</h5>
+                                    <div class="col-md-12" style="padding-top: 1em; margin-bottom: -3em;">
+                                        <h5>COMENTARIOS</h5>
                                         <br>
-                                    </div> -->
+                                    </div>
                                     <div class="form-group col-md-10">
-                                        <label>Comentarios</label>
+                                        <label></label>
                                         <input formControlName="comentario" #reference type="text" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-2">
                                         
-                                        <button [disabled]="btn_com == true" class="btn btn-primary" style="margin-top:2em;" (click)="reference.value=''" (click)="GuardaComentarios()">Agregar</button>
+                                        <button [disabled]="btn_com == true" class="btn btn-primary" style="margin-top:1.5em;" (click)="reference.value=''" (click)="GuardaComentarios()">Agregar</button>
                                     </div>
                                     <div class="form-group col-md-12">
                                         <div class="table-responsive" style="max-height:55em; margin-top:1em; padding-bottom:1em;">

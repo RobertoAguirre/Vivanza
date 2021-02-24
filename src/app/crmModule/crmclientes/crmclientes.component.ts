@@ -14,6 +14,10 @@ import * as $ from 'jquery'; */
 })
 export class CrmclientesComponent implements OnInit {
 
+  public validaciones;
+  public no_medio = 0;
+  public no_submedio = 0;
+  public _info_financiera = false;
   public nombre_registra;
   public btn_btn = false;
   public btn_apartado = true;
@@ -72,6 +76,12 @@ export class CrmclientesComponent implements OnInit {
   public _visita3 = false;
   public _visita4 = false;
   public id_cliente_apartado;
+  public _asesor_v = true;
+  public prospectos;
+  public clientes_potenciales;
+  public apartados;
+  public ventas;
+  public cancelados;
 
   capturaForm = this.formBuilder.group({
     tipo_cliente:['',Validators.required],
@@ -174,10 +184,82 @@ export class CrmclientesComponent implements OnInit {
     this.ComboDesarrollos();
     this.ComboCreditos();
     this.ComboClientes();
+    this.ResumenVentas();
+  }
+
+  ResumenVentas(){
+    let id;
+    id = localStorage.getItem('id');
+    let data = {
+      "appname":"VIVANZA",
+      "sp": 'dvp.Trae_Usuarios_CRM',
+      "params": [id]
+
+    }
+
+    this.apiService.ejecuta(data).subscribe((response) => {
+      let _response;
+      _response = response;
+      if ('Asesor' == _response.success.recordset[0].tipo){
+        let data = {
+          "appname":"VIVANZA",
+          "sp": 'dvp.Resumen_Ventas',
+          "params": ["'" + localStorage.getItem('id') + "','" 
+          ,  1 + "'" ]
+    
+        }
+    
+        this.apiService.ejecuta(data).subscribe((response) => {
+          let _response;
+          _response = response;
+          let p,cl,a,v,c;
+
+          p = _response.success.recordsets[0];
+          cl = _response.success.recordsets[1];
+          a = _response.success.recordsets[2];
+          v = _response.success.recordsets[3];
+          c = _response.success.recordsets[4];
+          this.prospectos = p[0].prospectos;
+          this.clientes_potenciales = cl[0].clientes_potenciales;
+          this.apartados = a[0].apartado;
+          this.ventas = v[0].vendido;
+          this.cancelados = c[0].cancelado; 
+        })
+      }
+      else{
+        let data = {
+          "appname":"VIVANZA",
+          "sp": 'dvp.Resumen_Ventas',
+          "params": ["'" + localStorage.getItem('id') + "','" 
+          ,  0 + "'" ]
+    
+        }
+    
+        this.apiService.ejecuta(data).subscribe((response) => {
+          let _response;
+          _response = response;
+          let p,cl,a,v,c;
+
+          p = _response.success.recordsets[0];
+          cl = _response.success.recordsets[1];
+          a = _response.success.recordsets[2];
+          v = _response.success.recordsets[3];
+          c = _response.success.recordsets[4];
+          this.prospectos = p[0].prospectos;
+          this.clientes_potenciales = cl[0].clientes_potenciales;
+          this.apartados = a[0].apartado;
+          this.ventas = v[0].vendido;
+          this.cancelados = c[0].cancelado; 
+        })
+      }
+    })
+
+
     
   }
 
   BloquearCampos(item){
+    this.btn_com = true;
     if(item == 1){
       let pregunta = confirm('¿Está seguro de querer cancelar?');
       if (pregunta == true){
@@ -246,6 +328,7 @@ export class CrmclientesComponent implements OnInit {
           this.capturaForm.controls['visita2'].disable();
           this.capturaForm.controls['visita3'].disable();
           this.capturaForm.controls['visita4'].disable();
+          this.capturaForm.controls['comentario'].disable();
           window.scroll(0, 0);
           this.btn_apartado = false;
     
@@ -283,6 +366,7 @@ export class CrmclientesComponent implements OnInit {
       this.capturaForm.controls['visita2'].disable();
       this.capturaForm.controls['visita3'].disable();
       this.capturaForm.controls['visita4'].disable();
+      this.capturaForm.controls['comentario'].disable();
       this.btn_apartado = false;
     }
     
@@ -386,7 +470,7 @@ export class CrmclientesComponent implements OnInit {
             tipo_cliente: 'Prospecto',
             fecha: this.capturaForm.value.fecha ,
             folio:'',
-            asesor:_response.success.recordset[0].ID,
+            asesor:localStorage.getItem('persona'),
             registro:_response.success.recordset[0].nombres + ' ' + _response.success.recordset[0].apellido_paterno + ' ' + _response.success.recordset[0].apellido_materno,
             nombres:'',
             apellido_paterno:'',
@@ -501,12 +585,15 @@ export class CrmclientesComponent implements OnInit {
       _response = response;
       if ('Asesor' == _response.success.recordset[0].tipo){
         this._es_asesor = 1;
+        this._asesor_v = false;
+        this.capturaForm.value.asesor = localStorage.getItem('persona');
         this.capturaForm.controls['visita'].disable();
         this.capturaForm.controls['visita2'].disable();
         this.capturaForm.controls['visita3'].disable();
         this.capturaForm.controls['visita4'].disable();
       }
       else{
+        this._asesor_v = true;
         this.capturaForm.controls['visita'].enable();
         this.capturaForm.controls['visita2'].enable();
         this.capturaForm.controls['visita3'].enable();
@@ -552,6 +639,7 @@ export class CrmclientesComponent implements OnInit {
     this.lista_clientes = [];
     this.apiService.ejecuta(data).subscribe((response) => {
       let _response;
+      this.btn_com = false;
       _response = response;
       let apartado;
       apartado = _response.success.recordset[0].tipo_cliente;
@@ -629,7 +717,16 @@ export class CrmclientesComponent implements OnInit {
       } */
       
       this.nombre_registra =_response.success.recordset[0].nombre_registra;
-      this.id_persona_graba = _response.success.recordset[0].id_presona_regitra;
+     /*  this.id_persona_graba = _response.success.recordset[0].id_presona_regitra; */
+     this.id_persona_graba = _response.success.recordset[0].id_asesor;
+      if(localStorage.getItem('id') == this.id_persona_graba){
+      this.capturaForm.value.asesor = localStorage.getItem('persona');
+     }
+     else{
+      this.capturaForm.value.asesor = this.id_persona_graba;
+      this._asesor_v = true;
+
+     } 
       this.datos_cliente = _response.success.recordset[0].id_seguimiento_venta_contacto;
       this.visitas_cliente = _response.success.recordset[1];
       this.CanalSeleccionado(_response.success.recordset[0].id_canal);
@@ -681,7 +778,7 @@ export class CrmclientesComponent implements OnInit {
          /*  fecha: this.datepipe.transform(_response.success.recordset[0].fecha_alta,'dd/MM/yyyy'), */
           fecha: _response.success.recordset[0].fecha_alta,
           folio:_response.success.recordset[0].id_cliente,
-          asesor:_response.success.recordset[0].id_asesor,
+          asesor:this.capturaForm.value.asesor,
           registro:_response.success.recordset[0].nombre_registra,
           nombres:_response.success.recordset[0].nombres,
           apellido_paterno:_response.success.recordset[0].apellido_paterno,
@@ -749,14 +846,34 @@ export class CrmclientesComponent implements OnInit {
         this.capturaForm.controls['fecha_apartado'].enable();
         this.capturaForm.controls['fecha_venta'].enable();
         this.capturaForm.controls['fecha_cancelacion'].enable();
-        this.capturaForm.controls['visita'].enable();
+        /* this.capturaForm.controls['visita'].enable();
         this.capturaForm.controls['visita2'].enable();
         this.capturaForm.controls['visita3'].enable();
-        this.capturaForm.controls['visita4'].enable();
+        this.capturaForm.controls['visita4'].enable(); */
+       /*  this.EsAsesor(); */
     })
   }
 
   FechaApartadoContacto(item){
+    if(item == 'Apartado'){
+      this._info_financiera = true;
+
+    }
+    if(this.capturaForm.value.comentario == undefined){
+      this.capturaForm.value.comentario = '';
+    }
+    if(this.capturaForm.value.visita == undefined){
+      this.capturaForm.value.visita = '';
+    }
+    if(this.capturaForm.value.visita2 == undefined){
+      this.capturaForm.value.visita2 = '';
+    }
+    if(this.capturaForm.value.visita3 == undefined){
+      this.capturaForm.value.visita3 = '';
+    }
+    if(this.capturaForm.value.visita4 == undefined){
+      this.capturaForm.value.visita4 = '';
+    }
     this.capturaForm.setValue(
       {
         tipo_cliente: item,
@@ -863,8 +980,8 @@ export class CrmclientesComponent implements OnInit {
   ComboDesarrollos(){
     let data = {
       "appname":"VIVANZA",
-      "sp": 'dvp.Combo_Desarrollos',
-      "params": [0]
+      "sp": 'dvp.Combo_Desarrollos_Asesores',
+      "params": [localStorage.getItem('id')]
 
     }
 
@@ -937,7 +1054,15 @@ export class CrmclientesComponent implements OnInit {
       
       let _response;
       _response = response;
+      if(_response.success.recordsets[0].length == 0){
+        this.no_medio = 0;
+        this.no_submedio = 0;
+      }
+      else{
+        this.no_medio = 1;
+      }
       this._combo_creditos = _response.success.recordsets[0];
+      this._combo_institucion_financiera = [];
     })
   }
 
@@ -952,8 +1077,14 @@ export class CrmclientesComponent implements OnInit {
     this.apiService.ejecuta(data).subscribe((response) => {
       let _response;
       _response = response;
+      if(_response.success.recordsets[0].length == 0){
+        this.no_submedio = 0;
+      }
+      else{
+        this.no_submedio = 1;
+      }
       this._combo_institucion_financiera = _response.success.recordset;
-
+      
     })
   }
 
@@ -989,7 +1120,7 @@ export class CrmclientesComponent implements OnInit {
   }
 
   Nuevo(){   
-    this.btn_com = true; 
+    this.btn_com = false; 
     this.btns = true;
     this.TraeUsuario();
     this.TraeFecha();
@@ -1023,7 +1154,8 @@ export class CrmclientesComponent implements OnInit {
     this.capturaForm.controls['fecha_apartado'].enable();
     this.capturaForm.controls['fecha_venta'].enable();
     this.capturaForm.controls['fecha_cancelacion'].enable();
-    
+    this.capturaForm.controls['comentario'].enable();
+    this.EsAsesor();
   }
 
   VisitaSeleccionado(item){
@@ -1084,6 +1216,7 @@ export class CrmclientesComponent implements OnInit {
   }
 
   Guarda(){
+    this.validaciones = false;
 /*     if(this.capturaForm.value.proximo_contacto == ''){
       this.capturaForm.value.proximo_contacto = null;
     }
@@ -1111,6 +1244,12 @@ export class CrmclientesComponent implements OnInit {
     else{
       this._asesor = localStorage.getItem('id');
     }
+    if(this.capturaForm.value.asesor > 0){
+      this.capturaForm.value.asesor = this.capturaForm.value.asesor;
+    }
+    else{
+      this.capturaForm.value.asesor = localStorage.getItem('id');
+    }
     if(this.capturaForm.value.proximo_contacto != ''){
     
       this.capturaForm.value.proximo_contacto = this.capturaForm.value.proximo_contacto.replace("T", " ");
@@ -1120,66 +1259,98 @@ export class CrmclientesComponent implements OnInit {
       this.datos_cliente = 0;
     }
    
-    let data = {
-      "appname":"VIVANZA",
-      "sp": 'dvp.Guarda_Clientes',
-      "params": ["'" + this.capturaForm.value.folio + "','" 
-          ,  '' + "','" 
-          ,  this.capturaForm.value.tipo_cliente + "','" 
-          ,  this.capturaForm.value.asesor +"','"  
-          ,  this._asesor +"','"  
-          ,  this.capturaForm.value.nombres +"','"  
-          ,  this.capturaForm.value.apellido_paterno +"','"  
-          ,  this.capturaForm.value.apellido_materno +"','"  
-          ,  this.capturaForm.value.telefono +"','"  
-          ,  this.capturaForm.value.email +"','"  
-          ,  this.capturaForm.value.genero +"','"  
-          ,  this.capturaForm.value.nivel_interes +"','"  
-          ,  this.capturaForm.value.combo_canal +"','"  
-          ,  this.capturaForm.value.combo_medio +"','"  
-          ,  this.capturaForm.value.combo_submedio +"','"  
-          ,  this.capturaForm.value.referidor +"','"  
-          ,  this.capturaForm.value.combo_desarrollo +"','"  
-          ,  this.capturaForm.value.combo_prototipo +"','"  
-          ,  this.capturaForm.value.combo_manzana +"','"  
-          ,  this.capturaForm.value.tipo_credito +"','"  
-          ,  this.capturaForm.value.credito +"','"  
-          ,  this.capturaForm.value.institucion_financiera +"','" 
-          ,  this.capturaForm.value.ingresos +"','"  
-          ,  this.capturaForm.value.proximo_contacto +"','"  
-          ,  this.capturaForm.value.fecha_apartado +"','"  
-          ,  this.capturaForm.value.fecha_venta +"','"  
-          ,  this.capturaForm.value.fecha_cancelacion +"','"  
-          ,  this.capturaForm.value.visita +"','"  
-          ,  this.capturaForm.value.visita2 +"','"  
-          ,  this.capturaForm.value.visita3 +"','"  
-          ,  this.capturaForm.value.visita4 +"','"  
-          ,  this.datos_cliente +"','" 
-          ,  this.capturaForm.value.comentario +"'" 
-        ]
-      /* dvp.Guarda_Canales_CRM 7,NaNNuevos Otro',NaNActivo'*/
+    if(this.capturaForm.value.fecha_apartado != ''){
+
+      if(this.capturaForm.value.combo_desarrollo == ''){
+        this.validaciones = true;
+      }
+      if(this.capturaForm.value.combo_prototipo == ''){
+        this.validaciones = true;
+      }
+      if(this.capturaForm.value.combo_manzana == ''){
+        this.validaciones = true;
+      }
+      if(this.capturaForm.value.tipo_credito == ''){
+        this.validaciones = true;
+      }
+      if(this.no_medio == 1){
+        if(this.capturaForm.value.credito == ''){
+          this.validaciones = true;
+        }
+      }
+      if(this.no_submedio == 1){
+        if(this.capturaForm.value.institucion_financiera == ''){
+          this.validaciones = true;
+        }
+      }
     }
 
-    this.apiService.ejecuta(data).subscribe((response) => {
-      let _response;
-      _response = response;
-      let d = _response.success.recordsets[0];
-      if(d[0].error == 1){
-        alert(d[0].mensaje);
+    if(this.validaciones == false){
+      let data = {
+        "appname":"VIVANZA",
+        "sp": 'dvp.Guarda_Clientes',
+        "params": ["'" + this.capturaForm.value.folio + "','" 
+            ,  '' + "','" 
+            ,  this.capturaForm.value.tipo_cliente + "','" 
+            ,  this.capturaForm.value.asesor +"','"  
+            ,  this._asesor +"','"  
+            ,  this.capturaForm.value.nombres +"','"  
+            ,  this.capturaForm.value.apellido_paterno +"','"  
+            ,  this.capturaForm.value.apellido_materno +"','"  
+            ,  this.capturaForm.value.telefono +"','"  
+            ,  this.capturaForm.value.email +"','"  
+            ,  this.capturaForm.value.genero +"','"  
+            ,  this.capturaForm.value.nivel_interes +"','"  
+            ,  this.capturaForm.value.combo_canal +"','"  
+            ,  this.capturaForm.value.combo_medio +"','"  
+            ,  this.capturaForm.value.combo_submedio +"','"  
+            ,  this.capturaForm.value.referidor +"','"  
+            ,  this.capturaForm.value.combo_desarrollo +"','"  
+            ,  this.capturaForm.value.combo_prototipo +"','"  
+            ,  this.capturaForm.value.combo_manzana +"','"  
+            ,  this.capturaForm.value.tipo_credito +"','"  
+            ,  this.capturaForm.value.credito +"','"  
+            ,  this.capturaForm.value.institucion_financiera +"','" 
+            ,  this.capturaForm.value.ingresos +"','"  
+            ,  this.capturaForm.value.proximo_contacto +"','"  
+            ,  this.capturaForm.value.fecha_apartado +"','"  
+            ,  this.capturaForm.value.fecha_venta +"','"  
+            ,  this.capturaForm.value.fecha_cancelacion +"','"  
+            ,  this.capturaForm.value.visita +"','"  
+            ,  this.capturaForm.value.visita2 +"','"  
+            ,  this.capturaForm.value.visita3 +"','"  
+            ,  this.capturaForm.value.visita4 +"','"  
+            ,  this.datos_cliente +"','" 
+            ,  this.capturaForm.value.comentario +"'" 
+          ]
       }
-      else{
-        alert(d[0].mensaje);
-        this.btn_apartado = false;
-        this.btns = false;
-        this.btn_com = false;
-        this.visitas = [];
-        this.LimpiaFormulario();
-        window.scroll(0, 0);
+  
+      this.apiService.ejecuta(data).subscribe((response) => {
+        let _response;
+        _response = response;
+        let d = _response.success.recordsets[0];
+        if(d[0].error == 1){
+          alert(d[0].mensaje);
+        }
+        else{
+          alert(d[0].mensaje);
+          this.btn_apartado = false;
+          this.btns = false;
+          this.btn_com = false;
+          this.visitas = [];
+          this.LimpiaFormulario();
+          window.scroll(0, 0);
+  
+        }
+        
+       
+      })
+  
+    }
+    else{
+      alert('Faltan campos de llenar en apartado Informacion Financiera.');
+    }
 
-      }
-      
-     
-    })
   }
 
   Apartado(){

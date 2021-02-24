@@ -173,7 +173,7 @@ export class CrmclientesapartadoComponent implements OnInit {
       let _response;
       _response = response;
       if(_response.success.recordsets.length == 0 ){
-
+        this.id_apartado = 0
       }
       else{
         let _referencias;
@@ -310,7 +310,7 @@ export class CrmclientesapartadoComponent implements OnInit {
   }
 
   EstadoCivilSeleccionado(item){
-    if(item == 'Sí'){
+    if(item == 'Casado'){
       this.es_casado = true;
     }
     else{
@@ -335,6 +335,8 @@ export class CrmclientesapartadoComponent implements OnInit {
   }
 
   EstadoSeleccionado(item){
+    this._combo_ciudades = [];
+    this.capturaForm.value.id_ciudad = '';
     this.estado_seleccionado = item;
     this.ComboCiudades();
   }
@@ -355,6 +357,8 @@ export class CrmclientesapartadoComponent implements OnInit {
   }
 
   EstadoEmpresaSeleccionado(item){
+    this._combo_ciudades_empresa = [];
+    this.capturaForm.value.id_ciudad_cliente = '';
     this.estado_seleccionado_empresa = item;
     this.ComboCiudadesEmpresa();
   }
