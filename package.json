@@ -34,10 +34,12 @@
     "datatables.net-dt": "^1.10.22",
     "domino": "^2.1.6",
     "express": "^4.17.1",
+    "file-saver": "^2.0.5",
     "jquery": "^3.5.1",
     "localstorage-polyfill": "^1.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "xlsx": "^0.16.9",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

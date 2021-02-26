@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, PLATFORM_ID, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, PLATFORM_ID, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../examples/modal/modal.component';
 import { isPlatformBrowser } from '@angular/common';
+import { ExportService } from '../services/export.service';
 
 
 @Component({
@@ -13,6 +14,10 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+  @ViewChild('mytablalocal') userTable: ElementRef; //referencia a la tabla a exportar
+
+
 
   myForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -70,6 +75,7 @@ export class HomeComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public apiService: ApiService,
+    private exportService: ExportService,
     private modalService: NgbModal,
     @Inject(PLATFORM_ID) private platformId: Object
   ) {
@@ -88,6 +94,11 @@ export class HomeComponent implements OnInit {
     this.TraeCiudades();
 
 
+  }
+
+  exportElmToExcel(): void {
+
+    this.exportService.exportTableElmToExcel(this.userTable, 'user_data');
   }
 
 
@@ -140,7 +151,7 @@ export class HomeComponent implements OnInit {
     let data = {
       "appname": "VIVANZA",
       "sp": 'Trae_Ciudades',
-      "params": []
+      "params": [1]
 
     }
 

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { DataTablesModule } from 'angular-datatables';
 import { AppRoutingModule } from './app-routing.module';
-import * as bootstrap from "bootstrap"; 
+import * as bootstrap from "bootstrap";
 import * as $ from 'jquery';
 import { AppComponent } from './app.component';
 import { ClientesComponent } from './clientesModule/clientes/clientes.component';
@@ -44,6 +44,7 @@ import { CrmclientesComponent } from './crmModule/crmclientes/crmclientes.compon
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CrmclientesapartadoComponent } from './crmModule/crmclientesapartado/crmclientesapartado.component';
 import { CrmarchivosComponent } from './crmModule/crmarchivos/crmarchivos.component';
+
 
 
 
