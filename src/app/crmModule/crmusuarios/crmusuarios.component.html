@@ -23,11 +23,51 @@
                     <div class="card card-primary" style="min-height: 10em">
                         
                         <div class="col-md-12 table-responsive" >
-                            <div class="col-md-12" style="text-align: right; margin-top:1em;">
+                            <div class="col-md-12" style="text-align: right; margin-top:1em; margin-bottom: 1em;">
                                 <button type="submit" class="btn btn-primary" (click)="NuevoUsuario(0)">Nuevo Usuario</button>
                             </div>
+                            <form [formGroup]="capturaFormBuscar">
+                                <div class="form-group col-md-3" style="margin-bottom: -2em; margin-top: -1em;">
+                                    <label>Buscar</label>
+                                    <select (change)="BuscarSeleccionado($event.target.value)"  formControlName="busca" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <option disabled selected style="display:none;" ></option>
+                                        <option *ngFor="let item of _combo_buscar" [value]="item.nombre">{{item.nombre}}</option>
+                                        
+                                    </select>
+                                </div>
+                            </form>
+
                             <app-tables class="table-responsive;"  *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset" [metodoEditar]="Editar" [metodoEliminar]="Eliminar">
-                            </app-tables>
+                            </app-tables> 
+                            <!-- <div class=" col-md-12 table-responsive">
+                                <table id="mytables"  class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Usuario</th>
+                                            <th>Nombre</th>
+                                            <th>Correo</th>
+                                            <th>Teléfono</th>
+                                            <th>Tipo</th>
+                                            <th>Desarrollo</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of dataset">
+                                            <td>{{item.ID}}</td>
+                                            <td>{{item.Usuario}}</td>
+                                            <td>{{item.Nombre}}</td>
+                                            <td>{{item.Correo}}</td>
+                                            <td>{{item.Telefono}}</td>
+                                            <td>{{item.Tipo}}</td>
+                                            <td>{{item.Desarrollo}}</td>
+                                            <td ><i (click)="metodoEditar(item)" style="color: blue;" class="fas fa-edit" ></i>  <span>&nbsp;&nbsp;&nbsp;</span> <i *ngIf="item.Estado == 'Activo'" (click)="metodoEliminar(item)"  style="color:green;" class="fas fa-eye"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>  -->
+                            
                         </div>
                        
                     </div>
