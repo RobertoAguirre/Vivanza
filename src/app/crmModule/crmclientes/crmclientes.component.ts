@@ -756,8 +756,9 @@ export class CrmclientesComponent implements OnInit {
        /*  this._pc = _response.success.recordset[0].proximo_contacto.slice(0,-8); */
       }
       if(_response.success.recordset[0].proximo_contacto != null){
-        _response.success.recordset[0].proximo_contacto = _response.success.recordset[0].proximo_contacto.slice(0,-14);
-        if (_response.success.recordset[0].proximo_contacto == '1900-01-01'){
+       /*  this._pc = _response.success.recordset[0].proximo_contacto
+        _response.success.recordset[0].proximo_contacto = _response.success.recordset[0].proximo_contacto.slice(0,-14); */
+        if (_response.success.recordset[0].proximo_contacto.slice(0,-14) == '1900-01-01'){
           this._pc = '';
         }
         else{
@@ -876,7 +877,7 @@ export class CrmclientesComponent implements OnInit {
   FechaApartadoContacto(item){
     if(item == 'Apartado'){
       this._info_financiera = true;
-
+      this.capturaForm.value.registro = this.nombre_registra;
     }
     if(this.capturaForm.value.comentario == undefined){
       this.capturaForm.value.comentario = '';
