@@ -195,10 +195,17 @@ export class CrmclientesComponent implements OnInit {
   }
 
     Trae(){
+      var asesor;
+      if(this._es_asesor == 1){
+        asesor  = localStorage.getItem('id');
+      }
+      else{
+        asesor = 0;
+      }
       let data = {
         "appname":"VIVANZA",
         "sp": 'dvp.Resumen_Clientes',
-        "params": []
+        "params": [asesor]
   
       }
       this.apiService.ejecuta(data).subscribe((response) => {
@@ -744,6 +751,7 @@ export class CrmclientesComponent implements OnInit {
       this.CanalSeleccionado(_response.success.recordset[0].id_canal);
       this.TraeAsesores();
       this.MedioSeleccionado(_response.success.recordset[0].id_medio);
+      
       this.TipoCreditoSeleccionado(_response.success.recordset[0].id_tipo_credito);
       this.CreditoSeleccionado(_response.success.recordset[0].id_credito);
       this.DesarrolloSeleccionado(_response.success.recordset[0].id_desarrollo);
@@ -877,8 +885,9 @@ export class CrmclientesComponent implements OnInit {
   FechaApartadoContacto(item){
     if(item == 'Apartado'){
       this._info_financiera = true;
-      this.capturaForm.value.registro = this.nombre_registra;
+      
     }
+    this.capturaForm.value.registro = this.nombre_registra;
     if(this.capturaForm.value.comentario == undefined){
       this.capturaForm.value.comentario = '';
     }

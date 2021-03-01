@@ -99,11 +99,11 @@
                                         (click)="BuscarCliente()">Busqueda</button>
                                 </div>
                                 
-                                    <div *ngIf="btn_exporta == false && admon == 'Administrador'" class="col-md-2">
+                                    <div *ngIf="btn_exporta == false " class="col-md-2">
                                         <button type="button" class="btn btn-success btn-block"
                                         (click)="Trae()">Exportar a Excel</button>
                                     </div>
-                                    <div *ngIf="btn_exporta == true && admon == 'Administrador'" class="col-md-2">
+                                    <div *ngIf="btn_exporta == true " class="col-md-2">
                                         <button type="button" class="btn btn-primary  btn-block"
                                         (click)="exportElmToExcel()">Descargar Excel</button>
                                     </div>
@@ -127,17 +127,11 @@
                                             <th>medio</th>
                                             <th>submedio</th>
                                             <th>referidor</th>
-                                            <th>direccion_calle</th>
-                                            <th>direccion_numero_interior</th>
-                                            <th>direccion_numero_exterior</th>
-                                            <th>direccion_colonia</th>
+                                            
                                             <th>correo</th>
                                             <th>telefono</th>
                                             <th>genero</th>
-                                            <th>fecha_nacimiento</th>
-                                            <th>estado_civil</th>
-                                            <th>nombre_empresa</th>
-                                            <th>rfc</th>
+                                            
                                             <th>ingresos</th>
                                             <th>tipo_credito</th>
                                             <th>credito</th>
@@ -153,10 +147,21 @@
                                             <th>fecha_cancelacion</th>
                                             <th>fecha_ultimo_comentario</th>
                                             <th>hora_ultimo_comentario</th>
+                                            <th>ultimo_comentario</th>
                                             <th>visita1</th>
                                             <th>visita2</th>
                                             <th>visita3</th>
-                                            <th>visita4</th>                            
+                                            <th>visita4</th>   
+                                            
+                                            <th>direccion_calle</th>
+                                            <th>direccion_numero_interior</th>
+                                            <th>direccion_numero_exterior</th>
+                                            <th>direccion_colonia</th>
+
+                                            <th>fecha_nacimiento</th>
+                                            <th>estado_civil</th>
+                                            <th>nombre_empresa</th>
+                                            <th>rfc</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -174,17 +179,11 @@
                                             <td>{{item.medio}}</td>
                                             <td>{{item.submedio}}</td>
                                             <td>{{item.referidor}}</td>
-                                            <td>{{item.direccion_calle}}</td>
-                                            <td>{{item.direccion_numero_interior}}</td>
-                                            <td>{{item.direccion_numero_exterior}}</td>
-                                            <td>{{item.direccion_colonia}}</td>
+                                            
                                             <td>{{item.correo}}</td>
                                             <td>{{item.telefono}}</td>
                                             <td>{{item.genero}}</td>
-                                            <td>{{item.fecha_nacimiento}}</td>
-                                            <td>{{item.estado_civil}}</td>
-                                            <td>{{item.nombre_empresa}}</td>
-                                            <td>{{item.rfc}}</td>
+                                            
                                             <td>{{item.ingresos}}</td>
                                             <td>{{item.tipo_credito}}</td>
                                             <td>{{item.credito}}</td>
@@ -200,10 +199,21 @@
                                             <td>{{item.fecha_cancelacion}}</td>
                                             <td>{{item.fecha_ultimo_comentario}}</td>
                                             <td>{{item.hora_ultimo_comentario}}</td>
+                                            <td>{{item.ultimo_comentario}}</td>
                                             <td>{{item.visita1}}</td>
                                             <td>{{item.visita2}}</td>
                                             <td>{{item.visita3}}</td>
                                             <td>{{item.visita4}}</td>
+
+                                            <td>{{item.direccion_calle}}</td>
+                                            <td>{{item.direccion_numero_interior}}</td>
+                                            <td>{{item.direccion_numero_exterior}}</td>
+                                            <td>{{item.direccion_colonia}}</td>
+
+                                            <td>{{item.fecha_nacimiento}}</td>
+                                            <td>{{item.estado_civil}}</td>
+                                            <td>{{item.nombre_empresa}}</td>
+                                            <td>{{item.rfc}}</td>
                                         </tr>
                                     </tbody>
                                 </table>
