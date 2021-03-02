@@ -16,9 +16,6 @@ import { SidebarComponent } from './sidebarModule/sidebar/sidebar.component';
 import { FooterComponent } from './footerModule/footer/footer.component';
 import { TablesComponent } from './examples/tables/tables.component';
 import { KeysPipe } from './keys.pipe';
-<<<<<<< HEAD
-import { ContratosComponent } from './contratos/contratos.component';
-=======
 import { CrmhomeComponent } from './crmModule/crmhome/crmhome.component';
 
 import { CrmusuariosComponent } from './crmModule/crmusuarios/crmusuarios.component';
@@ -52,7 +49,6 @@ import { CrmarchivosComponent } from './crmModule/crmarchivos/crmarchivos.compon
 
 
 
->>>>>>> 2f532ccb6b7208c643a3b9e91edef423ab0c779f
 
 
 @NgModule({
@@ -67,9 +63,6 @@ import { CrmarchivosComponent } from './crmModule/crmarchivos/crmarchivos.compon
     FooterComponent,
     TablesComponent,
     KeysPipe,
-<<<<<<< HEAD
-    ContratosComponent
-=======
     CrmhomeComponent,
     CrmusuariosComponent,
     AsignacionModulosComponent,
@@ -96,7 +89,6 @@ import { CrmarchivosComponent } from './crmModule/crmarchivos/crmarchivos.compon
     CrmclientesapartadoComponent,
     CrmarchivosComponent
 
->>>>>>> 2f532ccb6b7208c643a3b9e91edef423ab0c779f
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'vivanzaApp' }),
