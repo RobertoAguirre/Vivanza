@@ -14,6 +14,7 @@ import { SidebarComponent } from './sidebarModule/sidebar/sidebar.component';
 import { FooterComponent } from './footerModule/footer/footer.component';
 import { TablesComponent } from './examples/tables/tables.component';
 import { KeysPipe } from './keys.pipe';
+import { ContratosComponent } from './contratos/contratos.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { KeysPipe } from './keys.pipe';
     SidebarComponent,
     FooterComponent,
     TablesComponent,
-    KeysPipe
+    KeysPipe,
+    ContratosComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'vivanzaApp' }),
