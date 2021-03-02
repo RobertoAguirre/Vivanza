@@ -25,7 +25,7 @@
                                 <div class="col-lg col-6">
                                   <!-- small card -->
                                   <div class="small-box bg-gray">
-                                    <div class="inner">
+                                    <div class="inner" style="color:white">
                                       <h3>{{prospectos}}</h3>
                       
                                       <p>Prospectos</p>
@@ -36,7 +36,7 @@
                                 <div class="col-lg col-6">
                                   <!-- small card -->
                                   <div class="small-box bg-orange">
-                                    <div class="inner">
+                                    <div class="inner" style="color:white">
                                       <h3>{{clientes_potenciales}}</h3>
                       
                                       <p>Clientes Potenciales</p>
@@ -47,7 +47,7 @@
                                 <div class="col-lg col-6">
                                   <!-- small card -->
                                   <div class="small-box bg-warning">
-                                    <div class="inner">
+                                    <div class="inner" style="color:white">
                                       <h3>{{apartados}}</h3>
                       
                                       <p>Apartados</p>
@@ -58,7 +58,7 @@
                                 <div class="col-lg col-6">
                                   <!-- small card -->
                                   <div class="small-box bg-success">
-                                    <div class="inner">
+                                    <div class="inner" style="color:white">
                                       <h3>{{ventas}}</h3>
                       
                                       <p>Ventas</p>
@@ -68,7 +68,7 @@
                                 <div class="col-lg col-6">
                                     <!-- small card -->
                                     <div class="small-box bg-danger">
-                                      <div class="inner">
+                                      <div class="inner" style="color:white">
                                         <h3>{{cancelados}}</h3>
                         
                                         <p>Cancelaciones</p>
@@ -98,7 +98,127 @@
                                     <button type="button" [disabled]="btns" class="btn btn-outline-success btn-block"
                                         (click)="BuscarCliente()">Busqueda</button>
                                 </div>
+                                
+                                    <div *ngIf="btn_exporta == false " class="col-md-2">
+                                        <button type="button" class="btn btn-success btn-block"
+                                        (click)="Trae()">Exportar a Excel</button>
+                                    </div>
+                                    <div *ngIf="btn_exporta == true " class="col-md-2">
+                                        <button type="button" class="btn btn-primary  btn-block"
+                                        (click)="exportElmToExcel()">Descargar Excel</button>
+                                    </div>
+                              
+
                             </div>
+                            <div style="display:none">
+                                <table  #mytablalocal id="mytablalocal"  class="row-border hover">
+                                    <thead>
+                                        <tr>
+                                            <th>asesor</th>
+                                            <th>usuario</th>
+                                            <th>tipo_cliente</th>
+                                            <th>nombre_cliente</th>
+                                            <th>apellido_paterno</th>
+                                            <th>apellido_materno</th>
+                                            <th>fecha_registro</th>
+                                            <th>hora_registro</th>
+                                            <th>interes</th>
+                                            <th>canal</th>
+                                            <th>medio</th>
+                                            <th>submedio</th>
+                                            <th>referidor</th>
+                                            
+                                            <th>correo</th>
+                                            <th>telefono</th>
+                                            <th>genero</th>
+                                            
+                                            <th>ingresos</th>
+                                            <th>tipo_credito</th>
+                                            <th>credito</th>
+                                            <th>institucion_financiera</th>
+                                            <th>desarrollo</th>
+                                            <th>prototipo</th>
+                                            <th>manzana</th>
+                                            <th>lote</th>
+                                            <th>proximo_contacto_fecha</th>
+                                            <th>proximo_contacto_hora</th>
+                                            <th>fecha_apartado</th>
+                                            <th>fecha_venta</th>
+                                            <th>fecha_cancelacion</th>
+                                            <th>fecha_ultimo_comentario</th>
+                                            <th>hora_ultimo_comentario</th>
+                                            <th>ultimo_comentario</th>
+                                            <th>visita1</th>
+                                            <th>visita2</th>
+                                            <th>visita3</th>
+                                            <th>visita4</th>   
+                                            
+                                            <th>direccion_calle</th>
+                                            <th>direccion_numero_interior</th>
+                                            <th>direccion_numero_exterior</th>
+                                            <th>direccion_colonia</th>
+
+                                            <th>fecha_nacimiento</th>
+                                            <th>estado_civil</th>
+                                            <th>nombre_empresa</th>
+                                            <th>rfc</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of dataset">
+                                            <td>{{item.asesor}}</td>
+                                            <td>{{item.usuario}}</td>
+                                            <td>{{item.tipo_cliente}}</td>
+                                            <td>{{item.nombre_cliente}}</td>
+                                            <td>{{item.apellido_paterno}}</td>
+                                            <td>{{item.apellido_materno}}</td>
+                                            <td>{{item.fecha_registro}}</td>
+                                            <td>{{item.hora_registro}}</td>
+                                            <td>{{item.interes}}</td>
+                                            <td>{{item.canal}}</td>
+                                            <td>{{item.medio}}</td>
+                                            <td>{{item.submedio}}</td>
+                                            <td>{{item.referidor}}</td>
+                                            
+                                            <td>{{item.correo}}</td>
+                                            <td>{{item.telefono}}</td>
+                                            <td>{{item.genero}}</td>
+                                            
+                                            <td>{{item.ingresos}}</td>
+                                            <td>{{item.tipo_credito}}</td>
+                                            <td>{{item.credito}}</td>
+                                            <td>{{item.institucion_financiera}}</td>
+                                            <td>{{item.desarrollo}}</td>
+                                            <td>{{item.prototipo}}</td>
+                                            <td>{{item.manzana}}</td>
+                                            <td>{{item.lote}}</td>
+                                            <td>{{item.proximo_contacto_fecha}}</td>
+                                            <td>{{item.proximo_contacto_hora}}</td>
+                                            <td>{{item.fecha_apartado}}</td>
+                                            <td>{{item.fecha_venta}}</td>
+                                            <td>{{item.fecha_cancelacion}}</td>
+                                            <td>{{item.fecha_ultimo_comentario}}</td>
+                                            <td>{{item.hora_ultimo_comentario}}</td>
+                                            <td>{{item.ultimo_comentario}}</td>
+                                            <td>{{item.visita1}}</td>
+                                            <td>{{item.visita2}}</td>
+                                            <td>{{item.visita3}}</td>
+                                            <td>{{item.visita4}}</td>
+
+                                            <td>{{item.direccion_calle}}</td>
+                                            <td>{{item.direccion_numero_interior}}</td>
+                                            <td>{{item.direccion_numero_exterior}}</td>
+                                            <td>{{item.direccion_colonia}}</td>
+
+                                            <td>{{item.fecha_nacimiento}}</td>
+                                            <td>{{item.estado_civil}}</td>
+                                            <td>{{item.nombre_empresa}}</td>
+                                            <td>{{item.rfc}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
 
                         </div>
                         <div *ngIf="editar" class="col-md-12">
@@ -326,7 +446,7 @@
                                     </div>
                                 </div>
 
-                                <div *ngIf="_info_financiera == true" class="row">
+                                <div class="row">
                                     <div class="col-md-12" style="padding-top: 1em; margin-bottom: -1.5em;">
                                         <h5>INFORMACIÓN FINANCIERA</h5>
                                         <br>

@@ -13,7 +13,10 @@ export class CrmusuariosComponent implements OnInit {
 
   public _combo_desarrollo;
   public _combo_tipo;
-  public usuario;
+  public _combo_buscar;
+  public usuario = 'Activos';
+  /* public busca = 'Activos'; */
+
 
   
 /*   public tituloTabla = "Tabla desde home";
@@ -24,7 +27,12 @@ export class CrmusuariosComponent implements OnInit {
   public token;
   public loginForm;
   public dataset;
+  public pregunta;
 
+  capturaFormBuscar = this.formBuilder.group({
+    busca:['']
+
+  })
 
   capturaForm = this.formBuilder.group({
     nombres:['',Validators.required],
@@ -36,6 +44,7 @@ export class CrmusuariosComponent implements OnInit {
     usuario:['',Validators.required]
   })
 
+ 
 
   constructor(
     private router: Router,
@@ -50,14 +59,34 @@ export class CrmusuariosComponent implements OnInit {
 
   ngOnInit(): void {
     $('html,body').scrollTop(0);
-    this.TraeUsuarios();
+    this.TraeUsuarios(0);
     this.ComboDesarrollo();
+    localStorage.setItem('estatus','Activo');
+    this.capturaFormBuscar.setValue(
+      {
+        busca: 'Activos',
+      }) 
     this._combo_tipo = [
       {nombre: 'Administrador'},
       {nombre: 'Coordinador'},
       {nombre: 'Asesor'},
       {nombre: 'Promotor'}
     ]
+    this._combo_buscar = [
+      {nombre: 'Activos'},
+      {nombre: 'Inactivos'}
+    ]
+  }
+
+  BuscarSeleccionado(item){
+    localStorage.setItem('estatus',item);
+    this.usuario = item;
+    if(item == 'Activos'){
+      this.TraeUsuarios(0);
+    }
+    else{
+      this.TraeUsuarios(1);
+    }
   }
 
   ComboDesarrollo(){
@@ -79,14 +108,14 @@ export class CrmusuariosComponent implements OnInit {
     alert(this.capturaForm.value.nombres);
   }
 
-  TraeUsuarios() {
+  TraeUsuarios(item) {
 
     //BuscaUsuario 'admin2','p4ss'
 
     let data = {
       "appname":"VIVANZA",
-      "sp": 'dvp.Trae_Usuarios_CRM',
-      "params": [0]
+      "sp": 'dvp.Trae_Usuarios_CRM_Lista',
+      "params": [item]
 
     }
 
@@ -108,8 +137,14 @@ export class CrmusuariosComponent implements OnInit {
 
   Eliminar(item){
     let id = item.ID;
-    let pregunta = confirm('¿Está seguro de querer eliminar el usuario '+item.Nombre+'?');
-    if (pregunta == true){
+    if(localStorage.getItem('estatus') == 'Activo'){
+      this.pregunta = confirm('¿Está seguro de querer dar de baja al usuario '+item.Nombre+'?');
+    }
+    else{
+      this.pregunta = confirm('¿Está seguro de querer activar al usuario '+item.Nombre+'?');
+    }
+
+    if (this.pregunta == true){
       let data = {
         "appname":"VIVANZA",
         "sp": 'dvp.Elimina_Usuario_CRM',
@@ -130,6 +165,7 @@ export class CrmusuariosComponent implements OnInit {
           this.router.routeReuseStrategy.shouldReuseRoute = () => false;
           this.router.onSameUrlNavigation = 'reload';
           this.router.navigate(['./crmusuarios'], { relativeTo: this.route });
+          localStorage.setItem('estatus','');
         }
       })
     }
