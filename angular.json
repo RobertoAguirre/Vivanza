@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Space": {
+    "Vivanza": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/Space/browser",
+            "outputPath": "dist/Vivanza/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -24,6 +24,7 @@
               "src/assets/img"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
               "node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css",
               "node_modules/admin-lte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css",
@@ -54,7 +55,8 @@
               "node_modules/admin-lte/dist/js/demo.js",
               "node_modules/admin-lte/dist/js/pages/dashboard.js",
               "node_modules/jquery/dist/jquery.js",
-              "node_modules/datatables.net/js/jquery.dataTables.js"
+              "node_modules/datatables.net/js/jquery.dataTables.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {
@@ -91,18 +93,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Space:build"
+            "browserTarget": "Vivanza:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Space:build:production"
+              "browserTarget": "Vivanza:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Space:build"
+            "browserTarget": "Vivanza:build"
           }
         },
         "test": {
@@ -140,18 +142,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "Space:serve"
+            "devServerTarget": "Vivanza:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "Space:serve:production"
+              "devServerTarget": "Vivanza:serve:production"
             }
           }
         },
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/Space/server",
+            "outputPath": "dist/Vivanza/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json"
           },
@@ -172,21 +174,21 @@
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
           "options": {
-            "browserTarget": "Space:build",
-            "serverTarget": "Space:server"
+            "browserTarget": "Vivanza:build",
+            "serverTarget": "Vivanza:server"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Space:build:production",
-              "serverTarget": "Space:server:production"
+              "browserTarget": "Vivanza:build:production",
+              "serverTarget": "Vivanza:server:production"
             }
           }
         },
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "browserTarget": "Space:build:production",
-            "serverTarget": "Space:server:production",
+            "browserTarget": "Vivanza:build:production",
+            "serverTarget": "Vivanza:server:production",
             "routes": [
               "/"
             ]
@@ -198,7 +200,7 @@
       }
     }
   },
-  "defaultProject": "Space",
+  "defaultProject": "Vivanza",
   "cli": {
     "analytics": false
   }

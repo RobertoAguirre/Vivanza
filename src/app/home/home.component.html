@@ -1,8 +1,92 @@
-<app-navbar></app-navbar>
-<app-sidebar></app-sidebar>
+<!-- <app-navbar></app-navbar> -->
+<!-- <app-sidebar></app-sidebar> -->
 <div class="content-wrapper">
-<!--     <img style="height: 92%; width: 92%;" class="mr-3" src="assets/img/logovivanzawhite.png"/>
+    <!--     <img style="height: 92%; width: 92%;" class="mr-3" src="assets/img/logovivanzawhite.png"/>
  -->
-    <app-tables *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset" ></app-tables>
+    <!-- 
+    <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
+    <button (click)="openModal('custom-modal-2')">Open Modal 2</button> -->
+    <button class="btn btn-lg btn-outline-primary" (click)="openNormal()">Modal para mensajes normales</button>
+    <button class="btn btn-lg btn-outline-secondary" (click)="openWarning()">Modal para mensajes de advertencia</button>
+    <button class="btn btn-lg btn-outline-danger" (click)="openDanger()">Modal para mensajes de error</button>
+    <button class="btn btn-lg btn-outline-success" (click)="openSuccess()">Modal para mensajes de éxito</button>
+
+
+    {{money|currency}}
+    <input matInput type="text" placeholder="Test Price" [ngModel]="testPrice | currency:'USD':'symbol':'2.2'"
+        [ngModelOptions]="{updateOn:'blur'}" (ngModelChange)="testPrice=$event" />
+
+
+    <app-tables *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset"
+        [metodoEditar]="EditarDesdeHome" [metodoEliminar]="EliminarDesdeHome">
+    </app-tables>
+
+
+    <div class="card">
+        <div class="card-body">
+
+            <table #mytablalocal id="mytablalocal" datatable class="row-border hover">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>nombre</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of dataset">
+                        <td>{{item.id_ciudad}}</td>
+                        <td>{{item.nombre_ciudad}}</td>
+                        <td><i (click)="metodoEditar(item)" style="color: blue;" class="fas fa-edit"></i>
+                            <span>&nbsp;&nbsp;&nbsp;</span> <i (click)="metodoEliminar(item)" style="color:red;"
+                                class="fas fa-trash"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+            <button (click)="exportElmToExcel()" class="btn btn-primary">Exportar a excel</button>
+        </div>
+    </div>
+
+
+    <!-- <app-menu></app-menu> -->
+
+    <!-- grafica de barras sencilla con un dataset -->
+    <app-area [tipografica]="tipoGraficaBarras" [titulotabla]="tituloGrafica" [etiquetas]="etiquetasGrafica"
+        [data]="datasetGrafica" [coloresFondo]="coloresGrafica"></app-area>
+
+    <!-- grafica de pay sencilla con un dataset -->
+    <app-pie [tipoGraficaPie]="tipoGraficaPie" [titulotabla]="tituloGrafica" [etiquetas]="etiquetasGrafica"
+        [data]="datasetGrafica" [coloresFondo]="coloresGrafica"></app-pie>
+
+    <app-barsmultiple [etiquetasEjeX]="etiquetasEjeX" [tituloDataset1]="tituloDataset1"
+        [multipledataset1]="multipledataset1" [coloresFondoDataset1]="coloresGrafica1" [tituloDataset2]="tituloDataset2"
+        [multipledataset2]="multipledataset2" [coloresFondoDataset2]="coloresGrafica2" [tituloDataset3]="tituloDataset3"
+        [multipledataset3]="multipledataset3" [coloresFondoDataset3]="coloresGrafica3">
+    </app-barsmultiple>
+
+    <form [formGroup]="myForm" (ngSubmit)="submit()">
+
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input formControlName="name" id="name" type="text" class="form-control">
+            <!--             <div *ngIf="f.name.touched && f.name.invalid" class="alert alert-danger">
+                <div *ngIf="f.name.errors.required">Name is required.</div>
+                <div *ngIf="f.name.errors.minlength">Name should be 3 character.</div>
+            </div> -->
+        </div>
+
+        <div class="form-group">
+            <label for="file">File</label>
+            <input formControlName="file" id="file" type="file" class="form-control" (change)="onFileChange($event)">
+            <!--             <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+                <div *ngIf="f.file.errors.required">File is required.</div>
+            </div> -->
+        </div>
+
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
 
 </div>

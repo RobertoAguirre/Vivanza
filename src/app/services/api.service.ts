@@ -6,9 +6,9 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 })
 export class ApiService {
 
-
-  //serviceUrl = 'http://74.208.145.99:40000/api/';
-  serviceUrl = 'http://localhost:40000/api/';
+  homeUrl = 'http://74.208.145.99:40000/'
+  serviceUrl = 'http://74.208.145.99:40000/api/';
+  //serviceUrl = 'http://localhost:40000/api/';
   constructor(
     private http: HttpClient
   ) {
@@ -35,19 +35,16 @@ export class ApiService {
 
   public pruebaGetProtegido(tkn) {
 
-  
-   this.httpOptions.headers = this.httpOptions.headers.set('access-token','Bearer ' + tkn);
+
+    this.httpOptions.headers = this.httpOptions.headers.set('access-token', 'Bearer ' + tkn);
 
     try {
-      return this.http.get(this.serviceUrl + 'pruebagetProtegida',this.httpOptions);
+      return this.http.get(this.serviceUrl + 'pruebagetProtegida', this.httpOptions);
     } catch (ex) {
       console.log(ex);
     }
 
   }
-
-
-
 
   public ejecuta(data) {
     return this.http.post(this.serviceUrl + 'EjecutaConsulta/', data);
@@ -58,6 +55,19 @@ export class ApiService {
 
     return this.http.post(this.serviceUrl + 'autentificar/', data);
 
+  }
+
+  //Alta Usuario
+  public registra(data) {
+
+    return this.http.post(this.serviceUrl + 'registrar/', data);
+
+  }
+
+  //subir archivos
+  public uploadPhoto(formData) {
+
+    return this.http.post(this.serviceUrl + 'UploadFiles/', formData);
   }
 
 

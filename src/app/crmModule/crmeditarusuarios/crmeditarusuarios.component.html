@@ -1,0 +1,88 @@
+<app-navbar></app-navbar>
+<!-- <app-sidebar></app-sidebar> --> 
+<div class="content-wrapper" style="min-height: 1365.62px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>{{nombre_vista}}</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+           <div class="row">
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary">
+                        <form [formGroup]="capturaForm">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Nombre(s)</label>
+                                    <input formControlName="nombres" type="text" class="form-control" placeholder="" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label>Apellido Paterno</label>
+                                    <input formControlName="apellido_paterno" type="text" class="form-control" placeholder="" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label>Apellido Materno</label>
+                                    <input formControlName="apellido_materno" type="text" class="form-control" placeholder="" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label>Usuario</label>
+                                    <input  formControlName="usuario" type="text" class="form-control" placeholder="nombre.apellido" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label>Teléfono</label>
+                                    <input formControlName="telefono" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                </div>
+ <!--                                <div class="form-group">
+                                    <label>Contraseña</label>
+                                    <input formControlName="contrasena" type="password" class="form-control" placeholder="">
+                                </div> -->
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input formControlName="email" type="email" class="form-control" placeholder="" autocomplete="off">
+                                </div>
+                                <div class="form-group">
+                                    <label>Tipo</label>
+                                    <select formControlName="tipo" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <option disabled selected style="display:none;" ></option>
+                                        <option *ngFor="let item of _combo_tipo" [value]="item.nombre">{{item.nombre}}</option>
+                                        
+                                    </select>
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Desarrollo</label>
+                                    <select formControlName="desarrollo" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <option disabled selected style="display:none;" ></option>
+                                        <option  *ngFor="let item of _combo_desarrollo" [value]="item.id_desarrollo">{{item.nombre_desarrollo}}</option>
+                                        
+                                    </select>
+                                  </div>
+                            </div>
+                            <!-- /.card-body -->
+    
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary" (click)="Guarda()" [disabled]="!capturaForm.valid">Guardar</button>
+                            </div>
+                        </form>
+                        
+                       
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<!-- <script>  $('[data-mask]').inputmask() </script> -->

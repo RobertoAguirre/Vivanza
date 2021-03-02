@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+<!-- <app-sidebar></app-sidebar> --> 
+<div class="content-wrapper" style="min-height: 1365.62px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>CRM Canales</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <div class="content" >
+        <div class="container-fluid">
+            <div class="row">
+                
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary" style="min-height: 10em">
+                        
+                        <div class="col-md-12 table-responsive" >
+                            <div class="col-md-12" style="text-align: right; margin-top:1em;">
+                                <button type="submit" class="btn btn-primary" (click)="Nuevo(0)">Nuevo</button>
+                            </div>
+                            <app-tables class="table-responsive;"  *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset" [metodoEditar]="Editar" [metodoEliminar]="Eliminar">
+                            </app-tables>
+                        </div>
+                       
+                    </div>
+                </div>
+
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+
+<!-- <script>  $('[data-mask]').inputmask() </script> -->
+
