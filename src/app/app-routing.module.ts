@@ -27,6 +27,8 @@ import { CrmclientesComponent } from './crmModule/crmclientes/crmclientes.compon
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CrmclientesapartadoComponent } from './crmModule/crmclientesapartado/crmclientesapartado.component';
 import { CrmarchivosComponent } from './crmModule/crmarchivos/crmarchivos.component';
+import { BuroCreditoComponent } from './formatos/buro-credito/buro-credito.component';
+
 
 
 const routes: Routes = [
@@ -55,7 +57,8 @@ const routes: Routes = [
   { path: 'crmclientes', component: CrmclientesComponent, pathMatch: "full" },
   { path: 'dashboard', component: DashboardComponent, pathMatch: "full" },
   { path: 'crmclientesapartado', component: CrmclientesapartadoComponent, pathMatch: "full" },
-  { path: 'crmarchivos', component: CrmarchivosComponent, pathMatch: "full" }
+  { path: 'crmarchivos', component: CrmarchivosComponent, pathMatch: "full" },
+  { path: 'burocredito', component: BuroCreditoComponent, pathMatch: "full" }
 
 ]
 
