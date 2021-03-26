@@ -44,6 +44,7 @@ import { CrmclientesComponent } from './crmModule/crmclientes/crmclientes.compon
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CrmclientesapartadoComponent } from './crmModule/crmclientesapartado/crmclientesapartado.component';
 import { CrmarchivosComponent } from './crmModule/crmarchivos/crmarchivos.component';
+import { BuroCreditoComponent } from './formatos/buro-credito/buro-credito.component';
 
 
 
@@ -83,7 +84,8 @@ import { CrmarchivosComponent } from './crmModule/crmarchivos/crmarchivos.compon
     CrmclientesComponent,
     DashboardComponent,
     CrmclientesapartadoComponent,
-    CrmarchivosComponent
+    CrmarchivosComponent,
+    BuroCreditoComponent
 
   ],
   imports: [

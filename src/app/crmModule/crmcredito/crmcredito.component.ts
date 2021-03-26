@@ -18,9 +18,9 @@ export class CrmcreditoComponent implements OnInit {
   public credito;
 
   capturaForm = this.formBuilder.group({
-    credito:['',Validators.required],
-    estado:['',Validators.required],
-    id:['']
+    credito: ['', Validators.required],
+    estado: ['', Validators.required],
+    id: ['']
   })
 
 
@@ -34,9 +34,9 @@ export class CrmcreditoComponent implements OnInit {
   ngOnInit(): void {
     this.ComboCreditos();
   }
-  ComboCreditos(){
+  ComboCreditos() {
     let data = {
-      "appname":"VIVANZA",
+      "appname": "VIVANZA",
       "sp": 'dvp.Combo_Tipos_de_Credito',
       "params": []
 
@@ -49,15 +49,15 @@ export class CrmcreditoComponent implements OnInit {
     })
   }
 
-  CreditoSeleccionado(item){
+  CreditoSeleccionado(item) {
     this._combo_creditos.forEach(value => {
-      if(value.ID.toString() == item){
-        localStorage.setItem('nombre_tipo_credito',value['Tipo']);
+      if (value.ID.toString() == item) {
+        localStorage.setItem('nombre_tipo_credito', value['Tipo']);
       }
     })
     this.credito = item;
     let data = {
-      "appname":"VIVANZA",
+      "appname": "VIVANZA",
       "sp": 'dvp.Trae_Credito_Tipos_CRM',
       "params": [item]
 
@@ -72,41 +72,41 @@ export class CrmcreditoComponent implements OnInit {
     })
   }
 
-  Nuevo(i){
+  Nuevo(i) {
     let id;
     id = this.credito;
     /* item = JSON.stringify(item); */
-    this.router.navigate(['/crmeditarcredito'],{queryParams:{'item':i, 'canal':id, 'tipo_credito': localStorage.getItem('nombre_tipo_credito')}});
+    this.router.navigate(['/crmeditarcredito'], { queryParams: { 'item': i, 'canal': id, 'tipo_credito': localStorage.getItem('nombre_tipo_credito') } });
   }
 
-  Editar(item){
+  Editar(item) {
     let id;
     id = item.ID;
     item = JSON.stringify(item);
-    this.router.navigate(['/crmeditarcredito'],{queryParams:{'item':id, 'canal':0, 'tipo_credito': localStorage.getItem('nombre_tipo_credito')}});
+    this.router.navigate(['/crmeditarcredito'], { queryParams: { 'item': id, 'canal': 0, 'tipo_credito': localStorage.getItem('nombre_tipo_credito') } });
     /* alert("logica para editar " + item); */
   }
 
-  Eliminar(item){
+  Eliminar(item) {
     let id = item.ID;
-    let pregunta = confirm('¿Está seguro de querer eliminar el crédito '+item.Crédito+'?');
-    if (pregunta == true){
+    let pregunta = confirm('¿Está seguro de querer eliminar el crédito ' + item.Crédito + '?');
+    if (pregunta == true) {
       let data = {
-        "appname":"VIVANZA",
+        "appname": "VIVANZA",
         "sp": 'dvp.Elimina_Credito_CRM',
         "params": [id]
-  
+
       }
-  
+
       this.apiService.ejecuta(data).subscribe((response) => {
         let _response;
         _response = response;
-        
+
         let d = _response.success.recordsets[0];
-        if(d[0].error == 1){
+        if (d[0].error == 1) {
           alert(d[0].mensaje);
         }
-        else{
+        else {
           alert(d[0].mensaje);
           this.router.routeReuseStrategy.shouldReuseRoute = () => false;
           this.router.onSameUrlNavigation = 'reload';
@@ -114,7 +114,7 @@ export class CrmcreditoComponent implements OnInit {
         }
       })
     }
-    
+
   }
 
 }
