@@ -53,6 +53,9 @@ export class CrmclientesComponent implements OnInit {
   public _combo_desarrollos;
   public _combo_prototipos;
   public _combo_manzanas;
+  public _combo_manzana;
+  public _combo_lote;
+  public _combo_etapas;
   public _combo_tipos_creditos;
   public _combo_creditos;
   public _combo_institucion_financiera;
@@ -86,6 +89,9 @@ export class CrmclientesComponent implements OnInit {
   public ventas;
   public cancelados;
   public _visita_seleccionado = 0;
+  public etapa;
+  public vivienda_seleccionada;
+  public _manzana;
 
   capturaForm = this.formBuilder.group({
     tipo_cliente:['',Validators.required],
@@ -106,7 +112,9 @@ export class CrmclientesComponent implements OnInit {
     referidor:[''],
     combo_desarrollo:[''],
     combo_prototipo:[''],
+    combo_etapa:[''],
     combo_manzana:[''],
+    combo_lote:[''],
     tipo_credito:[''],
     credito:[''],
     institucion_financiera:[''],
@@ -319,7 +327,9 @@ export class CrmclientesComponent implements OnInit {
             referidor:'',
             combo_desarrollo:'',
             combo_prototipo:'',
+            combo_etapa:'',
             combo_manzana:'',
+            combo_lote:'',
             tipo_credito:'',
             credito:'',
             institucion_financiera:'',
@@ -458,7 +468,9 @@ export class CrmclientesComponent implements OnInit {
           referidor:this.capturaForm.value.referidor ,
           combo_desarrollo:this.capturaForm.value.combo_desarrollo,
           combo_prototipo:this.capturaForm.value.combo_prototipo,
+          combo_etapa:this.capturaForm.value.combo_etapa,
           combo_manzana:this.capturaForm.value.combo_manzana ,
+          combo_lote:this.capturaForm.value.combo_lote ,
           tipo_credito:this.capturaForm.value.tipo_credito,
           credito:this.capturaForm.value.credito,
           institucion_financiera:this.capturaForm.value.institucion_financiera,
@@ -521,7 +533,9 @@ export class CrmclientesComponent implements OnInit {
             referidor:'',
             combo_desarrollo:'',
             combo_prototipo:'',
+            combo_etapa:'',
             combo_manzana:'',
+            combo_lote:'',
             tipo_credito:'',
             credito:'',
             institucion_financiera:'',
@@ -565,7 +579,9 @@ export class CrmclientesComponent implements OnInit {
             referidor:'',
             combo_desarrollo:'',
             combo_prototipo:'',
+            combo_etapa:'',
             combo_manzana:'',
+            combo_lote:'',
             tipo_credito:'',
             credito:'',
             institucion_financiera:'',
@@ -754,8 +770,12 @@ export class CrmclientesComponent implements OnInit {
       
       this.TipoCreditoSeleccionado(_response.success.recordset[0].id_tipo_credito);
       this.CreditoSeleccionado(_response.success.recordset[0].id_credito);
-      this.DesarrolloSeleccionado(_response.success.recordset[0].id_desarrollo);
-      this.PrototipoSeleccionado(_response.success.recordset[0].id_tipo_vivienda);
+      this.DesarrolloSeleccionado(_response.success.recordset[0].id_desarrollo,1);
+      this._d_s = _response.success.recordset[0].id_desarrollo;
+      this.PrototipoSeleccionado(_response.success.recordset[0].id_tipo_vivienda,1);
+      this.vivienda_seleccionada = _response.success.recordset[0].id_tipo_vivienda;
+      this.EtapaSeleccionada(_response.success.recordset[0].id_etapa_desarrollo,1);
+      this._manzana = _response.success.recordset[0].manzana; 
       if(_response.success.recordset[0].fecha_alta != null){
         let u;
           u = _response.success.recordset[0].fecha_alta.replace("T", " ");
@@ -820,7 +840,9 @@ export class CrmclientesComponent implements OnInit {
           referidor:_response.success.recordset[0].id_referidor,
           combo_desarrollo:_response.success.recordset[0].id_desarrollo,
           combo_prototipo:_response.success.recordset[0].id_tipo_vivienda,
-          combo_manzana:_response.success.recordset[0].id_sembrado,
+          combo_etapa:_response.success.recordset[0].id_etapa_desarrollo,
+          combo_manzana:_response.success.recordset[0].manzana,
+          combo_lote:_response.success.recordset[0].id_sembrado,
           tipo_credito:_response.success.recordset[0].id_tipo_credito,
           credito:_response.success.recordset[0].id_credito,
           institucion_financiera:_response.success.recordset[0].id_institucion_financiera,
@@ -923,7 +945,9 @@ export class CrmclientesComponent implements OnInit {
         referidor:this.capturaForm.value.referidor ,
         combo_desarrollo:this.capturaForm.value.combo_desarrollo,
         combo_prototipo:this.capturaForm.value.combo_prototipo,
+        combo_etapa:this.capturaForm.value.combo_etapa,
         combo_manzana:this.capturaForm.value.combo_manzana ,
+        combo_lote:this.capturaForm.value.combo_lote ,
         tipo_credito:this.capturaForm.value.tipo_credito,
         credito:this.capturaForm.value.credito,
         institucion_financiera:this.capturaForm.value.institucion_financiera,
@@ -1022,7 +1046,7 @@ export class CrmclientesComponent implements OnInit {
     })
   }
 
-  DesarrolloSeleccionado(item){
+  DesarrolloSeleccionado(item,i){
     this._d_s = item;
     let data = {
       "appname":"VIVANZA",
@@ -1034,16 +1058,70 @@ export class CrmclientesComponent implements OnInit {
     this.apiService.ejecuta(data).subscribe((response) => {
       let _response;
       _response = response;
-      this._combo_prototipos = _response.success.recordset;
-      this._combo_manzanas = [];
+      if(i === 1){
+        this._combo_prototipos = _response.success.recordset;
+      }
+      else{
+        this._combo_prototipos = _response.success.recordset;
+        this.capturaForm.value.combo_prototipo = '';
+        this._combo_manzanas = [];
+        this._combo_manzana = [];
+        this._combo_lote = [];
+        var _reg;
+        if(this.capturaForm.value.registro === undefined){
+          _reg = this.nombre_registra;
+        }
+        else{
+          _reg = this.capturaForm.value.registro;
+        }
+  
+        this.capturaForm.setValue(
+          {
+            tipo_cliente: item,
+            fecha: this.capturaForm.value.fecha ,
+            folio:this.capturaForm.value.folio,
+            asesor:this.capturaForm.value.asesor,
+            registro:_reg,
+            nombres:this.capturaForm.value.nombres,
+            apellido_paterno:this.capturaForm.value.apellido_paterno,
+            apellido_materno:this.capturaForm.value.apellido_materno,
+            telefono:this.capturaForm.value.telefono,
+            email:this.capturaForm.value.email,
+            genero:this.capturaForm.value.genero,
+            nivel_interes:this.capturaForm.value.nivel_interes,
+            combo_canal:this.capturaForm.value.combo_canal,
+            combo_medio:this.capturaForm.value.combo_medio,
+            combo_submedio:this.capturaForm.value.combo_submedio,
+            referidor:this.capturaForm.value.referidor ,
+            combo_desarrollo:this.capturaForm.value.combo_desarrollo,
+            combo_prototipo:'',
+            combo_etapa:'',
+            combo_manzana:'' ,
+            combo_lote:'',
+            tipo_credito:this.capturaForm.value.tipo_credito,
+            credito:this.capturaForm.value.credito,
+            institucion_financiera:this.capturaForm.value.institucion_financiera,
+            ingresos:this.capturaForm.value.ingresos,
+            proximo_contacto:this.capturaForm.value.proximo_contacto,
+            fecha_apartado:this.capturaForm.value.fecha_apartado,
+            fecha_venta:this.capturaForm.value.fecha_venta,
+            fecha_cancelacion:this.capturaForm.value.fecha_cancelacion,
+            visita:this.capturaForm.value.visita,
+            visita2:this.capturaForm.value.visita2,
+            visita3:this.capturaForm.value.visita3,
+            visita4:this.capturaForm.value.visita4,
+            comentario:this.capturaForm.value.comentario
+          });
+  
+      }
     })
   }
 
-  PrototipoSeleccionado(item){
+/*   PrototipoSeleccionado(item){
     this._combo_manzanas = '';
     let data = {
       "appname":"VIVANZA",
-      "sp": 'dvp.Combo_Manzanas',
+      "sp": 'dvp.Combo_Etapas',
       "params": ["'" + this._d_s + "','" ,  item + "'"]
 
     }
@@ -1051,10 +1129,171 @@ export class CrmclientesComponent implements OnInit {
     this.apiService.ejecuta(data).subscribe((response) => {
       let _response;
       _response = response;
-      this._combo_manzanas = _response.success.recordset;
+      this._combo_etapas = _response.success.recordset;
+
+    })
+  } */
+
+  PrototipoSeleccionado(item,i){
+    
+    this.capturaForm.value.combo_etapa = '';
+    let data = { 
+      "appname":"VIVANZA",
+      "sp": 'dvp.Combo_Etapas',
+      "params": ["'" + this._d_s + "','" ,  item + "'"]
+
+    }
+
+    this.apiService.ejecuta(data).subscribe((response) => {
+      let _response;
+      _response = response;
+      if(i === 1){
+        this._combo_manzanas = _response.success.recordset;
+        this.vivienda_seleccionada = item;
+      }
+      else{
+        this._combo_manzanas = [];
+        this._combo_manzanas = _response.success.recordset;
+        this.vivienda_seleccionada = item;
+        this._combo_manzana = [];
+        this._combo_lote = [];
+        var _reg;
+        if(this.capturaForm.value.registro === undefined){
+          _reg = this.nombre_registra;
+        }
+        else{
+          _reg = this.capturaForm.value.registro;
+        }
+  
+        this.capturaForm.setValue(
+          {
+            tipo_cliente: item,
+            fecha: this.capturaForm.value.fecha ,
+            folio:this.capturaForm.value.folio,
+            asesor:this.capturaForm.value.asesor,
+            registro:_reg,
+            nombres:this.capturaForm.value.nombres,
+            apellido_paterno:this.capturaForm.value.apellido_paterno,
+            apellido_materno:this.capturaForm.value.apellido_materno,
+            telefono:this.capturaForm.value.telefono,
+            email:this.capturaForm.value.email,
+            genero:this.capturaForm.value.genero,
+            nivel_interes:this.capturaForm.value.nivel_interes,
+            combo_canal:this.capturaForm.value.combo_canal,
+            combo_medio:this.capturaForm.value.combo_medio,
+            combo_submedio:this.capturaForm.value.combo_submedio,
+            referidor:this.capturaForm.value.referidor ,
+            combo_desarrollo:this.capturaForm.value.combo_desarrollo,
+            combo_prototipo:this.capturaForm.value.combo_prototipo,
+            combo_etapa:'',
+            combo_manzana:'' ,
+            combo_lote:'' ,
+            tipo_credito:this.capturaForm.value.tipo_credito,
+            credito:this.capturaForm.value.credito,
+            institucion_financiera:this.capturaForm.value.institucion_financiera,
+            ingresos:this.capturaForm.value.ingresos,
+            proximo_contacto:this.capturaForm.value.proximo_contacto,
+            fecha_apartado:this.capturaForm.value.fecha_apartado,
+            fecha_venta:this.capturaForm.value.fecha_venta,
+            fecha_cancelacion:this.capturaForm.value.fecha_cancelacion,
+            visita:this.capturaForm.value.visita,
+            visita2:this.capturaForm.value.visita2,
+            visita3:this.capturaForm.value.visita3,
+            visita4:this.capturaForm.value.visita4,
+            comentario:this.capturaForm.value.comentario
+          });
+      }
+      
+    })
+  }
+  EtapaSeleccionada(item,i){
+    
+    
+    let data = { 
+      "appname":"VIVANZA",
+      "sp": 'dvp.Combo_Manzanas',
+      "params": ["'" + item + "','" ,  this.vivienda_seleccionada + "'"]
+
+    }
+
+    this.apiService.ejecuta(data).subscribe((response) => {
+      let _response;
+      _response = response;
+      if(i===1){
+        this._combo_manzana = _response.success.recordset;
+        this.etapa = _response.success.recordsets[1];
+        this.ManzanaSeleccionada(this._manzana);
+      }
+      else{
+        this._combo_manzana = _response.success.recordset;
+        this.etapa = _response.success.recordsets[1];
+        this._combo_lote = [];
+        var _reg;
+        if(this.capturaForm.value.registro === undefined){
+          _reg = this.nombre_registra;
+        }
+        else{
+          _reg = this.capturaForm.value.registro;
+        }
+        this.capturaForm.setValue(
+          {
+            tipo_cliente: item,
+            fecha: this.capturaForm.value.fecha ,
+            folio:this.capturaForm.value.folio,
+            asesor:this.capturaForm.value.asesor,
+            registro:_reg,
+            nombres:this.capturaForm.value.nombres,
+            apellido_paterno:this.capturaForm.value.apellido_paterno,
+            apellido_materno:this.capturaForm.value.apellido_materno,
+            telefono:this.capturaForm.value.telefono,
+            email:this.capturaForm.value.email,
+            genero:this.capturaForm.value.genero,
+            nivel_interes:this.capturaForm.value.nivel_interes,
+            combo_canal:this.capturaForm.value.combo_canal,
+            combo_medio:this.capturaForm.value.combo_medio,
+            combo_submedio:this.capturaForm.value.combo_submedio,
+            referidor:this.capturaForm.value.referidor ,
+            combo_desarrollo:this.capturaForm.value.combo_desarrollo,
+            combo_prototipo:this.capturaForm.value.combo_prototipo,
+            combo_etapa:this.capturaForm.value.combo_etapa,
+            combo_manzana:'',
+            combo_lote:'' ,
+            tipo_credito:this.capturaForm.value.tipo_credito,
+            credito:this.capturaForm.value.credito,
+            institucion_financiera:this.capturaForm.value.institucion_financiera,
+            ingresos:this.capturaForm.value.ingresos,
+            proximo_contacto:this.capturaForm.value.proximo_contacto,
+            fecha_apartado:this.capturaForm.value.fecha_apartado,
+            fecha_venta:this.capturaForm.value.fecha_venta,
+            fecha_cancelacion:this.capturaForm.value.fecha_cancelacion,
+            visita:this.capturaForm.value.visita,
+            visita2:this.capturaForm.value.visita2,
+            visita3:this.capturaForm.value.visita3,
+            visita4:this.capturaForm.value.visita4,
+            comentario:this.capturaForm.value.comentario
+          });
+      }
+      
+    })
+  }
+
+  ManzanaSeleccionada(item){
+    this._combo_lote = [];
+    let data = { 
+      "appname":"VIVANZA",
+      "sp": 'dvp.Combo_Lotes',
+      "params": ["'" + this.etapa[0].ETAPA + "','" ,  item + "','" ,  this.vivienda_seleccionada + "'"]
+
+    }
+
+    this.apiService.ejecuta(data).subscribe((response) => {
+      let _response;
+      _response = response;
+      this._combo_lote = _response.success.recordset;
 
     })
   }
+
 
   ComboCreditos(){
     let data = {
@@ -1209,7 +1448,9 @@ export class CrmclientesComponent implements OnInit {
         referidor:this.capturaForm.value.referidor ,
         combo_desarrollo:this.capturaForm.value.combo_desarrollo,
         combo_prototipo:this.capturaForm.value.combo_prototipo,
+        combo_etapa:this.capturaForm.value.combo_etapa,
         combo_manzana:this.capturaForm.value.combo_manzana ,
+        combo_lote:this.capturaForm.value.combo_lote ,
         tipo_credito:this.capturaForm.value.tipo_credito,
         credito:this.capturaForm.value.credito,
         institucion_financiera:this.capturaForm.value.institucion_financiera,
@@ -1351,7 +1592,7 @@ export class CrmclientesComponent implements OnInit {
             ,  this.capturaForm.value.referidor +"','"  
             ,  this.capturaForm.value.combo_desarrollo +"','"  
             ,  this.capturaForm.value.combo_prototipo +"','"  
-            ,  this.capturaForm.value.combo_manzana +"','"  
+            ,  this.capturaForm.value.combo_lote +"','"  
             ,  this.capturaForm.value.tipo_credito +"','"  
             ,  this.capturaForm.value.credito +"','"  
             ,  this.capturaForm.value.institucion_financiera +"','" 
@@ -1428,7 +1669,9 @@ export class CrmclientesComponent implements OnInit {
         referidor:'',
         combo_desarrollo:'',
         combo_prototipo:'',
+        combo_etapa:'',
         combo_manzana:'',
+        combo_lote:'',
         tipo_credito:'',
         credito:'',
         institucion_financiera:'',

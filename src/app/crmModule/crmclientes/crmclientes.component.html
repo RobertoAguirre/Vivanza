@@ -147,6 +147,7 @@
                                             <th>fecha_cancelacion</th>
                                             <th>fecha_ultimo_comentario</th>
                                             <th>hora_ultimo_comentario</th>
+                                            <th>usuario_comentario</th>
                                             <th>ultimo_comentario</th>
                                             <th>visita1</th>
                                             <th>visita2</th>
@@ -199,6 +200,7 @@
                                             <td>{{item.fecha_cancelacion}}</td>
                                             <td>{{item.fecha_ultimo_comentario}}</td>
                                             <td>{{item.hora_ultimo_comentario}}</td>
+                                            <td>{{item.usuario_comentario}}</td>
                                             <td>{{item.ultimo_comentario}}</td>
                                             <td>{{item.visita1}}</td>
                                             <td>{{item.visita2}}</td>
@@ -257,7 +259,7 @@
                                                 </thead>
                                                 <tbody *ngFor="let buscar of lista_clientes">
                                                     <tr>
-                                                        <td>{{buscar.nombre}}</td>
+                                                        <td  style="text-transform:uppercase">{{buscar.nombre}}</td>
                                                         <td>{{buscar.numero}}</td>
                                                         <td class="center"><i class="fa fa-edit"
                                                                 style="color:green; font-size:1em" aria-hidden="true"
@@ -279,7 +281,7 @@
                                 <div class="row">
                                     <div *ngIf="btn_btn" class="form-group col-md-2">
                                         <label>Tipo de Cliente<span style="color:red">*</span></label>
-                                        <select name="selectTipo" formControlName="tipo_cliente"
+                                        <select style="text-transform:uppercase" name="selectTipo" formControlName="tipo_cliente"
                                             class="form-control select2 select2-hidden-accessible" style="width: 100%;"
                                             tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;"></option>
@@ -290,7 +292,7 @@
                                     </div>
                                     <div class="form-group col-md-2">
                                         <label>Tipo de Cliente</label>
-                                        <input disabled value={{capturaForm.value.tipo_cliente}} type="text"
+                                        <input  style="text-transform:uppercase"disabled value={{capturaForm.value.tipo_cliente}} type="text"
                                             class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-2">
@@ -307,22 +309,22 @@
 
                                 </div>
                                 <div class="row">
-                                    <div *ngIf="_asesor_v == true"  class="form-group col-md-3">
+                                    <div *ngIf="_asesor_v == true"  class="form-group col-md-4">
                                         <label>Asesor<span style="color:red">*</span></label>
-                                        <select  formControlName="asesor" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <select formControlName="asesor" class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_asesor" [value]="item.id_persona">{{item.Nombre}}</option>
                                             
                                         </select>
                                     </div>
                                     
-                                    <div *ngIf="_asesor_v == false" class="form-group col-md-3">
+                                    <div *ngIf="_asesor_v == false" class="form-group col-md-4">
                                         <label>Asesor<span style="color:red">*</span></label>
-                                        <input readonly formControlName="asesor" type="text" class="form-control" placeholder="" autocomplete="off">
+                                        <input style="text-transform:uppercase" readonly formControlName="asesor" type="text" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                       <div class="form-group col-md-3">
                                         <label>Registró<span style="color:red">*</span></label>
-                                        <input readonly formControlName="registro"   type="text" class="form-control" placeholder="" autocomplete="off">
+                                        <input style="text-transform:uppercase" readonly formControlName="registro"   type="text" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -333,17 +335,17 @@
 
                                     <div class="form-group col-md-3">
                                         <label>Nombre(s)<span style="color:red">*</span></label>
-                                        <input formControlName="nombres" type="text" class="form-control" placeholder=""
+                                        <input style="text-transform:uppercase" formControlName="nombres" type="text" class="form-control" placeholder=""
                                             autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Apellido Paterno<span style="color:red">*</span></label>
-                                        <input formControlName="apellido_paterno" type="text" class="form-control"
+                                        <input style="text-transform:uppercase" formControlName="apellido_paterno" type="text" class="form-control"
                                             placeholder="" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Apellido Materno</label>
-                                        <input formControlName="apellido_materno" type="text" class="form-control"
+                                        <input style="text-transform:uppercase" formControlName="apellido_materno" type="text" class="form-control"
                                             placeholder="" autocomplete="off">
                                     </div>
                                     <!-- <div class="form-group col-md-3">
@@ -363,13 +365,13 @@
 
                                     <div class="form-group col-md-3">
                                         <label>Email</label>
-                                        <input formControlName="email" type="email" class="form-control" placeholder=""
+                                        <input  style="text-transform:uppercase" formControlName="email" type="email" class="form-control" placeholder=""
                                             autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Género<span style="color:red">*</span></label>
                                         <select formControlName="genero"
-                                            class="form-control select2 select2-hidden-accessible" style="width: 100%;"
+                                            class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase"
                                             tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;"></option>
                                             <option *ngFor="let item of _combo_genero" [value]="item.nombre">
@@ -380,7 +382,7 @@
                                     <div class="form-group col-md-3">
                                         <label>Nivel de Interés<span style="color:red">*</span></label>
                                         <select formControlName="nivel_interes"
-                                            class="form-control select2 select2-hidden-accessible" style="width: 100%;"
+                                            class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase"
                                             tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;"></option>
                                             <option *ngFor="let item of _combo_nivel_de_interes" [value]="item.nombre">
@@ -401,7 +403,7 @@
                                         <label>Canal<span style="color:red">*</span></label>
                                         <select (change)="CanalSeleccionado($event.target.value)"
                                             formControlName="combo_canal"
-                                            class="form-control select2 select2-hidden-accessible" style="width: 100%;"
+                                            class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase"
                                             tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;"></option>
                                             <option *ngFor="let item of _combo_canales" [value]="item.ID">{{item.Canal}}
@@ -413,7 +415,7 @@
                                         <label>Medio<span *ngIf="medio_requerido" style="color:red">*</span></label>
                                         <select (change)="MedioSeleccionado($event.target.value)"
                                             formControlName="combo_medio"
-                                            class="form-control select2 select2-hidden-accessible" style="width: 100%;"
+                                            class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase"
                                             tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;"></option>
                                             <option *ngFor="let item of _combo_medios" [value]="item.ID">{{item.Medio}}
@@ -425,7 +427,7 @@
                                         <label>Submedio<span *ngIf="submedio_requerido"
                                                 style="color:red">*</span></label>
                                         <select formControlName="combo_submedio"
-                                            class="form-control select2 select2-hidden-accessible" style="width: 100%;"
+                                            class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase"
                                             tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;"></option>
                                             <option *ngFor="let item of _combo_submedios" [value]="item.ID">
@@ -436,7 +438,7 @@
                                     <div class="form-group col-md-6">
                                         <label>Referidor</label>
                                         <select formControlName="referidor"
-                                            class="form-control select2 select2-hidden-accessible" style="width: 100%;"
+                                            class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase"
                                             tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;"></option>
                                             <option *ngFor="let item of _combo_clientes" [value]="item.ID">
@@ -455,7 +457,7 @@
 
                                     <div class="form-group col-md-3">
                                         <label>Desarrollos<span style="color:red">*</span></label>
-                                        <select (change)="DesarrolloSeleccionado($event.target.value)" formControlName="combo_desarrollo" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <select (change)="DesarrolloSeleccionado($event.target.value,0)" formControlName="combo_desarrollo" class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_desarrollos" [value]="item.id_desarrollo">{{item.nombre_desarrollo}}</option>
                                             
@@ -463,23 +465,47 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Prototipo<span style="color:red">*</span></label>
-                                        <select (change)="PrototipoSeleccionado($event.target.value)" formControlName="combo_prototipo" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <select (change)="PrototipoSeleccionado($event.target.value,0)" formControlName="combo_prototipo" class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_prototipos" [value]="item.ID">{{item.nombre_vivienda}}</option>
                                             
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label>Manzana y Lote<span style="color:red">*</span></label>
-                                        <select  formControlName="combo_manzana" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                   <!--  <div class="form-group col-md-3">
+                                        <label>Etapa<span style="color:red">*</span></label>
+                                        <select (change)="EtapaSeleccionada($event.target.value)" formControlName="combo_etapa" class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
-                                            <option *ngFor="let item of _combo_manzanas" [value]="item.manzana">{{item.nombre_vivienda}}</option>
+                                            <option *ngFor="let item of _combo_manzanas" [value]="item.ID">{{item.nombre_etapa}}</option>
                                             
+                                        </select>
+                                    </div> -->
+                                    <div class="form-group col-md-3">
+                                        <label>Etapa</label>
+                                        <select (change)="EtapaSeleccionada($event.target.value,0)" formControlName="combo_etapa" class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                           <!--  <option *ngFor="let item of _combo_manzanas" [value]="item.manzana">{{item.nombre_vivienda}}</option> -->
+                                            <option *ngFor="let item of _combo_manzanas" [value]="item.ID">{{item.nombre_etapa}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <label>Manzana<span style="color:red">*</span></label>
+                                        <select (change)="ManzanaSeleccionada($event.target.value)" formControlName="combo_manzana" class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                           <!--  <option *ngFor="let item of _combo_manzanas" [value]="item.manzana">{{item.nombre_vivienda}}</option> -->
+                                            <option *ngFor="let item of _combo_manzana" [value]="item.manzana">{{item.manzana}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-1">
+                                        <label>Lote<span style="color:red">*</span></label>
+                                        <select  formControlName="combo_lote" class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase" tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;" ></option>
+                                           <!--  <option *ngFor="let item of _combo_manzanas" [value]="item.manzana">{{item.nombre_vivienda}}</option> -->
+                                            <option *ngFor="let item of _combo_lote" [value]="item.ID">{{item.lote}}</option>
                                         </select>
                                     </div>
                                     <div  class="form-group col-md-3">
                                         <label>Tipo de Crédito<span style="color:red">*</span></label>
-                                        <select (change)="TipoCreditoSeleccionado($event.target.value)" formControlName="tipo_credito" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <select (change)="TipoCreditoSeleccionado($event.target.value)" formControlName="tipo_credito" class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_tipos_creditos" [value]="item.ID">{{item.Tipo}}</option>
                                             
@@ -487,7 +513,7 @@
                                     </div>
                                     <div  class="form-group col-md-3">
                                         <label>Crédito<span *ngIf="no_medio == 1" style="color:red">*</span></label>
-                                        <select (change)="CreditoSeleccionado($event.target.value)" formControlName="credito" class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
+                                        <select style="text-transform:uppercase" (change)="CreditoSeleccionado($event.target.value)" formControlName="credito" class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_creditos" [value]="item.ID">{{item['Crédito']}}</option>
                                             
@@ -495,7 +521,7 @@
                                     </div>
                                     <div  class="form-group col-md-3">
                                         <label>Institucion Financiera<span *ngIf="no_submedio == 1" style="color:red">*</span></label>
-                                        <select formControlName="institucion_financiera" class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
+                                        <select style="text-transform:uppercase" formControlName="institucion_financiera" class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_institucion_financiera" [value]="item.ID">{{item['Institución Financiera']}}</option>
                                             
@@ -503,7 +529,7 @@
                                     </div>
                                     <div  class="form-group col-md-3">
                                         <label>Ingresos<span style="color:red">*</span></label>
-                                        <select formControlName="ingresos" class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
+                                        <select style="text-transform:uppercase" formControlName="ingresos" class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_ingresos" [value]="item.nombre">{{item.nombre}}</option>
                                             
@@ -556,7 +582,7 @@
                                                 </span>
                                                 <input *ngIf="_visita1 == false" type="date"
                                                     (change)='VisitaSeleccionado("Vendido")' formControlName="visita">
-                                                <input *ngIf="_visita1 == true" style="text-align:center;" disabled
+                                                <input *ngIf="_visita1 == true" placeholder="" style="text-align:center;" disabled
                                                     formControlName="visita">
                                             </div>
                                             <!-- /.info-box-content -->
@@ -571,7 +597,7 @@
                                                 </span>
                                                 <input *ngIf="_visita2 == false" type="date"
                                                     (change)='VisitaSeleccionado("Vendido")' formControlName="visita2">
-                                                <input *ngIf="_visita2 == true" style="text-align:center;" disabled
+                                                <input *ngIf="_visita2 == true" style="text-align:center;" placeholder="" disabled
                                                     formControlName="visita2">
                                             </div>
                                             <!-- /.info-box-content -->
@@ -617,7 +643,7 @@
                                     </div>
                                     <div class="form-group col-md-10">
                                         <label></label>
-                                        <input formControlName="comentario" #reference type="text" class="form-control" placeholder="" autocomplete="off">
+                                        <input  style="text-transform:uppercase" formControlName="comentario" #reference type="text" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-2">
                                         
@@ -638,8 +664,8 @@
                                                 <tbody *ngFor="let buscar of lista_comentarios">
                                                     <tr>
                                                         <td>{{buscar.fecha }}</td>
-                                                        <td>{{buscar.nombre}}</td>
-                                                        <td>{{buscar.comentario}}</td>
+                                                        <td style="text-transform:uppercase">{{buscar.nombre}}</td>
+                                                        <td style="text-transform:uppercase">{{buscar.comentario}}</td>
 
                                                     </tr>
                                                 </tbody>
@@ -695,9 +721,9 @@
         </div>
     </div>
 
-    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg">
+<!--     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-lg">
         Modal ejemplo
-    </button>
+    </button> -->
 
     <div class="modal fade" id="modal-lg">
         <div class="modal-dialog modal-lg">

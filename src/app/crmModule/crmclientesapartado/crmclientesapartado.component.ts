@@ -319,6 +319,10 @@ export class CrmclientesapartadoComponent implements OnInit {
     }
   }
 
+  Documentos(){
+    this.router.navigate(['/crmformatoapartado'],{queryParams:{'item':this.id_cliente}});
+  }
+
   ComboEstados(){
     let data = {
       "appname":"VIVANZA",

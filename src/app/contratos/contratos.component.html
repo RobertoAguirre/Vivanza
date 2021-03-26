@@ -1,254 +1,470 @@
-<div style="margin-left: 0.2in;">
-<p>Valor de la vivienda:</p>
-<br>
-<p>Mts de excedente:</p>
-<p></p>
-<P align="center" style="margin-bottom: 0in"><img src="src/assets/img/molinoDeAgua.jpg" name="logo" width=231 height=128></P>
-<p align="center" >SOLICITUD DE APARTADO / COMPRA</p>
+<div class="content-wrapper" style="min-height: 1365.62px;">
+    <div style="margin-left: 0.2in;">
+        <p>Valor de la vivienda:</p>
+        <br>
+        <p>Mts de excedente:</p>
+        <p></p>
+        <P align="center" style="margin-bottom: 0in"><img src="src/assets/img/molinoDeAgua.jpg" name="logo" width=231 height=128></P>
+        <p align="center" >SOLICITUD DE APARTADO / COMPRA</p>
+        </div>
+        <div><table align="center">
+              <tr>
+                <td><div style="width:50px;height:15px;border:1px solid #000;"></div></td>
+                <td>RONDA</td>
+                <td><div style="width:50px;height:15px;border:1px solid #000;"></div></td>
+                <td>OLVERA</td>
+                <td><div style="width:50px;height:15px;border:1px solid #000;"></div></td>
+                <td>SANTILLANA</td>
+                <td><div style="width:50px;height:15px;border:1px solid #000;"></div></td>
+              </tr>
+              <tr>
+                <td>ALICANTE</td>
+                <td><div style="width:50px;height:15px;border:1px solid #000;"></div></td>
+                <td>LERIDA</td>
+                <td><div style="width:50px;height:15px;border:1px solid #000;"></div></td>
+              </tr>
+        </table>
+        </div>
+        <br>
+        <div>
+            <p align="center">MANZANA: ______    LOTE:_______    ETAPA:_______     FASE:_______    FECHA DE ENTREGA:___________</p>
+        </div>
+        <br>
+
+        <p align="center" style="margin-left: 0.2in; margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in 0.06in">
+            <font color="#000080">I.SOLICITANTE</font>
+        </p>
+        <br>
+
+
+        <div class="col-lg" >
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label>Nombre</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.nombres}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Apellido Paterno</label>
+                    <input disabled value="{{datos_cliente.apellido_paterno}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Apellido Materno</label>
+                    <input disabled value="{{datos_cliente.apellido_materno}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>RFC</label>
+                    <input disabled value="{{datos_cliente.rfc}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Calle</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.direccion}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md">
+                    <label>No. Interior</label>
+                    <input disabled value="{{datos_cliente.numero_interior}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md">
+                    <label>No. Exterior</label>
+                    <input disabled value="{{datos_cliente.numero_exterior}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Colonia</label>
+                    <input disabled value="{{datos_cliente.colonia}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md">
+                    <label>C.P</label>
+                    <input disabled value="{{datos_cliente.codigo_postal}}" type="text" class="form-control" placeholder="" minlength="5" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Teléfono Casa</label>
+                    <input disabled value="{{datos_cliente.telefono_casa}}" type="text" class="form-control" placeholder="" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Teléfono Celular</label>
+                    <input disabled value="{{datos_cliente.telefono_personal}}" type="text" class="form-control" placeholder="" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Teléfono Oficina</label>
+                    <input disabled value="{{datos_cliente.telefono_oficina}}" type="text" class="form-control" placeholder="" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label>Vive en</label>
+                    <input disabled value="{{datos_cliente.vive_en}}" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label>Tiempo de Residencia</label>
+                    <input disabled value="{{datos_cliente.tiempo_residencia}}" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-3">
+                    <label># de Dependientes Económicos</label>
+                    <input disabled value="{{datos_cliente.numero_dependientes}}" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Correo</label>
+                    <input disabled value="{{datos_cliente.correo}}" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Estado</label>
+                    <input disabled value="{{datos_cliente.nombre_estado_cliente}}" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Ciudad</label>
+                    <input disabled value="{{datos_cliente.nombre_ciudad_cliente}}" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Estado Civil</label>
+                    <input disabled value="{{datos_cliente.estado_civil}}" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-1">
+                    <label>Peso</label>
+                    <input disabled value="{{datos_cliente.peso}}" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-1">
+                    <label>Estatura</label>
+                    <input disabled value="{{datos_cliente.estatura}}" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label>Fecha Nacimiento</label>
+                    <input disabled value="{{datos_cliente.fecha_nacimiento}}" type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Régimen Matrimonial</label>
+                    <input disabled width="100%" value="{{datos_cliente.regimen_matrimonial}}" type="text" class="form-control" placeholder="">
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label>Fecha Matrimonio</label>
+                    <input disabled value="{{datos_cliente.fecha_matrimonio}}" type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Escolaridad</label>
+                    <input disabled value="{{datos_cliente.escolaridad}}" type="text" class="form-control" placeholder="">
+                </div>
+                <div class="form-group col-md-1">
+                    <label>Edad</label>
+                    <input disabled value="{{datos_cliente.edad}}" type="text" class="form-control" placeholder="">
+                </div>
+               
+            </div>
+        </div>
+        <br>
+
+        <p align="center" style="margin-left: 0.2in; margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in 0.06in">
+            <font color="#000080">II. EMPLEO DEL SOLICITANTE</font>
+        </p>
+
+        <br> <div class="col-lg">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label>Nombre de la empresa (razón social)</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.nombre_empresa_cliente}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Antigüedad en la Compañía</label>
+                    <input disabled value="{{datos_cliente.antiguedad_empresa}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Puesto</label>
+                    <input disabled value="{{datos_cliente.puesto_empresa}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Giro de la Empresa</label>
+                    <input disabled value="{{datos_cliente.giro_empresa_cliente}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Tipo Contrato</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.tipo_contrato}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Nombre Jefe Inmediato</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.nombre_jefe_cliente}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Departamento</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.departamento_cliente}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Ingresos Mensuales Brutos</label>
+                   <!--  <input [value]="datos_cliente.ingresos_mensuales_cliente | currency:'USD':'symbol' : '1.0-0'"  formControlName="ingresos_mensuales" type="text" class="form-control" placeholder="" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');"> -->
+                    <input disabled style="width: 100%;" value="{{datos_cliente.ingresos_mensuales_cliente}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-5">
+                    <label>Calle</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.calle_empresa}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>No. Interior</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.numero_interior_cliente}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>No. Exterior</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.numero_exterior_cliente}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Colonia</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.colonia_cliente}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-1">
+                    <label>C.P</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.codigo_postal_cliente}}" type="text" class="form-control" placeholder="" minlength="5" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Teléfono</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.telefono_cliente}}" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-1">
+                    <label>Ext.</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.extension_cliente}}" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                  
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Estado</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.nombre_estado_empresa}}" type="text" class="form-control" >
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Ciudad</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.nombre_ciudad_empresa}}" type="text" class="form-control" >
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Número de Seguridad Social</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.nss}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+               
+            </div>
+        </div>
+       
+        <br>
+
+        <p align="center" style="margin-left: 0.2in; margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in 0.06in">
+            <font color="#000080">III. DATOS DEL CONYUGE (NECESARIOS EN CUALQUIER CASO) participe o no en el crédito hipotecario</font>
+        </p>
+        <br>
+
+        <div class="col-lg">
+            <div class="row">
+                <div class="form-group col-md-3">
+                    <label>Nombre(s)</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.nombre_conyuge}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Apellido Paterno</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.apellido_paterno_conyuge}}"  type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Apellido Materno</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.apellido_materno_conyuge}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>RFC</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.rfc_conyuge}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Lugar de Nacimiento</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.lugar_nacimiento_conyuge}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Trabaja</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.trabaja}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                
+                <div class="form-group col-md-12">
+                    <label>Nombre de la Empresa</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.nombre_empresa_conyuge}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div  class="form-group col-md-2">
+                    <label>Antiguedad</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.antiguedad_conyuge}}" type="text" class="form-control" placeholder="" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                </div>
+                <div  class="form-group col-md-4">
+                    <label>Puesto</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.puesto_conyuge}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div  class="form-group col-md-3">
+                    <label>Giro de la Empresa</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.giro_empresa_conyuge}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div  class="form-group col-md-4">
+                    <label>Nombre Jefe Inmediato</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.nombre_jefe_empresa_conyuge}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div  class="form-group col-md-4">
+                    <label>Departamento</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.departamento_empresa_conyuge}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div  class="form-group col-md-4">
+                    <label>Ingresos Mensuales Brutos</label>
+                    <input  disabled style="width: 100%;" value="{{datos_cliente.ingresos_mensuales_conyuge}}"  formControlName="ingresos_mensuales_conyuge" type="text" class="form-control" placeholder="" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                </div>
+                <div  class="form-group col-md-5">
+                    <label>Calle</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.calle_empresa_conyuge}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div  class="form-group col-md-2">
+                    <label>No. Interior</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.numero_interior_empresa_conyuge}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div  class="form-group col-md-2">
+                    <label>No. Exterior</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.numero_exterior_empresa_conyuge}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div  class="form-group col-md-3">
+                    <label>Colonia</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.colonia_empresa_conyuge}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div  class="form-group col-md-2">
+                    <label>C.P</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.codigo_postal_empresa_conyuge}}" type="text" class="form-control" placeholder="" minlength="5" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                </div>
+                <div  class="form-group col-md-3">
+                    <label>Teléfono</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.telefono_empresa_conyuge}}" type="text" class="form-control" placeholder="" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+
+                </div>
+                <div  class="form-group col-md-1">
+                    <label>Ext.</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.extension_empresa_conyuge}}" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                    
+                </div>
+               
+                
+
+                <div class="form-group col-md-3">
+                    <label>Participa en el Crédito</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.participa_credito}}" type="text" class="form-control"  oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Escolaridad</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.escolaridad_conyuge}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Peso</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.peso_conyuge}}" type="text" class="form-control" placeholder="Kilogramos" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Estatura</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.estatura_conyuge}}" type="text" class="form-control" placeholder="Centímetros" autocomplete="off" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');">
+                </div>
+                <div class="form-group col-md-3">
+                    <label>Número de Seguridad Social</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.nss_conyuge}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+               
+            </div>
+        </div>
+        
+        <br>
+        <p align="center" style="margin-left: 0.2in; margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in 0.06in">
+            <font color="#000080">IV. REFERENCIAS PERSONALES SOLICITANTE. </font>
+        </p>
+        <br>
+        <div class="col-lg">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label>Nombre</label>
+                    <input disabled style="width: 100%;" value="{{referencias_cliente[0].nombre}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Dirección</label>
+                    <input disabled style="width: 100%;" value="{{referencias_cliente[0].direccion}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Teléfono</label>
+                    <input disabled style="width: 100%;" value="{{referencias_cliente[0].telefono}}"  type="text" class="form-control" placeholder="" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Nombre</label>
+                    <input disabled style="width: 100%;" value="{{referencias_cliente[1].nombre}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Dirección</label>
+                    <input disabled style="width: 100%;" value="{{referencias_cliente[1].direccion}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Teléfono</label>
+                    <input disabled style="width: 100%;" value="{{referencias_cliente[1].telefono}}"  type="text" class="form-control" placeholder="" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Nombre</label>
+                    <input disabled style="width: 100%;" value="{{referencias_cliente[2].nombre}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Dirección</label>
+                    <input disabled style="width: 100%;" value="{{referencias_cliente[2].direccion}}" type="text" class="form-control" placeholder="" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Teléfono</label>
+                    <input disabled style="width: 100%;" value="{{referencias_cliente[2].telefono}}"  type="text" class="form-control" placeholder="" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+            </div>
+            
+            
+        </div>
+
+        
+        <br>
+        <strong>
+            <p align="center" style="margin-left: 0.2in; margin-bottom: 0in; padding: 0.01in 0.06in">
+                <font color="#244061" size="4" bold>Crédito solicitado</font>
+            </p>
+        </strong>
+        <br>
+        <div class="col-lg">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label>Banco</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.banco}}"  type="text" class="form-control" placeholder="" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Apoyo Infonavit</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.infonavit}}"  type="text" class="form-control" placeholder="" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-1">
+                    <label>Cofinavit</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.cofinavit}}"  type="text" class="form-control" placeholder="" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Plazo (meses)</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.enganche}}"  type="text" class="form-control" placeholder="" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Tipo de Crédito</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.tipo_credito}}"  type="text" class="form-control" placeholder="" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+                <div class="form-group col-md-2">
+                    <label>Monto de Crédito</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.monto_credito}}"  type="text" class="form-control" placeholder="" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+               
+                <div class="form-group col-md-2">
+                    <label>Enganche</label>
+                    <input disabled style="width: 100%;" value="{{datos_cliente.plazo}}"  type="text" class="form-control" placeholder="" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                </div>
+               
+            </div>
+        </div>
+
+        
+        <br>
+        <p align="center" style="margin-left: 0.2in; margin-bottom: 0in; padding: 0.01in 0.06in">
+            Es necesario se llenen todos y cada uno de los apartados que se solicitan, con la finalidad de tramitar el crédito hipotecario con mayor agilidad. Gracias!
+        </p>
+        <p align="center" style="margin-left: -0.2in; margin-bottom: 0in;">
+            <span style="background: #ffff00">Esta solicitud de apartado tiene una vigencia de 48 horas a partir del día del apartado</span>
+        </p>
+        <br>
+        <br>
+        <br>
+        <p style="margin-left: 0.2in; margin-bottom: 0in;">
+            Fecha de hoy ____/____/_____ Firma y nombre del Solicitante _______________________________________ 
+        </p>
+        <br>
+        <br>
+        <br>
+        <p style="margin-left: 0.2in; margin-bottom: 0in;">
+            Nombre del ejecutivo que atendió: _________________________ 
+        </p>
+        
 </div>
-<div><table align="center">
-      <tr>
-        <td><div style="width:50px;height:15px;border:1px solid #000;"></div></td>
-        <td>RONDA</td>
-        <td><div style="width:50px;height:15px;border:1px solid #000;"></div></td>
-        <td>OLVERA</td>
-        <td><div style="width:50px;height:15px;border:1px solid #000;"></div></td>
-        <td>SANTILLANA</td>
-        <td><div style="width:50px;height:15px;border:1px solid #000;"></div></td>
-      </tr>
-      <tr>
-        <td>ALICANTE</td>
-        <td><div style="width:50px;height:15px;border:1px solid #000;"></div></td>
-        <td>LERIDA</td>
-        <td><div style="width:50px;height:15px;border:1px solid #000;"></div></td>
-      </tr>
-</table>
-</div>
-<br>
-<div>
-    <p align="center">MANZANA: ______    LOTE:_______    ETAPA:_______     FASE:_______    FECHA DE ENTREGA:___________</p>
-</div>
-<br>
-<br>
-<br>
-<p align="center" style="margin-left: 0.2in; margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in 0.06in">
-    <font color="#000080">I.SOLICITANTE</font>
-</p>
-<br>
-<br>
-<table align="center" id="tableSolicitante" style="margin-left: 0.2in;">
-    <tr>
-        <td id="nombreSolicitante">Nombre _______________________________ </td>
-        <td id="apellidoPaternoSolicitante">Apellido Paterno __________________________</td>
-        <td id="maternoSolicitante">Materno ____________________</td>
-    </tr>
-    <tr>
-        <td id="rfcSolicitante">R.F.C _________________________________ </td>
-        <td id="homoclaveSolicitante">homoclave _______________________________</td>
-    </tr>
-    <tr>
-        <td id="domicilioSolicitante">Domicilio _____________________________ </td>
-        <td id="coloniaSolicitante">Colonia _________________________________</td>
-    </tr>
-    <tr>
-        <td id="telCasaSolicitante">Teléfono Casa __________________________ </td>
-        <td id="telCelularSolicitante">Teléfono Celular __________________________</td>
-        <td id="telOficinaSolicitante">Tel Oficina __________________</td>
-    </tr>
-    <tr>
-        <td id="casaPropiaSolicitante">Vive en casa propia______________________ </td>
-        <td id="hipotecaSolicitante">Con hipoteca______________________________</td>
-        <td id="familiaresSolicitante">De familiares ________________</td>
-        <td id="rentadaSolicitante">Rentada ____</td>
-        <td id="otrosSolicitante">Otros ____</td>
-    </tr>
-    <tr>
-        <td id="tiempoResidenciaSolicitante">Tiempo de residencia ____________________</td>
-        <td id="dependientesEconomicosSolicitante">Número de dependientes económicos __________</td>
-    </tr>
-    <tr>
-        <td id="correoSolicitante">Correo Electrónico ______________________ </td>
-        <td id="ciudadSolicitante">Ciudad __________________________________</td>
-        <td id="estadoSolicitante">Estado ______________________</td>
-        <td id="cpSolicitante">CP _______</td>
-    </tr>
-    <tr>
-        <td id="casadoSolicitante">Estado Civil: Casado ____________________ </td>
-        <td id="solteroSolicitante">Soltero __________________________________</td>
-        <td id="divorciadoSolicitante">Divorciado ___________________</td>
-        <td id="pesoSolicitante">Peso(kg) ____</td>
-        <td id="estaturaSolicitante">Estatura(cms) ____</td>
-    </tr>
-    <tr>
-        <td id="fechaNacimientoSolicitante">Fecha de Nacimiento: ____________________ </td>
-        <td id="lugarNacimientoSolicitante">Lugar de Nacimiento _______________________</td>
-    </tr>
-    <tr>
-        <td id="sociedadConyugalSolicitante"> Régimen matrimonial: Sociedad Conyugal ____ </td>
-        <td id="separacionBienesSolicitante"> Separación de Bienes ______________________</td>
-        <td id="fechaMatrimonioSolicitante"> Fecha de matrimonio____________</td>
-    </tr>
-    <tr>
-        <td id="escolaridadSolicitante">Escolaridad: ____________________________ </td>
-        <td id="edadSolicitante">Edad: ___________________________________</td>
-    </tr>
-</table>
-<br>
-<br>
-<p align="center" style="margin-left: 0.2in; margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in 0.06in">
-    <font color="#000080">II. EMPLEO DEL SOLICITANTE</font>
-</p>
-<br>
-<br>
-<table align="center" id="tableEmpresaSolicitante" style="margin-left: 0.2in;">    
-    <tr>
-        <td id="nombreSolicitante">Nombre de la empresa (razón social)  ___________________________________________________________________________________________________________________ </td>
-    </tr>
-</table>
-<table align="center" id="tableEmpleoSolicitante" style="margin-left: 0.2in;">
-    <tr>
-        <td id="antiguedadSolicitante">Antigüedad en la Compañía __________________________________</td>
-        <td id="puestoSolicitante">Puesto ________________________________</td>
-    </tr>
-    <tr>
-        <td id="giroEmpresaSolicitante">Giro de la empresa _________________________________________ </td>
-        <td id="contratoIndefinidoSolicitante">Tipo de contrato. Indefinido _______________</td>
-        <td id="contratoTemporalSolicitante">Temporal _________</td>
-    </tr>
-    <tr>
-        <td id="jefeDptoSolicitante">Nombre del jefe del departamento _____________________________ </td>
-        <td id="departamentoSolicitante">Departamento __________________________</td>
-    </tr>
-    <tr>
-        <td id="ingresosMensualesSolicitante">Ingresos Mensuales(brutos) __________________________________ </td>
-        <td id="domicilioEmpresaSolicitante">Domicilio Empresa ______________________</td>
-    </tr>
-    <tr>
-        <td id="casaPropiaSolicitante">Colonia __________________________________________________ </td>
-        <td id="hipotecaSolicitante">Teléfono ______________________________</td>
-        <td id="familiaresSolicitante">Extensión _________</td>
-        <td id="rentadaSolicitante">Cd y Edo ____</td>
-    </tr>
-    <tr>
-        <td id="cpEmpresaSolicitante">C.P _____________________________________________________</td>
-        <td id="nssEmpresaSolicitante">Número de seguridad social _______________</td>
-    </tr>
-</table>
-<br>
-<br>
-<p align="center" style="margin-left: 0.2in; margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in 0.06in">
-    <font color="#000080">III. DATOS DEL CONYUGE (NECESARIOS EN CUALQUIER CASO) participe o no en el crédito hipotecario</font>
-</p>
-<br>
-<br>
-<table align="center" id="tableConyuge" style="margin-left: 0.2in;">
-    <tr>
-        <td id="nombreConyuge">Nombre _________________________________________ </td>
-        <td id="apellidoPaternoConyuge">Apellido Paterno __________________________</td>
-        <td id="maternoConyuge">Materno __________________</td>
-    </tr>
-    <tr>
-        <td id="rfcConyuge">R.F.C ___________________________________________ </td>
-        <td id="homoclaveConyuge">Homoclave _______________________________</td>
-        <td id="trabajaConyuge">Trabaja Si(____) No(____)</td>
-    </tr>
-    <tr>
-        <td id="lugarNacimientoConyuge">Lugar de Nacimiento _______________________________ </td>
-    </tr>
-    <tr>
-        <td id="nombreEmpresaConyuge">Donde (Nombre de la Empresa) _______________________ </td>
-    </tr>
-    <tr>
-        <td id="domicilioConyuge">Domicilio ________________________________________</td>
-        <td id="telefonoConyuge">Teléfono ________________________________</td>
-        <td id="extensionConyuge">Extensión __________</td>
-    </tr>
-    <tr>
-        <td id="puestoConyuge">Puesto ___________________________________________</td>
-        <td id="ingresoMensualConyuge">Ingreso Mensual (brutos) ___________________</td>
-    </tr>
-    <tr>
-        <td id="antiguedadCompaniaConyuge">Antigüedad en la compañía __________________________ </td>
-        <td id="giroCompaniaConyuge">Giro de la compañía _______________________</td>
-    </tr>
-    <tr>
-        <td id="participaCreditoConyuge">Participa en el Crédito: SI_________ NO__________ </td>
-        <td id="escolaridadConyuge">Escolaridad ______________________________</td>
-    </tr>
-    <tr>
-        <td id="nssConyuge">NSS ____________________________________________ </td>
-        <td id="pesoConyuge">Peso(kg) _________</td>
-        <td id="estaturaConyuge">Estatura(cms) ________</td>
-    </tr>
-</table>
-<br>
-<br>
-<p align="center" style="margin-left: 0.2in; margin-bottom: 0in; border: 1px solid #000000; padding: 0.01in 0.06in">
-    <font color="#000080">IV. REFERENCIAS PERSONALES SOLICITANTE. </font>
-</p>
-<br>
-<br>
-<table align="center" id="tableReferenciasPersonales" style="margin-left: 0.2in;">
-    <tr>
-        <td>Nombre</td>
-        <td>Domicilio</td>
-        <td>Teléfono</td>
-    </tr>
-    <tr>
-        <td id="nombreRferencia1"> ___________________________________________ </td>
-        <td id="domicilioReferencia1">________________________________________</td>
-        <td id="telefonoReferencia1">____________________________</td>
-    </tr>
-    <tr>
-        <td id="nombreRferencia2"> ___________________________________________ </td>
-        <td id="domicilioReferencia2">________________________________________</td>
-        <td id="telefonoReferencia2">____________________________</td>
-    </tr>
-    <tr>
-        <td id="nombreRferencia2"> ___________________________________________</td>
-        <td id="domicilioReferencia2">________________________________________</td>
-        <td id="telefonoReferencia2">____________________________</td>
-    </tr>
-</table>
-<br>
-<br>
-<strong>
-    <p align="center" style="margin-left: 0.2in; margin-bottom: 0in; padding: 0.01in 0.06in">
-        <font color="#244061" size="4" bold>Crédito solicitado</font>
-    </p>
-</strong>
-<br>
-<table align="center" id="tableCreditoSolicitado" style="margin-left: 0.2in;">
-    <tr>
-        <td id="bancoCreditoSolicitado">Banco: ___________________________________________ </td>
-        <td id="apoyoInfonavitCreditoSolicitado">Apoyo Infonavit: ________________________________________</td>
-        <td id="cofinavitCreditoSolicitado">Cofinavit: ____________________________</td>
-    </tr>
-    <tr>
-        <td id="plazoCreditoSolicitado">Plazo: ___________________________________________ </td>
-        <td id="tipoCreditoSolicitado">Tipo de Crédito: ________________________________________</td>
-        <td id="montoCreditoSolicitado">Monto de Crédito ______________________</td>
-    </tr>
-    <tr>
-        <td id="engancheCreditoSolicitado">Enganche: _______________________________________</td>
-    </tr>
-</table>
-<br>
-<p align="center" style="margin-left: 0.2in; margin-bottom: 0in; padding: 0.01in 0.06in">
-    Es necesario se llenen todos y cada uno de los apartados que se solicitan, con la finalidad de tramitar el crédito hipotecario con mayor agilidad. Gracias!
-</p>
-<p align="center" style="margin-left: -0.2in; margin-bottom: 0in;">
-    <span style="background: #ffff00">Esta solicitud de apartado tiene una vigencia de 48 horas a partir del día del apartado</span>
-</p>
-<br>
-<br>
-<br>
-<p style="margin-left: 0.2in; margin-bottom: 0in;">
-    Fecha de hoy ____/____/_____ Firma y nombre del Solicitante _______________________________________ 
-</p>
-<br>
-<br>
-<br>
-<p style="margin-left: 0.2in; margin-bottom: 0in;">
-    Nombre del ejecutivo que atendió: _________________________ 
-</p>

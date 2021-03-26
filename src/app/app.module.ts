@@ -47,10 +47,6 @@ import { CrmarchivosComponent } from './crmModule/crmarchivos/crmarchivos.compon
 
 
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
