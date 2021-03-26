@@ -2,7 +2,7 @@ import { Injectable, ElementRef } from '@angular/core';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import html2canvas from 'html2canvas';
-
+import jspdf from 'jspdf';
 
 const EXCEL_EXTENSION = '.xlsx';
 
