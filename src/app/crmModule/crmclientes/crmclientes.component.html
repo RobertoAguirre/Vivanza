@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <button type="button" [disabled]="btns" class="btn btn-outline-success btn-block"
-                                        (click)="BuscarCliente()">Busqueda</button>
+                                        (click)="BuscarCliente()">Búsqueda</button>
                                 </div>
                                 
                                     <div *ngIf="btn_exporta == false " class="col-md-2">
@@ -228,7 +228,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Buscar</label>
-                                        <input formControlName="consulta" type="text" class="form-control"
+                                        <input style="text-transform:uppercase" formControlName="consulta" type="text" class="form-control"
                                             placeholder="" autocomplete="off">
                                     </div>
                                     <div class="col-md-2" style="margin-top: 2em;">
@@ -237,11 +237,11 @@
                                     </div>
                                     <div class="form-group col-md-2">
                                         <label>Buscar por:</label>
-                                        <select formControlName="buscar"
+                                        <select style="text-transform:uppercase" formControlName="buscar"
                                             class="form-control select2 select2-hidden-accessible" style="width: 100%;"
                                             tabindex="-1" aria-hidden="true">
-                                            <option disabled selected style="display:none;"></option>
-                                            <option *ngFor="let item of _combo_buscar" [value]="item.nombre">
+                                            <option style="text-transform:uppercase" disabled selected style="display:none;"></option>
+                                            <option style="text-transform:uppercase" *ngFor="let item of _combo_buscar" [value]="item.nombre">
                                                 {{item.nombre}}</option>
                                         </select>
                                     </div>
@@ -279,7 +279,7 @@
                         <form [formGroup]="capturaForm">
                             <div class="card-body">
                                 <div class="row">
-                                    <div *ngIf="btn_btn" class="form-group col-md-2">
+                                    <div *ngIf="btn_btn" class="form-group col-md-3">
                                         <label>Tipo de Cliente<span style="color:red">*</span></label>
                                         <select style="text-transform:uppercase" name="selectTipo" formControlName="tipo_cliente"
                                             class="form-control select2 select2-hidden-accessible" style="width: 100%;"
@@ -290,7 +290,7 @@
 
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-2">
+                                    <div class="form-group col-md-3">
                                         <label>Tipo de Cliente</label>
                                         <input  style="text-transform:uppercase"disabled value={{capturaForm.value.tipo_cliente}} type="text"
                                             class="form-control" placeholder="" autocomplete="off">
@@ -322,7 +322,7 @@
                                         <label>Asesor<span style="color:red">*</span></label>
                                         <input style="text-transform:uppercase" readonly formControlName="asesor" type="text" class="form-control" placeholder="" autocomplete="off">
                                     </div>
-                                      <div class="form-group col-md-3">
+                                      <div class="form-group col-md-4">
                                         <label>Registró<span style="color:red">*</span></label>
                                         <input style="text-transform:uppercase" readonly formControlName="registro"   type="text" class="form-control" placeholder="" autocomplete="off">
                                     </div>
@@ -344,7 +344,7 @@
                                             placeholder="" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label>Apellido Materno</label>
+                                        <label>Apellido Materno<span *ngIf="_estatus_cliente =='Apartado' " style="color:red">*</span></label>
                                         <input style="text-transform:uppercase" formControlName="apellido_materno" type="text" class="form-control"
                                             placeholder="" autocomplete="off">
                                     </div>
@@ -357,14 +357,14 @@
 
                                     <div class="form-group col-md-3">
                                         <label>Teléfono<span style="color:red">*</span></label>
-                                        <input formControlName="telefono" type="text" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                        <input formControlName="telefono" type="text" (change)="RevisaNumero()" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
                                         <span style="font-size:small;color:gray;"><i>El teléfono es a 10 dígitos</i></span>
                                     </div>
 
 
 
                                     <div class="form-group col-md-3">
-                                        <label>Email</label>
+                                        <label>Email<span *ngIf="_estatus_cliente =='Apartado' " style="color:red">*</span></label>
                                         <input  style="text-transform:uppercase" formControlName="email" type="email" class="form-control" placeholder=""
                                             autocomplete="off">
                                     </div>
@@ -379,7 +379,7 @@
 
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    <div *ngIf="_visita_seleccionado == 0 " class="form-group col-md-3">
                                         <label>Nivel de Interés<span style="color:red">*</span></label>
                                         <select formControlName="nivel_interes"
                                             class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase"
@@ -390,6 +390,12 @@
 
                                         </select>
                                     </div>
+                                    <div *ngIf="_visita_seleccionado == 1 " class="form-group col-md-3">
+                                        <label>Nivel de Interés</label>
+                                        <input disabled  style="text-transform:uppercase" formControlName="nivel_interes"  class="form-control" placeholder=""
+                                        autocomplete="off">
+                                    </div>
+                                    
                                 </div>
 
                                 <div class="row">
@@ -456,7 +462,7 @@
 
 
                                     <div class="form-group col-md-3">
-                                        <label>Desarrollos<span style="color:red">*</span></label>
+                                        <label>Desarrollos<span *ngIf="_estatus_cliente =='Cliente Potencial' || _estatus_cliente =='Apartado' " style="color:red">*</span></label>
                                         <select (change)="DesarrolloSeleccionado($event.target.value,0)" formControlName="combo_desarrollo" class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_desarrollos" [value]="item.id_desarrollo">{{item.nombre_desarrollo}}</option>
@@ -464,7 +470,7 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <label>Prototipo<span style="color:red">*</span></label>
+                                        <label>Prototipo<span *ngIf="_estatus_cliente =='Apartado' " style="color:red">*</span></label>
                                         <select (change)="PrototipoSeleccionado($event.target.value,0)" formControlName="combo_prototipo" class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_prototipos" [value]="item.ID">{{item.nombre_vivienda}}</option>
@@ -479,32 +485,47 @@
                                             
                                         </select>
                                     </div> -->
-                                    <div class="form-group col-md-3">
-                                        <label>Etapa</label>
+                                    <div *ngIf="_estatus_cliente =='Apartado' "  class="form-group col-md-3">
+                                        <label>Etapa<span *ngIf="_estatus_cliente =='Apartado' " style="color:red">*</span></label>
                                         <select (change)="EtapaSeleccionada($event.target.value,0)" formControlName="combo_etapa" class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                            <!--  <option *ngFor="let item of _combo_manzanas" [value]="item.manzana">{{item.nombre_vivienda}}</option> -->
-                                            <option *ngFor="let item of _combo_manzanas" [value]="item.ID">{{item.nombre_etapa}}</option>
+                                            <option  *ngFor="let item of _combo_manzanas" [value]="item.ID">{{item.nombre_etapa}}</option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-1">
-                                        <label>Manzana<span style="color:red">*</span></label>
+                                    <div *ngIf="_estatus_cliente !='Apartado' "  class="form-group col-md-3">
+                                        <label>Etapa</label>
+                                        <input disabled  style="text-transform:uppercase"   class="form-control" placeholder=""
+                                        autocomplete="off">
+                                    </div>
+                                    <div *ngIf="_estatus_cliente =='Apartado' " class="form-group col-md-1">
+                                        <label>Manzana<span *ngIf="_estatus_cliente =='Apartado' " style="color:red">*</span></label>
                                         <select (change)="ManzanaSeleccionada($event.target.value)" formControlName="combo_manzana" class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                            <!--  <option *ngFor="let item of _combo_manzanas" [value]="item.manzana">{{item.nombre_vivienda}}</option> -->
                                             <option *ngFor="let item of _combo_manzana" [value]="item.manzana">{{item.manzana}}</option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-md-1">
-                                        <label>Lote<span style="color:red">*</span></label>
+                                    <div *ngIf="_estatus_cliente !='Apartado' "  class="form-group col-md-1">
+                                        <label>Manzana</label>
+                                        <input disabled  style="text-transform:uppercase"   class="form-control" placeholder=""
+                                        autocomplete="off">
+                                    </div>
+                                    <div *ngIf="_estatus_cliente =='Apartado' " class="form-group col-md-1">
+                                        <label>Lote<span *ngIf="_estatus_cliente =='Apartado' " style="color:red">*</span></label>
                                         <select  formControlName="combo_lote" class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                            <!--  <option *ngFor="let item of _combo_manzanas" [value]="item.manzana">{{item.nombre_vivienda}}</option> -->
                                             <option *ngFor="let item of _combo_lote" [value]="item.ID">{{item.lote}}</option>
                                         </select>
                                     </div>
+                                    <div *ngIf="_estatus_cliente !='Apartado' "  class="form-group col-md-1">
+                                        <label>Lote</label>
+                                        <input disabled  style="text-transform:uppercase"   class="form-control" placeholder=""
+                                        autocomplete="off">
+                                    </div>
                                     <div  class="form-group col-md-3">
-                                        <label>Tipo de Crédito<span style="color:red">*</span></label>
+                                        <label>Tipo de Crédito<span *ngIf="_estatus_cliente =='Apartado' " style="color:red">*</span></label>
                                         <select (change)="TipoCreditoSeleccionado($event.target.value)" formControlName="tipo_credito" class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_tipos_creditos" [value]="item.ID">{{item.Tipo}}</option>
@@ -528,7 +549,7 @@
                                         </select>
                                     </div>
                                     <div  class="form-group col-md-3">
-                                        <label>Ingresos<span style="color:red">*</span></label>
+                                        <label>Ingresos<span *ngIf="_estatus_cliente =='Apartado' " style="color:red">*</span></label>
                                         <select style="text-transform:uppercase" formControlName="ingresos" class="form-control select2 select2-hidden-accessible"  tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_ingresos" [value]="item.nombre">{{item.nombre}}</option>
@@ -546,7 +567,10 @@
 
                                     <div class="form-group col-md-3">
                                         <label>Próximo Contacto</label>
-                                        <input formControlName="proximo_contacto"
+                                        <input *ngIf="_visita_seleccionado == 0 " formControlName="proximo_contacto"
+                                            (change)='CambioProximoContacto($event.target.value)' type="datetime-local"
+                                            class="form-control" placeholder="" autocomplete="off">
+                                        <input disabled *ngIf="_visita_seleccionado == 1" formControlName="proximo_contacto"
                                             (change)='CambioProximoContacto($event.target.value)' type="datetime-local"
                                             class="form-control" placeholder="" autocomplete="off">
                                     </div>
@@ -574,68 +598,39 @@
                                         <h5>VISITAS</h5>
                                         <br>
                                     </div>
-                                    <div class="col-md-3 col-sm-6 col-12">
-                                        <div class="info-box">
-                                            <div class="info-box-content">
-                                                <span class="info-box-text" style="text-align: center;">
-                                                    <h3>Visita 1</h3>
-                                                </span>
-                                                <input *ngIf="_visita1 == false" type="date"
-                                                    (change)='VisitaSeleccionado("Vendido")' formControlName="visita">
-                                                <input *ngIf="_visita1 == true" placeholder="" style="text-align:center;" disabled
-                                                    formControlName="visita">
-                                            </div>
-                                            <!-- /.info-box-content -->
-                                        </div>
-                                        <!-- /.info-box -->
-                                    </div>
-                                    <div class="col-md-3 col-sm-6 col-12">
-                                        <div class="info-box">
-                                            <div class="info-box-content">
-                                                <span class="info-box-text" style="text-align: center;">
-                                                    <h3>Visita 2</h3>
-                                                </span>
-                                                <input *ngIf="_visita2 == false" type="date"
-                                                    (change)='VisitaSeleccionado("Vendido")' formControlName="visita2">
-                                                <input *ngIf="_visita2 == true" style="text-align:center;" placeholder="" disabled
-                                                    formControlName="visita2">
-                                            </div>
-                                            <!-- /.info-box-content -->
-                                        </div>
-                                        <!-- /.info-box -->
-                                    </div>
-                                    <div class="col-md-3 col-sm-6 col-12">
-                                        <div class="info-box">
-                                            <div class="info-box-content">
-                                                <span class="info-box-text" style="text-align: center;">
-                                                    <h3>Visita 3</h3>
-                                                </span>
-                                                <input *ngIf="_visita3 == false" type="date"
-                                                    (change)='VisitaSeleccionado("Vendido")' formControlName="visita3">
-                                                <input *ngIf="_visita3 == true" style="text-align:center;" disabled
-                                                    formControlName="visita3">
-                                            </div>
-                                            <!-- /.info-box-content -->
-                                        </div>
-                                        <!-- /.info-box -->
-                                    </div>
-                                    <div class="col-md-3 col-sm-6 col-12">
-                                        <div class="info-box">
-                                            <div class="info-box-content">
-                                                <span class="info-box-text" style="text-align: center;">
-                                                    <h3>Visita 4</h3>
-                                                </span>
-                                                <input *ngIf="_visita4 == false" type="date"
-                                                    (change)='VisitaSeleccionado("Vendido")' formControlName="visita4">
-                                                <input *ngIf="_visita4 == true" style="text-align:center;" disabled
-                                                    formControlName="visita4">
 
-                                            </div>
-                                            <!-- /.info-box-content -->
-                                        </div>
-                                        <!-- /.info-box -->
+
+                                    <div class="form-group col-md-3">
+                                        <label>VISITA 1</label>
+                                        <input class="form-control" *ngIf="_visita1 == false" type="datetime-local"
+                                        (change)='VisitaSeleccionado("Vendido")' formControlName="visita">
+                                        <input class="form-control" *ngIf="_visita1 == true" disabled type="datetime-local"
+                                        (change)='VisitaSeleccionado("Vendido")' formControlName="visita">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>VISITA 2</label>
+                                        <input class="form-control" *ngIf="_visita2 == false" type="datetime-local"
+                                        (change)='VisitaSeleccionado("Vendido")' formControlName="visita2">
+                                        <input class="form-control" *ngIf="_visita2 == true" disabled type="datetime-local"
+                                        (change)='VisitaSeleccionado("Vendido")' formControlName="visita2">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>VISITA 3</label>
+                                        <input class="form-control" *ngIf="_visita3 == false" type="datetime-local"
+                                        (change)='VisitaSeleccionado("Vendido")' formControlName="visita3">
+                                        <input class="form-control" disabled  *ngIf="_visita3 == true" type="datetime-local"
+                                        (change)='VisitaSeleccionado("Vendido")' formControlName="visita3">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>VISITA 4</label>
+                                        <input class="form-control" *ngIf="_visita4 == false" type="datetime-local"
+                                        (change)='VisitaSeleccionado("Vendido")' formControlName="visita4">
+                                        <input class="form-control" *ngIf="_visita4 == true" disabled type="datetime-local"
+                                        (change)='VisitaSeleccionado("Vendido")' formControlName="visita4"> 
                                     </div>
                                 </div>
+
+                                
                                 <div class="row">
                                     <div class="col-md-12" style="padding-top: 1em; margin-bottom: -3em;">
                                         <h5>COMENTARIOS</h5>
@@ -703,7 +698,7 @@
                                     <div class="col-md-2">
                                         <button type="button" [disabled]="btns"
                                             class="btn btn-outline-success btn-block"
-                                            (click)="BuscarCliente()">Busqueda</button>
+                                            (click)="BuscarCliente()">Búsqueda</button>
                                     </div>
 
                                 </div>

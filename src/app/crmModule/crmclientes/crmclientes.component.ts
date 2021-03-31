@@ -92,6 +92,8 @@ export class CrmclientesComponent implements OnInit {
   public etapa;
   public vivienda_seleccionada;
   public _manzana;
+  public _estatus_cliente;
+  public _hora_server;
 
   capturaForm = this.formBuilder.group({
     tipo_cliente:['',Validators.required],
@@ -189,8 +191,8 @@ export class CrmclientesComponent implements OnInit {
       {nombre: 'Más de $50,000 mensuales'}
     ]
     this._combo_buscar = [
-      {nombre: 'Nombre'},
-      {nombre: 'Teléfono'},
+      {nombre: 'NOMBRE'},
+      {nombre: 'TELÉFONO'},
     ]
 /*     this.TraeFecha();
     this.TraeUsuario(); */
@@ -695,13 +697,15 @@ export class CrmclientesComponent implements OnInit {
       _response = response;
       let apartado;
       apartado = _response.success.recordset[0].tipo_cliente;
+      this._estatus_cliente = apartado;
       if(apartado == 'Apartado'){
         this.btn_apartado = true;
       }
+     
       this.visit = _response.success.recordsets[1];
       this.visit.forEach(value => {
         let u;
-        u = value.visita.slice(0,-14);
+        u = value.visita.slice(0,-8);
         if (u == '1900-01-01'){
           u = '';
         }
@@ -794,9 +798,15 @@ export class CrmclientesComponent implements OnInit {
         }
         
       }
+    
       else{
        this. _pc = '';
       }
+
+  /*     if(_response.success.recordsets[2].visita3 != null){
+        this.visitas[2].visita = _response.success.recordsets[2].visita3.slice(0,-8);
+      } */
+
       if(_response.success.recordset[0].fecha_apartado != null){
         
         this._fa = _response.success.recordset[0].fecha_apartado.slice(0,-14);
@@ -907,7 +917,47 @@ export class CrmclientesComponent implements OnInit {
   FechaApartadoContacto(item){
     if(item == 'Apartado'){
       this._info_financiera = true;
-      
+      this._estatus_cliente = 'Apartado';
+      if(this.capturaForm.value.tipo_credito === 0){
+        this.capturaForm.value.tipo_credito = '';
+      }
+      this.capturaForm = this.formBuilder.group({
+        tipo_cliente:[this.capturaForm.value.tipo_cliente,Validators.required],
+        fecha:[this.capturaForm.value.fecha,Validators.required],
+        folio:[this.capturaForm.value.folio],
+        asesor:[this.capturaForm.value.asesor,Validators.required],
+        registro:[this.nombre_registra,Validators.required],
+        nombres:[this.capturaForm.value.nombres,Validators.required],
+        apellido_paterno:[this.capturaForm.value.apellido_paterno,Validators.required],
+        apellido_materno:[this.capturaForm.value.apellido_materno,Validators.required],
+        telefono:[this.capturaForm.value.telefono,Validators.required],
+        email:[this.capturaForm.value.email,Validators.required],
+        genero:[this.capturaForm.value.genero,Validators.required],
+        nivel_interes:[this.capturaForm.value.nivel_interes,Validators.required],
+        combo_canal:[this.capturaForm.value.combo_canal,Validators.required],
+        combo_medio:[this.capturaForm.value.combo_medio,Validators.required],
+        combo_submedio:[this.capturaForm.value.combo_submedio],
+        referidor:[this.capturaForm.value.referidor],
+        combo_desarrollo:[this.capturaForm.value.combo_desarrollo,Validators.required],
+        combo_prototipo:[this.capturaForm.value.combo_prototipo,Validators.required],
+        combo_etapa:[this.capturaForm.value.combo_etapa,Validators.required],
+        combo_manzana:[this.capturaForm.value.combo_manzana,Validators.required],
+        combo_lote:[this.capturaForm.value.combo_lote,Validators.required],
+        tipo_credito:[this.capturaForm.value.tipo_credito,Validators.required],
+        credito:[this.capturaForm.value.credito],
+        institucion_financiera:[this.capturaForm.value.institucion_financiera],
+        ingresos:[this.capturaForm.value.ingresos,Validators.required],
+        proximo_contacto:[this.capturaForm.value.proximo_contacto],
+        fecha_apartado:[this.capturaForm.value.fecha_apartado],
+        fecha_venta:[this.capturaForm.value.fecha_venta],
+        fecha_cancelacion:[this.capturaForm.value.fecha_cancelacion],
+        visita:[this.capturaForm.value.visita],
+        visita2:[this.capturaForm.value.visita2],
+        visita3:[this.capturaForm.value.visita3],
+        visita4:[this.capturaForm.value.visita4],
+        comentario:[this.capturaForm.value.comentario]
+      })
+
     }
     this.capturaForm.value.registro = this.nombre_registra;
     if(this.capturaForm.value.comentario == undefined){
@@ -987,6 +1037,7 @@ export class CrmclientesComponent implements OnInit {
   }
  
   CanalSeleccionado(item){
+    this._combo_submedios = [];
     let data = {
       "appname":"VIVANZA",
       "sp": 'dvp.Trae_Medios_Canal_CRM_Clientes',
@@ -1004,7 +1055,7 @@ export class CrmclientesComponent implements OnInit {
         this.boton_guarda = true;
       }
       this._combo_medios = _response.success.recordset;
-      this._combo_submedios = [];
+      
     })
   }
 
@@ -1077,7 +1128,7 @@ export class CrmclientesComponent implements OnInit {
   
         this.capturaForm.setValue(
           {
-            tipo_cliente: item,
+            tipo_cliente: this.capturaForm.value.tipo_cliente,
             fecha: this.capturaForm.value.fecha ,
             folio:this.capturaForm.value.folio,
             asesor:this.capturaForm.value.asesor,
@@ -1167,7 +1218,7 @@ export class CrmclientesComponent implements OnInit {
   
         this.capturaForm.setValue(
           {
-            tipo_cliente: item,
+            tipo_cliente: this.capturaForm.value.tipo_cliente,
             fecha: this.capturaForm.value.fecha ,
             folio:this.capturaForm.value.folio,
             asesor:this.capturaForm.value.asesor,
@@ -1237,7 +1288,7 @@ export class CrmclientesComponent implements OnInit {
         }
         this.capturaForm.setValue(
           {
-            tipo_cliente: item,
+            tipo_cliente: this.capturaForm.value.tipo_cliente,
             fecha: this.capturaForm.value.fecha ,
             folio:this.capturaForm.value.folio,
             asesor:this.capturaForm.value.asesor,
@@ -1311,6 +1362,7 @@ export class CrmclientesComponent implements OnInit {
   }
 
   TipoCreditoSeleccionado(item){
+    this._combo_institucion_financiera = [];
     let data = {
       "appname":"VIVANZA",
       "sp": 'dvp.Trae_Credito_Tipos_CRM_Clientes',
@@ -1330,7 +1382,7 @@ export class CrmclientesComponent implements OnInit {
         this.no_medio = 1;
       }
       this._combo_creditos = _response.success.recordsets[0];
-      this._combo_institucion_financiera = [];
+     
     })
   }
 
@@ -1361,7 +1413,7 @@ export class CrmclientesComponent implements OnInit {
     this.capturaFormBuscar.setValue(
       {
         consulta: '',
-        buscar: 'Nombre'
+        buscar: 'NOMBRE'
       })
     this.editar = true;
     this.btns = true;
@@ -1426,46 +1478,116 @@ export class CrmclientesComponent implements OnInit {
     this.EsAsesor();
   }
 
+  HoraServidor(){
+    let data = { 
+      "appname":"VIVANZA",
+      "sp": 'dvp.Combo_Lotes',
+      "params": []
+    }
+
+    this.apiService.ejecuta(data).subscribe((response) => {
+      let _response;
+      _response = response;
+      this._hora_server = _response.success.recordset.slice(0,-8);
+      /* _response.success.recordset[0].proximo_contacto.slice(0,-8); */
+    })
+  }
+
   VisitaSeleccionado(item){
     this._visita_seleccionado = 1;
-    this.capturaForm.setValue(
-      {
-        tipo_cliente: 'Cliente Potencial',
-        fecha: this.capturaForm.value.fecha ,
-        folio:this.capturaForm.value.folio,
-        asesor:this.capturaForm.value.asesor,
-        registro:this.nombre_registra,
-        nombres:this.capturaForm.value.nombres,
-        apellido_paterno:this.capturaForm.value.apellido_paterno,
-        apellido_materno:this.capturaForm.value.apellido_materno,
-        telefono:this.capturaForm.value.telefono,
-        email:this.capturaForm.value.email,
-        genero:this.capturaForm.value.genero,
-        nivel_interes:this.capturaForm.value.nivel_interes,
-        combo_canal:this.capturaForm.value.combo_canal,
-        combo_medio:this.capturaForm.value.combo_medio,
-        combo_submedio:this.capturaForm.value.combo_submedio,
-        referidor:this.capturaForm.value.referidor ,
-        combo_desarrollo:this.capturaForm.value.combo_desarrollo,
-        combo_prototipo:this.capturaForm.value.combo_prototipo,
-        combo_etapa:this.capturaForm.value.combo_etapa,
-        combo_manzana:this.capturaForm.value.combo_manzana ,
-        combo_lote:this.capturaForm.value.combo_lote ,
-        tipo_credito:this.capturaForm.value.tipo_credito,
-        credito:this.capturaForm.value.credito,
-        institucion_financiera:this.capturaForm.value.institucion_financiera,
-        ingresos:this.capturaForm.value.ingresos,
-        proximo_contacto:this.capturaForm.value.proximo_contacto,
-        fecha_apartado:this.capturaForm.value.fecha_apartado,
-        fecha_venta:this.capturaForm.value.fecha_venta,
-        fecha_cancelacion:this.capturaForm.value.fecha_cancelacion,
-        visita:this.capturaForm.value.visita,
-        visita2:this.capturaForm.value.visita2,
-        visita3:this.capturaForm.value.visita3,
-        visita4:this.capturaForm.value.visita4,
-        comentario:this.capturaForm.value.comentario
-      });
-     
+    this._estatus_cliente = 'Cliente Potencial';
+    let data = { 
+      "appname":"VIVANZA",
+      "sp": 'dbo.Trae_Fecha_Servidor',
+      "params": []
+    }
+
+    this.apiService.ejecuta(data).subscribe((response) => {
+      let _response;
+      _response = response;
+      this._hora_server = _response.success.recordset[0].fecha.slice(0,-8);
+      /* _response.success.recordset[0].proximo_contacto.slice(0,-8); */
+      this.datos_cliente = 0;
+      this.capturaForm.setValue(
+        {
+          tipo_cliente: 'Cliente Potencial',
+          fecha: this.capturaForm.value.fecha ,
+          folio:this.capturaForm.value.folio,
+          asesor:this.capturaForm.value.asesor,
+          registro:this.nombre_registra,
+          nombres:this.capturaForm.value.nombres,
+          apellido_paterno:this.capturaForm.value.apellido_paterno,
+          apellido_materno:this.capturaForm.value.apellido_materno,
+          telefono:this.capturaForm.value.telefono,
+          email:this.capturaForm.value.email,
+          genero:this.capturaForm.value.genero,
+          nivel_interes:'Muy interesado (15 días)',
+          combo_canal:this.capturaForm.value.combo_canal,
+          combo_medio:this.capturaForm.value.combo_medio,
+          combo_submedio:this.capturaForm.value.combo_submedio,
+          referidor:this.capturaForm.value.referidor ,
+          combo_desarrollo:this.capturaForm.value.combo_desarrollo,
+          combo_prototipo:this.capturaForm.value.combo_prototipo,
+          combo_etapa:this.capturaForm.value.combo_etapa,
+          combo_manzana:this.capturaForm.value.combo_manzana ,
+          combo_lote:this.capturaForm.value.combo_lote ,
+          tipo_credito:this.capturaForm.value.tipo_credito,
+          credito:this.capturaForm.value.credito,
+          institucion_financiera:this.capturaForm.value.institucion_financiera,
+          ingresos:this.capturaForm.value.ingresos,
+          proximo_contacto:this._hora_server,
+          fecha_apartado:this.capturaForm.value.fecha_apartado,
+          fecha_venta:this.capturaForm.value.fecha_venta,
+          fecha_cancelacion:this.capturaForm.value.fecha_cancelacion,
+          visita:this.capturaForm.value.visita,
+          visita2:this.capturaForm.value.visita2,
+          visita3:this.capturaForm.value.visita3,
+          visita4:this.capturaForm.value.visita4,
+          comentario:this.capturaForm.value.comentario
+        });
+        if(this.capturaForm.value.combo_desarrollo === 0){
+          this.capturaForm.value.combo_desarrollo = '';
+        }
+        this.capturaForm = this.formBuilder.group({
+          tipo_cliente:[this.capturaForm.value.tipo_cliente,Validators.required],
+          fecha:[this.capturaForm.value.fecha,Validators.required],
+          folio:[this.capturaForm.value.folio],
+          asesor:[this.capturaForm.value.asesor,Validators.required],
+          registro:[this.nombre_registra,Validators.required],
+          nombres:[this.capturaForm.value.nombres,Validators.required],
+          apellido_paterno:[this.capturaForm.value.apellido_paterno,Validators.required],
+          apellido_materno:[this.capturaForm.value.apellido_materno],
+          telefono:[this.capturaForm.value.telefono,Validators.required],
+          email:[this.capturaForm.value.email],
+          genero:[this.capturaForm.value.genero,Validators.required],
+          nivel_interes:[this.capturaForm.value.nivel_interes,Validators.required],
+          combo_canal:[this.capturaForm.value.combo_canal,Validators.required],
+          combo_medio:[this.capturaForm.value.combo_medio],
+          combo_submedio:[this.capturaForm.value.combo_submedio],
+          referidor:[this.capturaForm.value.referidor],
+          combo_desarrollo:[this.capturaForm.value.combo_desarrollo,Validators.required],
+          combo_prototipo:[this.capturaForm.value.combo_prototipo],
+          combo_etapa:[this.capturaForm.value.combo_etapa],
+          combo_manzana:[this.capturaForm.value.combo_manzana],
+          combo_lote:[this.capturaForm.value.combo_lote],
+          tipo_credito:[this.capturaForm.value.tipo_credito],
+          credito:[this.capturaForm.value.credito],
+          institucion_financiera:[this.capturaForm.value.institucion_financiera],
+          ingresos:[this.capturaForm.value.ingresos],
+          proximo_contacto:[this.capturaForm.value.proximo_contacto],
+          fecha_apartado:[this.capturaForm.value.fecha_apartado],
+          fecha_venta:[this.capturaForm.value.fecha_venta],
+          fecha_cancelacion:[this.capturaForm.value.fecha_cancelacion],
+          visita:[this.capturaForm.value.visita],
+          visita2:[this.capturaForm.value.visita2],
+          visita3:[this.capturaForm.value.visita3],
+          visita4:[this.capturaForm.value.visita4],
+          comentario:[this.capturaForm.value.comentario]
+        })
+
+    })
+    
+    
   }
 
   Cancelar(){
@@ -1478,7 +1600,7 @@ export class CrmclientesComponent implements OnInit {
     this.capturaFormBuscar.setValue(
       {
         consulta: '',
-        buscar: 'Nombre'
+        buscar: 'NOMBRE'
       })
 
     this.BloquearCampos(1);
@@ -1486,6 +1608,85 @@ export class CrmclientesComponent implements OnInit {
 
   CambioProximoContacto(item){
     this.datos_cliente = 0;
+  }
+
+  RevisaNumero(){
+
+    if(this.capturaForm.value.telefono.length === 10){
+      if(this.capturaForm.value.folio == ''){
+        this.capturaForm.value.folio = 0;
+      }
+      let data = {
+        "appname":"VIVANZA",
+        "sp": 'dvp.Verifica_Telefono',
+        "params": ["'" + this.capturaForm.value.folio + "','" 
+                  ,  + this.capturaForm.value.telefono +"'"  ]
+    /*     "params": ["'" + localStorage.getItem('id') + "','" 
+          ,  1 + "'" ] */
+  
+      }
+  
+      this.apiService.ejecuta(data).subscribe((response) => {
+        let _response;
+        _response = response;
+        if(_response.success.recordsets.length > 0){
+          let d = _response.success.recordsets[0];
+          if(d[0].error == 1){
+            alert(d[0].mensaje);
+            var _reg;
+            if(this.capturaForm.value.registro === undefined){
+              _reg = this.nombre_registra;
+            }
+            else{
+              _reg = this.capturaForm.value.registro;
+            }
+            this.capturaForm.setValue(
+              {
+                tipo_cliente: this.capturaForm.value.tipo_cliente,
+                fecha: this.capturaForm.value.fecha ,
+                folio:this.capturaForm.value.folio,
+                asesor:this.capturaForm.value.asesor,
+                registro:_reg,
+                nombres:this.capturaForm.value.nombres,
+                apellido_paterno:this.capturaForm.value.apellido_paterno,
+                apellido_materno:this.capturaForm.value.apellido_materno,
+                telefono:'',
+                email:this.capturaForm.value.email,
+                genero:this.capturaForm.value.genero,
+                nivel_interes:this.capturaForm.value.nivel_interes,
+                combo_canal:this.capturaForm.value.combo_canal,
+                combo_medio:this.capturaForm.value.combo_medio,
+                combo_submedio:this.capturaForm.value.combo_submedio,
+                referidor:this.capturaForm.value.referidor ,
+                combo_desarrollo:this.capturaForm.value.combo_desarrollo,
+                combo_prototipo:this.capturaForm.value.combo_prototipo,
+                combo_etapa:this.capturaForm.value.combo_etapa,
+                combo_manzana:this.capturaForm.value.combo_manzana ,
+                combo_lote:this.capturaForm.value.combo_lote ,
+                tipo_credito:this.capturaForm.value.tipo_credito,
+                credito:this.capturaForm.value.credito,
+                institucion_financiera:this.capturaForm.value.institucion_financiera,
+                ingresos:this.capturaForm.value.ingresos,
+                proximo_contacto:this.capturaForm.value.proximo_contacto,
+                fecha_apartado:this.capturaForm.value.fecha_apartado,
+                fecha_venta:this.capturaForm.value.fecha_venta,
+                fecha_cancelacion:this.capturaForm.value.fecha_cancelacion,
+                visita:this.capturaForm.value.visita,
+                visita2:this.capturaForm.value.visita2,
+                visita3:this.capturaForm.value.visita3,
+                visita4:this.capturaForm.value.visita4,
+                comentario:this.capturaForm.value.comentario
+              }) 
+          }
+          else{
+  
+          }
+        }
+        
+        
+      })
+    }
+
   }
 
   Guarda(){
@@ -1527,6 +1728,26 @@ export class CrmclientesComponent implements OnInit {
     if(this.capturaForm.value.proximo_contacto != ''){
     
       this.capturaForm.value.proximo_contacto = this.capturaForm.value.proximo_contacto.replace("T", " ");
+      
+    } 
+    if(this.capturaForm.value.visita != '' ){
+    
+      this.capturaForm.value.visita = this.capturaForm.value.visita.replace("T", " ");
+      
+    } 
+    if(this.capturaForm.value.visita2 != ''){
+    
+      this.capturaForm.value.visita2 = this.capturaForm.value.visita2.replace("T", " ");
+      
+    } 
+    if(this.capturaForm.value.visita3 != ''){
+    
+      this.capturaForm.value.visita3 = this.capturaForm.value.visita3.replace("T", " ");
+      
+    } 
+    if(this.capturaForm.value.visita4 != ''){
+    
+      this.capturaForm.value.visita4 = this.capturaForm.value.visita4.replace("T", " ");
       
     } 
     if(this.capturaForm.value.comentario == undefined){
@@ -1619,10 +1840,15 @@ export class CrmclientesComponent implements OnInit {
         }
         else{
           alert(d[0].mensaje);
+          
           this.btn_apartado = false;
           this.btns = false;
           this.btn_com = false;
           this.visitas = [];
+          this._visita1 = false;
+          this._visita2 = false;
+          this._visita3 = false;
+          this._visita4 = false;
           this.LimpiaFormulario();
           window.scroll(0, 0);
   
@@ -1637,7 +1863,7 @@ export class CrmclientesComponent implements OnInit {
         alert('Se debe de seleccionar un Desarrollo para poder agendar una visita.');
       }
       else{
-        alert('Se den de llenar todos los campos de Información Financiera.');
+        alert('Se den de llenarlso datos obligatorios de Información Financiera.');
       }
       
     }
