@@ -29,6 +29,29 @@
                             <app-tables class="table-responsive;"  *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset" [metodoEditar]="Editar" [metodoEliminar]="Eliminar">
                             </app-tables>
                         </div>
+
+                       <!--  <div class=" col-md-12 table-responsive">
+                                <table id="mytables"  class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Canal</th>
+                                            <th>Estado</th>
+                                            <th>Promotor</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of dataset">
+                                            <td>{{item.ID}}</td>
+                                            <td>{{item.Canal}}</td>
+                                            <td>{{item.Estado}}</td>
+                                            <td>{{item.Promotor}}</td>
+                                            <td ><i (click)="metodoEditar(item)" style="color: blue;" class="fas fa-edit" ></i>  <span>&nbsp;&nbsp;&nbsp;</span> <i *ngIf="item.Estado == 'Activo'" (click)="metodoEliminar(item)"  style="color:green;" class="fas fa-eye"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </div>   -->
                        
                     </div>
                 </div>

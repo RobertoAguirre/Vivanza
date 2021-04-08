@@ -47,6 +47,7 @@ export class CrmclientesComponent implements OnInit {
   public _combo_genero;
   public _combo_asesor;
   public _combo_nivel_de_interes;
+  public _combo_desperfilado;
   public _combo_canales;
   public _combo_medios;
   public _combo_submedios;
@@ -94,6 +95,8 @@ export class CrmclientesComponent implements OnInit {
   public _manzana;
   public _estatus_cliente;
   public _hora_server;
+  public _tipo_usuario;
+  public _desperfilado;
 
   capturaForm = this.formBuilder.group({
     tipo_cliente:['',Validators.required],
@@ -108,6 +111,7 @@ export class CrmclientesComponent implements OnInit {
     email:[''],
     genero:['',Validators.required],
     nivel_interes:['',Validators.required],
+    motivo_desperfilado:[''],
     combo_canal:['',Validators.required],
     combo_medio:[''],
     combo_submedio:[''],
@@ -181,6 +185,12 @@ export class CrmclientesComponent implements OnInit {
       {nombre: 'Incubadora'},
       {nombre: 'Perfilado no interesado'},
       {nombre: 'No perfilado'}
+    ]
+    this._combo_desperfilado = [
+      {nombre: 'Desperfilado'},
+      {nombre: 'Ya compro'},
+      {nombre: 'Problemas crediticios'},
+      {nombre: 'Desinterés'}
     ]
     this._combo_ingresos = [
       {nombre: 'De 0 a $10,000 mensuales'},
@@ -323,6 +333,7 @@ export class CrmclientesComponent implements OnInit {
             email:'',
             genero:'',
             nivel_interes:'',
+            motivo_desperfilado:'',
             combo_canal:'',
             combo_medio:'',
             combo_submedio:'',
@@ -464,6 +475,7 @@ export class CrmclientesComponent implements OnInit {
           email:this.capturaForm.value.email,
           genero:this.capturaForm.value.genero,
           nivel_interes:this.capturaForm.value.nivel_interes,
+          motivo_desperfilado:this.capturaForm.value.motivo_desperfilado,
           combo_canal:this.capturaForm.value.combo_canal,
           combo_medio:this.capturaForm.value.combo_medio,
           combo_submedio:this.capturaForm.value.combo_submedio,
@@ -529,6 +541,7 @@ export class CrmclientesComponent implements OnInit {
             email:'',
             genero:'',
             nivel_interes:'',
+            motivo_desperfilado:'',
             combo_canal:'',
             combo_medio:'',
             combo_submedio:'',
@@ -575,6 +588,7 @@ export class CrmclientesComponent implements OnInit {
             email:'',
             genero:'',
             nivel_interes:'',
+            motivo_desperfilado:'',
             combo_canal:'',
             combo_medio:'',
             combo_submedio:'',
@@ -656,6 +670,8 @@ export class CrmclientesComponent implements OnInit {
     })
   }
 
+ 
+
   BuscaCliente(consulta){
     this.EsAsesor();
     this.capturaFormBuscar;
@@ -664,7 +680,7 @@ export class CrmclientesComponent implements OnInit {
       "sp": 'dvp.Busca_Clientes',
       "params": ["'" + this.capturaFormBuscar.value.consulta + "','" 
             ,  this.capturaFormBuscar.value.buscar + "','" 
-            ,  this._es_asesor + "','" 
+           /*  ,  this._es_asesor + "','"  */
             ,  localStorage.getItem('id') + "'"
            ]
 
@@ -679,7 +695,53 @@ export class CrmclientesComponent implements OnInit {
     })
   }
 
+  NivelSeleccionado(item){
+    if(item === 'No perfilado'){
+      this._desperfilado = true;
+    }
+    else{
+      this._desperfilado = false;
+    }
+    
+  }
+
+  TipoUsuario(){
+    let data = {
+      "appname":"VIVANZA",
+      "sp": 'dvp.Trae_Usuarios_CRM',
+      "params": [localStorage.getItem('id')]
+
+    }
+
+    this.apiService.ejecuta(data).subscribe((response) => {
+      let _response;
+      _response = response;
+      let a;
+      a = _response.success.recordset[0].tipo;
+      if(a === 'Asesor' || a === 'Promotor'){
+        /* this._tipo_usuario = true; */
+        $("#canal").prop("disabled",true);
+        $("#medio").prop("disabled",true);
+        $("#submedio").prop("disabled",true);
+        $("#referidor").prop("disabled",true);
+        $("#fecha_apartado").prop("disabled",true);
+        $("#fecha_venta").prop("disabled",true);
+        $("#fecha_cancelacion").prop("disabled",true);
+      }
+      if(a === 'Coordinador'){
+        /* this._tipo_usuario = true; */
+        $("#canal").prop("disabled",true);
+        $("#medio").prop("disabled",true);
+        $("#submedio").prop("disabled",true);
+        $("#referidor").prop("disabled",true);
+        $("#fecha_venta").prop("disabled",true);
+        $("#fecha_cancelacion").prop("disabled",true);
+      }
+    })
+  }
+
   EditarCliente(item){
+    
     let id;
     id = item.id_cliente;
     this.id_cliente_apartado = id;
@@ -844,6 +906,7 @@ export class CrmclientesComponent implements OnInit {
           email:_response.success.recordset[0].correo,
           genero:_response.success.recordset[0].sexo,
           nivel_interes:_response.success.recordset[0].nivel_interes,
+          motivo_desperfilado:'',
           combo_canal:_response.success.recordset[0].id_canal,
           combo_medio:_response.success.recordset[0].id_medio,
           combo_submedio:_response.success.recordset[0].id_submedio,
@@ -911,6 +974,7 @@ export class CrmclientesComponent implements OnInit {
         this.capturaForm.controls['visita3'].enable();
         this.capturaForm.controls['visita4'].enable(); */
        /*  this.EsAsesor(); */
+       this.TipoUsuario();
     })
   }
 
@@ -934,6 +998,7 @@ export class CrmclientesComponent implements OnInit {
         email:[this.capturaForm.value.email,Validators.required],
         genero:[this.capturaForm.value.genero,Validators.required],
         nivel_interes:[this.capturaForm.value.nivel_interes,Validators.required],
+        motivo_desperfilado:[this.capturaForm.value.motivo_desperfilado],
         combo_canal:[this.capturaForm.value.combo_canal,Validators.required],
         combo_medio:[this.capturaForm.value.combo_medio,Validators.required],
         combo_submedio:[this.capturaForm.value.combo_submedio],
@@ -989,6 +1054,7 @@ export class CrmclientesComponent implements OnInit {
         email:this.capturaForm.value.email,
         genero:this.capturaForm.value.genero,
         nivel_interes:this.capturaForm.value.nivel_interes,
+        motivo_desperfilado:this.capturaForm.value.motivo_desperfilado,
         combo_canal:this.capturaForm.value.combo_canal,
         combo_medio:this.capturaForm.value.combo_medio,
         combo_submedio:this.capturaForm.value.combo_submedio,
@@ -1140,6 +1206,7 @@ export class CrmclientesComponent implements OnInit {
             email:this.capturaForm.value.email,
             genero:this.capturaForm.value.genero,
             nivel_interes:this.capturaForm.value.nivel_interes,
+            motivo_desperfilado:this.capturaForm.value.motivo_desperfilado,
             combo_canal:this.capturaForm.value.combo_canal,
             combo_medio:this.capturaForm.value.combo_medio,
             combo_submedio:this.capturaForm.value.combo_submedio,
@@ -1230,6 +1297,7 @@ export class CrmclientesComponent implements OnInit {
             email:this.capturaForm.value.email,
             genero:this.capturaForm.value.genero,
             nivel_interes:this.capturaForm.value.nivel_interes,
+            motivo_desperfilado:this.capturaForm.value.motivo_desperfilado,
             combo_canal:this.capturaForm.value.combo_canal,
             combo_medio:this.capturaForm.value.combo_medio,
             combo_submedio:this.capturaForm.value.combo_submedio,
@@ -1300,6 +1368,7 @@ export class CrmclientesComponent implements OnInit {
             email:this.capturaForm.value.email,
             genero:this.capturaForm.value.genero,
             nivel_interes:this.capturaForm.value.nivel_interes,
+            motivo_desperfilado:this.capturaForm.value.motivo_desperfilado,
             combo_canal:this.capturaForm.value.combo_canal,
             combo_medio:this.capturaForm.value.combo_medio,
             combo_submedio:this.capturaForm.value.combo_submedio,
@@ -1522,6 +1591,7 @@ export class CrmclientesComponent implements OnInit {
           email:this.capturaForm.value.email,
           genero:this.capturaForm.value.genero,
           nivel_interes:'Muy interesado (15 días)',
+          motivo_desperfilado:this.capturaForm.value.motivo_desperfilado,
           combo_canal:this.capturaForm.value.combo_canal,
           combo_medio:this.capturaForm.value.combo_medio,
           combo_submedio:this.capturaForm.value.combo_submedio,
@@ -1561,6 +1631,7 @@ export class CrmclientesComponent implements OnInit {
           email:[this.capturaForm.value.email],
           genero:[this.capturaForm.value.genero,Validators.required],
           nivel_interes:[this.capturaForm.value.nivel_interes,Validators.required],
+          motivo_desperfilado:[this.capturaForm.value.motivo_desperfilado],
           combo_canal:[this.capturaForm.value.combo_canal,Validators.required],
           combo_medio:[this.capturaForm.value.combo_medio],
           combo_submedio:[this.capturaForm.value.combo_submedio],
@@ -1591,6 +1662,7 @@ export class CrmclientesComponent implements OnInit {
   }
 
   Cancelar(){
+   
     this.btn_exporta = false;
     this.lista_clientes = [];
     this.visitas = [];
@@ -1654,6 +1726,7 @@ export class CrmclientesComponent implements OnInit {
                 email:this.capturaForm.value.email,
                 genero:this.capturaForm.value.genero,
                 nivel_interes:this.capturaForm.value.nivel_interes,
+                motivo_desperfilado:this.capturaForm.value.motivo_desperfilado,
                 combo_canal:this.capturaForm.value.combo_canal,
                 combo_medio:this.capturaForm.value.combo_medio,
                 combo_submedio:this.capturaForm.value.combo_submedio,
@@ -1791,6 +1864,13 @@ export class CrmclientesComponent implements OnInit {
       }
     }
 
+    if(this._desperfilado == true){
+      if(this.capturaForm.value.motivo_desperfilado == ''){
+        this.validaciones = true;
+        alert('Se debe de seleccionar el motivo de "No Perfilado"');
+      }
+    }
+
     if(this.validaciones == false){
       let data = {
         "appname":"VIVANZA",
@@ -1807,6 +1887,7 @@ export class CrmclientesComponent implements OnInit {
             ,  this.capturaForm.value.email +"','"  
             ,  this.capturaForm.value.genero +"','"  
             ,  this.capturaForm.value.nivel_interes +"','"  
+            ,  this.capturaForm.value.motivo_desperfilado +"','"  
             ,  this.capturaForm.value.combo_canal +"','"  
             ,  this.capturaForm.value.combo_medio +"','"  
             ,  this.capturaForm.value.combo_submedio +"','"  
@@ -1859,12 +1940,14 @@ export class CrmclientesComponent implements OnInit {
   
     }
     else{
-      if(this._visita_seleccionado == 1){
+/*       if(this._visita_seleccionado == 1){
         alert('Se debe de seleccionar un Desarrollo para poder agendar una visita.');
       }
       else{
         alert('Se den de llenarlso datos obligatorios de Información Financiera.');
-      }
+      } */
+
+
       
     }
 
@@ -1889,6 +1972,7 @@ export class CrmclientesComponent implements OnInit {
         email:'',
         genero:'',
         nivel_interes:'',
+        motivo_desperfilado:'',
         combo_canal:'',
         combo_medio:'',
         combo_submedio:'',

@@ -34,8 +34,18 @@
                                         <option *ngFor="let item of _combo_estado" [value]="item.estado">{{item.estado}}</option>
                                         
                                     </select>
-                                  </div>
                                 </div>
+                                
+
+                                <div  class="form-group">
+                                    <label>Promotor</label>
+                                    <select formControlName="promotor" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                                        <option disabled selected style="display:none;" ></option>
+                                        <option *ngFor="let item of _combo_promotor" [value]="item.estado">{{item.estado}}</option>
+                                        
+                                    </select>
+                                </div>
+                            </div>
                             <!-- /.card-body -->
     
                             <div class="card-footer">

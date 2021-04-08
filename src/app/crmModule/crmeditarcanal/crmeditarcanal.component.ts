@@ -11,6 +11,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 export class CrmeditarcanalComponent implements OnInit {
 
   public _combo_estado;
+  public _combo_promotor;
   public item;
   public nombre_vista;
   public new;
@@ -18,7 +19,8 @@ export class CrmeditarcanalComponent implements OnInit {
   capturaForm = this.formBuilder.group({
     canal:['',Validators.required],
     estado:['',Validators.required],
-    id:['']
+    id:[''],
+    promotor:['',Validators.required]
   })
 
   constructor(
@@ -40,7 +42,8 @@ export class CrmeditarcanalComponent implements OnInit {
           {
             canal: '',
             estado: 'Activo',
-            id: ''
+            id: '',
+            promotor: 'No'
           });
       }
       else{
@@ -51,6 +54,10 @@ export class CrmeditarcanalComponent implements OnInit {
       this._combo_estado = [
         {estado: 'Activo'},
         {estado: 'Inactivo'}
+      ]
+      this._combo_promotor = [
+        {estado: 'No'},
+        {estado: 'Si'}
       ]
     });
   }
@@ -67,12 +74,20 @@ export class CrmeditarcanalComponent implements OnInit {
     this.apiService.ejecuta(data).subscribe((response) => {
       let _response;
       _response = response;
+      var a;
+      if(_response.success.recordset[0].Promotor === true){
+          a = 'Si';
+      }
+      else{
+        a = 'No';
+      }
       
       this.capturaForm.setValue(
         {
           canal: _response.success.recordset[0].Canal,
           estado: _response.success.recordset[0].estado,
-          id: _response.success.recordset[0].ID
+          id: _response.success.recordset[0].ID,
+          promotor:a
         })
     })
 
@@ -85,7 +100,7 @@ export class CrmeditarcanalComponent implements OnInit {
     let data = {
       "appname":"VIVANZA",
       "sp": 'dvp.Guarda_Canales_CRM',
-      "params": ["'" + this.item + "','" ,  this.capturaForm.value.canal + "','" ,  this.capturaForm.value.estado +"'"  ]
+      "params": ["'" + this.item + "','" ,  this.capturaForm.value.canal + "','",  this.capturaForm.value.promotor + "','" ,  this.capturaForm.value.estado +"'"  ]
       /* dvp.Guarda_Canales_CRM 7,NaNNuevos Otro',NaNActivo'*/
     }
 

@@ -381,7 +381,7 @@
                                     </div>
                                     <div *ngIf="_visita_seleccionado == 0 " class="form-group col-md-3">
                                         <label>Nivel de Interés<span style="color:red">*</span></label>
-                                        <select formControlName="nivel_interes"
+                                        <select formControlName="nivel_interes" (change)="NivelSeleccionado($event.target.value)"
                                             class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase"
                                             tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;"></option>
@@ -395,6 +395,18 @@
                                         <input disabled  style="text-transform:uppercase" formControlName="nivel_interes"  class="form-control" placeholder=""
                                         autocomplete="off">
                                     </div>
+
+                                    <div *ngIf="_desperfilado == true " class="form-group col-md-3">
+                                        <label>Motivo<span style="color:red">*</span></label>
+                                        <select formControlName="motivo_desperfilado"
+                                            class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase"
+                                            tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;"></option>
+                                            <option *ngFor="let item of _combo_desperfilado" [value]="item.nombre">
+                                                {{item.nombre}}</option>
+
+                                        </select>
+                                    </div>
                                     
                                 </div>
 
@@ -407,7 +419,7 @@
 
                                     <div class="form-group col-md-3">
                                         <label>Canal<span style="color:red">*</span></label>
-                                        <select (change)="CanalSeleccionado($event.target.value)"
+                                        <select id='canal' (change)="CanalSeleccionado($event.target.value)"
                                             formControlName="combo_canal"
                                             class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase"
                                             tabindex="-1" aria-hidden="true">
@@ -417,9 +429,10 @@
 
                                         </select>
                                     </div>
+                            
                                     <div class="form-group col-md-3">
                                         <label>Medio<span *ngIf="medio_requerido" style="color:red">*</span></label>
-                                        <select (change)="MedioSeleccionado($event.target.value)"
+                                        <select id='medio' (change)="MedioSeleccionado($event.target.value)"
                                             formControlName="combo_medio"
                                             class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase"
                                             tabindex="-1" aria-hidden="true">
@@ -432,7 +445,7 @@
                                     <div class="form-group col-md-3">
                                         <label>Submedio<span *ngIf="submedio_requerido"
                                                 style="color:red">*</span></label>
-                                        <select formControlName="combo_submedio"
+                                        <select  id='submedio' formControlName="combo_submedio"
                                             class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase"
                                             tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;"></option>
@@ -443,7 +456,7 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label>Referidor</label>
-                                        <select formControlName="referidor"
+                                        <select id='referidor' formControlName="referidor"
                                             class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase"
                                             tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;"></option>
@@ -576,18 +589,18 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Fecha de Apartado</label>
-                                        <input formControlName="fecha_apartado"
+                                        <input id='fecha_apartado' formControlName="fecha_apartado"
                                             (change)='FechaApartadoContacto("Apartado")' type="date"
                                             class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Fecha de Venta</label>
-                                        <input formControlName="fecha_venta" (change)='FechaApartadoContacto("Vendido")'
+                                        <input id='fecha_venta' formControlName="fecha_venta" (change)='FechaApartadoContacto("Vendido")'
                                             type="date" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>Fecha de Cancelación</label>
-                                        <input formControlName="fecha_cancelacion"
+                                        <input id='fecha_cancelacion' formControlName="fecha_cancelacion"
                                             (change)='FechaApartadoContacto("Cancelado")' type="date"
                                             class="form-control" placeholder="" autocomplete="off">
                                     </div>
