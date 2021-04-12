@@ -4,23 +4,21 @@ import { ApiService } from '../../services/api.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
-  selector: 'app-crmeditarcanal',
-  templateUrl: './crmeditarcanal.component.html',
-  styleUrls: ['./crmeditarcanal.component.css']
+  selector: 'app-crmeditarmotivoscancelacion',
+  templateUrl: './crmeditarmotivoscancelacion.component.html',
+  styleUrls: ['./crmeditarmotivoscancelacion.component.css']
 })
-export class CrmeditarcanalComponent implements OnInit {
+export class CrmeditarmotivoscancelacionComponent implements OnInit {
 
   public _combo_estado;
-  public _combo_promotor;
   public item;
   public nombre_vista;
   public new;
 
   capturaForm = this.formBuilder.group({
-    canal:['',Validators.required],
+    motivo:['',Validators.required],
     estado:['',Validators.required],
-    id:[''],
-    promotor:['',Validators.required]
+    id:['']
   })
 
   constructor(
@@ -28,36 +26,29 @@ export class CrmeditarcanalComponent implements OnInit {
     private route: ActivatedRoute,
     private apiService: ApiService,
     public formBuilder: FormBuilder
-  ) { 
-    
-  }
+  ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.item = JSON.parse(params['item']);
       if(this.item == 0){
-        this.nombre_vista = 'Nuevo Canal';
+        this.nombre_vista = 'Nuevo Motivo de Cancelación';
         this.new = false;
         this.capturaForm.setValue(
           {
-            canal: '',
+            motivo: '',
             estado: 'Activo',
-            id: '',
-            promotor: 'No'
+            id: ''
           });
       }
       else{
-        this.nombre_vista = 'Editar Canal';
+        this.nombre_vista = 'Editar Motivo de Cancelación';
         this.new = true;
       }
       this.TraeDatos();
       this._combo_estado = [
         {estado: 'Activo'},
         {estado: 'Inactivo'}
-      ]
-      this._combo_promotor = [
-        {estado: 'No'},
-        {estado: 'Si'}
       ]
     });
   }
@@ -66,7 +57,7 @@ export class CrmeditarcanalComponent implements OnInit {
 
     let data = {
       "appname":"VIVANZA",
-      "sp": 'dvp.Trae_Canales_CRM',
+      "sp": 'dvp.Trae_Motivos_Cancelacion_CRM',
       "params": [this.item]
 
     }
@@ -75,20 +66,11 @@ export class CrmeditarcanalComponent implements OnInit {
       let _response;
 
       _response = response;
-      var a;
-      if(_response.success.recordset[0].Promotor === true){
-          a = 'Si';
-      }
-      else{
-        a = 'No';
-      }
-      
       this.capturaForm.setValue(
         {
-          canal: _response.success.recordset[0].Canal,
+          motivo: _response.success.recordset[0].Motivo,
           estado: _response.success.recordset[0].estado,
           id: _response.success.recordset[0].ID,
-          promotor:a
         })
     })
 
@@ -100,8 +82,8 @@ export class CrmeditarcanalComponent implements OnInit {
     }
     let data = {
       "appname":"VIVANZA",
-      "sp": 'dvp.Guarda_Canales_CRM',
-      "params": ["'" + this.item + "','" ,  this.capturaForm.value.canal + "','",  this.capturaForm.value.promotor + "','" ,  this.capturaForm.value.estado +"'"  ]
+      "sp": 'dvp.Guarda_Motivos_Cancelacion_CRM',
+      "params": ["'" + this.item + "','" ,  this.capturaForm.value.motivo + "','",  this.capturaForm.value.estado +"'"  ]
       /* dvp.Guarda_Canales_CRM 7,NaNNuevos Otro',NaNActivo'*/
     }
 
@@ -114,7 +96,7 @@ export class CrmeditarcanalComponent implements OnInit {
       }
       else{
         alert(d[0].mensaje);
-        this.router.navigate(['/crmcanales']);
+        this.router.navigate(['/crmmotivoscancelacion']);
       }
       
      

@@ -45,6 +45,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { CrmclientesapartadoComponent } from './crmModule/crmclientesapartado/crmclientesapartado.component';
 import { CrmarchivosComponent } from './crmModule/crmarchivos/crmarchivos.component';
 import { BuroCreditoComponent } from './formatos/buro-credito/buro-credito.component';
+import { CrmmotivoscancelacionComponent } from './crmModule/crmmotivoscancelacion/crmmotivoscancelacion.component';
+import { CrmeditarmotivoscancelacionComponent } from './crmModule/crmeditarmotivoscancelacion/crmeditarmotivoscancelacion.component';
 
 
 
@@ -85,7 +87,9 @@ import { BuroCreditoComponent } from './formatos/buro-credito/buro-credito.compo
     DashboardComponent,
     CrmclientesapartadoComponent,
     CrmarchivosComponent,
-    BuroCreditoComponent
+    BuroCreditoComponent,
+    CrmmotivoscancelacionComponent,
+    CrmeditarmotivoscancelacionComponent
 
   ],
   imports: [

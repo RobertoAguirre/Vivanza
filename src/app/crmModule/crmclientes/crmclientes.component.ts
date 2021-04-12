@@ -15,6 +15,8 @@ import * as $ from 'jquery'; */
 })
 export class CrmclientesComponent implements OnInit {
   @ViewChild('mytablalocal') userTable: ElementRef; //referencia a la tabla a exportar
+  
+  public nuevo_cliente;
   public validaciones;
   public admon = '';
   public  btn_exporta = false;
@@ -62,6 +64,7 @@ export class CrmclientesComponent implements OnInit {
   public _combo_institucion_financiera;
   public _combo_ingresos;
   public _combo_buscar;
+  public _combo_motivos;
   public _combo_clientes;
   public dataset;
   public label;
@@ -97,6 +100,7 @@ export class CrmclientesComponent implements OnInit {
   public _hora_server;
   public _tipo_usuario;
   public _desperfilado;
+  public _cancelado;
 
   capturaForm = this.formBuilder.group({
     tipo_cliente:['',Validators.required],
@@ -129,6 +133,7 @@ export class CrmclientesComponent implements OnInit {
     fecha_apartado:[''],
     fecha_venta:[''],
     fecha_cancelacion:[''],
+    motivo:[''],
     visita:[''],
     visita2:[''],
     visita3:[''],
@@ -156,6 +161,7 @@ export class CrmclientesComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this._cancelado = false;
     /* $('#myModal').modal('show'); */
     /* $('html,body').scrollTop(0); */
     
@@ -351,6 +357,7 @@ export class CrmclientesComponent implements OnInit {
             fecha_apartado:'',
             fecha_venta:'',
             fecha_cancelacion:'',
+            motivo:'',
             visita:'',
             visita2:'',
             visita3:'',
@@ -493,6 +500,7 @@ export class CrmclientesComponent implements OnInit {
           fecha_apartado:this.capturaForm.value.fecha_apartado,
           fecha_venta:this.capturaForm.value.fecha_venta,
           fecha_cancelacion:this.capturaForm.value.fecha_cancelacion,
+          motivo:this.capturaForm.value.motivo,
           visita:'',
           visita2:'',
           visita3:'',
@@ -559,6 +567,7 @@ export class CrmclientesComponent implements OnInit {
             fecha_apartado:'',
             fecha_venta:'',
             fecha_cancelacion:'',
+            motivo:'',
             visita:'',
             visita2:'',
             visita3:'',
@@ -606,6 +615,7 @@ export class CrmclientesComponent implements OnInit {
             fecha_apartado:'',
             fecha_venta:'',
             fecha_cancelacion:'',
+            motivo:'',
             visita:'',
             visita2:'',
             visita3:'',
@@ -701,6 +711,7 @@ export class CrmclientesComponent implements OnInit {
     }
     else{
       this._desperfilado = false;
+      
     }
     
   }
@@ -727,6 +738,7 @@ export class CrmclientesComponent implements OnInit {
         $("#fecha_apartado").prop("disabled",true);
         $("#fecha_venta").prop("disabled",true);
         $("#fecha_cancelacion").prop("disabled",true);
+        $("#motivo_cancelado").prop("disabled",true);
       }
       if(a === 'Coordinador'){
         /* this._tipo_usuario = true; */
@@ -736,6 +748,7 @@ export class CrmclientesComponent implements OnInit {
         $("#referidor").prop("disabled",true);
         $("#fecha_venta").prop("disabled",true);
         $("#fecha_cancelacion").prop("disabled",true);
+        $("#motivo_cancelado").prop("disabled",true);
       }
     })
   }
@@ -762,6 +775,10 @@ export class CrmclientesComponent implements OnInit {
       this._estatus_cliente = apartado;
       if(apartado == 'Apartado'){
         this.btn_apartado = true;
+      }
+      if(_response.success.recordset[0].motivo != null){
+        this._cancelado = true;
+        this.TraeMotivosCancelacion();
       }
      
       this.visit = _response.success.recordsets[1];
@@ -906,7 +923,7 @@ export class CrmclientesComponent implements OnInit {
           email:_response.success.recordset[0].correo,
           genero:_response.success.recordset[0].sexo,
           nivel_interes:_response.success.recordset[0].nivel_interes,
-          motivo_desperfilado:'',
+          motivo_desperfilado:_response.success.recordset[0].motivo_desperfilado,
           combo_canal:_response.success.recordset[0].id_canal,
           combo_medio:_response.success.recordset[0].id_medio,
           combo_submedio:_response.success.recordset[0].id_submedio,
@@ -924,6 +941,7 @@ export class CrmclientesComponent implements OnInit {
           fecha_apartado: this._fa,
           fecha_venta:this._fv,
           fecha_cancelacion:this._fc,
+          motivo:_response.success.recordset[0].motivo,
           visita:this.visitas[0].visita,
           visita2:this.visitas[1].visita,
           visita3:this.visitas[2].visita,
@@ -978,7 +996,26 @@ export class CrmclientesComponent implements OnInit {
     })
   }
 
+  TraeMotivosCancelacion(){
+    let data = {
+      "appname":"VIVANZA",
+      "sp": 'dvp.Trae_Motivos_Cancelacion_CRM',
+      "params": [0]
+
+    }
+
+    this.apiService.ejecuta(data).subscribe((response) => {
+      let _response;
+      _response = response;
+      this._combo_motivos = _response.success.recordset;
+    })
+  }
+
   FechaApartadoContacto(item){
+    if(item == 'Cancelado'){
+      this._cancelado = true;
+      this.TraeMotivosCancelacion();
+    }
     if(item == 'Apartado'){
       this._info_financiera = true;
       this._estatus_cliente = 'Apartado';
@@ -1016,6 +1053,7 @@ export class CrmclientesComponent implements OnInit {
         fecha_apartado:[this.capturaForm.value.fecha_apartado],
         fecha_venta:[this.capturaForm.value.fecha_venta],
         fecha_cancelacion:[this.capturaForm.value.fecha_cancelacion],
+        motivo:[this.capturaForm.value.motivo],
         visita:[this.capturaForm.value.visita],
         visita2:[this.capturaForm.value.visita2],
         visita3:[this.capturaForm.value.visita3],
@@ -1072,6 +1110,7 @@ export class CrmclientesComponent implements OnInit {
         fecha_apartado:this.capturaForm.value.fecha_apartado,
         fecha_venta:this.capturaForm.value.fecha_venta,
         fecha_cancelacion:this.capturaForm.value.fecha_cancelacion,
+        motivo:this.capturaForm.value.motivo,
         visita:this.capturaForm.value.visita,
         visita2:this.capturaForm.value.visita2,
         visita3:this.capturaForm.value.visita3,
@@ -1164,6 +1203,29 @@ export class CrmclientesComponent implements OnInit {
   }
 
   DesarrolloSeleccionado(item,i){
+    if(this.nuevo_cliente == true){
+      $("#nombre").prop("disabled",false);
+      $("#apellido_materno").prop("disabled",false);
+      $("#apellido_paterno").prop("disabled",false);
+      $("#telefono").prop("disabled",false);
+      $("#correo").prop("disabled",false);
+      $("#genero").prop("disabled",false);
+      $("#nivel_interes").prop("disabled",false);
+      $("#canal").prop("disabled",false);
+      $("#medio").prop("disabled",false);
+      $("#submedio").prop("disabled",false);
+      $("#referidor").prop("disabled",false);
+      $("#prototipo").prop("disabled",false);
+      $("#tipo_credito").prop("disabled",false);
+      $("#credito").prop("disabled",false);
+      $("#institucion_financiera").prop("disabled",false);
+      $("#ingresos").prop("disabled",false);
+      $("#proximo_contacto").prop("disabled",false);
+      $("#fecha_apartado").prop("disabled",false);
+      $("#fecha_venta").prop("disabled",false);
+      $("#fecha_cancelacion").prop("disabled",false);
+      $("#motivo_cancelado").prop("disabled",false);
+    }
     this._d_s = item;
     let data = {
       "appname":"VIVANZA",
@@ -1224,6 +1286,7 @@ export class CrmclientesComponent implements OnInit {
             fecha_apartado:this.capturaForm.value.fecha_apartado,
             fecha_venta:this.capturaForm.value.fecha_venta,
             fecha_cancelacion:this.capturaForm.value.fecha_cancelacion,
+            motivo:this.capturaForm.value.motivo,
             visita:this.capturaForm.value.visita,
             visita2:this.capturaForm.value.visita2,
             visita3:this.capturaForm.value.visita3,
@@ -1315,6 +1378,7 @@ export class CrmclientesComponent implements OnInit {
             fecha_apartado:this.capturaForm.value.fecha_apartado,
             fecha_venta:this.capturaForm.value.fecha_venta,
             fecha_cancelacion:this.capturaForm.value.fecha_cancelacion,
+            motivo:this.capturaForm.value.motivo,
             visita:this.capturaForm.value.visita,
             visita2:this.capturaForm.value.visita2,
             visita3:this.capturaForm.value.visita3,
@@ -1386,6 +1450,7 @@ export class CrmclientesComponent implements OnInit {
             fecha_apartado:this.capturaForm.value.fecha_apartado,
             fecha_venta:this.capturaForm.value.fecha_venta,
             fecha_cancelacion:this.capturaForm.value.fecha_cancelacion,
+            motivo:this.capturaForm.value.motivo,
             visita:this.capturaForm.value.visita,
             visita2:this.capturaForm.value.visita2,
             visita3:this.capturaForm.value.visita3,
@@ -1609,6 +1674,7 @@ export class CrmclientesComponent implements OnInit {
           fecha_apartado:this.capturaForm.value.fecha_apartado,
           fecha_venta:this.capturaForm.value.fecha_venta,
           fecha_cancelacion:this.capturaForm.value.fecha_cancelacion,
+          motivo:this.capturaForm.value.motivo,
           visita:this.capturaForm.value.visita,
           visita2:this.capturaForm.value.visita2,
           visita3:this.capturaForm.value.visita3,
@@ -1649,6 +1715,7 @@ export class CrmclientesComponent implements OnInit {
           fecha_apartado:[this.capturaForm.value.fecha_apartado],
           fecha_venta:[this.capturaForm.value.fecha_venta],
           fecha_cancelacion:[this.capturaForm.value.fecha_cancelacion],
+          motivo:[this.capturaForm.value.motivo],
           visita:[this.capturaForm.value.visita],
           visita2:[this.capturaForm.value.visita2],
           visita3:[this.capturaForm.value.visita3],
@@ -1662,7 +1729,8 @@ export class CrmclientesComponent implements OnInit {
   }
 
   Cancelar(){
-   
+    this._cancelado = false;
+
     this.btn_exporta = false;
     this.lista_clientes = [];
     this.visitas = [];
@@ -1704,8 +1772,100 @@ export class CrmclientesComponent implements OnInit {
         if(_response.success.recordsets.length > 0){
           let d = _response.success.recordsets[0];
           if(d[0].error == 1){
-            alert(d[0].mensaje);
-            var _reg;
+           /*  alert(d[0].mensaje); */
+            let pregunta = confirm(d[0].mensaje);
+            if (pregunta == true){
+
+            }
+            else{
+              this._cancelado = false;
+              this.btn_exporta = false;
+              this.lista_clientes = [];
+              this.visitas = [];
+              this.visit = '';
+              this.btns = false;
+              this.editar = false;
+              this.capturaFormBuscar.setValue(
+                {
+                  consulta: '',
+                  buscar: 'NOMBRE'
+                })
+
+                this.capturaForm.setValue(
+                  {
+                    tipo_cliente: '',
+                    fecha: '',
+                    folio:'',
+                    asesor:'',
+                    registro:'',
+                    nombres:'',
+                    apellido_paterno:'',
+                    apellido_materno:'',
+                    telefono:'',
+                    email:'',
+                    genero:'',
+                    nivel_interes:'',
+                    motivo_desperfilado:'',
+                    combo_canal:'',
+                    combo_medio:'',
+                    combo_submedio:'',
+                    referidor:'',
+                    combo_desarrollo:'',
+                    combo_prototipo:'',
+                    combo_etapa:'',
+                    combo_manzana:'',
+                    combo_lote:'',
+                    tipo_credito:'',
+                    credito:'',
+                    institucion_financiera:'',
+                    ingresos:'',
+                    proximo_contacto:'',
+                    fecha_apartado:'',
+                    fecha_venta:'',
+                    fecha_cancelacion:'',
+                    motivo:'',
+                    visita:'',
+                    visita2:'',
+                    visita3:'',
+                    visita4:'',
+                    comentario:['']
+                  }) 
+                  this.lista_comentarios = [];
+                  this.capturaForm.controls['tipo_cliente'].disable();
+                  this.capturaForm.controls['asesor'].disable();
+                  this.capturaForm.controls['registro'].disable();
+                  this.capturaForm.controls['nombres'].disable();
+                  this.capturaForm.controls['apellido_paterno'].disable();
+                  this.capturaForm.controls['apellido_materno'].disable();
+                  this.capturaForm.controls['telefono'].disable();
+                  this.capturaForm.controls['email'].disable();
+                  this.capturaForm.controls['genero'].disable();
+                  this.capturaForm.controls['nivel_interes'].disable();
+                  this.capturaForm.controls['combo_canal'].disable();
+                  this.capturaForm.controls['combo_medio'].disable();
+                  this.capturaForm.controls['combo_submedio'].disable();
+                  this.capturaForm.controls['referidor'].disable();
+                  this.capturaForm.controls['combo_desarrollo'].disable();
+                  this.capturaForm.controls['combo_prototipo'].disable();
+                  this.capturaForm.controls['combo_manzana'].disable();
+                  this.capturaForm.controls['tipo_credito'].disable();
+                  this.capturaForm.controls['credito'].disable();
+                  this.capturaForm.controls['institucion_financiera'].disable();
+                  this.capturaForm.controls['ingresos'].disable();
+                  this.capturaForm.controls['proximo_contacto'].disable();
+                  this.capturaForm.controls['fecha_apartado'].disable();
+                  this.capturaForm.controls['fecha_venta'].disable();
+                  this.capturaForm.controls['fecha_cancelacion'].disable();
+                  this.capturaForm.controls['visita'].disable();
+                  this.capturaForm.controls['visita2'].disable();
+                  this.capturaForm.controls['visita3'].disable();
+                  this.capturaForm.controls['visita4'].disable();
+                  this.capturaForm.controls['comentario'].disable();
+                  window.scroll(0, 0);
+                  this.btn_apartado = false;
+            }
+    
+            /* var _reg;
             if(this.capturaForm.value.registro === undefined){
               _reg = this.nombre_registra;
             }
@@ -1744,12 +1904,42 @@ export class CrmclientesComponent implements OnInit {
                 fecha_apartado:this.capturaForm.value.fecha_apartado,
                 fecha_venta:this.capturaForm.value.fecha_venta,
                 fecha_cancelacion:this.capturaForm.value.fecha_cancelacion,
+                motivo:this.capturaForm.value.motivo,
                 visita:this.capturaForm.value.visita,
                 visita2:this.capturaForm.value.visita2,
                 visita3:this.capturaForm.value.visita3,
                 visita4:this.capturaForm.value.visita4,
                 comentario:this.capturaForm.value.comentario
-              }) 
+              }) */ 
+          }
+          if(d[0].error == 2){
+            this.nuevo_cliente = true;
+            let e = _response.success.recordsets[1];
+            this._combo_desarrollos =[];
+            this._combo_desarrollos = e;
+            window.scroll(0, 1000);
+            alert(d[0].mensaje);
+            $("#nombre").prop("disabled",true);
+            $("#apellido_materno").prop("disabled",true);
+            $("#apellido_paterno").prop("disabled",true);
+            $("#telefono").prop("disabled",true);
+            $("#correo").prop("disabled",true);
+            $("#genero").prop("disabled",true);
+            $("#nivel_interes").prop("disabled",true);
+            $("#canal").prop("disabled",true);
+            $("#medio").prop("disabled",true);
+            $("#submedio").prop("disabled",true);
+            $("#referidor").prop("disabled",true);
+            $("#prototipo").prop("disabled",true);
+            $("#tipo_credito").prop("disabled",true);
+            $("#credito").prop("disabled",true);
+            $("#institucion_financiera").prop("disabled",true);
+            $("#ingresos").prop("disabled",true);
+            $("#proximo_contacto").prop("disabled",true);
+            $("#fecha_apartado").prop("disabled",true);
+            $("#fecha_venta").prop("disabled",true);
+            $("#fecha_cancelacion").prop("disabled",true);
+            $("#motivo_cancelado").prop("disabled",true);
           }
           else{
   
@@ -1865,9 +2055,18 @@ export class CrmclientesComponent implements OnInit {
     }
 
     if(this._desperfilado == true){
-      if(this.capturaForm.value.motivo_desperfilado == ''){
+      if(this.capturaForm.value.motivo_desperfilado == null ||this.capturaForm.value.motivo_desperfilado == ''){
         this.validaciones = true;
+        this.capturaForm.value.motivo_desperfilado = '';
         alert('Se debe de seleccionar el motivo de "No Perfilado"');
+      }
+    }
+
+    if(this._cancelado == true){
+      if(this.capturaForm.value.motivo == null ||this.capturaForm.value.motivo == ''){
+        this.validaciones = true;
+        this.capturaForm.value.motivo = '';
+        alert('Se debe de seleccionar el motivo de cancelación');
       }
     }
 
@@ -1903,6 +2102,7 @@ export class CrmclientesComponent implements OnInit {
             ,  this.capturaForm.value.fecha_apartado +"','"  
             ,  this.capturaForm.value.fecha_venta +"','"  
             ,  this.capturaForm.value.fecha_cancelacion +"','"  
+            ,  this.capturaForm.value.motivo +"','" 
             ,  this.capturaForm.value.visita +"','"  
             ,  this.capturaForm.value.visita2 +"','"  
             ,  this.capturaForm.value.visita3 +"','"  
@@ -1921,7 +2121,8 @@ export class CrmclientesComponent implements OnInit {
         }
         else{
           alert(d[0].mensaje);
-          
+          this._cancelado = false;
+          this._desperfilado = false;
           this.btn_apartado = false;
           this.btns = false;
           this.btn_com = false;
@@ -1990,6 +2191,7 @@ export class CrmclientesComponent implements OnInit {
         fecha_apartado:'',
         fecha_venta:'',
         fecha_cancelacion:'',
+        motivo:'',
         visita:'',
         visita2:'',
         visita3:'',
