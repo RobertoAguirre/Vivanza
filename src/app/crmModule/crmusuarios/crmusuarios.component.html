@@ -27,7 +27,7 @@
                                 <button type="submit" class="btn btn-primary" (click)="NuevoUsuario(0)">Nuevo Usuario</button>
                             </div>
                             <form [formGroup]="capturaFormBuscar">
-                                <div class="form-group col-md-3" style="margin-bottom: -2em; margin-top: -1em;">
+                                <div class="form-group col-md-3" style="margin-bottom: 1em; margin-top: -1em;">
                                     <label>Buscar</label>
                                     <select (change)="BuscarSeleccionado($event.target.value)"  formControlName="busca" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="-1" aria-hidden="true">
                                         <option disabled selected style="display:none;" ></option>
@@ -37,10 +37,10 @@
                                 </div>
                             </form>
 
-                            <app-tables class="table-responsive;"  *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset" [metodoEditar]="Editar" [metodoEliminar]="Eliminar">
-                            </app-tables> 
-                            <!-- <div class=" col-md-12 table-responsive">
-                                <table id="mytables"  class="table table-striped table-bordered">
+                      <!--       <app-tables class="table-responsive;"  *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset" [metodoEditar]="Editar" [metodoEliminar]="Eliminar">
+                            </app-tables>  -->
+                            <div class=" col-md-12 table-responsive">
+                                <table *ngIf="dataset" id="table2" [dtOptions]="dtOptions" datatable class="row-border hover">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
@@ -62,11 +62,11 @@
                                             <td>{{item.Telefono}}</td>
                                             <td>{{item.Tipo}}</td>
                                             <td>{{item.Desarrollo}}</td>
-                                            <td ><i (click)="metodoEditar(item)" style="color: blue;" class="fas fa-edit" ></i>  <span>&nbsp;&nbsp;&nbsp;</span> <i *ngIf="item.Estado == 'Activo'" (click)="metodoEliminar(item)"  style="color:green;" class="fas fa-eye"></i></td>
+                                            <td ><i  aria-placeholder="Editar" (click)="Editar(item)" style="color: blue;" class="fas fa-edit" ></i>  <span>&nbsp;&nbsp;&nbsp;</span> <i (click)="Eliminar(item)"  style="color:orange;" class="fas fa-power-off"></i><span>&nbsp;&nbsp;&nbsp;</span> <i (click)="ReseteoContrasena(item)"  style="color:yellow;" class="fas fa-key"></i></td>
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>  -->
+                            </div>  
                             
                         </div>
                        

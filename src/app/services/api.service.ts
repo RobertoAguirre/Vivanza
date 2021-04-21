@@ -64,6 +64,13 @@ export class ApiService {
 
   }
 
+  //Reseteo Passsword Usuario
+  public reseteoContrasena(data) {
+
+    return this.http.post(this.serviceUrl + 'reseteoContrasena/', data);
+
+  }
+
   //subir archivos
   public uploadPhoto(formData) {
 

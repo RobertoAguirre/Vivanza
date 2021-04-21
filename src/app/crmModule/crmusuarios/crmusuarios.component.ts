@@ -11,6 +11,10 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class CrmusuariosComponent implements OnInit {
 
+  dtOptions: DataTables.Settings = {};
+  public table: any = $('#table2');
+  
+
   public _combo_desarrollo;
   public _combo_tipo;
   public _combo_buscar;
@@ -76,6 +80,29 @@ export class CrmusuariosComponent implements OnInit {
       {nombre: 'Activos'},
       {nombre: 'Inactivos'}
     ]
+
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      processing: true,
+      order:[],
+      language:{
+        "processing": "Cargando ...",
+        "search": "Buscar:",
+        "lengthMenu": "Mostrando _MENU_ registros por página",
+        "zeroRecords": "No se encontraron registros",
+        "info": "Mostrando página _PAGE_ de _PAGES_",
+        "infoEmpty": "No hay registros disponibles",
+        "infoFiltered": "(fitrados de un total de  _MAX_ registros)",
+        "paginate": {
+          first: "Primero",
+          previous: "Anterior",
+          next: "Siguiente",
+          last: "Último"
+        }
+      }
+    };
+
   }
 
   BuscarSeleccionado(item){
@@ -171,6 +198,44 @@ export class CrmusuariosComponent implements OnInit {
     }
     
   }
+
+  ReseteoContrasena(item){
+    let id = item.ID;
+    this.pregunta = confirm('¿Está seguro de querer resetear la contraseña al usuario '+item.Nombre+'?');
+    if (this.pregunta == true){
+      let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    for (let i = 0; i < 8; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    let data = {
+      "appname":"VIVANZA",
+      /* "sp": 'dbo.Guarda_Persona', */
+      "params": {
+        "id_persona": item.ID,
+        "contrasena":result,
+        "correo_electronico":item.Correo
+      }
+       
+
+    }
+    
+    this.apiService.reseteoContrasena(data).subscribe((response) => {
+      let _response;
+      _response = response;
+      if(_response.success.error == 1){
+        alert(_response.success.mensaje);
+      }
+      else{     
+            alert(_response.success.mensaje);
+      }
+      
+    })
+    }
+    
+  }
+
 
   NuevoUsuario(item){
     item = JSON.stringify(item);

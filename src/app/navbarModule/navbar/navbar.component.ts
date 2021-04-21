@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Router } from '@angular/router';
 import {AppComponent} from '../../app.component';
+import { FormBuilder, ReactiveFormsModule, FormGroup, Validators, FormControl } from '@angular/forms';
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -9,10 +11,19 @@ import {AppComponent} from '../../app.component';
 })
 export class NavbarComponent implements OnInit {
   public personal;
+  public pregunta;
+
+  capturaForm = this.formBuilder.group({
+    anterior:['',Validators.required],
+    nueva:['',Validators.required],
+    repetir_nueva:['',Validators.required]
+  })
+
   constructor(
     public apiService: ApiService,
     public router:Router,
-    private appComponent:AppComponent
+    private appComponent:AppComponent,
+    public formBuilder: FormBuilder
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +52,38 @@ export class NavbarComponent implements OnInit {
     })
 
   }
+
+  Reseteo(item){
+    let id = item.ID;
+    this.pregunta = confirm('¿Está seguro de querer resetear la contraseña?');
+    if (this.pregunta == true){
+    let data = {
+      "appname":"VIVANZA",
+      /* "sp": 'dbo.Guarda_Persona', */
+      "params": {
+        "id_persona": item.ID,
+        "contrasena":this.capturaForm.value.nueva,
+        "usuario":0
+      }
+       
+
+    }
+    
+    this.apiService.reseteoContrasena(data).subscribe((response) => {
+      let _response;
+      _response = response;
+      if(_response.success.error == 1){
+        alert(_response.success.mensaje);
+      }
+      else{     
+            alert(_response.success.mensaje);
+      }
+      
+    })
+    }
+    
+  }
+
 
   CerrarSesion() {
  
