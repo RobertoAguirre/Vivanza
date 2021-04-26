@@ -29,7 +29,7 @@
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
       <li class="nav-item ">
-        <a class="nav-link" data-toggle="modal" data-target="#modal-lg" href="">
+        <a class="nav-link" data-toggle="modal" data-target="#modal-md" href="">
           <i style="color:yellow" class="fa fa-key"></i>
           <!-- <span class="badge badge-danger navbar-badge">Resetear</span> -->
         </a>
@@ -44,11 +44,11 @@
   </nav>
   <!-- /.navbar -->
 
-  <div class="modal fade" id="modal-lg">
-    <div class="modal-dialog modal-lg">
+  <div class="modal fade" id="modal-md">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Large Modal</h4>
+                <h4 class="modal-title">Cambiar Contraseña</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -59,15 +59,16 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Contraseña Anterior</label>
-                            <input formControlName="anterior" type="text" class="form-control" placeholder="" autocomplete="off">
+                            <input formControlName="anterior" type="password" class="form-control" placeholder="" autocomplete="off">
                         </div>
                         <div class="form-group">
                           <label>Nueva Contraseña</label>
-                          <input formControlName="nueva" type="text" class="form-control" placeholder="" autocomplete="off">
+                          <input formControlName="nueva" type="password" class="form-control" minlength="8" maxlength="8" placeholder="" autocomplete="off">
+                          <span>La contraseña debe de contener 8 caracteres.</span>
                         </div>
                         <div class="form-group">
                           <label>Repetir Contraseña</label>
-                          <input formControlName="repetir_nueva" type="text" class="form-control" placeholder="" autocomplete="off">
+                          <input formControlName="repetir_nueva" type="password" class="form-control" minlength="8" maxlength="8" placeholder="" autocomplete="off">
                         </div>  
                     </div>
                     <!-- /.card-body -->

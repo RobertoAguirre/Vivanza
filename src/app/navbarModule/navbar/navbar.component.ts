@@ -53,17 +53,15 @@ export class NavbarComponent implements OnInit {
 
   }
 
-  Reseteo(item){
-    let id = item.ID;
-    this.pregunta = confirm('¿Está seguro de querer resetear la contraseña?');
-    if (this.pregunta == true){
+  Reseteo(){
+    if (this.capturaForm.value.nueva == this.capturaForm.value.repetir_nueva){
     let data = {
       "appname":"VIVANZA",
       /* "sp": 'dbo.Guarda_Persona', */
       "params": {
-        "id_persona": item.ID,
+        "id_persona": localStorage.getItem('id'),
         "contrasena":this.capturaForm.value.nueva,
-        "usuario":0
+        "contrasena_anterior":this.capturaForm.value.anterior
       }
        
 
@@ -80,6 +78,9 @@ export class NavbarComponent implements OnInit {
       }
       
     })
+    }
+    else{
+      alert('Las contraseñas no son iguales');
     }
     
   }
