@@ -75,6 +75,16 @@
                                       </div>
                                     </div>
                                   </div>
+                                  <div *ngIf="_es_asesor == 0" class="col-lg col-6">
+                                    <!-- small card -->
+                                    <div class="small-box bg-black">
+                                      <div class="inner" style="color:white">
+                                        <h3>{{desperfilados}}</h3>
+                        
+                                        <p>Desperfilados</p>
+                                      </div>
+                                    </div>
+                                  </div>
                               </div>
                             <div class="row">
                                 <div class="col-md-2">
@@ -363,7 +373,7 @@
 
                                     <div class="form-group col-md-3">
                                         <label>Teléfono<span style="color:red">*</span></label>
-                                        <input id='telefono' formControlName="telefono" type="text" (change)="RevisaNumero()" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
+                                        <input id='telefono' formControlName="telefono" type="text" (blur)="RevisaNumero()" class="form-control" placeholder="10 Dígitos" minlength="10" maxlength="10" oninput="this.value = this.value.replace(/[^0-9+]/g, '').replace(/(\..*)\./g, '$1');" autocomplete="off">
                                         <span style="font-size:small;color:gray;"><i>El teléfono es a 10 dígitos</i></span>
                                     </div>
 
