@@ -17,6 +17,7 @@ export class CrmclientesComponent implements OnInit {
   @ViewChild('mytablalocal') userTable: ElementRef; //referencia a la tabla a exportar
   
   public nuevo_cliente;
+  public  hora_registro;
   public validaciones;
   public admon = '';
   public  btn_exporta = false;
@@ -106,6 +107,7 @@ export class CrmclientesComponent implements OnInit {
   capturaForm = this.formBuilder.group({
     tipo_cliente:['',Validators.required],
     fecha:['',Validators.required],
+    hora:[''],
     folio:[''],
     asesor:['',Validators.required],
     registro:['',Validators.required],
@@ -334,6 +336,7 @@ export class CrmclientesComponent implements OnInit {
           {
             tipo_cliente: '',
             fecha: '',
+            hora: '',
             folio:'',
             asesor:'',
             registro:'',
@@ -479,6 +482,7 @@ export class CrmclientesComponent implements OnInit {
         {
           tipo_cliente: this.capturaForm.value.tipo_cliente,
           fecha: this.datepipe.transform(_response.success.recordset[0].fecha,'dd/MM/yyyy') ,
+          hora:this.capturaForm.value.hora,
           folio:this.capturaForm.value.folio,
           asesor:this.capturaForm.value.asesor,
           registro:this.capturaForm.value.registro,
@@ -546,6 +550,7 @@ export class CrmclientesComponent implements OnInit {
           {
             tipo_cliente: 'Prospecto',
             fecha: this.capturaForm.value.fecha ,
+            hora:'',
             folio:'',
             asesor:localStorage.getItem('persona'),
             registro:_response.success.recordset[0].nombres + ' ' + _response.success.recordset[0].apellido_paterno + ' ' + _response.success.recordset[0].apellido_materno,
@@ -594,6 +599,7 @@ export class CrmclientesComponent implements OnInit {
           {
             tipo_cliente: 'Prospecto',
             fecha: this.capturaForm.value.fecha ,
+            hora:'',
             folio:'',
             asesor:_response.success.recordset[0].ID,
             registro:_response.success.recordset[0].nombres + ' ' + _response.success.recordset[0].apellido_paterno + ' ' + _response.success.recordset[0].apellido_materno,
@@ -869,9 +875,12 @@ export class CrmclientesComponent implements OnInit {
       this.EtapaSeleccionada(_response.success.recordset[0].id_etapa_desarrollo,1);
       this._manzana = _response.success.recordset[0].manzana; 
       if(_response.success.recordset[0].fecha_alta != null){
-        let u;
+        let u,h;
           u = _response.success.recordset[0].fecha_alta.replace("T", " ");
-          u = u.slice(0,-8);
+          u = u.slice(0,-14);
+          h = _response.success.recordset[0].fecha_alta.replace("T", " ");
+          h = h.slice(11,-8);
+          this.hora_registro = h;
           _response.success.recordset[0].fecha_alta = u;
        /*  this._pc = _response.success.recordset[0].proximo_contacto.slice(0,-8); */
       }
@@ -922,6 +931,7 @@ export class CrmclientesComponent implements OnInit {
           tipo_cliente: _response.success.recordset[0].tipo_cliente,
          /*  fecha: this.datepipe.transform(_response.success.recordset[0].fecha_alta,'dd/MM/yyyy'), */
           fecha: _response.success.recordset[0].fecha_alta,
+          hora: this.hora_registro,
           folio:_response.success.recordset[0].id_cliente,
           asesor:this.capturaForm.value.asesor,
           registro:_response.success.recordset[0].nombre_registra,
@@ -1004,7 +1014,7 @@ export class CrmclientesComponent implements OnInit {
        /*  this.EsAsesor(); */
 
         /////// bloquea fecha de cancelacion por campos null fecha de apartado y7o fecha de venta
-       if(_response.success.recordset[0].fecha_apartado == null && _response.success.recordset[0].fecha_cancelacion == null){
+       if(_response.success.recordset[0].fecha_apartado == null && _response.success.recordset[0].fecha_venta == null){
         $("#fecha_cancelacion").prop("disabled",true);
       }
       else{
@@ -1012,10 +1022,14 @@ export class CrmclientesComponent implements OnInit {
       }
       /////Si el tipo de cliente es Apartado, Vendido o Cancelado se bloquean las visitas
       if(_response.success.recordset[0].tipo_cliente == 'Apartado' || _response.success.recordset[0].tipo_cliente == 'Vendido' || _response.success.recordset[0].tipo_cliente == 'Cancelado'){
-        this._visita1 = true;
-        this._visita2 = true;
+       /*  this._visita1 = true; */
+       $("#visita1").prop("disabled",true);
+       $("#visita2").prop("disabled",true);
+       $("#visita3").prop("disabled",true);
+       $("#visita4").prop("disabled",true);
+      /*   this._visita2 = true;
         this._visita3 = true;
-        this._visita4 = true;
+        this._visita4 = true; */
       }
        this.TipoUsuario();
     })
@@ -1050,6 +1064,7 @@ export class CrmclientesComponent implements OnInit {
       this.capturaForm = this.formBuilder.group({
         tipo_cliente:[this.capturaForm.value.tipo_cliente,Validators.required],
         fecha:[this.capturaForm.value.fecha,Validators.required],
+        hora:[this.capturaForm.value.fecha],
         folio:[this.capturaForm.value.folio],
         asesor:[this.capturaForm.value.asesor,Validators.required],
         registro:[this.nombre_registra,Validators.required],
@@ -1107,6 +1122,7 @@ export class CrmclientesComponent implements OnInit {
       {
         tipo_cliente: item,
         fecha: this.capturaForm.value.fecha ,
+        hora: this.capturaForm.value.hora ,
         folio:this.capturaForm.value.folio,
         asesor:this.capturaForm.value.asesor,
         registro:this.capturaForm.value.registro,
@@ -1283,6 +1299,7 @@ export class CrmclientesComponent implements OnInit {
           {
             tipo_cliente: this.capturaForm.value.tipo_cliente,
             fecha: this.capturaForm.value.fecha ,
+            hora: this.capturaForm.value.hora ,
             folio:this.capturaForm.value.folio,
             asesor:this.capturaForm.value.asesor,
             registro:_reg,
@@ -1375,6 +1392,7 @@ export class CrmclientesComponent implements OnInit {
           {
             tipo_cliente: this.capturaForm.value.tipo_cliente,
             fecha: this.capturaForm.value.fecha ,
+            hora: this.capturaForm.value.hora ,
             folio:this.capturaForm.value.folio,
             asesor:this.capturaForm.value.asesor,
             registro:_reg,
@@ -1447,6 +1465,7 @@ export class CrmclientesComponent implements OnInit {
           {
             tipo_cliente: this.capturaForm.value.tipo_cliente,
             fecha: this.capturaForm.value.fecha ,
+            hora: this.capturaForm.value.hora ,
             folio:this.capturaForm.value.folio,
             asesor:this.capturaForm.value.asesor,
             registro:_reg,
@@ -1675,6 +1694,7 @@ export class CrmclientesComponent implements OnInit {
         {
           tipo_cliente: 'Cliente Potencial',
           fecha: this.capturaForm.value.fecha ,
+          hora: this.capturaForm.value.hora ,
           folio:this.capturaForm.value.folio,
           asesor:this.capturaForm.value.asesor,
           registro:this.nombre_registra,
@@ -1716,6 +1736,7 @@ export class CrmclientesComponent implements OnInit {
         this.capturaForm = this.formBuilder.group({
           tipo_cliente:[this.capturaForm.value.tipo_cliente,Validators.required],
           fecha:[this.capturaForm.value.fecha,Validators.required],
+          hora:[this.capturaForm.value.fecha],
           folio:[this.capturaForm.value.folio],
           asesor:[this.capturaForm.value.asesor,Validators.required],
           registro:[this.nombre_registra,Validators.required],
@@ -1789,7 +1810,8 @@ export class CrmclientesComponent implements OnInit {
         "appname":"VIVANZA",
         "sp": 'dvp.Verifica_Telefono',
         "params": ["'" + this.capturaForm.value.folio + "','" 
-                  ,  + this.capturaForm.value.telefono +"'"  ]
+                  ,  this.capturaForm.value.telefono +"','" 
+                  ,  + localStorage.getItem('id') +"'"  ]
     /*     "params": ["'" + localStorage.getItem('id') + "','" 
           ,  1 + "'" ] */
   
@@ -1824,6 +1846,7 @@ export class CrmclientesComponent implements OnInit {
                   {
                     tipo_cliente: '',
                     fecha: '',
+                    hora:'',
                     folio:'',
                     asesor:'',
                     registro:'',
@@ -1991,6 +2014,7 @@ export class CrmclientesComponent implements OnInit {
                   {
                     tipo_cliente: '',
                     fecha: '',
+                    hora:'',
                     folio:'',
                     asesor:'',
                     registro:'',
@@ -2285,6 +2309,7 @@ export class CrmclientesComponent implements OnInit {
       {
         tipo_cliente: '',
         fecha: '',
+        hora:'',
         folio:'',
         asesor:'',
         registro:'',

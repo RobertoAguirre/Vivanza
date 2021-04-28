@@ -316,6 +316,11 @@
                                         <input disabled formControlName="fecha" type="text" class="form-control"
                                             placeholder="" autocomplete="off">
                                     </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Hora de Registro</label>
+                                        <input disabled formControlName="hora" type="text" class="form-control"
+                                            placeholder="" autocomplete="off">
+                                    </div>
 
                                     <div class="form-group col-md-2">
                                         <label>ID</label>
@@ -639,28 +644,28 @@
 
                                     <div class="form-group col-md-3">
                                         <label>VISITA 1</label>
-                                        <input class="form-control" *ngIf="_visita1 == false" type="datetime-local"
+                                        <input id="visita1" class="form-control" *ngIf="_visita1 == false" type="datetime-local"
                                         (change)='VisitaSeleccionado("Vendido")' formControlName="visita">
                                         <input class="form-control" *ngIf="_visita1 == true" disabled type="datetime-local"
                                         (change)='VisitaSeleccionado("Vendido")' formControlName="visita">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>VISITA 2</label>
-                                        <input class="form-control" *ngIf="_visita2 == false" type="datetime-local"
+                                        <input id="visita2" class="form-control" *ngIf="_visita2 == false" type="datetime-local"
                                         (change)='VisitaSeleccionado("Vendido")' formControlName="visita2">
                                         <input class="form-control" *ngIf="_visita2 == true" disabled type="datetime-local"
                                         (change)='VisitaSeleccionado("Vendido")' formControlName="visita2">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>VISITA 3</label>
-                                        <input class="form-control" *ngIf="_visita3 == false" type="datetime-local"
+                                        <input id="visita3" class="form-control" *ngIf="_visita3 == false" type="datetime-local"
                                         (change)='VisitaSeleccionado("Vendido")' formControlName="visita3">
                                         <input class="form-control" disabled  *ngIf="_visita3 == true" type="datetime-local"
                                         (change)='VisitaSeleccionado("Vendido")' formControlName="visita3">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label>VISITA 4</label>
-                                        <input class="form-control" *ngIf="_visita4 == false" type="datetime-local"
+                                        <input id="visita4" class="form-control" *ngIf="_visita4 == false" type="datetime-local"
                                         (change)='VisitaSeleccionado("Vendido")' formControlName="visita4">
                                         <input class="form-control" *ngIf="_visita4 == true" disabled type="datetime-local"
                                         (change)='VisitaSeleccionado("Vendido")' formControlName="visita4"> 
