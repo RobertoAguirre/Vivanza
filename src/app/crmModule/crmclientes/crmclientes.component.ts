@@ -387,6 +387,7 @@ export class CrmclientesComponent implements OnInit {
           this.capturaForm.controls['combo_desarrollo'].disable();
           this.capturaForm.controls['combo_prototipo'].disable();
           this.capturaForm.controls['combo_manzana'].disable();
+          this.capturaForm.controls['combo_etapa'].disable();
           this.capturaForm.controls['tipo_credito'].disable();
           this.capturaForm.controls['credito'].disable();
           this.capturaForm.controls['institucion_financiera'].disable();
@@ -425,6 +426,7 @@ export class CrmclientesComponent implements OnInit {
       this.capturaForm.controls['combo_desarrollo'].disable();
       this.capturaForm.controls['combo_prototipo'].disable();
       this.capturaForm.controls['combo_manzana'].disable();
+      this.capturaForm.controls['combo_etapa'].disable();
       this.capturaForm.controls['tipo_credito'].disable();
       this.capturaForm.controls['credito'].disable();
       this.capturaForm.controls['institucion_financiera'].disable();
@@ -775,6 +777,8 @@ export class CrmclientesComponent implements OnInit {
       let _response;
       this.btn_com = false;
       _response = response;
+     
+
       let apartado;
       apartado = _response.success.recordset[0].tipo_cliente;
       this._estatus_cliente = apartado;
@@ -983,6 +987,7 @@ export class CrmclientesComponent implements OnInit {
         this.capturaForm.controls['combo_desarrollo'].enable();
         this.capturaForm.controls['combo_prototipo'].enable();
         this.capturaForm.controls['combo_manzana'].enable();
+        this.capturaForm.controls['combo_etapa'].enable();
         this.capturaForm.controls['tipo_credito'].enable();
         this.capturaForm.controls['credito'].enable();
         this.capturaForm.controls['institucion_financiera'].enable();
@@ -997,6 +1002,21 @@ export class CrmclientesComponent implements OnInit {
         this.capturaForm.controls['visita3'].enable();
         this.capturaForm.controls['visita4'].enable(); */
        /*  this.EsAsesor(); */
+
+        /////// bloquea fecha de cancelacion por campos null fecha de apartado y7o fecha de venta
+       if(_response.success.recordset[0].fecha_apartado == null && _response.success.recordset[0].fecha_cancelacion == null){
+        $("#fecha_cancelacion").prop("disabled",true);
+      }
+      else{
+        $("#fecha_cancelacion").prop("disabled",false);
+      }
+      /////Si el tipo de cliente es Apartado, Vendido o Cancelado se bloquean las visitas
+      if(_response.success.recordset[0].tipo_cliente == 'Apartado' || _response.success.recordset[0].tipo_cliente == 'Vendido' || _response.success.recordset[0].tipo_cliente == 'Cancelado'){
+        this._visita1 = true;
+        this._visita2 = true;
+        this._visita3 = true;
+        this._visita4 = true;
+      }
        this.TipoUsuario();
     })
   }
@@ -1605,6 +1625,7 @@ export class CrmclientesComponent implements OnInit {
     this.capturaForm.controls['combo_desarrollo'].enable();
     this.capturaForm.controls['combo_prototipo'].enable();
     this.capturaForm.controls['combo_manzana'].enable();
+    this.capturaForm.controls['combo_etapa'].enable();
     this.capturaForm.controls['tipo_credito'].enable();
     this.capturaForm.controls['credito'].enable();
     this.capturaForm.controls['institucion_financiera'].enable();
@@ -1614,6 +1635,9 @@ export class CrmclientesComponent implements OnInit {
     this.capturaForm.controls['fecha_venta'].enable();
     this.capturaForm.controls['fecha_cancelacion'].enable();
     this.capturaForm.controls['comentario'].enable();
+    $("#fecha_apartado").prop("disabled",true);
+    $("#fecha_venta").prop("disabled",true);
+    $("#fecha_cancelacion").prop("disabled",true);
     this.EsAsesor();
   }
 
@@ -1853,6 +1877,7 @@ export class CrmclientesComponent implements OnInit {
                   this.capturaForm.controls['combo_desarrollo'].disable();
                   this.capturaForm.controls['combo_prototipo'].disable();
                   this.capturaForm.controls['combo_manzana'].disable();
+                  this.capturaForm.controls['combo_etapa'].disable();
                   this.capturaForm.controls['tipo_credito'].disable();
                   this.capturaForm.controls['credito'].disable();
                   this.capturaForm.controls['institucion_financiera'].disable();
@@ -2019,6 +2044,7 @@ export class CrmclientesComponent implements OnInit {
                   this.capturaForm.controls['combo_desarrollo'].disable();
                   this.capturaForm.controls['combo_prototipo'].disable();
                   this.capturaForm.controls['combo_manzana'].disable();
+                  this.capturaForm.controls['combo_etapa'].disable();
                   this.capturaForm.controls['tipo_credito'].disable();
                   this.capturaForm.controls['credito'].disable();
                   this.capturaForm.controls['institucion_financiera'].disable();
@@ -2312,6 +2338,7 @@ export class CrmclientesComponent implements OnInit {
       this.capturaForm.controls['combo_desarrollo'].disable();
       this.capturaForm.controls['combo_prototipo'].disable();
       this.capturaForm.controls['combo_manzana'].disable();
+      this.capturaForm.controls['combo_etapa'].disable();
       this.capturaForm.controls['tipo_credito'].disable();
       this.capturaForm.controls['credito'].disable();
       this.capturaForm.controls['institucion_financiera'].disable();

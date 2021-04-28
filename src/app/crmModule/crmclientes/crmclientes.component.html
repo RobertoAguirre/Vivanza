@@ -277,7 +277,7 @@
                                                     <tr>
                                                         <td  style="text-transform:uppercase">{{buscar.nombre}}</td>
                                                         <td>{{buscar.numero}}</td>
-                                                        <td class="center"><i class="fa fa-edit"
+                                                        <td class="center"><i *ngIf="buscar.desperfilado == false" class="fa fa-edit"
                                                                 style="color:green; font-size:1em" aria-hidden="true"
                                                                 (click)="EditarCliente(buscar)"></i></td>
 
@@ -514,7 +514,7 @@
                                             
                                         </select>
                                     </div> -->
-                                    <div *ngIf="_estatus_cliente =='Apartado' "  class="form-group col-md-3">
+                                    <div class="form-group col-md-3">
                                         <label>Etapa<span *ngIf="_estatus_cliente =='Apartado' " style="color:red">*</span></label>
                                         <select id='etapa' (change)="EtapaSeleccionada($event.target.value,0)" formControlName="combo_etapa" class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
@@ -522,11 +522,11 @@
                                             <option  *ngFor="let item of _combo_manzanas" [value]="item.ID">{{item.nombre_etapa}}</option>
                                         </select>
                                     </div>
-                                    <div *ngIf="_estatus_cliente !='Apartado' "  class="form-group col-md-3">
+                                   <!--  <div *ngIf="_estatus_cliente !='Apartado' "  class="form-group col-md-3">
                                         <label>Etapa</label>
                                         <input disabled  style="text-transform:uppercase"   class="form-control" placeholder=""
                                         autocomplete="off">
-                                    </div>
+                                    </div> -->
                                     <div *ngIf="_estatus_cliente =='Apartado' " class="form-group col-md-1">
                                         <label>Manzana<span *ngIf="_estatus_cliente =='Apartado' " style="color:red">*</span></label>
                                         <select id='manzana' (change)="ManzanaSeleccionada($event.target.value)" formControlName="combo_manzana" class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase" tabindex="-1" aria-hidden="true">
