@@ -47,6 +47,7 @@ import { CrmarchivosComponent } from './crmModule/crmarchivos/crmarchivos.compon
 import { BuroCreditoComponent } from './formatos/buro-credito/buro-credito.component';
 import { CrmmotivoscancelacionComponent } from './crmModule/crmmotivoscancelacion/crmmotivoscancelacion.component';
 import { CrmeditarmotivoscancelacionComponent } from './crmModule/crmeditarmotivoscancelacion/crmeditarmotivoscancelacion.component';
+import { DesperfiladosComponent } from './crmModule/desperfilados/desperfilados.component';
 
 
 
@@ -89,7 +90,8 @@ import { CrmeditarmotivoscancelacionComponent } from './crmModule/crmeditarmotiv
     CrmarchivosComponent,
     BuroCreditoComponent,
     CrmmotivoscancelacionComponent,
-    CrmeditarmotivoscancelacionComponent
+    CrmeditarmotivoscancelacionComponent,
+    DesperfiladosComponent
 
   ],
   imports: [

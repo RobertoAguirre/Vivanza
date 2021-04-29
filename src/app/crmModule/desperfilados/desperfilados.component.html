@@ -1,0 +1,149 @@
+<app-navbar></app-navbar>
+<!-- <app-sidebar></app-sidebar> --> 
+<div class="content-wrapper" style="min-height: 1365.62px;">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>CRM Desperfilados</h1>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <div class="content" >
+        <div class="container-fluid">
+            <div class="row">
+                
+                <!-- left column -->
+                <div class="col-md-12">
+                    <!-- general form elements -->
+                    <div class="card card-primary" style="min-height: 10em">
+                        
+                        <div class="col-md-12 table-responsive" style="margin-top:2em ;" >
+                   <!--          <div class="col-md-12" style="text-align: right; margin-top:1em; margin-bottom: 1em;">
+                                <button type="submit" class="btn btn-primary" (click)="NuevoUsuario(0)">Nuevo Usuario</button>
+                            </div> -->
+                            <form [formGroup]="capturaForm">
+                                <div class="row">
+                                    
+                                    <div class="form-group col-md-2">
+                                        <label>Fecha Inicio</label>
+                                        <input id='fecha_inicio' formControlName="fecha_inicio"
+                                             type="date"
+                                            class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Fecha Fin</label>
+                                        <input id='fecha_fin' formControlName="fecha_fin" 
+                                            type="date" class="form-control" placeholder="" autocomplete="off">
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <label>Tipo de Cliente</label>
+                                        <select style="text-transform:uppercase" name="selectTipo" formControlName="tipo_cliente"
+                                            class="form-control select2 select2-hidden-accessible" style="width: 100%;"
+                                            tabindex="-1" aria-hidden="true">
+                                            <option selected style="display:none;"></option>
+                                            <option *ngFor="let item of _combo_tipo_de_cliente"
+                                                [value]="item.nombre">{{item.nombre}}</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label>Motivo</label>
+                                        <select formControlName="motivo_desperfilado"
+                                            class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase"
+                                            tabindex="-1" aria-hidden="true">
+                                            <option disabled selected style="display:none;"></option>
+                                            <option *ngFor="let item of _combo_desperfilado" [value]="item.nombre">
+                                                {{item.nombre}}</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2" style="margin-top: 2em;">
+                                        <button type="button" class="btn btn-primary btn-block"
+                                            (click)="Busca()">Buscar</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                      <!--       <app-tables class="table-responsive;"  *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset" [metodoEditar]="Editar" [metodoEliminar]="Eliminar">
+                            </app-tables>  -->
+                            <div  class=" col-md-12 table-responsive">
+                                <div *ngIf="dataset" class="col-md-2" style="margin-top: 2em; margin-bottom: 2em; text-align: right;">
+                                    <button type="button" class="btn btn-success btn-block"
+                                    data-toggle="modal" data-target="#modal" (click)="Pasar()">Asignar</button>
+                                </div>
+                                <table *ngIf="dataset" id="table2" [dtOptions]="dtOptions" datatable class="row-border hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Cliente</th>
+                                           
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let item of dataset">
+                                            <td>{{item.nombre}}</td>
+
+                                            <td><input  [(ngModel)]="item.active" style="transform: scale(1.5)"  type="checkbox" /></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>   
+                            
+                        </div>
+                       
+                    </div>
+                </div>
+
+            </div>
+
+            
+        </div>
+    </div>
+</div>
+
+<!-- <script>  $('[data-mask]').inputmask() </script> -->
+
+<div class="modal fade" id="modal">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Asignar Desperfilados</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              <div class="card card-primary">
+                <form>
+                    <div class="card-body">
+                        <div class="form-group col-md-12">
+                            <label>Seleccione persona</label>
+                            <select id='persona' formControlName="persona"
+                                class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase"
+                                tabindex="-1" aria-hidden="true"(change)="PersonaSeleccionada($event.target.value)">
+                                <option disabled selected style="display:none;"></option>
+                                <option *ngFor="let item of _combo_personal" [value]="item.id_persona">
+                                    {{item.Nombre}}</option>
+
+                            </select>
+                        </div>
+                         
+                    </div>
+                    <!-- /.card-body -->
+                </form>
+            </div>
+            </div>
+            <div class="modal-footer">
+               
+                <button type="button" class="btn btn-primary" (click)="Asignar()"  [disabled]="!capturaForm.valid" data-dismiss="modal">Asignar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

@@ -34,6 +34,7 @@ export class CrmclientesComponent implements OnInit {
   public _fa;
   public _fc;
   public _fv;
+  public _fn;
   public _v;
   public consulta;
   public nombre;
@@ -116,6 +117,7 @@ export class CrmclientesComponent implements OnInit {
     apellido_materno:[''],
     telefono:['',Validators.required],
     email:[''],
+    fecha_nacimiento:[''],
     genero:['',Validators.required],
     nivel_interes:['',Validators.required],
     motivo_desperfilado:[''],
@@ -345,6 +347,7 @@ export class CrmclientesComponent implements OnInit {
             apellido_materno:'',
             telefono:'',
             email:'',
+            fecha_nacimiento:'',
             genero:'',
             nivel_interes:'',
             motivo_desperfilado:'',
@@ -381,6 +384,7 @@ export class CrmclientesComponent implements OnInit {
           this.capturaForm.controls['apellido_materno'].disable();
           this.capturaForm.controls['telefono'].disable();
           this.capturaForm.controls['email'].disable();
+          this.capturaForm.controls['fecha_nacimiento'].disable();
           this.capturaForm.controls['genero'].disable();
           this.capturaForm.controls['nivel_interes'].disable();
           this.capturaForm.controls['combo_canal'].disable();
@@ -420,6 +424,7 @@ export class CrmclientesComponent implements OnInit {
       this.capturaForm.controls['apellido_materno'].disable();
       this.capturaForm.controls['telefono'].disable();
       this.capturaForm.controls['email'].disable();
+      this.capturaForm.controls['fecha_nacimiento'].disable();
       this.capturaForm.controls['genero'].disable();
       this.capturaForm.controls['nivel_interes'].disable();
       this.capturaForm.controls['combo_canal'].disable();
@@ -491,6 +496,7 @@ export class CrmclientesComponent implements OnInit {
           apellido_materno:this.capturaForm.value.apellido_materno,
           telefono:this.capturaForm.value.telefono,
           email:this.capturaForm.value.email,
+          fecha_nacimiento:this.capturaForm.value.fecha_nacimiento,
           genero:this.capturaForm.value.genero,
           nivel_interes:this.capturaForm.value.nivel_interes,
           motivo_desperfilado:this.capturaForm.value.motivo_desperfilado,
@@ -559,6 +565,7 @@ export class CrmclientesComponent implements OnInit {
             apellido_materno:'',
             telefono:'',
             email:'',
+            fecha_nacimiento:'',
             genero:'',
             nivel_interes:'',
             motivo_desperfilado:'',
@@ -608,6 +615,7 @@ export class CrmclientesComponent implements OnInit {
             apellido_materno:'',
             telefono:'',
             email:'',
+            fecha_nacimiento:'',
             genero:'',
             nivel_interes:'',
             motivo_desperfilado:'',
@@ -904,6 +912,14 @@ export class CrmclientesComponent implements OnInit {
         this.visitas[2].visita = _response.success.recordsets[2].visita3.slice(0,-8);
       } */
 
+      if(_response.success.recordset[0].fecha_nacimiento != null){
+        
+        this._fn = _response.success.recordset[0].fecha_nacimiento.slice(0,-14);
+      }
+      else{
+       this. _fn = '';
+      }
+
       if(_response.success.recordset[0].fecha_apartado != null){
         
         this._fa = _response.success.recordset[0].fecha_apartado.slice(0,-14);
@@ -940,6 +956,7 @@ export class CrmclientesComponent implements OnInit {
           apellido_materno:_response.success.recordset[0].apellido_materno,
           telefono:_response.success.recordset[0].numero,
           email:_response.success.recordset[0].correo,
+          fecha_nacimiento: this._fn,
           genero:_response.success.recordset[0].sexo,
           nivel_interes:_response.success.recordset[0].nivel_interes,
           motivo_desperfilado:_response.success.recordset[0].motivo_desperfilado,
@@ -988,6 +1005,7 @@ export class CrmclientesComponent implements OnInit {
         this.capturaForm.controls['apellido_materno'].enable();
         this.capturaForm.controls['telefono'].enable();
         this.capturaForm.controls['email'].enable();
+        this.capturaForm.controls['fecha_nacimiento'].enable();
         this.capturaForm.controls['genero'].enable();
         this.capturaForm.controls['nivel_interes'].enable();
         this.capturaForm.controls['combo_canal'].enable();
@@ -1073,6 +1091,7 @@ export class CrmclientesComponent implements OnInit {
         apellido_materno:[this.capturaForm.value.apellido_materno,Validators.required],
         telefono:[this.capturaForm.value.telefono,Validators.required],
         email:[this.capturaForm.value.email,Validators.required],
+        fecha_nacimiento:[this.capturaForm.value.emailfecha_nacimiento],
         genero:[this.capturaForm.value.genero,Validators.required],
         nivel_interes:[this.capturaForm.value.nivel_interes,Validators.required],
         motivo_desperfilado:[this.capturaForm.value.motivo_desperfilado],
@@ -1131,6 +1150,7 @@ export class CrmclientesComponent implements OnInit {
         apellido_materno:this.capturaForm.value.apellido_materno,
         telefono:this.capturaForm.value.telefono,
         email:this.capturaForm.value.email,
+        fecha_nacimiento:this.capturaForm.value.fecha_nacimiento,
         genero:this.capturaForm.value.genero,
         nivel_interes:this.capturaForm.value.nivel_interes,
         motivo_desperfilado:this.capturaForm.value.motivo_desperfilado,
@@ -1308,6 +1328,7 @@ export class CrmclientesComponent implements OnInit {
             apellido_materno:this.capturaForm.value.apellido_materno,
             telefono:this.capturaForm.value.telefono,
             email:this.capturaForm.value.email,
+            fecha_nacimiento:this.capturaForm.value.fecha_nacimiento,
             genero:this.capturaForm.value.genero,
             nivel_interes:this.capturaForm.value.nivel_interes,
             motivo_desperfilado:this.capturaForm.value.motivo_desperfilado,
@@ -1401,6 +1422,7 @@ export class CrmclientesComponent implements OnInit {
             apellido_materno:this.capturaForm.value.apellido_materno,
             telefono:this.capturaForm.value.telefono,
             email:this.capturaForm.value.email,
+            fecha_nacimiento:this.capturaForm.value.fecha_nacimiento,
             genero:this.capturaForm.value.genero,
             nivel_interes:this.capturaForm.value.nivel_interes,
             motivo_desperfilado:this.capturaForm.value.motivo_desperfilado,
@@ -1474,6 +1496,7 @@ export class CrmclientesComponent implements OnInit {
             apellido_materno:this.capturaForm.value.apellido_materno,
             telefono:this.capturaForm.value.telefono,
             email:this.capturaForm.value.email,
+            fecha_nacimiento:this.capturaForm.value.fecha_nacimiento,
             genero:this.capturaForm.value.genero,
             nivel_interes:this.capturaForm.value.nivel_interes,
             motivo_desperfilado:this.capturaForm.value.motivo_desperfilado,
@@ -1635,6 +1658,7 @@ export class CrmclientesComponent implements OnInit {
     this.capturaForm.controls['apellido_materno'].enable();
     this.capturaForm.controls['telefono'].enable();
     this.capturaForm.controls['email'].enable();
+    this.capturaForm.controls['fecha_nacimiento'].enable();
     this.capturaForm.controls['genero'].enable();
     this.capturaForm.controls['nivel_interes'].enable();
     this.capturaForm.controls['combo_canal'].enable();
@@ -1703,6 +1727,7 @@ export class CrmclientesComponent implements OnInit {
           apellido_materno:this.capturaForm.value.apellido_materno,
           telefono:this.capturaForm.value.telefono,
           email:this.capturaForm.value.email,
+          fecha_nacimiento:this.capturaForm.value.fecha_nacimiento,
           genero:this.capturaForm.value.genero,
           nivel_interes:'Muy interesado (15 días)',
           motivo_desperfilado:this.capturaForm.value.motivo_desperfilado,
@@ -1745,6 +1770,7 @@ export class CrmclientesComponent implements OnInit {
           apellido_materno:[this.capturaForm.value.apellido_materno],
           telefono:[this.capturaForm.value.telefono,Validators.required],
           email:[this.capturaForm.value.email],
+          fecha_nacimiento:[this.capturaForm.value.fecha_nacimiento],
           genero:[this.capturaForm.value.genero,Validators.required],
           nivel_interes:[this.capturaForm.value.nivel_interes,Validators.required],
           motivo_desperfilado:[this.capturaForm.value.motivo_desperfilado],
@@ -1855,6 +1881,7 @@ export class CrmclientesComponent implements OnInit {
                     apellido_materno:'',
                     telefono:'',
                     email:'',
+                    fecha_nacimiento:'',
                     genero:'',
                     nivel_interes:'',
                     motivo_desperfilado:'',
@@ -1891,6 +1918,7 @@ export class CrmclientesComponent implements OnInit {
                   this.capturaForm.controls['apellido_materno'].disable();
                   this.capturaForm.controls['telefono'].disable();
                   this.capturaForm.controls['email'].disable();
+                  this.capturaForm.controls['fecha_nacimiento'].disable();
                   this.capturaForm.controls['genero'].disable();
                   this.capturaForm.controls['nivel_interes'].disable();
                   this.capturaForm.controls['combo_canal'].disable();
@@ -1973,7 +2001,7 @@ export class CrmclientesComponent implements OnInit {
               this._combo_desarrollos =[];
               this._combo_desarrollos = e;
               window.scroll(0, 1000);
-              alert(d[0].mensaje);
+              /* alert(d[0].mensaje); */
               $("#nombre").prop("disabled",true);
               $("#apellido_materno").prop("disabled",true);
               $("#apellido_paterno").prop("disabled",true);
@@ -2023,6 +2051,7 @@ export class CrmclientesComponent implements OnInit {
                     apellido_materno:'',
                     telefono:'',
                     email:'',
+                    fecha_nacimiento:'',
                     genero:'',
                     nivel_interes:'',
                     motivo_desperfilado:'',
@@ -2059,6 +2088,7 @@ export class CrmclientesComponent implements OnInit {
                   this.capturaForm.controls['apellido_materno'].disable();
                   this.capturaForm.controls['telefono'].disable();
                   this.capturaForm.controls['email'].disable();
+                  this.capturaForm.controls['fecha_nacimiento'].disable();
                   this.capturaForm.controls['genero'].disable();
                   this.capturaForm.controls['nivel_interes'].disable();
                   this.capturaForm.controls['combo_canal'].disable();
@@ -2087,9 +2117,103 @@ export class CrmclientesComponent implements OnInit {
             }
             
           }
-          else{
-  
+          if(d[0].error == 3){
+            alert(d[0].mensaje);
+            this._cancelado = false;
+              this.btn_exporta = false;
+              this.lista_clientes = [];
+              this.visitas = [];
+              this.visit = '';
+              this.btns = false;
+              this.editar = false;
+              this.capturaFormBuscar.setValue(
+                {
+                  consulta: '',
+                  buscar: 'NOMBRE'
+                })
+
+                this.capturaForm.setValue(
+                  {
+                    tipo_cliente: '',
+                    fecha: '',
+                    hora:'',
+                    folio:'',
+                    asesor:'',
+                    registro:'',
+                    nombres:'',
+                    apellido_paterno:'',
+                    apellido_materno:'',
+                    telefono:'',
+                    email:'',
+                    fecha_nacimiento:'',
+                    genero:'',
+                    nivel_interes:'',
+                    motivo_desperfilado:'',
+                    combo_canal:'',
+                    combo_medio:'',
+                    combo_submedio:'',
+                    referidor:'',
+                    combo_desarrollo:'',
+                    combo_prototipo:'',
+                    combo_etapa:'',
+                    combo_manzana:'',
+                    combo_lote:'',
+                    tipo_credito:'',
+                    credito:'',
+                    institucion_financiera:'',
+                    ingresos:'',
+                    proximo_contacto:'',
+                    fecha_apartado:'',
+                    fecha_venta:'',
+                    fecha_cancelacion:'',
+                    motivo:'',
+                    visita:'',
+                    visita2:'',
+                    visita3:'',
+                    visita4:'',
+                    comentario:['']
+                  }) 
+                  this.lista_comentarios = [];
+                  this.capturaForm.controls['tipo_cliente'].disable();
+                  this.capturaForm.controls['asesor'].disable();
+                  this.capturaForm.controls['registro'].disable();
+                  this.capturaForm.controls['nombres'].disable();
+                  this.capturaForm.controls['apellido_paterno'].disable();
+                  this.capturaForm.controls['apellido_materno'].disable();
+                  this.capturaForm.controls['telefono'].disable();
+                  this.capturaForm.controls['email'].disable();
+                  this.capturaForm.controls['fecha_nacimiento'].disable();
+                  this.capturaForm.controls['genero'].disable();
+                  this.capturaForm.controls['nivel_interes'].disable();
+                  this.capturaForm.controls['combo_canal'].disable();
+                  this.capturaForm.controls['combo_medio'].disable();
+                  this.capturaForm.controls['combo_submedio'].disable();
+                  this.capturaForm.controls['referidor'].disable();
+                  this.capturaForm.controls['combo_desarrollo'].disable();
+                  this.capturaForm.controls['combo_prototipo'].disable();
+                  this.capturaForm.controls['combo_manzana'].disable();
+                  this.capturaForm.controls['combo_etapa'].disable();
+                  this.capturaForm.controls['tipo_credito'].disable();
+                  this.capturaForm.controls['credito'].disable();
+                  this.capturaForm.controls['institucion_financiera'].disable();
+                  this.capturaForm.controls['ingresos'].disable();
+                  this.capturaForm.controls['proximo_contacto'].disable();
+                  this.capturaForm.controls['fecha_apartado'].disable();
+                  this.capturaForm.controls['fecha_venta'].disable();
+                  this.capturaForm.controls['fecha_cancelacion'].disable();
+                  this.capturaForm.controls['visita'].disable();
+                  this.capturaForm.controls['visita2'].disable();
+                  this.capturaForm.controls['visita3'].disable();
+                  this.capturaForm.controls['visita4'].disable();
+                  this.capturaForm.controls['comentario'].disable();
+                  window.scroll(0, 0);
+                  this.btn_apartado = false;
+                  
+
           }
+     /*      else{
+  
+          } */
         }
         
         
@@ -2230,6 +2354,7 @@ export class CrmclientesComponent implements OnInit {
             ,  this.capturaForm.value.apellido_materno +"','"  
             ,  this.capturaForm.value.telefono +"','"  
             ,  this.capturaForm.value.email +"','"  
+            ,  this.capturaForm.value.fecha_nacimiento +"','" 
             ,  this.capturaForm.value.genero +"','"  
             ,  this.capturaForm.value.nivel_interes +"','"  
             ,  this.capturaForm.value.motivo_desperfilado +"','"  
@@ -2278,6 +2403,7 @@ export class CrmclientesComponent implements OnInit {
           this._visita3 = false;
           this._visita4 = false;
           this.LimpiaFormulario();
+          this.ResumenVentas();
           window.scroll(0, 0);
   
         }
@@ -2318,6 +2444,7 @@ export class CrmclientesComponent implements OnInit {
         apellido_materno:'',
         telefono:'',
         email:'',
+        fecha_nacimiento:'',
         genero:'',
         nivel_interes:'',
         motivo_desperfilado:'',
@@ -2354,6 +2481,7 @@ export class CrmclientesComponent implements OnInit {
       this.capturaForm.controls['apellido_materno'].disable();
       this.capturaForm.controls['telefono'].disable();
       this.capturaForm.controls['email'].disable();
+      this.capturaForm.controls['fecha_nacimiento'].disable();
       this.capturaForm.controls['genero'].disable();
       this.capturaForm.controls['nivel_interes'].disable();
       this.capturaForm.controls['combo_canal'].disable();
