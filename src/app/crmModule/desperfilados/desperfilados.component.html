@@ -71,12 +71,12 @@
 
                       <!--       <app-tables class="table-responsive;"  *ngIf="dataset" [tituloTabla]="tituloTabla" [descripcionTabla]="descripcionTabla" [dataset]="dataset" [metodoEditar]="Editar" [metodoEliminar]="Eliminar">
                             </app-tables>  -->
-                            <div  class=" col-md-12 table-responsive">
+                            <div style="text-transform: uppercase;" class=" col-md-12 table-responsive">
                                 <div *ngIf="dataset" class="col-md-2" style="margin-top: 2em; margin-bottom: 2em; text-align: right;">
                                     <button type="button" class="btn btn-success btn-block"
                                     data-toggle="modal" data-target="#modal" (click)="Pasar()">Asignar</button>
                                 </div>
-                                <table *ngIf="dataset" id="table2" [dtOptions]="dtOptions" datatable class="row-border hover">
+                                <table style="text-transform: uppercase;" *ngIf="dataset" id="table2" [dtOptions]="dtOptions" datatable class="row-border hover">
                                     <thead>
                                         <tr>
                                             <th>Cliente</th>

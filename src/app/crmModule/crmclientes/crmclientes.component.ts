@@ -16,6 +16,7 @@ import * as $ from 'jquery'; */
 export class CrmclientesComponent implements OnInit {
   @ViewChild('mytablalocal') userTable: ElementRef; //referencia a la tabla a exportar
   
+  public _lote;
   public nuevo_cliente;
   public  hora_registro;
   public validaciones;
@@ -125,9 +126,9 @@ export class CrmclientesComponent implements OnInit {
     combo_medio:[''],
     combo_submedio:[''],
     referidor:[''],
-    combo_desarrollo:[''],
+    combo_desarrollo:['',Validators.required],
     combo_prototipo:[''],
-    combo_etapa:[''],
+    combo_etapa:['',Validators.required],
     combo_manzana:[''],
     combo_lote:[''],
     tipo_credito:[''],
@@ -334,6 +335,11 @@ export class CrmclientesComponent implements OnInit {
     if(item == 1){
       let pregunta = confirm('¿Está seguro de querer cancelar?');
       if (pregunta == true){
+        this._estatus_cliente = '';
+        this.no_medio = 0;
+        this.no_submedio = 0;
+        this.medio_requerido = false;
+        this.submedio_requerido = false;
         this.capturaForm.setValue(
           {
             tipo_cliente: '',
@@ -394,6 +400,7 @@ export class CrmclientesComponent implements OnInit {
           this.capturaForm.controls['combo_desarrollo'].disable();
           this.capturaForm.controls['combo_prototipo'].disable();
           this.capturaForm.controls['combo_manzana'].disable();
+          this.capturaForm.controls['combo_lote'].disable();
           this.capturaForm.controls['combo_etapa'].disable();
           this.capturaForm.controls['tipo_credito'].disable();
           this.capturaForm.controls['credito'].disable();
@@ -434,6 +441,7 @@ export class CrmclientesComponent implements OnInit {
       this.capturaForm.controls['combo_desarrollo'].disable();
       this.capturaForm.controls['combo_prototipo'].disable();
       this.capturaForm.controls['combo_manzana'].disable();
+      this.capturaForm.controls['combo_lote'].disable();
       this.capturaForm.controls['combo_etapa'].disable();
       this.capturaForm.controls['tipo_credito'].disable();
       this.capturaForm.controls['credito'].disable();
@@ -796,9 +804,15 @@ export class CrmclientesComponent implements OnInit {
       let apartado;
       apartado = _response.success.recordset[0].tipo_cliente;
       this._estatus_cliente = apartado;
-      if(apartado == 'Apartado'){
+/*       if(apartado == 'Apartado'){
         this.btn_apartado = true;
+        $("#manzana").prop("disabled",false);
+        $("#lote").prop("disabled",false);
       }
+      else{
+        $("#manzana").prop("disabled",true);
+        $("#lote").prop("disabled",true);
+      } */
       if(_response.success.recordset[0].motivo != null){
         this._cancelado = true;
         this.TraeMotivosCancelacion();
@@ -1049,6 +1063,15 @@ export class CrmclientesComponent implements OnInit {
         this._visita3 = true;
         this._visita4 = true; */
       }
+      if(apartado == 'Apartado'){
+        this.btn_apartado = true;
+        $("#manzana").prop("disabled",false);
+        $("#lote").prop("disabled",false);
+      }
+      else{
+        $("#manzana").prop("disabled",true);
+        $("#lote").prop("disabled",true);
+      }
        this.TipoUsuario();
     })
   }
@@ -1076,6 +1099,8 @@ export class CrmclientesComponent implements OnInit {
     if(item == 'Apartado'){
       this._info_financiera = true;
       this._estatus_cliente = 'Apartado';
+      $("#manzana").prop("disabled",false);
+      $("#lote").prop("disabled",false);
       if(this.capturaForm.value.tipo_credito === 0){
         this.capturaForm.value.tipo_credito = '';
       }
@@ -1290,7 +1315,7 @@ export class CrmclientesComponent implements OnInit {
     this._d_s = item;
     let data = {
       "appname":"VIVANZA",
-      "sp": 'dvp.Combo_Prototipos',
+      "sp": 'dvp.Combo_Etapas',
       "params": [item]
 
     }
@@ -1299,14 +1324,14 @@ export class CrmclientesComponent implements OnInit {
       let _response;
       _response = response;
       if(i === 1){
-        this._combo_prototipos = _response.success.recordset;
+        this._combo_manzanas = _response.success.recordset;
       }
       else{
-        this._combo_prototipos = _response.success.recordset;
+        this._combo_manzanas = _response.success.recordset;
         this.capturaForm.value.combo_prototipo = '';
-        this._combo_manzanas = [];
-        this._combo_manzana = [];
         this._combo_lote = [];
+        this._combo_manzana = [];
+        this._combo_prototipos = [];
         var _reg;
         if(this.capturaForm.value.registro === undefined){
           _reg = this.nombre_registra;
@@ -1378,12 +1403,12 @@ export class CrmclientesComponent implements OnInit {
     })
   } */
 
-  PrototipoSeleccionado(item,i){
+  EtapaSeleccionada(item,i){
     
     this.capturaForm.value.combo_etapa = '';
     let data = { 
       "appname":"VIVANZA",
-      "sp": 'dvp.Combo_Etapas',
+      "sp": 'dvp.Combo_Prototipos',
       "params": ["'" + this._d_s + "','" ,  item + "'"]
 
     }
@@ -1392,12 +1417,12 @@ export class CrmclientesComponent implements OnInit {
       let _response;
       _response = response;
       if(i === 1){
-        this._combo_manzanas = _response.success.recordset;
+        this._combo_prototipos = _response.success.recordset;
         this.vivienda_seleccionada = item;
       }
       else{
-        this._combo_manzanas = [];
-        this._combo_manzanas = _response.success.recordset;
+        this._combo_prototipos = [];
+        this._combo_prototipos = _response.success.recordset;
         this.vivienda_seleccionada = item;
         this._combo_manzana = [];
         this._combo_lote = [];
@@ -1431,8 +1456,8 @@ export class CrmclientesComponent implements OnInit {
             combo_submedio:this.capturaForm.value.combo_submedio,
             referidor:this.capturaForm.value.referidor ,
             combo_desarrollo:this.capturaForm.value.combo_desarrollo,
-            combo_prototipo:this.capturaForm.value.combo_prototipo,
-            combo_etapa:'',
+            combo_prototipo:'',
+            combo_etapa:this.vivienda_seleccionada,
             combo_manzana:'' ,
             combo_lote:'' ,
             tipo_credito:this.capturaForm.value.tipo_credito,
@@ -1454,13 +1479,13 @@ export class CrmclientesComponent implements OnInit {
       
     })
   }
-  EtapaSeleccionada(item,i){
+  PrototipoSeleccionado(item,i){
     
     
     let data = { 
       "appname":"VIVANZA",
       "sp": 'dvp.Combo_Manzanas',
-      "params": ["'" + item + "','" ,  this.vivienda_seleccionada + "'"]
+      "params": ["'" + this.vivienda_seleccionada + "','" ,  item + "'"]
 
     }
 
@@ -1470,9 +1495,15 @@ export class CrmclientesComponent implements OnInit {
       if(i===1){
         this._combo_manzana = _response.success.recordset;
         this.etapa = _response.success.recordsets[1];
+        $("#manzana").prop("disabled",false);
+        $("#lote").prop("disabled",false);
+        this._lote = item;
         this.ManzanaSeleccionada(this._manzana);
       }
       else{
+        $("#manzana").prop("disabled",false);
+        $("#lote").prop("disabled",false);
+        this._lote = item;
         this._combo_manzana = _response.success.recordset;
         this.etapa = _response.success.recordsets[1];
         this._combo_lote = [];
@@ -1534,7 +1565,7 @@ export class CrmclientesComponent implements OnInit {
     let data = { 
       "appname":"VIVANZA",
       "sp": 'dvp.Combo_Lotes',
-      "params": ["'" + this.etapa[0].ETAPA + "','" ,  item + "','" ,  this.vivienda_seleccionada + "'"]
+      "params": ["'" + this.etapa[0].ETAPA + "','" ,  item + "','" ,  this._lote + "'"]
 
     }
 
@@ -1668,6 +1699,7 @@ export class CrmclientesComponent implements OnInit {
     this.capturaForm.controls['combo_desarrollo'].enable();
     this.capturaForm.controls['combo_prototipo'].enable();
     this.capturaForm.controls['combo_manzana'].enable();
+    this.capturaForm.controls['combo_lote'].enable();
     this.capturaForm.controls['combo_etapa'].enable();
     this.capturaForm.controls['tipo_credito'].enable();
     this.capturaForm.controls['credito'].enable();
@@ -1678,6 +1710,8 @@ export class CrmclientesComponent implements OnInit {
     this.capturaForm.controls['fecha_venta'].enable();
     this.capturaForm.controls['fecha_cancelacion'].enable();
     this.capturaForm.controls['comentario'].enable();
+    $("#manzana").prop("disabled",true);
+    $("#lote").prop("disabled",true);
     $("#fecha_apartado").prop("disabled",true);
     $("#fecha_venta").prop("disabled",true);
     $("#fecha_cancelacion").prop("disabled",true);
