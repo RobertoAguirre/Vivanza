@@ -553,6 +553,13 @@ export class CrmclientesComponent implements OnInit {
      /*  this.fecha = _response.success.recordsets[0]; */
       /* this.fecha = 'hola'; */
       /* this.usuario = _response.success.recordset[0]; */
+      if(_response.success.recordset[0].tipo === 'Promotor'){
+        $("#asesor").prop("disabled",true);
+      }
+      else{
+        $("#asesor").prop("disabled",false);
+      }
+
       if ('Asesor' == _response.success.recordset[0].tipo){
       this._es_asesor = 1;
       this._asesor = _response.success.recordset[0].ID;
@@ -758,6 +765,9 @@ export class CrmclientesComponent implements OnInit {
       _response = response;
       let a;
       a = _response.success.recordset[0].tipo;
+      if(a === 'Promotor'){
+        $("#asesor").prop("disabled",true);
+      }
       if(a === 'Asesor' || a === 'Promotor'){
         /* this._tipo_usuario = true; */
         $("#canal").prop("disabled",true);
@@ -779,11 +789,12 @@ export class CrmclientesComponent implements OnInit {
         $("#fecha_cancelacion").prop("disabled",true);
         $("#motivo_cancelado").prop("disabled",true);
       }
+
     })
   }
 
   EditarCliente(item){
-    
+
     let id;
     id = item.id_cliente;
     this.id_cliente_apartado = id;
@@ -1674,7 +1685,7 @@ export class CrmclientesComponent implements OnInit {
   Nuevo(){   
     this.btn_com = false; 
     this.btns = true;
-    this.TraeUsuario();
+    
     this.TraeFecha();
     this._visita1 = false;
     this._visita2 = false;
@@ -1716,6 +1727,7 @@ export class CrmclientesComponent implements OnInit {
     $("#fecha_venta").prop("disabled",true);
     $("#fecha_cancelacion").prop("disabled",true);
     this.EsAsesor();
+    this.TraeUsuario();
   }
 
   HoraServidor(){
@@ -1883,149 +1895,96 @@ export class CrmclientesComponent implements OnInit {
         if(_response.success.recordsets.length > 0){
           let d = _response.success.recordsets[0];
           if(d[0].error == 1){
-           /*  alert(d[0].mensaje); */
-            let pregunta = confirm(d[0].mensaje);
-            if (pregunta == true){
-
-            }
-            else{
-              this._cancelado = false;
-              this.btn_exporta = false;
-              this.lista_clientes = [];
-              this.visitas = [];
-              this.visit = '';
-              this.btns = false;
-              this.editar = false;
-              this.capturaFormBuscar.setValue(
-                {
-                  consulta: '',
-                  buscar: 'NOMBRE'
-                })
-
-                this.capturaForm.setValue(
-                  {
-                    tipo_cliente: '',
-                    fecha: '',
-                    hora:'',
-                    folio:'',
-                    asesor:'',
-                    registro:'',
-                    nombres:'',
-                    apellido_paterno:'',
-                    apellido_materno:'',
-                    telefono:'',
-                    email:'',
-                    fecha_nacimiento:'',
-                    genero:'',
-                    nivel_interes:'',
-                    motivo_desperfilado:'',
-                    combo_canal:'',
-                    combo_medio:'',
-                    combo_submedio:'',
-                    referidor:'',
-                    combo_desarrollo:'',
-                    combo_prototipo:'',
-                    combo_etapa:'',
-                    combo_manzana:'',
-                    combo_lote:'',
-                    tipo_credito:'',
-                    credito:'',
-                    institucion_financiera:'',
-                    ingresos:'',
-                    proximo_contacto:'',
-                    fecha_apartado:'',
-                    fecha_venta:'',
-                    fecha_cancelacion:'',
-                    motivo:'',
-                    visita:'',
-                    visita2:'',
-                    visita3:'',
-                    visita4:'',
-                    comentario:['']
-                  }) 
-                  this.lista_comentarios = [];
-                  this.capturaForm.controls['tipo_cliente'].disable();
-                  this.capturaForm.controls['asesor'].disable();
-                  this.capturaForm.controls['registro'].disable();
-                  this.capturaForm.controls['nombres'].disable();
-                  this.capturaForm.controls['apellido_paterno'].disable();
-                  this.capturaForm.controls['apellido_materno'].disable();
-                  this.capturaForm.controls['telefono'].disable();
-                  this.capturaForm.controls['email'].disable();
-                  this.capturaForm.controls['fecha_nacimiento'].disable();
-                  this.capturaForm.controls['genero'].disable();
-                  this.capturaForm.controls['nivel_interes'].disable();
-                  this.capturaForm.controls['combo_canal'].disable();
-                  this.capturaForm.controls['combo_medio'].disable();
-                  this.capturaForm.controls['combo_submedio'].disable();
-                  this.capturaForm.controls['referidor'].disable();
-                  this.capturaForm.controls['combo_desarrollo'].disable();
-                  this.capturaForm.controls['combo_prototipo'].disable();
-                  this.capturaForm.controls['combo_manzana'].disable();
-                  this.capturaForm.controls['combo_etapa'].disable();
-                  this.capturaForm.controls['tipo_credito'].disable();
-                  this.capturaForm.controls['credito'].disable();
-                  this.capturaForm.controls['institucion_financiera'].disable();
-                  this.capturaForm.controls['ingresos'].disable();
-                  this.capturaForm.controls['proximo_contacto'].disable();
-                  this.capturaForm.controls['fecha_apartado'].disable();
-                  this.capturaForm.controls['fecha_venta'].disable();
-                  this.capturaForm.controls['fecha_cancelacion'].disable();
-                  this.capturaForm.controls['visita'].disable();
-                  this.capturaForm.controls['visita2'].disable();
-                  this.capturaForm.controls['visita3'].disable();
-                  this.capturaForm.controls['visita4'].disable();
-                  this.capturaForm.controls['comentario'].disable();
-                  window.scroll(0, 0);
-                  this.btn_apartado = false;
-            }
-    
-            /* var _reg;
-            if(this.capturaForm.value.registro === undefined){
-              _reg = this.nombre_registra;
-            }
-            else{
-              _reg = this.capturaForm.value.registro;
-            }
-            this.capturaForm.setValue(
+            alert(d[0].mensaje);
+            this._cancelado = false;
+            this.btn_exporta = false;
+            this.lista_clientes = [];
+            this.visitas = [];
+            this.visit = '';
+            this.btns = false;
+            this.editar = false;
+            this.capturaFormBuscar.setValue(
               {
-                tipo_cliente: this.capturaForm.value.tipo_cliente,
-                fecha: this.capturaForm.value.fecha ,
-                folio:this.capturaForm.value.folio,
-                asesor:this.capturaForm.value.asesor,
-                registro:_reg,
-                nombres:this.capturaForm.value.nombres,
-                apellido_paterno:this.capturaForm.value.apellido_paterno,
-                apellido_materno:this.capturaForm.value.apellido_materno,
-                telefono:'',
-                email:this.capturaForm.value.email,
-                genero:this.capturaForm.value.genero,
-                nivel_interes:this.capturaForm.value.nivel_interes,
-                motivo_desperfilado:this.capturaForm.value.motivo_desperfilado,
-                combo_canal:this.capturaForm.value.combo_canal,
-                combo_medio:this.capturaForm.value.combo_medio,
-                combo_submedio:this.capturaForm.value.combo_submedio,
-                referidor:this.capturaForm.value.referidor ,
-                combo_desarrollo:this.capturaForm.value.combo_desarrollo,
-                combo_prototipo:this.capturaForm.value.combo_prototipo,
-                combo_etapa:this.capturaForm.value.combo_etapa,
-                combo_manzana:this.capturaForm.value.combo_manzana ,
-                combo_lote:this.capturaForm.value.combo_lote ,
-                tipo_credito:this.capturaForm.value.tipo_credito,
-                credito:this.capturaForm.value.credito,
-                institucion_financiera:this.capturaForm.value.institucion_financiera,
-                ingresos:this.capturaForm.value.ingresos,
-                proximo_contacto:this.capturaForm.value.proximo_contacto,
-                fecha_apartado:this.capturaForm.value.fecha_apartado,
-                fecha_venta:this.capturaForm.value.fecha_venta,
-                fecha_cancelacion:this.capturaForm.value.fecha_cancelacion,
-                motivo:this.capturaForm.value.motivo,
-                visita:this.capturaForm.value.visita,
-                visita2:this.capturaForm.value.visita2,
-                visita3:this.capturaForm.value.visita3,
-                visita4:this.capturaForm.value.visita4,
-                comentario:this.capturaForm.value.comentario
-              }) */ 
+                consulta: '',
+                buscar: 'NOMBRE'
+              })
+
+              this.capturaForm.setValue(
+                {
+                  tipo_cliente: '',
+                  fecha: '',
+                  hora:'',
+                  folio:'',
+                  asesor:'',
+                  registro:'',
+                  nombres:'',
+                  apellido_paterno:'',
+                  apellido_materno:'',
+                  telefono:'',
+                  email:'',
+                  fecha_nacimiento:'',
+                  genero:'',
+                  nivel_interes:'',
+                  motivo_desperfilado:'',
+                  combo_canal:'',
+                  combo_medio:'',
+                  combo_submedio:'',
+                  referidor:'',
+                  combo_desarrollo:'',
+                  combo_prototipo:'',
+                  combo_etapa:'',
+                  combo_manzana:'',
+                  combo_lote:'',
+                  tipo_credito:'',
+                  credito:'',
+                  institucion_financiera:'',
+                  ingresos:'',
+                  proximo_contacto:'',
+                  fecha_apartado:'',
+                  fecha_venta:'',
+                  fecha_cancelacion:'',
+                  motivo:'',
+                  visita:'',
+                  visita2:'',
+                  visita3:'',
+                  visita4:'',
+                  comentario:['']
+                }) 
+                this.lista_comentarios = [];
+                this.capturaForm.controls['tipo_cliente'].disable();
+                this.capturaForm.controls['asesor'].disable();
+                this.capturaForm.controls['registro'].disable();
+                this.capturaForm.controls['nombres'].disable();
+                this.capturaForm.controls['apellido_paterno'].disable();
+                this.capturaForm.controls['apellido_materno'].disable();
+                this.capturaForm.controls['telefono'].disable();
+                this.capturaForm.controls['email'].disable();
+                this.capturaForm.controls['fecha_nacimiento'].disable();
+                this.capturaForm.controls['genero'].disable();
+                this.capturaForm.controls['nivel_interes'].disable();
+                this.capturaForm.controls['combo_canal'].disable();
+                this.capturaForm.controls['combo_medio'].disable();
+                this.capturaForm.controls['combo_submedio'].disable();
+                this.capturaForm.controls['referidor'].disable();
+                this.capturaForm.controls['combo_desarrollo'].disable();
+                this.capturaForm.controls['combo_prototipo'].disable();
+                this.capturaForm.controls['combo_manzana'].disable();
+                this.capturaForm.controls['combo_etapa'].disable();
+                this.capturaForm.controls['tipo_credito'].disable();
+                this.capturaForm.controls['credito'].disable();
+                this.capturaForm.controls['institucion_financiera'].disable();
+                this.capturaForm.controls['ingresos'].disable();
+                this.capturaForm.controls['proximo_contacto'].disable();
+                this.capturaForm.controls['fecha_apartado'].disable();
+                this.capturaForm.controls['fecha_venta'].disable();
+                this.capturaForm.controls['fecha_cancelacion'].disable();
+                this.capturaForm.controls['visita'].disable();
+                this.capturaForm.controls['visita2'].disable();
+                this.capturaForm.controls['visita3'].disable();
+                this.capturaForm.controls['visita4'].disable();
+                this.capturaForm.controls['comentario'].disable();
+                window.scroll(0, 0);
+                this.btn_apartado = false; 
           }
           if(d[0].error == 2){
             let pregunta = confirm(d[0].mensaje);
@@ -2041,11 +2000,13 @@ export class CrmclientesComponent implements OnInit {
               $("#apellido_paterno").prop("disabled",true);
               $("#telefono").prop("disabled",true);
               $("#correo").prop("disabled",true);
+              $("#fecha_nacimiento").prop("disabled",true);
               $("#genero").prop("disabled",true);
               $("#nivel_interes").prop("disabled",true);
               $("#canal").prop("disabled",true);
               $("#medio").prop("disabled",true);
               $("#submedio").prop("disabled",true);
+              $("#etapa").prop("disabled",true);
               $("#referidor").prop("disabled",true);
               $("#prototipo").prop("disabled",true);
               $("#tipo_credito").prop("disabled",true);
