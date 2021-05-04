@@ -109,15 +109,19 @@
                                         (click)="BuscarCliente()">Búsqueda</button>
                                 </div>
                                 
-                                    <div *ngIf="btn_exporta == false " class="col-md-2">
-                                        <button type="button" class="btn btn-success btn-block"
-                                        (click)="Trae()">Exportar a Excel</button>
-                                    </div>
-                                    <div *ngIf="btn_exporta == true " class="col-md-2">
-                                        <button type="button" class="btn btn-primary  btn-block"
-                                        (click)="exportElmToExcel()">Descargar Excel</button>
-                                    </div>
-                              
+                                <div *ngIf="btn_exporta == false " class="col-md-2">
+                                    <button type="button" class="btn btn-success btn-block"
+                                    (click)="Trae()">Exportar a Excel</button>
+                                </div>
+                                <div *ngIf="btn_exporta == true " class="col-md-2">
+                                    <button type="button" class="btn btn-primary  btn-block"
+                                    (click)="exportElmToExcel()">Descargar Excel</button>
+                                </div>
+
+                                <div *ngIf="_estatus_cliente =='Cancelado' && btn_activar == true" class="col-md-2">
+                                    <button type="button" class="btn btn-outline-warning btn-block"
+                                        (click)="ActivarCliente()">Activar</button>
+                                </div>
 
                             </div>
                             <div style="display:none">
@@ -149,6 +153,7 @@
                                             <th>credito</th>
                                             <th>institucion_financiera</th>
                                             <th>desarrollo</th>
+                                            <th>Etapa</th>
                                             <th>prototipo</th>
                                             <th>manzana</th>
                                             <th>lote</th>
@@ -205,6 +210,7 @@
                                             <td>{{item.credito}}</td>
                                             <td>{{item.institucion_financiera}}</td>
                                             <td>{{item.desarrollo}}</td>
+                                            <td>{{item.etapa}}</td>
                                             <td>{{item.prototipo}}</td>
                                             <td>{{item.manzana}}</td>
                                             <td>{{item.lote}}</td>
@@ -264,7 +270,7 @@
                                     <div class="form-group col-md-12">
                                         <div class="row-border hover table-responsive"
                                             style="max-height:55em; margin-top:1em; padding-bottom:1em;">
-                                            <table class="table table-bordered table-hover dataTable" role="grid">
+                                           <table style="text-transform: uppercase;" *ngIf="lista_clientes" id="table2" [dtOptions]="dtOptions" datatable class="row-border hover">
                                                 <thead>
                                                     <tr style="text-transform:uppercase">
 
@@ -275,8 +281,8 @@
                                                         <th>Acción</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody *ngFor="let buscar of lista_clientes">
-                                                    <tr>
+                                                <tbody >
+                                                    <tr *ngFor="let buscar of lista_clientes">
                                                         <td  style="text-transform:uppercase">{{buscar.nombre}}</td>
                                                         <td>{{buscar.numero}}</td>
                                                         <td>{{buscar.tipo_cliente}}</td>
@@ -335,7 +341,7 @@
                                 </div>
                                 <div class="row">
                                     <div *ngIf="_asesor_v == true"  class="form-group col-md-4">
-                                        <label>Asesor<span style="color:red">*</span></label>
+                                        <label>Asesor</label>
                                         <select id="asesor" formControlName="asesor" class="form-control select2 select2-hidden-accessible" style="width: 100%;text-transform:uppercase" tabindex="-1" aria-hidden="true">
                                             <option disabled selected style="display:none;" ></option>
                                             <option *ngFor="let item of _combo_asesor" [value]="item.id_persona">{{item.Nombre}}</option>
@@ -344,7 +350,7 @@
                                     </div>
                                     
                                     <div *ngIf="_asesor_v == false" class="form-group col-md-4">
-                                        <label>Asesor<span style="color:red">*</span></label>
+                                        <label>Asesor</label>
                                         <input style="text-transform:uppercase" readonly formControlName="asesor" type="text" class="form-control" placeholder="" autocomplete="off">
                                     </div>
                                       <div class="form-group col-md-4">

@@ -49,6 +49,21 @@ export class NavbarComponent implements OnInit {
       localStorage.setItem('sucursal', _response.success.recordset[0].id_sucursal);
       /*let _persona = localStorage.getItem('persona') */
       this.personal = localStorage.getItem('persona');
+
+      let data = {
+        "appname": "VIVANZA",
+        "sp": 'dvp.Trae_Usuarios_CRM',
+        "params": [localStorage.getItem('id')]
+  
+      }
+  
+      this.apiService.ejecuta(data).subscribe((response) => {
+        let _response;
+        _response = response;
+        localStorage.setItem('tipo', _response.success.recordset[0].tipo);
+      })
+
+
     })
 
   }
