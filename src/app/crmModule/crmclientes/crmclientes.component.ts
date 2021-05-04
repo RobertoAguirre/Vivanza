@@ -18,6 +18,7 @@ export class CrmclientesComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   public table: any = $('#table2');
   
+  public busca_referidor;
   public btn_activar;
   public _lote;
   public nuevo_cliente;
@@ -70,6 +71,7 @@ export class CrmclientesComponent implements OnInit {
   public _combo_institucion_financiera;
   public _combo_ingresos;
   public _combo_buscar;
+  public _combo_buscarR;
   public _combo_motivos;
   public _combo_clientes;
   public dataset;
@@ -222,6 +224,11 @@ export class CrmclientesComponent implements OnInit {
       {nombre: 'Más de $50,000 mensuales'}
     ]
     this._combo_buscar = [
+      {nombre: 'NOMBRE'},
+      {nombre: 'TELÉFONO'},
+    ]
+
+    this._combo_buscarR = [
       {nombre: 'NOMBRE'},
       {nombre: 'TELÉFONO'},
     ]
@@ -1074,6 +1081,7 @@ export class CrmclientesComponent implements OnInit {
         this.capturaForm.controls['combo_desarrollo'].enable();
         this.capturaForm.controls['combo_prototipo'].enable();
         this.capturaForm.controls['combo_manzana'].enable();
+        this.capturaForm.controls['combo_lote'].enable();
         this.capturaForm.controls['combo_etapa'].enable();
         this.capturaForm.controls['tipo_credito'].enable();
         this.capturaForm.controls['credito'].enable();
@@ -1089,7 +1097,7 @@ export class CrmclientesComponent implements OnInit {
         this.capturaForm.controls['visita3'].enable();
         this.capturaForm.controls['visita4'].enable(); */
        /*  this.EsAsesor(); */
-
+       $("#lote").prop("disabled",true);
         /////// bloquea fecha de cancelacion por campos null fecha de apartado y7o fecha de venta
        if(_response.success.recordset[0].fecha_apartado == null && _response.success.recordset[0].fecha_venta == null){
         $("#fecha_cancelacion").prop("disabled",true);
@@ -1697,6 +1705,18 @@ export class CrmclientesComponent implements OnInit {
     this.btns = true;
     
   }
+
+/*   BuscarClienteR(){
+    window.scroll(0, 0);
+    this.capturaFormBuscar.setValue(
+      {
+        consulta: '',
+        buscar: 'NOMBRE'
+      })
+    this.editar = true;
+    this.btns = true;
+    
+  } */
 
   GuardaComentarios(){
     if(this.capturaForm.value.comentario == ''){
@@ -2809,5 +2829,10 @@ export class CrmclientesComponent implements OnInit {
         
       }
   /////////////////////
- 
+
+  ///// Boton para abrir consulta para referidores
+/*     Referidor(){
+      this.busca_referidor = true;
+    } */
+  ///////////////////////////////// 
 }
