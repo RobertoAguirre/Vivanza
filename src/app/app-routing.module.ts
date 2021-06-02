@@ -1,3 +1,4 @@
+import { AsesoresPromotoresComponent } from './asesores-promotores/asesores-promotores.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ClientesComponent } from '../app/clientesModule/clientes/clientes.component';
@@ -63,7 +64,8 @@ const routes: Routes = [
   { path: 'crmformatoapartado', component: ContratosComponent, pathMatch: "full" },
   { path: 'crmmotivoscancelacion', component: CrmmotivoscancelacionComponent, pathMatch: "full" },
   { path: 'crmeditarmotivoscancelacion', component: CrmeditarmotivoscancelacionComponent, pathMatch: "full" },
-  { path: 'desperfilados', component: DesperfiladosComponent, pathMatch: "full" }
+  { path: 'desperfilados', component: DesperfiladosComponent, pathMatch: "full" },
+  { path: 'asesores-promotores', component: AsesoresPromotoresComponent, pathMatch: "full" }
 
 ]
 

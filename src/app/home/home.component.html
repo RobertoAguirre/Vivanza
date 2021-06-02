@@ -3,7 +3,7 @@
 <div class="content-wrapper">
     <!--     <img style="height: 92%; width: 92%;" class="mr-3" src="assets/img/logovivanzawhite.png"/>
  -->
-    <!-- 
+    <!--
     <button (click)="openModal('custom-modal-1')">Open Modal 1</button>
     <button (click)="openModal('custom-modal-2')">Open Modal 2</button> -->
     <button class="btn btn-lg btn-outline-primary" (click)="openNormal()">Modal para mensajes normales</button>
@@ -61,11 +61,11 @@
     <app-pie [tipoGraficaPie]="tipoGraficaPie" [titulotabla]="tituloGrafica" [etiquetas]="etiquetasGrafica"
         [data]="datasetGrafica" [coloresFondo]="coloresGrafica"></app-pie>
 
-    <app-barsmultiple [etiquetasEjeX]="etiquetasEjeX" [tituloDataset1]="tituloDataset1"
+    <!-- <app-barsmultiple [etiquetasEjeX]="etiquetasEjeX" [tituloDataset1]="tituloDataset1"
         [multipledataset1]="multipledataset1" [coloresFondoDataset1]="coloresGrafica1" [tituloDataset2]="tituloDataset2"
         [multipledataset2]="multipledataset2" [coloresFondoDataset2]="coloresGrafica2" [tituloDataset3]="tituloDataset3"
         [multipledataset3]="multipledataset3" [coloresFondoDataset3]="coloresGrafica3">
-    </app-barsmultiple>
+    </app-barsmultiple> -->
 
     <form [formGroup]="myForm" (ngSubmit)="submit()">
 

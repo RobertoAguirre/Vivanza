@@ -23,7 +23,7 @@ import { CrmusuariosComponent } from './crmModule/crmusuarios/crmusuarios.compon
 import { AsignacionModulosComponent } from './asignacion-modulos/asignacion-modulos.component';
 import { AreaComponent } from './examples/charts/area/area.component';
 import { PieComponent } from './examples/charts/pie/pie.component';
-import { BarsmultipleComponent } from './examples/charts/barsmultiple/barsmultiple.component';
+//import { BarsmultipleComponent } from './examples/charts/barsmultiple/barsmultiple.component';
 import { CrmeditarusuariosComponent } from './crmModule/crmeditarusuarios/crmeditarusuarios.component';
 import { CrmcanalesComponent } from './crmModule/crmcanales/crmcanales.component';
 import { CrmeditarcanalComponent } from './crmModule/crmeditarcanal/crmeditarcanal.component';
@@ -48,6 +48,7 @@ import { BuroCreditoComponent } from './formatos/buro-credito/buro-credito.compo
 import { CrmmotivoscancelacionComponent } from './crmModule/crmmotivoscancelacion/crmmotivoscancelacion.component';
 import { CrmeditarmotivoscancelacionComponent } from './crmModule/crmeditarmotivoscancelacion/crmeditarmotivoscancelacion.component';
 import { DesperfiladosComponent } from './crmModule/desperfilados/desperfilados.component';
+import { AsesoresPromotoresComponent } from './asesores-promotores/asesores-promotores.component';
 
 
 
@@ -69,7 +70,7 @@ import { DesperfiladosComponent } from './crmModule/desperfilados/desperfilados.
     CrmeditarusuariosComponent,
     AreaComponent,
     PieComponent,
-    BarsmultipleComponent,
+    //BarsmultipleComponent,
     CrmcanalesComponent,
     CrmeditarcanalComponent,
     CrmmediosComponent,
@@ -91,7 +92,8 @@ import { DesperfiladosComponent } from './crmModule/desperfilados/desperfilados.
     BuroCreditoComponent,
     CrmmotivoscancelacionComponent,
     CrmeditarmotivoscancelacionComponent,
-    DesperfiladosComponent
+    DesperfiladosComponent,
+    AsesoresPromotoresComponent,
 
   ],
   imports: [
